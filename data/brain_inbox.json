@@ -1,0 +1,92 @@
+{
+ "ca_0454abe525": {
+  "call_attempt_id": "ca_0454abe525",
+  "contact_id": "c_c09828fbcf",
+  "outcome": "WRONG_NUMBER",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ },
+ "ca_1c90a154b7": {
+  "call_attempt_id": "ca_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "outcome": "DECLINED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ },
+ "ca_235dad69f6": {
+  "call_attempt_id": "ca_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "outcome": "CALLBACK_REQUESTED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "small_group_primary_care",
+  "utterance_count": 3
+ },
+ "ca_32994a1b75": {
+  "call_attempt_id": "ca_32994a1b75",
+  "contact_id": "c_5bfd0187e6",
+  "outcome": "BOOKED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ },
+ "ca_6b6ea10721": {
+  "call_attempt_id": "ca_6b6ea10721",
+  "contact_id": "c_f9eafcfce6",
+  "outcome": "VOICEMAIL",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_specialist",
+  "utterance_count": 1
+ },
+ "ca_6e29b4cd45": {
+  "call_attempt_id": "ca_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "outcome": "NO_ANSWER",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "default",
+  "utterance_count": 0
+ },
+ "ca_7e13816d5d": {
+  "call_attempt_id": "ca_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "outcome": "BOOKED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ },
+ "ca_d6149fd0d8": {
+  "call_attempt_id": "ca_d6149fd0d8",
+  "contact_id": "c_01c54d811d",
+  "outcome": "GATEKEEPER_BLOCKED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "small_group_specialist",
+  "utterance_count": 3
+ },
+ "ca_e0d96f14bc": {
+  "call_attempt_id": "ca_e0d96f14bc",
+  "contact_id": "c_251bab6d38",
+  "outcome": "BOOKED",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ },
+ "ca_e9f7fe12db": {
+  "call_attempt_id": "ca_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "outcome": "DO_NOT_CONTACT",
+  "received_at": "2026-10-20T20:01:49Z",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "utterance_count": 3
+ }
+}

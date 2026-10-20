@@ -1,0 +1,34 @@
+[
+ {
+  "call_id": "",
+  "contact_id": "c_070728f30d",
+  "detail": "no phone channel; email only (not queued)",
+  "error_type": "missing_field",
+  "field": "phone",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_761872151b",
+  "detail": "matches c_251bab6d38; review and merge (VER-004)",
+  "error_type": "duplicate_candidate",
+  "field": "name+practice/phone",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "call_id": "ca_f531e662ea",
+  "contact_id": "c_517863c95b",
+  "detail": "provider transcript is not a list of utterances: ##garbled## (provider returned a non-list transcript)",
+  "error_type": "malformed_transcript",
+  "field": "transcript",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "call_id": "ca_831582c51e",
+  "contact_id": "c_a776b6dc5b",
+  "detail": "mock Brain returned 500 (scenario delivery_fails)",
+  "error_type": "delivery_failed",
+  "field": "transcript",
+  "timestamp": "2026-10-20T20:01:49Z"
+ }
+]

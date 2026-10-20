@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    paths-ignore: ["data/**", "docs/data/**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check infra tests
+      - name: Tests (acceptance criteria AC-1..AC-10, connector test plan)
+        run: pytest
+      - name: Smoke dry run into a scratch directory
+        env:
+          BV_NOW: "2026-10-20T14:00:00Z"
+          BV_DATA_DIR: /tmp/bv-smoke/data
+          BV_EXPORT_DIR: /tmp/bv-smoke/export
+        run: |
+          python -m infra run --trigger ci-smoke
+          test -f /tmp/bv-smoke/export/summary.json

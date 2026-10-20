@@ -1,0 +1,57 @@
+{
+ "brain_down": false,
+ "finished_at": "2026-10-20T20:01:49Z",
+ "gate_escapes": 0,
+ "git_sha": "217a1dd",
+ "kill_switch": false,
+ "mode": "dry_run",
+ "now_used": "2026-10-20T20:01:49Z",
+ "paused": false,
+ "run_id": "20261020T200149Z-001",
+ "seed": "test_doctors.csv",
+ "simulated_time": false,
+ "stages": {
+  "calls": {
+   "allowed": 14,
+   "blocked": 4,
+   "brain_unavailable": 0,
+   "capped": 0,
+   "considered": 18,
+   "deferred": 0,
+   "placed": 14,
+   "script_errors": 0
+  },
+  "delivery": {
+   "attempted": 11,
+   "delivered": 10,
+   "duplicates": 0,
+   "failed": 1,
+   "held": 1
+  },
+  "ingest": {
+   "channels_created": 20,
+   "contacts_created": 18,
+   "contacts_updated": 0,
+   "rows": 18
+  },
+  "suppressions_seeded": 1,
+  "verify": {
+   "channels_failed": 0,
+   "channels_verified": 20,
+   "cleared": 16,
+   "duplicates": 1,
+   "failed": 1,
+   "suppressed": 1,
+   "verified": 15
+  },
+  "webhooks": {
+   "applied": 14,
+   "bad_signature": 0,
+   "duplicates_ignored": 14,
+   "events": 28,
+   "unknown_call": 0
+  }
+ },
+ "started_at": "2026-10-20T20:01:49Z",
+ "trigger": "local"
+}

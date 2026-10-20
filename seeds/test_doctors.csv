@@ -1,0 +1,19 @@
+external_id,name,credentials,specialty,practice_name,practice_size,address,city,state,phone,email,time_zone,line_type,pronunciation_hint,scenario
+t_01,Priya Patel,MD,family medicine,Patel Family Medicine,solo,12 Beacon St,Boston,MA,617-555-0101,ppatel@example.test,America/New_York,landline,,booked
+t_02,,MD,internal medicine,Beacon Hill Internal Medicine,solo,40 Charles St,Boston,MA,(617) 555-0102,,America/New_York,landline,,declined
+t_03,Marcus Lee,MD,,Lee Medical,small_group,88 Tremont St,Boston,MA,+1 617 555 0103,mlee@example.test,America/New_York,landline,,no_answer
+t_04,Siobhan Ni Bhriain,MD,endocrinology,Charles River Endocrinology,solo,5 Cambridge Pkwy,Cambridge,MA,617.555.0104,,America/New_York,landline,shiv-AWN nee BREE-an,voicemail
+t_05,Alan Chen,DO,family medicine,Chen Primary Care,solo,200 Harvard Ave,Allston,MA,617-555-0105,,America/New_York,landline,,booked
+t_06,Dana Okafor,MD,family medicine,Okafor Family Health,solo,9 Kalakaua Ave,Honolulu,HI,808-555-0106,,Pacific/Honolulu,landline,,booked
+t_07,Rosa Martinez,MD,internal medicine,Fenway Group Practice,small_group,1 Fenway,Boston,MA,617-555-0107,,America/New_York,landline,,callback
+t_08,Ken Watanabe,MD,pediatrics,Watanabe Pediatrics,solo,30 Newbury St,Boston,MA,,kwatanabe@example.test,America/New_York,,,booked
+t_09,Hannah Goldberg,MD,family medicine,Brookline Primary Care,solo,1 Harvard St,Brookline,MA,617-555-0109,,America/New_York,landline,,stop_calling
+t_10,Omar Haddad,MD,endocrinology,Haddad Endocrine Associates,small_group,55 Fruit St,Boston,MA,617-555-0110,,America/New_York,landline,,gatekeeper
+t_11,Grace Kim,MD,family medicine,Kim Family Medicine,solo,14 Centre St,Jamaica Plain,MA,617-555-0111,,America/New_York,landline,,wrong_number
+t_12,Dr. Priya Patel,MD,family medicine,Patel Family Medicine,solo,12 Beacon St,Boston,MA,6175550101,,America/New_York,landline,,booked
+t_13,Luis Ortega,MD,family medicine,Jamaica Plain Primary Care,solo,700 Centre St,Jamaica Plain,MA,617-555-0113,,America/New_York,landline,,malformed_transcript
+t_14,Emily Zhang,MD,internal medicine,South End Internal Medicine,solo,600 Harrison Ave,Boston,MA,617-555-0114,,America/New_York,landline,,patient_data
+t_15,Sam Rivera,NP,family medicine,Rivera Wellness,solo,3 Dudley St,Roxbury,MA,617-555-0115,,America/New_York,voip,,delivery_fails
+t_16,Nina Shah,MD,family medicine,Shah Primary Care,solo,77 Mass Ave,Boston,MA,617-555-0116,,America/New_York,landline,,booked
+t_17,Victor Adeyemi,MD,internal medicine,Dorchester Medical,small_group,1 Dorchester Ave,Dorchester,MA,617-555-0117,,America/New_York,landline,,technical
+t_18,Laura Bennett,MD,family medicine,Bennett Family Practice,solo,22 Elm St,Somerville,MA,617-555-0118,,America/New_York,mobile,,booked

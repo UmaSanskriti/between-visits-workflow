@@ -1,0 +1,174 @@
+[
+ {
+  "allowed": true,
+  "channel_id": "ch_5e1fdacffc",
+  "contact_id": "c_251bab6d38",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_fb340917a5",
+  "contact_id": "c_b3b24d17b8",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_4da2cae231",
+  "contact_id": "c_da6677d004",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_38dfb97cd2",
+  "contact_id": "c_f9eafcfce6",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": false,
+  "channel_id": "ch_5dad0aa7b5",
+  "contact_id": "c_8a72860e91",
+  "deferred": false,
+  "reasons": [
+   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
+  ],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_7acca703d9",
+  "contact_id": "c_5bfd0187e6",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_2b7bcb4ad3",
+  "contact_id": "c_29816f6cb0",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": false,
+  "channel_id": "",
+  "contact_id": "c_070728f30d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_callable_channel",
+   "no_phone_channel"
+  ],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_fd81d176ec",
+  "contact_id": "c_48eaa6c438",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_1a19dbc957",
+  "contact_id": "c_01c54d811d",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_6edba34a63",
+  "contact_id": "c_c09828fbcf",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": false,
+  "channel_id": "ch_c8143f50ff",
+  "contact_id": "c_761872151b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_251bab6d38"
+  ],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_90853491d8",
+  "contact_id": "c_517863c95b",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_d51cba31b9",
+  "contact_id": "c_d7b9cfa027",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_909481b505",
+  "contact_id": "c_a776b6dc5b",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": false,
+  "channel_id": "ch_54322660b9",
+  "contact_id": "c_0de2e04276",
+  "deferred": false,
+  "reasons": [
+   "call_clearance_not_cleared"
+  ],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_42ac4cfa29",
+  "contact_id": "c_866bc1a7db",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ },
+ {
+  "allowed": true,
+  "channel_id": "ch_0fdf5cb5aa",
+  "contact_id": "c_2c3a09fcb5",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261020T200149Z-001",
+  "timestamp": "2026-10-20T20:01:49Z"
+ }
+]

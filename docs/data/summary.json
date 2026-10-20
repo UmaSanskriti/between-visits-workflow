@@ -1,0 +1,231 @@
+{
+ "alerts": 2,
+ "calls": {
+  "attempts": 14,
+  "booked": 4,
+  "by_outcome": {
+   "BOOKED": 4,
+   "CALLBACK_REQUESTED": 1,
+   "DECLINED": 3,
+   "DO_NOT_CONTACT": 1,
+   "FAILED_TECHNICAL": 1,
+   "GATEKEEPER_BLOCKED": 1,
+   "NO_ANSWER": 1,
+   "VOICEMAIL": 1,
+   "WRONG_NUMBER": 1
+  },
+  "by_script_version": {
+   "2026-10-20.1": {
+    "attempts": 14,
+    "booked": 4,
+    "by_outcome": {
+     "BOOKED": 4,
+     "CALLBACK_REQUESTED": 1,
+     "DECLINED": 3,
+     "DO_NOT_CONTACT": 1,
+     "FAILED_TECHNICAL": 1,
+     "GATEKEEPER_BLOCKED": 1,
+     "NO_ANSWER": 1,
+     "VOICEMAIL": 1,
+     "WRONG_NUMBER": 1
+    },
+    "conversion": 0.286,
+    "declined": 3
+   }
+  },
+  "by_segment": {
+   "default": {
+    "attempts": 1,
+    "booked": 0,
+    "by_outcome": {
+     "NO_ANSWER": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   },
+   "small_group_primary_care": {
+    "attempts": 2,
+    "booked": 0,
+    "by_outcome": {
+     "CALLBACK_REQUESTED": 1,
+     "FAILED_TECHNICAL": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   },
+   "small_group_specialist": {
+    "attempts": 1,
+    "booked": 0,
+    "by_outcome": {
+     "GATEKEEPER_BLOCKED": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   },
+   "solo_primary_care": {
+    "attempts": 9,
+    "booked": 4,
+    "by_outcome": {
+     "BOOKED": 4,
+     "DECLINED": 3,
+     "DO_NOT_CONTACT": 1,
+     "WRONG_NUMBER": 1
+    },
+    "conversion": 0.444,
+    "declined": 3
+   },
+   "solo_specialist": {
+    "attempts": 1,
+    "booked": 0,
+    "by_outcome": {
+     "VOICEMAIL": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   }
+  },
+  "completed": 14,
+  "connect_rate": 0.786,
+  "duplicate_webhooks_ignored": 14
+ },
+ "compliance": {
+  "consent_records": 16,
+  "gate_escapes": 0,
+  "kill_switch": false,
+  "last_run": {
+   "allowed": 14,
+   "blocked": 4,
+   "considered": 18,
+   "deferred": 0
+  },
+  "paused": false,
+  "suppressions": 3
+ },
+ "contacts": {
+  "by_status": {
+   "BOOKED": 4,
+   "DECLINED": 3,
+   "IN_OUTREACH": 5,
+   "READY": 1,
+   "SOURCED": 1,
+   "SUPPRESSED": 2,
+   "UNREACHABLE": 1,
+   "VERIFIED": 1
+  },
+  "by_verification": {
+   "failed": 2,
+   "unverified": 1,
+   "verified": 15
+  },
+  "total": 18,
+  "verified": 15
+ },
+ "dlq": 1,
+ "errors": 4,
+ "funnel": [
+  {
+   "count": 18,
+   "stage": "Sourced"
+  },
+  {
+   "count": 15,
+   "stage": "Verified"
+  },
+  {
+   "count": 14,
+   "stage": "Cleared to call"
+  },
+  {
+   "count": 14,
+   "stage": "Called"
+  },
+  {
+   "count": 11,
+   "stage": "Connected"
+  },
+  {
+   "count": 4,
+   "stage": "Booked"
+  }
+ ],
+ "generated_at": "2026-10-20T20:01:49Z",
+ "interviews": 4,
+ "queue": [
+  {
+   "attempts": 0,
+   "contact_id": "c_0de2e04276",
+   "external_id": "t_16",
+   "last_outcome": "",
+   "name": "Nina Shah",
+   "next_attempt_at": "",
+   "practice": "Shah Primary Care",
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_866bc1a7db",
+   "external_id": "t_17",
+   "last_outcome": "FAILED_TECHNICAL",
+   "name": "Victor Adeyemi",
+   "next_attempt_at": "2026-10-20T21:01:49Z",
+   "practice": "Dorchester Medical",
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_da6677d004",
+   "external_id": "t_03",
+   "last_outcome": "NO_ANSWER",
+   "name": "Marcus Lee",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Lee Medical",
+   "segment": "default",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_01c54d811d",
+   "external_id": "t_10",
+   "last_outcome": "GATEKEEPER_BLOCKED",
+   "name": "Omar Haddad",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Haddad Endocrine Associates",
+   "segment": "small_group_specialist",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_29816f6cb0",
+   "external_id": "t_07",
+   "last_outcome": "CALLBACK_REQUESTED",
+   "name": "Rosa Martinez",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Fenway Group Practice",
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_f9eafcfce6",
+   "external_id": "t_04",
+   "last_outcome": "VOICEMAIL",
+   "name": "Siobhan Ni Bhriain",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Charles River Endocrinology",
+   "segment": "solo_specialist",
+   "status": "IN_OUTREACH"
+  }
+ ],
+ "run_id": "20261020T200149Z-001",
+ "transcripts": {
+  "brain_inbox": 10,
+  "delivered": 10,
+  "delivery_rate": 0.909,
+  "failed": 1,
+  "held_pii_review": 1,
+  "pending": 0,
+  "total": 12
+ }
+}

@@ -1,0 +1,70 @@
+name: Dry-run pipeline
+
+# Runs the full v0 pipeline (ingest -> verify -> gate -> mock calls -> webhooks -> transcript delivery),
+# commits the resulting state to data/ and the masked snapshot to docs/data/, which GitHub Pages serves.
+#
+# Kill switch (CALL-009): set the repository variable BV_KILL_SWITCH to "1" in
+# Settings -> Secrets and variables -> Actions -> Variables. No deploy needed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      now_override:
+        description: "Run as if it were this instant (ISO 8601, e.g. 2026-10-21T15:00:00Z). Blank = real time."
+        required: false
+        default: ""
+      reset:
+        description: "Wipe data/ before running (start the MVP flow from scratch)"
+        type: boolean
+        default: false
+      simulate_brain_down:
+        description: "Pretend the Brain is unreachable (AC-6)"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["infra/**", "seeds/**", "config.toml"]
+  # Uncomment to run the scheduler on weekdays at 10:00 US/Eastern (14:00 UTC during EDT).
+  # schedule:
+  #   - cron: "0 14 * * 1-5"
+
+concurrency:
+  group: dry-run-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install -e .
+      - name: Run pipeline (dry run)
+        env:
+          BV_KILL_SWITCH: ${{ vars.BV_KILL_SWITCH }}
+          BV_NOW: ${{ inputs.now_override }}
+          BV_MOCK_BRAIN_DOWN: ${{ inputs.simulate_brain_down == true && '1' || '0' }}
+        run: |
+          if [ "${{ inputs.reset }}" = "true" ]; then
+            python -m infra reset
+          fi
+          python -m infra run --trigger "${{ github.event_name }}"
+      - name: Commit state and dashboard snapshot
+        run: |
+          git config user.name "between-visits-bot"
+          git config user.email "between-visits-bot@users.noreply.github.com"
+          git add data docs/data
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "pipeline: dry run ${{ github.run_id }} (${{ github.event_name }})"
+            git push origin HEAD:main
+          fi

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Between Visits Ops</title>
+  <meta name="description" content="Visibility into the Between Visits calling-agent infra: dry-run pipeline state, compliance gate decisions, call outcomes, and transcript handoff.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232a78d6'/%3E%3Cpath d='M9 17l4 4 10-10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Between Visits · infra v0</h1>
+      <p class="sub">Calling-agent pipeline: sourcing → verify → compliance gate → calls → transcripts → Brain</p>
+      <div class="chips" id="run-chips"></div>
+    </div>
+    <div class="controls">
+      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow" target="_blank" rel="noopener">Repo</a>
+      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml" target="_blank" rel="noopener">Run pipeline</a>
+      <button id="theme" type="button" title="Toggle theme">Theme: system</button>
+    </div>
+  </header>
+
+  <div class="banner"><b>Dry run.</b> No real calls are placed. Every doctor on this page is fictional (555-01xx numbers). This page is public, so phone numbers and emails are masked at export time.</div>
+
+  <div id="error" class="err"></div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="head"><h2>Funnel</h2><span class="count">contacts, cumulative</span></div>
+      <p class="desc">Sourced → verified → cleared to call → called → connected (a human or voicemail answered) → booked.</p>
+      <div class="bars" id="funnel"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Call outcomes</h2><span class="count" id="outcomes-count"></span></div>
+      <p class="desc">All call attempts, by classified outcome.</p>
+      <div class="bars" id="outcomes"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="head"><h2>Compliance gate · last run</h2><span class="count" id="gate-count"></span></div>
+    <p class="desc">Every open contact is evaluated before a call (CMP-001). Blocked = a hard gate failed. Deferred = outside the calling window or retry not due yet.</p>
+    <div class="table-wrap" id="gate"></div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <div class="head"><h2>Call queue</h2><span class="count" id="queue-count"></span></div>
+      <p class="desc">Contacts the scheduler will consider next, with their retry time.</p>
+      <div class="table-wrap" id="queue"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Interviews booked</h2><span class="count" id="interviews-count"></span></div>
+      <p class="desc">One interview per BOOKED outcome; handoff writes an .ics file in v0.</p>
+      <div class="table-wrap" id="interviews"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="head"><h2>Call attempts</h2><span class="count" id="attempts-count"></span></div>
+    <p class="desc">Most recent first. Each attempt records the script version it ran and the gate result that allowed it.</p>
+    <div class="table-wrap" id="attempts"></div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <div class="head"><h2>Outcomes by segment</h2></div>
+      <p class="desc">Connector outcome summary: conversion per segment and script version, including declines and no-answers.</p>
+      <div class="table-wrap" id="segments"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Transcripts → Brain</h2><span class="count" id="transcripts-count"></span></div>
+      <p class="desc">Stored before delivery, delivered with an idempotency key, held when patient data is suspected.</p>
+      <div class="table-wrap" id="transcripts"></div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="head"><h2>Error report</h2><span class="count" id="errors-count"></span></div>
+      <p class="desc">Missing fields, duplicates, malformed transcripts, delivery failures.</p>
+      <div class="table-wrap" id="errors"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Alerts and dead-letter queue</h2><span class="count" id="alerts-count"></span></div>
+      <p class="desc">Things an operator should look at.</p>
+      <div class="table-wrap" id="alerts"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="head"><h2>Contact history</h2></div>
+    <p class="desc">Full history for one contact (OPS-001): record, channels, gate decisions, attempts, audit trail.</p>
+    <div class="search"><input id="search" type="search" placeholder="Search by name, external id (t_01), or contact id" autocomplete="off"></div>
+    <div id="history" class="muted">Type to search.</div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <div class="head"><h2>Runs</h2><span class="count" id="runs-count"></span></div>
+      <p class="desc">Each pipeline run, most recent first.</p>
+      <div class="table-wrap" id="runs"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Audit log</h2><span class="count" id="audit-count"></span></div>
+      <p class="desc">Append-only state transitions (DB-002), latest 100.</p>
+      <div class="table-wrap" id="audit"></div>
+    </section>
+  </div>
+
+  <footer id="footer"></footer>
+</div>
+<div class="tooltip" id="tooltip"></div>
+<script src="app.js"></script>
+</body>
+</html>
