@@ -1,27 +1,27 @@
 [
  {
-  "call_id": "ca_e0d96f14bc",
-  "contact_id": "c_251bab6d38",
+  "call_id": "ca_0454abe525",
+  "contact_id": "c_c09828fbcf",
   "created_at": "2026-10-20T20:01:49Z",
   "fallbacks_applied": [
    "ehr",
    "slot_options"
   ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Patel, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Kim, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
   "script_id": "s_discovery_v1",
   "script_version": "2026-10-20.1",
   "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Patel (family medicine) at Patel Family Medicine. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Kim (family medicine) at Kim Family Medicine. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
   "variables_used": {
    "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
    "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
    "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Patel",
-   "greeting": "Hi Dr. Patel,",
-   "location": "Boston, MA",
+   "doctor_name": "Dr. Kim",
+   "greeting": "Hi Dr. Kim,",
+   "location": "Jamaica Plain, MA",
    "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Patel Family Medicine",
+   "practice_name": "Kim Family Medicine",
    "practice_size": "solo",
    "practice_size_sentence": " Practice size: solo.",
    "segment": "solo_primary_care",
@@ -61,34 +61,63 @@
   }
  },
  {
-  "call_id": "ca_6e29b4cd45",
-  "contact_id": "c_da6677d004",
+  "call_id": "ca_235dad69f6",
+  "contact_id": "c_29816f6cb0",
   "created_at": "2026-10-20T20:01:49Z",
   "fallbacks_applied": [
-   "specialty",
    "ehr",
    "slot_options"
   ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Lee, I'm calling from Between Visits, a Harvard student venture. Doctors tell us GLP-1 patients need more support between visits than a visit allows. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Doctors tell us GLP-1 patients need more support between visits than a visit allows.",
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Martinez, I'm calling from Between Visits, a Harvard student venture. Group primary care practices tell us GLP-1 patients need more support than a visit allows. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
   "script_id": "s_discovery_v1",
   "script_version": "2026-10-20.1",
-  "segment": "default",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Lee (independent practice) at Lee Medical. Practice size: small_group. Segment: default. Script version: 2026-10-20.1. Lead with this angle: Doctors tell us GLP-1 patients need more support between visits than a visit allows. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "segment": "small_group_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Martinez (internal medicine) at Fenway Group Practice. Practice size: small_group. Segment: small_group_primary_care. Script version: 2026-10-20.1. Lead with this angle: Group primary care practices tell us GLP-1 patients need more support than a visit allows. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
   "variables_used": {
    "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
    "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
    "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Lee",
-   "greeting": "Hi Dr. Lee,",
+   "doctor_name": "Dr. Martinez",
+   "greeting": "Hi Dr. Martinez,",
    "location": "Boston, MA",
-   "pitch_angle": "Doctors tell us GLP-1 patients need more support between visits than a visit allows.",
-   "practice_name": "Lee Medical",
+   "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
+   "practice_name": "Fenway Group Practice",
    "practice_size": "small_group",
    "practice_size_sentence": " Practice size: small_group.",
-   "segment": "default",
+   "segment": "small_group_primary_care",
    "slot_options": "a time that works for you",
-   "specialty": "independent practice"
+   "specialty": "internal medicine"
+  }
+ },
+ {
+  "call_id": "ca_32994a1b75",
+  "contact_id": "c_5bfd0187e6",
+  "created_at": "2026-10-20T20:01:49Z",
+  "fallbacks_applied": [
+   "ehr",
+   "slot_options"
+  ],
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Okafor, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "script_id": "s_discovery_v1",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Okafor (family medicine) at Okafor Family Health. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "variables_used": {
+   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
+   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
+   "caller_identity": "Between Visits, a Harvard student venture",
+   "doctor_name": "Dr. Okafor",
+   "greeting": "Hi Dr. Okafor,",
+   "location": "Honolulu, HI",
+   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+   "practice_name": "Okafor Family Health",
+   "practice_size": "solo",
+   "practice_size_sentence": " Practice size: solo.",
+   "segment": "solo_primary_care",
+   "slot_options": "a time that works for you",
+   "specialty": "family medicine"
   }
  },
  {
@@ -123,183 +152,34 @@
   }
  },
  {
-  "call_id": "ca_32994a1b75",
-  "contact_id": "c_5bfd0187e6",
+  "call_id": "ca_6e29b4cd45",
+  "contact_id": "c_da6677d004",
   "created_at": "2026-10-20T20:01:49Z",
   "fallbacks_applied": [
+   "specialty",
    "ehr",
    "slot_options"
   ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Okafor, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Lee, I'm calling from Between Visits, a Harvard student venture. Doctors tell us GLP-1 patients need more support between visits than a visit allows. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Doctors tell us GLP-1 patients need more support between visits than a visit allows.",
   "script_id": "s_discovery_v1",
   "script_version": "2026-10-20.1",
-  "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Okafor (family medicine) at Okafor Family Health. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "segment": "default",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Lee (independent practice) at Lee Medical. Practice size: small_group. Segment: default. Script version: 2026-10-20.1. Lead with this angle: Doctors tell us GLP-1 patients need more support between visits than a visit allows. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
   "variables_used": {
    "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
    "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
    "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Okafor",
-   "greeting": "Hi Dr. Okafor,",
-   "location": "Honolulu, HI",
-   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Okafor Family Health",
-   "practice_size": "solo",
-   "practice_size_sentence": " Practice size: solo.",
-   "segment": "solo_primary_care",
-   "slot_options": "a time that works for you",
-   "specialty": "family medicine"
-  }
- },
- {
-  "call_id": "ca_235dad69f6",
-  "contact_id": "c_29816f6cb0",
-  "created_at": "2026-10-20T20:01:49Z",
-  "fallbacks_applied": [
-   "ehr",
-   "slot_options"
-  ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Martinez, I'm calling from Between Visits, a Harvard student venture. Group primary care practices tell us GLP-1 patients need more support than a visit allows. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
-  "script_id": "s_discovery_v1",
-  "script_version": "2026-10-20.1",
-  "segment": "small_group_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Martinez (internal medicine) at Fenway Group Practice. Practice size: small_group. Segment: small_group_primary_care. Script version: 2026-10-20.1. Lead with this angle: Group primary care practices tell us GLP-1 patients need more support than a visit allows. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
-  "variables_used": {
-   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
-   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
-   "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Martinez",
-   "greeting": "Hi Dr. Martinez,",
+   "doctor_name": "Dr. Lee",
+   "greeting": "Hi Dr. Lee,",
    "location": "Boston, MA",
-   "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
-   "practice_name": "Fenway Group Practice",
+   "pitch_angle": "Doctors tell us GLP-1 patients need more support between visits than a visit allows.",
+   "practice_name": "Lee Medical",
    "practice_size": "small_group",
    "practice_size_sentence": " Practice size: small_group.",
-   "segment": "small_group_primary_care",
+   "segment": "default",
    "slot_options": "a time that works for you",
-   "specialty": "internal medicine"
-  }
- },
- {
-  "call_id": "ca_e9f7fe12db",
-  "contact_id": "c_48eaa6c438",
-  "created_at": "2026-10-20T20:01:49Z",
-  "fallbacks_applied": [
-   "ehr",
-   "slot_options"
-  ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Goldberg, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-  "script_id": "s_discovery_v1",
-  "script_version": "2026-10-20.1",
-  "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Goldberg (family medicine) at Brookline Primary Care. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
-  "variables_used": {
-   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
-   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
-   "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Goldberg",
-   "greeting": "Hi Dr. Goldberg,",
-   "location": "Brookline, MA",
-   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Brookline Primary Care",
-   "practice_size": "solo",
-   "practice_size_sentence": " Practice size: solo.",
-   "segment": "solo_primary_care",
-   "slot_options": "a time that works for you",
-   "specialty": "family medicine"
-  }
- },
- {
-  "call_id": "ca_d6149fd0d8",
-  "contact_id": "c_01c54d811d",
-  "created_at": "2026-10-20T20:01:49Z",
-  "fallbacks_applied": [
-   "ehr",
-   "slot_options"
-  ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Haddad, I'm calling from Between Visits, a Harvard student venture. Specialist groups tell us GLP-1 patients need structured nutrition support between visits. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Specialist groups tell us GLP-1 patients need structured nutrition support between visits.",
-  "script_id": "s_discovery_v1",
-  "script_version": "2026-10-20.1",
-  "segment": "small_group_specialist",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Haddad (endocrinology) at Haddad Endocrine Associates. Practice size: small_group. Segment: small_group_specialist. Script version: 2026-10-20.1. Lead with this angle: Specialist groups tell us GLP-1 patients need structured nutrition support between visits. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
-  "variables_used": {
-   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
-   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
-   "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Haddad",
-   "greeting": "Hi Dr. Haddad,",
-   "location": "Boston, MA",
-   "pitch_angle": "Specialist groups tell us GLP-1 patients need structured nutrition support between visits.",
-   "practice_name": "Haddad Endocrine Associates",
-   "practice_size": "small_group",
-   "practice_size_sentence": " Practice size: small_group.",
-   "segment": "small_group_specialist",
-   "slot_options": "a time that works for you",
-   "specialty": "endocrinology"
-  }
- },
- {
-  "call_id": "ca_0454abe525",
-  "contact_id": "c_c09828fbcf",
-  "created_at": "2026-10-20T20:01:49Z",
-  "fallbacks_applied": [
-   "ehr",
-   "slot_options"
-  ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Kim, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-  "script_id": "s_discovery_v1",
-  "script_version": "2026-10-20.1",
-  "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Kim (family medicine) at Kim Family Medicine. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
-  "variables_used": {
-   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
-   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
-   "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Kim",
-   "greeting": "Hi Dr. Kim,",
-   "location": "Jamaica Plain, MA",
-   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Kim Family Medicine",
-   "practice_size": "solo",
-   "practice_size_sentence": " Practice size: solo.",
-   "segment": "solo_primary_care",
-   "slot_options": "a time that works for you",
-   "specialty": "family medicine"
-  }
- },
- {
-  "call_id": "ca_f531e662ea",
-  "contact_id": "c_517863c95b",
-  "created_at": "2026-10-20T20:01:49Z",
-  "fallbacks_applied": [
-   "ehr",
-   "slot_options"
-  ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Ortega, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-  "script_id": "s_discovery_v1",
-  "script_version": "2026-10-20.1",
-  "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Ortega (family medicine) at Jamaica Plain Primary Care. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
-  "variables_used": {
-   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
-   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
-   "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Ortega",
-   "greeting": "Hi Dr. Ortega,",
-   "location": "Jamaica Plain, MA",
-   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Jamaica Plain Primary Care",
-   "practice_size": "solo",
-   "practice_size_sentence": " Practice size: solo.",
-   "segment": "solo_primary_care",
-   "slot_options": "a time that works for you",
-   "specialty": "family medicine"
+   "specialty": "independent practice"
   }
  },
  {
@@ -330,6 +210,36 @@
    "segment": "solo_primary_care",
    "slot_options": "a time that works for you",
    "specialty": "internal medicine"
+  }
+ },
+ {
+  "call_id": "ca_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "created_at": "2026-10-20T20:01:49Z",
+  "fallbacks_applied": [
+   "ehr",
+   "slot_options"
+  ],
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Bennett, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "script_id": "s_discovery_v1",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Bennett (family medicine) at Bennett Family Practice. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "variables_used": {
+   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
+   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
+   "caller_identity": "Between Visits, a Harvard student venture",
+   "doctor_name": "Dr. Bennett",
+   "greeting": "Hi Dr. Bennett,",
+   "location": "Somerville, MA",
+   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+   "practice_name": "Bennett Family Practice",
+   "practice_size": "solo",
+   "practice_size_sentence": " Practice size: solo.",
+   "segment": "solo_primary_care",
+   "slot_options": "a time that works for you",
+   "specialty": "family medicine"
   }
  },
  {
@@ -393,28 +303,118 @@
   }
  },
  {
-  "call_id": "ca_7e13816d5d",
-  "contact_id": "c_2c3a09fcb5",
+  "call_id": "ca_d6149fd0d8",
+  "contact_id": "c_01c54d811d",
   "created_at": "2026-10-20T20:01:49Z",
   "fallbacks_applied": [
    "ehr",
    "slot_options"
   ],
-  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Bennett, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
-  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Haddad, I'm calling from Between Visits, a Harvard student venture. Specialist groups tell us GLP-1 patients need structured nutrition support between visits. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Specialist groups tell us GLP-1 patients need structured nutrition support between visits.",
   "script_id": "s_discovery_v1",
   "script_version": "2026-10-20.1",
-  "segment": "solo_primary_care",
-  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Bennett (family medicine) at Bennett Family Practice. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "segment": "small_group_specialist",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Haddad (endocrinology) at Haddad Endocrine Associates. Practice size: small_group. Segment: small_group_specialist. Script version: 2026-10-20.1. Lead with this angle: Specialist groups tell us GLP-1 patients need structured nutrition support between visits. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
   "variables_used": {
    "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
    "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
    "caller_identity": "Between Visits, a Harvard student venture",
-   "doctor_name": "Dr. Bennett",
-   "greeting": "Hi Dr. Bennett,",
-   "location": "Somerville, MA",
+   "doctor_name": "Dr. Haddad",
+   "greeting": "Hi Dr. Haddad,",
+   "location": "Boston, MA",
+   "pitch_angle": "Specialist groups tell us GLP-1 patients need structured nutrition support between visits.",
+   "practice_name": "Haddad Endocrine Associates",
+   "practice_size": "small_group",
+   "practice_size_sentence": " Practice size: small_group.",
+   "segment": "small_group_specialist",
+   "slot_options": "a time that works for you",
+   "specialty": "endocrinology"
+  }
+ },
+ {
+  "call_id": "ca_e0d96f14bc",
+  "contact_id": "c_251bab6d38",
+  "created_at": "2026-10-20T20:01:49Z",
+  "fallbacks_applied": [
+   "ehr",
+   "slot_options"
+  ],
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Patel, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "script_id": "s_discovery_v1",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Patel (family medicine) at Patel Family Medicine. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "variables_used": {
+   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
+   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
+   "caller_identity": "Between Visits, a Harvard student venture",
+   "doctor_name": "Dr. Patel",
+   "greeting": "Hi Dr. Patel,",
+   "location": "Boston, MA",
    "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
-   "practice_name": "Bennett Family Practice",
+   "practice_name": "Patel Family Medicine",
+   "practice_size": "solo",
+   "practice_size_sentence": " Practice size: solo.",
+   "segment": "solo_primary_care",
+   "slot_options": "a time that works for you",
+   "specialty": "family medicine"
+  }
+ },
+ {
+  "call_id": "ca_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "created_at": "2026-10-20T20:01:49Z",
+  "fallbacks_applied": [
+   "ehr",
+   "slot_options"
+  ],
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Goldberg, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "script_id": "s_discovery_v1",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Goldberg (family medicine) at Brookline Primary Care. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "variables_used": {
+   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
+   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
+   "caller_identity": "Between Visits, a Harvard student venture",
+   "doctor_name": "Dr. Goldberg",
+   "greeting": "Hi Dr. Goldberg,",
+   "location": "Brookline, MA",
+   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+   "practice_name": "Brookline Primary Care",
+   "practice_size": "solo",
+   "practice_size_sentence": " Practice size: solo.",
+   "segment": "solo_primary_care",
+   "slot_options": "a time that works for you",
+   "specialty": "family medicine"
+  }
+ },
+ {
+  "call_id": "ca_f531e662ea",
+  "contact_id": "c_517863c95b",
+  "created_at": "2026-10-20T20:01:49Z",
+  "fallbacks_applied": [
+   "ehr",
+   "slot_options"
+  ],
+  "first_message": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Ortega, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you.",
+  "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+  "script_id": "s_discovery_v1",
+  "script_version": "2026-10-20.1",
+  "segment": "solo_primary_care",
+  "system_prompt": "You are an AI assistant for Between Visits, a Harvard student venture. Goal: book a 20-minute discovery conversation with Dr. Ortega (family medicine) at Jamaica Plain Primary Care. Practice size: solo. Segment: solo_primary_care. Script version: 2026-10-20.1. Lead with this angle: Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. If asked, we are a student venture, not a vendor; no sales pitch. Never request or discuss any patient's identifying information. If the person asks you to stop calling, apologize, confirm you will not call again, and end the call. Honor any request for a human follow-up by offering an email from a founder.",
+  "variables_used": {
+   "ai_disclosure": "Hi, this is an automated AI assistant calling on behalf of Between Visits.",
+   "ask": "Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits?",
+   "caller_identity": "Between Visits, a Harvard student venture",
+   "doctor_name": "Dr. Ortega",
+   "greeting": "Hi Dr. Ortega,",
+   "location": "Jamaica Plain, MA",
+   "pitch_angle": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time.",
+   "practice_name": "Jamaica Plain Primary Care",
    "practice_size": "solo",
    "practice_size_sentence": " Practice size: solo.",
    "segment": "solo_primary_care",
