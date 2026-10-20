@@ -100,7 +100,7 @@ def test_ac8_booked_creates_one_interview_and_one_handoff(ran: Env):
     assert interview.calendar_event_ref.startswith("file:")
     assert Path(interview.calendar_event_ref[len("file:") :]).exists()
     assert ran.contact("t_01").status == ContactStatus.BOOKED
-    handoffs = [e for e in ran.store.audit_log if e["entity_id"] == interview.id and e["action"] == "handoff"]
+    handoffs = [e for e in ran.store.audit_log if e["entity_id"] == interview.id and e["action"] == "draft_invite"]
     assert len(handoffs) == 1
     ran.clock.advance(days=1)
     ran.run()
@@ -125,7 +125,12 @@ def test_ac10_first_utterance_carries_disclosures(ran: Env):
     for transcript in ran.store.transcripts.values():
         if transcript.utterances:
             first = transcript.utterances[0]
-            assert first["speaker"] == "agent" and AI_DISCLOSURE in first["text"]
+            attempt = ran.store.call_attempts[transcript.call_attempt_id]
+            assert first["speaker"] == "agent"
+            if attempt.outcome == Outcome.VOICEMAIL:  # the playbook's own voicemail script identifies the AI caller
+                assert "AI assistant calling for Anirudh Bagla" in first["text"]
+            else:
+                assert AI_DISCLOSURE in first["text"] and RECORDING_DISCLOSURE in first["text"]
 
 
 def test_zero_gate_escapes_and_every_call_traceable(ran: Env):

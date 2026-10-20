@@ -1,16 +1,22 @@
-"""Connector logic: segment choice and per-call script personalization (connector/script-variables.md)."""
+"""Connector logic: segment choice and per-call script personalization (connector/script-variables.md).
+
+Output shape follows connector/outputs/to-voice.md: first_message (what the agent says when the call connects),
+system_prompt (everything else), variables_used, fallbacks_applied, plus the voicemail message.
+"""
 
 from __future__ import annotations
 
 import re
 
+from .calendar import stub_slots
 from .clock import Clock, iso
 from .compliance import AI_DISCLOSURE, disclosure_prefix
+from .config import Config
 from .models import Channel, Contact, ScriptRecord
 
 PRIMARY_CARE = {"family medicine", "internal medicine", "general practice", "primary care"}
-PLACEHOLDER_RE = re.compile(r"\{[a-z_]+\}")
-REQUIRED = ("ai_disclosure", "ask", "caller_identity", "script_version")
+PLACEHOLDER_RE = re.compile(r"\{[a-z_0-9]+\}")
+REQUIRED = ("ai_disclosure", "ask", "caller_identity", "script_version", "callback_number")
 
 
 def segment_for(contact: Contact) -> str:
@@ -33,8 +39,12 @@ class _Vars(dict):
         return "{" + key + "}"
 
 
+def _fill(template: str, variables: dict) -> str:
+    return (template or "").format_map(_Vars(variables))
+
+
 def build_script(
-    contact: Contact, channel: Channel, brain: dict, call_id: str, clock: Clock
+    contact: Contact, channel: Channel, brain: dict, call_id: str, clock: Clock, cfg: Config
 ) -> tuple[ScriptRecord | None, list[str]]:
     variables: dict = {}
     fallbacks: list[str] = []
@@ -43,10 +53,8 @@ def build_script(
     last_name = contact.full_name.strip().split()[-1] if contact.full_name.strip() else ""
     if last_name:
         variables["doctor_name"] = f"Dr. {last_name}"
-        variables["greeting"] = f"Hi {variables['doctor_name']},"
     else:
-        variables["doctor_name"] = "Doctor"
-        variables["greeting"] = "Hi, may I speak with the doctor?"
+        variables["doctor_name"] = "the doctor"
         fallbacks.append("doctor_name")
 
     if contact.practice_name.strip():
@@ -77,6 +85,13 @@ def build_script(
     variables["ehr_sentence"] = ""  # no enrichment source in v0
     fallbacks.append("ehr")
 
+    if contact.hook.strip():
+        variables["hook"] = contact.hook.strip()
+        variables["hook_sentence"] = f"I saw {variables['hook']} and wanted to reach out. "
+    else:
+        variables["hook_sentence"] = ""
+        fallbacks.append("hook")
+
     variables["pronunciation_sentence"] = (
         f" Pronounce the doctor's name as: {contact.pronunciation_hint}." if contact.pronunciation_hint else ""
     )
@@ -89,12 +104,20 @@ def build_script(
         variables["pitch_angle"] = "Doctors tell us GLP-1 patients need more support between visits."
         fallbacks.append("pitch_angle")
 
+    slots = stub_slots(clock.now(), contact.time_zone or cfg.default_time_zone)
+    for i in range(4):
+        variables[f"slot_{i + 1}"] = slots[i]["label"] if i < len(slots) else "another time"
+    variables["slot_1_iso"] = slots[0]["iso"] if slots else ""
+    if len(slots) >= 2:
+        variables["ask"] = _fill(brain.get("ask", ""), variables)
+    else:
+        variables["ask"] = brain.get("ask_fallback", "")
+        fallbacks.append("slot_options")
+
     variables["ai_disclosure"] = AI_DISCLOSURE
-    variables["ask"] = brain.get("ask") or ""
     variables["caller_identity"] = brain.get("caller_identity") or ""
     variables["script_version"] = brain.get("script_version") or ""
-    variables["slot_options"] = "a time that works for you"
-    fallbacks.append("slot_options")  # no calendar integration in v0
+    variables["callback_number"] = cfg.callback_number or ""  # playbook 15: must be set before any live call
 
     for key in REQUIRED:
         if not variables.get(key):
@@ -102,11 +125,18 @@ def build_script(
     if errors:
         return None, errors
 
-    opening = brain.get("opening", "").format_map(_Vars(variables))
-    first_message = f"{disclosure_prefix(brain.get('required_disclosures', []))} {opening}".strip()
-    system_prompt = brain.get("system_prompt", "").format_map(_Vars(variables))
+    variables["route"] = _fill(brain.get("route", ""), variables)
+    variables["pitch"] = _fill(brain.get("pitch", ""), variables)
+    variables["close"] = _fill(brain.get("close", ""), variables)
+    variables["voicemail"] = _fill(brain.get("voicemail", ""), variables)
+    variables["objections"] = " | ".join(
+        f"'{q}' -> {_fill(a, variables)}" for q, a in brain.get("objections", {}).items()
+    )
 
-    leftover = sorted(set(PLACEHOLDER_RE.findall(first_message + " " + system_prompt)))
+    first_message = f"{disclosure_prefix(brain.get('required_disclosures', []))} {variables['route']}".strip()
+    system_prompt = _fill(brain.get("system_prompt", ""), variables)
+
+    leftover = sorted(set(PLACEHOLDER_RE.findall(" ".join((first_message, system_prompt, variables["voicemail"])))))
     if leftover:
         errors.append("unfilled_placeholder:" + ",".join(leftover))
     if AI_DISCLOSURE not in first_message:
@@ -114,7 +144,8 @@ def build_script(
     if errors:
         return None, errors
 
-    spoken = {k: v for k, v in variables.items() if k not in ("script_version",) and v}
+    hidden = {"script_version", "objections", "system_prompt"}
+    spoken = {k: v for k, v in variables.items() if k not in hidden and v}
     record = ScriptRecord(
         call_id=call_id,
         contact_id=contact.id,
@@ -124,6 +155,7 @@ def build_script(
         pitch_angle=variables["pitch_angle"],
         first_message=first_message,
         system_prompt=system_prompt,
+        voicemail_message=variables["voicemail"] if cfg.voicemail_message_enabled else "",
         variables_used=spoken,
         fallbacks_applied=fallbacks,
         created_at=iso(clock.now()),

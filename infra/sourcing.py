@@ -85,6 +85,7 @@ def ingest(store: Store, adapter: SourceAdapter, clock: Clock, default_tz: str) 
             "external_id": row.get("external_id", ""),
             "lead_source": row["source"],
             "pronunciation_hint": row.get("pronunciation_hint", ""),
+            "hook": row.get("hook", ""),
             "test_scenario": row.get("scenario", ""),
         }
         contact = store.contacts.get(cid)

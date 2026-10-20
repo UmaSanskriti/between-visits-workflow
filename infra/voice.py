@@ -1,6 +1,7 @@
-"""Voice provider abstraction (section 4.1) and the dry-run mock (NFR-007).
+"""Voice provider abstraction (spec 4.1) and the dry-run mock (NFR-007).
 
-No business logic depends on a vendor SDK. A real provider implements VoiceProvider; v0 ships only the mock.
+No business logic depends on a vendor SDK. A real provider (playbook section 15 names Vapi, backup Retell)
+implements VoiceProvider; v0 ships only the mock.
 """
 
 from __future__ import annotations
@@ -41,76 +42,102 @@ class VoiceProvider(Protocol):
     def verify_signature(self, event: dict) -> bool: ...
 
 
-OUTBOUND_CALLER_ID = "+16175550199"  # fictional; a real number with STIR/SHAKEN attestation replaces it (CMP-007)
+OUTBOUND_CALLER_ID = "+16175550199"  # fictional; the registered number with caller-id reputation replaces it (CMP-007)
 
-# scenario -> (provider outcome label, duration seconds, doctor-side lines)
-SCENARIOS: dict[str, tuple[str, int, list[tuple[str, str]]]] = {
+# scenario -> (provider outcome label, duration seconds, pitch delivered?, lines after the pitch)
+SCENARIOS: dict[str, tuple[str, int, bool, list[tuple[str, str]]]] = {
     "booked": (
         Outcome.BOOKED,
         142,
+        True,
         [
-            ("doctor", "Sure, GLP-1 follow-ups are a real strain. I can do 20 minutes."),
-            ("agent", "Wonderful. I'll book it and send a confirmation. Thank you, Doctor."),
+            ("doctor", "Sure, GLP-1 follow-ups are a real strain. I can do 30 minutes."),
+            ("agent", "Wonderful. I'll hold that slot and send the invite. {close}"),
         ],
     ),
     "declined": (
         Outcome.DECLINED,
         48,
+        True,
         [
             ("doctor", "I appreciate it, but we're not taking on anything new right now."),
-            ("agent", "Understood, thank you for your time. Have a good day."),
+            ("agent", "Understood, thank you for your time. {close}"),
         ],
     ),
-    "no_answer": (Outcome.NO_ANSWER, 0, []),
-    "voicemail": (Outcome.VOICEMAIL, 9, []),
+    "no_answer": (Outcome.NO_ANSWER, 0, False, []),
+    "voicemail": (Outcome.VOICEMAIL, 20, False, []),
     "callback": (
         Outcome.CALLBACK_REQUESTED,
         61,
+        True,
         [
             ("doctor", "I'm with patients. Can you call back tomorrow afternoon?"),
-            ("agent", "Of course. I'll call back tomorrow afternoon. Thank you."),
+            ("agent", "Of course. I'll call back tomorrow afternoon. {close}"),
         ],
     ),
     "gatekeeper": (
         Outcome.GATEKEEPER_BLOCKED,
         33,
+        False,
         [
             ("office", "The doctor doesn't take calls like this. You can send something in writing."),
-            ("agent", "Thank you, I understand. Have a good day."),
+            ("agent", "Thank you, I understand. {close}"),
         ],
     ),
     "wrong_number": (
         Outcome.WRONG_NUMBER,
         18,
+        False,
         [
             ("other", "You've got the wrong number, there's no doctor here."),
             ("agent", "My apologies. I'll make sure we don't call this number again."),
         ],
     ),
-    "technical": (Outcome.FAILED_TECHNICAL, 0, []),
+    "technical": (Outcome.FAILED_TECHNICAL, 0, False, []),
     "stop_calling": (
         Outcome.DECLINED,
         27,
+        True,
         [
             ("doctor", "Please don't call this office again. Take us off your list."),
-            ("agent", "I'm sorry for the interruption. I've noted that and we will not call again."),
+            ("agent", "Understood, we won't contact you again. Thank you."),
         ],
     ),
-    "malformed_transcript": (Outcome.DECLINED, 40, []),
+    "malformed_transcript": (Outcome.DECLINED, 40, True, []),
     "patient_data": (
         Outcome.DECLINED,
         75,
+        True,
         [
             ("doctor", "Not now. I have a patient, John Doe, date of birth 03/04/1980, waiting on me."),
-            ("agent", "Understood, I'll let you go. Thank you, Doctor."),
+            ("agent", "Understood, I'll let you go. {close}"),
         ],
     ),
     "delivery_fails": (
         Outcome.BOOKED,
         120,
+        True,
         [
-            ("doctor", "Yes, happy to talk. Book me for 20 minutes."),
-            ("agent", "Great, I'll send the details. Thank you."),
+            ("doctor", "Yes, happy to talk. Book me for 30 minutes."),
+            ("agent", "Great, I'll send the details. {close}"),
+        ],
+    ),
+    "not_a_fit": (
+        Outcome.NOT_A_FIT,
+        41,
+        True,
+        [
+            ("office", "We're owned by a hospital system, so this wouldn't apply to us."),
+            ("agent", "Thank you for letting me know. We won't take more of your time. {close}"),
+        ],
+    ),
+    "declined_recording": (
+        Outcome.DECLINED_RECORDING,
+        8,
+        False,
+        [
+            ("office", "No, I don't want to be recorded."),
+            ("agent", "Understood, I'll end the call here. Thank you."),
         ],
     ),
 }
@@ -132,21 +159,33 @@ class MockVoiceProvider:
     def place_call(self, request: CallRequest) -> str:
         self.calls_placed += 1
         provider_call_id = "mock_" + request.call_attempt_id
-        scenario = request.metadata.get("scenario") or self._default_scenario(request.contact_id)
+        meta = request.metadata
+        scenario = meta.get("scenario") or self._default_scenario(request.contact_id)
         if scenario not in SCENARIOS:
             scenario = "no_answer"
-        outcome, duration, lines = SCENARIOS[scenario]
+        outcome, duration, pitched, lines = SCENARIOS[scenario]
+        close = meta.get("close", "")
         started = self.clock.now()
-        ended = started + timedelta(seconds=duration)
         transcript: object = []
-        if duration > 0:
+        if scenario == "voicemail":
+            if meta.get("voicemail_message"):
+                transcript = [{"speaker": "agent", "start_ms": 0, "text": meta["voicemail_message"]}]
+            else:
+                duration = 9  # hang up without a message (CMP-008 default)
+        elif duration > 0:
             transcript = [{"speaker": "agent", "start_ms": 0, "text": request.first_message}]
             offset = 4000
+            if pitched:
+                transcript.append({"speaker": "office", "start_ms": offset, "text": "One moment, let me get someone."})
+                offset += 5000
+                transcript.append({"speaker": "agent", "start_ms": offset, "text": meta.get("pitch", "")})
+                offset += 20000
             for speaker, text in lines:
-                transcript.append({"speaker": speaker, "start_ms": offset, "text": text})
+                transcript.append({"speaker": speaker, "start_ms": offset, "text": text.replace("{close}", close)})
                 offset += 6000
         if scenario == "malformed_transcript":
             transcript = "##garbled## (provider returned a non-list transcript)"
+        ended = started + timedelta(seconds=duration)
         payload = {
             "event_id": f"{provider_call_id}:completed",
             "type": "call.completed",
@@ -163,8 +202,8 @@ class MockVoiceProvider:
         }
         local = to_local(started, request.time_zone)
         if outcome == Outcome.BOOKED:
-            slot = add_business_days(local, 3).replace(hour=15, minute=0, second=0, microsecond=0)
-            payload["booked_slot"] = slot.isoformat()
+            fallback = add_business_days(local, 3).replace(hour=15, minute=0, second=0, microsecond=0).isoformat()
+            payload["booked_slot"] = meta.get("slot_1_iso") or fallback
         if outcome == Outcome.CALLBACK_REQUESTED:
             callback = add_business_days(local, 1).replace(hour=14, minute=0, second=0, microsecond=0)
             payload["callback_at"] = iso(callback)

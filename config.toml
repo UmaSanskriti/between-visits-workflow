@@ -3,7 +3,9 @@
 
 mode = "dry_run"            # v0 supports dry_run only. Any other value is refused at startup.
 kill_switch = false         # CALL-009. Flip BV_KILL_SWITCH=1 (repo variable) to halt calls without a deploy.
-campaign_id = "ab-discovery-2026-q4"
+campaign_id = "clinic-outreach-discovery-2026-q4"
+callback_number = "+16175550199"   # FICTIONAL. Playbook section 15: the real number is TBD and must be set before any live call; empty blocks every call.
+playbook = "clinic-outreach-brain.md"   # the Brain playbook the mock Brain mirrors (v1)
 default_time_zone = "America/New_York"
 webhook_secret = "dry-run-shared-secret"   # mock provider only; a real secret goes in the secrets manager (NFR-003)
 
@@ -12,8 +14,8 @@ days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 start = "09:00"
 end = "17:00"
 
-[retry]                     # CALL-007
-max_attempts = 3
+[retry]                     # CALL-007; playbook section 5.7 says at most two attempts unless a call back was requested
+max_attempts = 2
 min_business_days = 1
 hours_local = [10, 14, 16]  # varied time of day per attempt
 technical_retry_minutes = 60
@@ -21,14 +23,17 @@ brain_retry_minutes = 15    # BRN-002 backoff when the Brain is unreachable
 
 [limits]                    # CALL-004, NFR-010
 max_calls_per_run = 25
-max_calls_per_day = 50
+max_calls_per_day = 50      # playbook section 15: a free Vapi number allows 10 outbound calls/day; set to 10 before live
+
+[booking]
+interview_length_minutes = 30   # playbook section 2: a 30-minute conversation (the spec draft said 20)
 
 [delivery]                  # BRN-005
 max_attempts = 3
 backoff_seconds = 0         # 0 in dry run so test runs finish instantly
 
 [features]
-voicemail_message = false   # CMP-008: default is hang up and log VOICEMAIL
+voicemail_message = true    # CMP-008: on only because playbook section 6 ships an approved voicemail script (v1)
 
 [paths]
 data_dir = "data"

@@ -94,8 +94,12 @@ def build_summary(store: Store, run: dict) -> dict:
             "by_script_version": _breakdown(attempts, "script_version"),
             "by_segment": _breakdown(attempts, "segment"),
             "duplicate_webhooks_ignored": sum(a.duplicate_events_ignored for a in attempts),
+            "by_failure_category": dict(Counter(a.failure_category for a in completed if a.failure_category)),
         },
         "interviews": len(store.interviews),
+        "interviews_pending_approval": sum(
+            1 for i in store.interviews.values() if i.status == "draft_pending_approval"
+        ),
         "transcripts": {
             "total": len(transcripts),
             "delivered": delivered,

@@ -6,7 +6,9 @@ source doctors, verify contacts, run a hard compliance gate, place calls through
 and hand transcripts to the Brain. The connector contracts live in [`connector/`](connector/).
 
 **v0 is a dry run.** The whole pipeline executes end to end, but the two external systems are mocks:
-the voice provider never dials, and the Brain is a local stand-in. Every doctor in `seeds/` is fictional.
+the voice provider never dials, and the Brain is a local stand-in that serves **script v1 from
+[`clinic-outreach-brain.md`](clinic-outreach-brain.md)** (the Brain playbook, owner Anirudh) verbatim, including its
+LOCKED opening and close. Every doctor in `seeds/` is fictional.
 
 | | |
 |---|---|
@@ -31,9 +33,9 @@ docs/data/*.json ◄── export ◄── summary ◄── deliver transcript
 | Verify | E.164 normalization, line type (seeded stand-in for a lookup service), email syntax, duplicate flagging, suppression match, `verification_status` | VER-001..006 |
 | Clearance | `seeds/clearances.csv` is the only thing that sets `call_clearance = cleared`; a consent record is written per clearance | CMP-003/010 |
 | Gate | Kill switch, pause, suppression, verification, clearance, calling window in the recipient's time zone, retry due time, max attempts. Every decision is logged | CMP-001/002, CALL-009 |
-| Script | Resolve from the Brain (no script, no call), choose segment and pitch angle, fill placeholders with fallbacks, refuse any unfilled placeholder, always prepend AI + recording disclosures | CALL-002, BRN-001..003, CMP-004/005 |
+| Script | Resolve from the Brain (no script, no call), choose segment and pitch angle, fill placeholders (doctor, practice, hook, four calendar slots, callback number) with fallbacks, refuse any unfilled placeholder or missing callback number, always prepend the LOCKED AI + recording opening | CALL-002, BRN-001..003, CMP-004/005, playbook 4-6 |
 | Call | `VoiceProvider` interface with a mock that emits HMAC-signed webhooks, each one twice | CALL-003/005 |
-| Outcomes | All nine outcomes, retry policy (≥1 business day, varied hours, max 3), opt-out phrase detection that forces `DO_NOT_CONTACT` and writes a suppression, wrong-number channel failure, interview + .ics handoff on `BOOKED` | CALL-006/007, CMP-006, LOG-001..004 |
+| Outcomes | Eleven outcomes (the spec's nine plus the playbook's `NOT_A_FIT` and `DECLINED_RECORDING`), a provisional failure category per call, retry policy (≥1 business day, varied hours, max 2 per playbook), opt-out phrase detection that forces `DO_NOT_CONTACT` and writes a suppression, wrong-number channel failure, draft interview + .ics held for approval on `BOOKED` | CALL-006/007, CMP-006, LOG-001..004, playbook 9-10 |
 | Transcripts | Stored before delivery, patient-data heuristic holds a transcript, redacted package with idempotency key, retries, dead-letter queue, alerts | BRN-004..007, CMP-009 |
 | Visibility | Summary by outcome, script version, and segment; masked export; audit log; dashboard | LOG-005, OPS-001, NFR-004/009 |
 
@@ -42,7 +44,7 @@ docs/data/*.json ◄── export ◄── summary ◄── deliver transcript
 ```bash
 uv venv --python 3.12 && source .venv/bin/activate      # or: python3.12 -m venv .venv
 pip install -e ".[dev]"
-pytest                                                   # 38 tests, ~3 s
+pytest                                                   # 46 tests, ~5 s
 python -m infra run --reset                              # full dry run from a clean slate
 python -m infra run --now 2026-10-21T15:00:00Z           # run "as if" it were Wednesday 11:00 ET
 python -m http.server -d docs 8000                       # open http://localhost:8000
@@ -57,10 +59,12 @@ Commands (`python -m infra <command>` or `bv <command>` after install):
 | `pause` / `resume` | operator pause without touching config (OPS-001) |
 | `suppress --contact t_09` or `--phone ...` | add a do-not-contact entry |
 | `redrive` | move dead-lettered transcripts back to pending |
+| `approve t_01 --by "Anirudh Bagla"` | approve a drafted interview invite (playbook section 9) |
 | `history t_01` | full history for one contact: record, channels, gate decisions, attempts, audit |
 | `summary`, `export`, `reset` | print the summary, re-export the dashboard snapshot, wipe state |
 
-Environment overrides: `BV_KILL_SWITCH=1`, `BV_NOW=<ISO 8601>`, `BV_MOCK_BRAIN_DOWN=1`, `BV_DATA_DIR`, `BV_EXPORT_DIR`.
+Environment overrides: `BV_KILL_SWITCH=1`, `BV_NOW=<ISO 8601>`, `BV_MOCK_BRAIN_DOWN=1`, `BV_CALLBACK_NUMBER`, `BV_DATA_DIR`,
+`BV_EXPORT_DIR`.
 Policy knobs (calling window, retries, caps, feature flags) are in [`config.toml`](config.toml).
 
 ## Running on GitHub
@@ -85,7 +89,8 @@ tests/            acceptance criteria AC-1..AC-10, connector test plan t_01..t_0
 seeds/            fictional doctors, clearances, suppressions (inputs)
 data/             system of record for the dry run: one JSON file per table + audit_log.jsonl (committed)
 docs/             GitHub Pages dashboard; docs/data/ is the masked snapshot the page reads
-connector/        interface drafts for the Voice and Brain teams
+connector/        interface drafts for the Voice and Brain teams (inputs/, outputs/, test plan, variables)
+clinic-outreach-brain.md   the Brain playbook (v1) the mock Brain serves; LOCKED text is reproduced verbatim
 config.toml       calling window, retry policy, caps, feature flags
 ```
 

@@ -46,6 +46,9 @@ def _parser() -> argparse.ArgumentParser:
     sub.add_parser("pause", help="pause calling (OPS-001)")
     sub.add_parser("resume", help="resume calling (OPS-001)")
     sub.add_parser("redrive", help="move dead-lettered transcripts back to pending")
+    appr = sub.add_parser("approve", help="approve a drafted interview invite (playbook section 9)")
+    appr.add_argument("interview", help="interview id, or a contact id / external id / name")
+    appr.add_argument("--by", default="operator", help="approver name")
     hist = sub.add_parser("history", help="full history for one contact (OPS-001)")
     hist.add_argument("contact", help="contact id, external id, or name substring")
     sub.add_parser("reset", help="wipe data/ and docs/data")
@@ -178,6 +181,21 @@ def main(argv=None) -> int:
         moved = redrive_dead_letters(store, clock)
         store.save()
         print(f"redrove {moved} transcript(s)")
+        return 0
+    if args.command == "approve":
+        from .booking import approve_interview
+
+        interview = store.interviews.get(args.interview)
+        if interview is None:
+            contact = _find_contact(store, args.interview)
+            if contact is not None:
+                interview = next((i for i in store.interviews.values() if i.contact_id == contact.id), None)
+        if interview is None:
+            print(f"no interview matches {args.interview!r}", file=sys.stderr)
+            return 1
+        approve_interview(store, interview, args.by, clock)
+        store.save()
+        print(f"approved {interview.id} ({interview.status})")
         return 0
     if args.command == "history":
         contact = _find_contact(store, args.contact)

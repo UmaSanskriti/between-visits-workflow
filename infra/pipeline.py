@@ -59,6 +59,8 @@ def run_pipeline(
         "trigger": trigger,
         "git_sha": git_sha(),
         "seed": Path(seed).name,
+        "playbook": cfg.playbook,
+        "callback_number_set": bool(cfg.callback_number),
         "stages": {},
     }
     store.audit("run", run_id, "start", {}, {"trigger": trigger, "now_used": run["now_used"]}, run_id=run_id)

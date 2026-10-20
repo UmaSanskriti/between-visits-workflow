@@ -1,35 +1,50 @@
 {
  "alerts": 2,
  "calls": {
-  "attempts": 14,
+  "attempts": 16,
   "booked": 4,
+  "by_failure_category": {
+   "Call back later": 1,
+   "Do not contact": 1,
+   "Hung up at AI disclosure": 1,
+   "No answer / voicemail": 2,
+   "Not a fit": 1,
+   "Pitch did not land": 3,
+   "Screened out by front desk": 1,
+   "Technical failure": 1,
+   "Wrong number (list data)": 1
+  },
   "by_outcome": {
    "BOOKED": 4,
    "CALLBACK_REQUESTED": 1,
    "DECLINED": 3,
+   "DECLINED_RECORDING": 1,
    "DO_NOT_CONTACT": 1,
    "FAILED_TECHNICAL": 1,
    "GATEKEEPER_BLOCKED": 1,
+   "NOT_A_FIT": 1,
    "NO_ANSWER": 1,
    "VOICEMAIL": 1,
    "WRONG_NUMBER": 1
   },
   "by_script_version": {
-   "2026-10-20.1": {
-    "attempts": 14,
+   "v1": {
+    "attempts": 16,
     "booked": 4,
     "by_outcome": {
      "BOOKED": 4,
      "CALLBACK_REQUESTED": 1,
      "DECLINED": 3,
+     "DECLINED_RECORDING": 1,
      "DO_NOT_CONTACT": 1,
      "FAILED_TECHNICAL": 1,
      "GATEKEEPER_BLOCKED": 1,
+     "NOT_A_FIT": 1,
      "NO_ANSWER": 1,
      "VOICEMAIL": 1,
      "WRONG_NUMBER": 1
     },
-    "conversion": 0.286,
+    "conversion": 0.25,
     "declined": 3
    }
   },
@@ -44,11 +59,12 @@
     "declined": 0
    },
    "small_group_primary_care": {
-    "attempts": 2,
+    "attempts": 3,
     "booked": 0,
     "by_outcome": {
      "CALLBACK_REQUESTED": 1,
-     "FAILED_TECHNICAL": 1
+     "FAILED_TECHNICAL": 1,
+     "NOT_A_FIT": 1
     },
     "conversion": 0.0,
     "declined": 0
@@ -63,15 +79,16 @@
     "declined": 0
    },
    "solo_primary_care": {
-    "attempts": 9,
+    "attempts": 10,
     "booked": 4,
     "by_outcome": {
      "BOOKED": 4,
      "DECLINED": 3,
+     "DECLINED_RECORDING": 1,
      "DO_NOT_CONTACT": 1,
      "WRONG_NUMBER": 1
     },
-    "conversion": 0.444,
+    "conversion": 0.4,
     "declined": 3
    },
    "solo_specialist": {
@@ -84,19 +101,19 @@
     "declined": 0
    }
   },
-  "completed": 14,
-  "connect_rate": 0.786,
-  "duplicate_webhooks_ignored": 14
+  "completed": 16,
+  "connect_rate": 0.812,
+  "duplicate_webhooks_ignored": 16
  },
  "compliance": {
-  "consent_records": 16,
+  "consent_records": 18,
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 5,
-   "considered": 10,
-   "deferred": 5
+   "allowed": 16,
+   "blocked": 4,
+   "considered": 20,
+   "deferred": 0
   },
   "paused": false,
   "suppressions": 3
@@ -104,7 +121,7 @@
  "contacts": {
   "by_status": {
    "BOOKED": 4,
-   "DECLINED": 3,
+   "DECLINED": 5,
    "IN_OUTREACH": 5,
    "READY": 1,
    "SOURCED": 1,
@@ -115,32 +132,32 @@
   "by_verification": {
    "failed": 2,
    "unverified": 1,
-   "verified": 15
+   "verified": 17
   },
-  "total": 18,
-  "verified": 15
+  "total": 20,
+  "verified": 17
  },
  "dlq": 1,
  "errors": 4,
  "funnel": [
   {
-   "count": 18,
+   "count": 20,
    "stage": "Sourced"
   },
   {
-   "count": 15,
+   "count": 17,
    "stage": "Verified"
   },
   {
-   "count": 14,
+   "count": 16,
    "stage": "Cleared to call"
   },
   {
-   "count": 14,
+   "count": 16,
    "stage": "Called"
   },
   {
-   "count": 11,
+   "count": 13,
    "stage": "Connected"
   },
   {
@@ -148,8 +165,9 @@
    "stage": "Booked"
   }
  ],
- "generated_at": "2026-10-20T20:05:48Z",
+ "generated_at": "2026-10-20T20:18:24Z",
  "interviews": 4,
+ "interviews_pending_approval": 4,
  "queue": [
   {
    "attempts": 0,
@@ -168,7 +186,7 @@
    "external_id": "t_17",
    "last_outcome": "FAILED_TECHNICAL",
    "name": "Victor Adeyemi",
-   "next_attempt_at": "2026-10-20T21:01:49Z",
+   "next_attempt_at": "2026-10-20T21:18:24Z",
    "practice": "Dorchester Medical",
    "segment": "small_group_primary_care",
    "status": "IN_OUTREACH"
@@ -218,14 +236,14 @@
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261020T200548Z-002",
+ "run_id": "20261020T201824Z-001",
  "transcripts": {
-  "brain_inbox": 10,
-  "delivered": 10,
-  "delivery_rate": 0.909,
+  "brain_inbox": 12,
+  "delivered": 12,
+  "delivery_rate": 0.923,
   "failed": 1,
   "held_pii_review": 1,
   "pending": 0,
-  "total": 12
+  "total": 14
  }
 }

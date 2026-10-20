@@ -21,7 +21,10 @@ class ConfigError(Exception):
 class Config:
     mode: str = "dry_run"
     kill_switch: bool = False
-    campaign_id: str = "ab-discovery-2026-q4"
+    campaign_id: str = "clinic-outreach-discovery-2026-q4"
+    callback_number: str = ""
+    playbook: str = "clinic-outreach-brain.md"
+    interview_length_minutes: int = 30
     default_time_zone: str = "America/New_York"
     webhook_secret: str = "dry-run-shared-secret"
     calling_days: list[str] = field(default_factory=lambda: ["Mon", "Tue", "Wed", "Thu", "Fri"])
@@ -59,6 +62,10 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
         cfg.mode = raw.get("mode", cfg.mode)
         cfg.kill_switch = bool(raw.get("kill_switch", cfg.kill_switch))
         cfg.campaign_id = raw.get("campaign_id", cfg.campaign_id)
+        cfg.callback_number = raw.get("callback_number", cfg.callback_number)
+        cfg.playbook = raw.get("playbook", cfg.playbook)
+        booking = raw.get("booking", {})
+        cfg.interview_length_minutes = int(booking.get("interview_length_minutes", cfg.interview_length_minutes))
         cfg.default_time_zone = raw.get("default_time_zone", cfg.default_time_zone)
         cfg.webhook_secret = raw.get("webhook_secret", cfg.webhook_secret)
         win = raw.get("calling_window", {})
@@ -91,6 +98,8 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
             cfg.now_override = parse_iso(env["BV_NOW"].strip())
         except ValueError as exc:
             raise ConfigError(f"BV_NOW must be ISO 8601, got {env['BV_NOW']!r}") from exc
+    if env.get("BV_CALLBACK_NUMBER") is not None:
+        cfg.callback_number = env["BV_CALLBACK_NUMBER"].strip()
     if env.get("BV_DATA_DIR"):
         cfg.data_dir = Path(env["BV_DATA_DIR"])
     if env.get("BV_EXPORT_DIR"):

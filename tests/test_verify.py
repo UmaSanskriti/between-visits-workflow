@@ -33,7 +33,7 @@ def test_ingest_is_idempotent(env: Env):
     first = (len(env.store.contacts), len(env.store.channels), len(env.store.suppressions))
     env.run(stages=("ingest", "verify"))
     assert (len(env.store.contacts), len(env.store.channels), len(env.store.suppressions)) == first
-    assert first[0] == 18
+    assert first[0] == 20
 
 
 def test_segment_logic():

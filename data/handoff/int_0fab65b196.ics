@@ -3,10 +3,10 @@ VERSION:2.0
 PRODID:-//Between Visits//infra v0//EN
 BEGIN:VEVENT
 UID:int_0fab65b196@between-visits
-DTSTAMP:20261020T200149Z
-DTSTART:20261024T010000Z
-DTEND:20261024T012000Z
-SUMMARY:Discovery interview with Dana Okafor (Okafor Family Health)
-DESCRIPTION:Booked by the Between Visits calling agent (dry run). Call attempt ca_32994a1b75.
+DTSTAMP:20261020T201824Z
+DTSTART:20261023T000000Z
+DTEND:20261023T003000Z
+SUMMARY:DRAFT pending approval: 30-min conversation, Dana Okafor (Okafor Family Health)
+DESCRIPTION:Drafted by the calling agent (dry run); held for Anirudh's approval (playbook 5.12). Call attempt ca_32994a1b75.
 END:VEVENT
 END:VCALENDAR

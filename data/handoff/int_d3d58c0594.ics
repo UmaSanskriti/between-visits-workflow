@@ -3,10 +3,10 @@ VERSION:2.0
 PRODID:-//Between Visits//infra v0//EN
 BEGIN:VEVENT
 UID:int_d3d58c0594@between-visits
-DTSTAMP:20261020T200149Z
-DTSTART:20261023T190000Z
-DTEND:20261023T192000Z
-SUMMARY:Discovery interview with Priya Patel (Patel Family Medicine)
-DESCRIPTION:Booked by the Between Visits calling agent (dry run). Call attempt ca_e0d96f14bc.
+DTSTAMP:20261020T201824Z
+DTSTART:20261022T180000Z
+DTEND:20261022T183000Z
+SUMMARY:DRAFT pending approval: 30-min conversation, Priya Patel (Patel Family Medicine)
+DESCRIPTION:Drafted by the calling agent (dry run); held for Anirudh's approval (playbook 5.12). Call attempt ca_e0d96f14bc.
 END:VEVENT
 END:VCALENDAR

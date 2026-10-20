@@ -11,8 +11,9 @@ from .config import Config
 from .models import Channel, Clearance, Contact, VerificationStatus
 from .store import Store
 
-AI_DISCLOSURE = "Hi, this is an automated AI assistant calling on behalf of Between Visits."
-RECORDING_DISCLOSURE = "This call is being recorded; let me know at any point if you'd rather it wasn't."
+# clinic-outreach-brain.md section 6, "Open" (LOCKED): the first two sentences of every call.
+AI_DISCLOSURE = "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School."
+RECORDING_DISCLOSURE = "This call is recorded for our notes. Is that okay?"
 
 OPT_OUT_PATTERNS = [
     r"don'?t call",

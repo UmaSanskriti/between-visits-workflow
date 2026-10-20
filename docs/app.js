@@ -125,6 +125,8 @@
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
     if (run.paused) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "Calling paused"]));
     if (run.brain_down) chips.appendChild(el("span", { class: "chip serious" }, [el("span", { class: "dot" }), "Brain simulated down"]));
+    if (run.playbook) chips.appendChild(el("span", { class: "chip" }, ["Playbook ", el("a", { href: "https://github.com/UmaSanskriti/between-visits-workflow/blob/main/" + run.playbook, text: run.playbook.replace(/\.md$/, "") + " v1", target: "_blank", rel: "noopener" })]));
+    if (run.callback_number_set === false) chips.appendChild(el("span", { class: "chip critical" }, [el("span", { class: "dot" }), "Callback number not set"]));
 
     // KPIs
     const kp = clear(document.getElementById("kpis"));
@@ -136,7 +138,7 @@
     tile("Contacts sourced", c.total ?? 0, "plain", (c.verified ?? 0) + " verified");
     tile("In queue", (s.queue || []).length, "plain", "ready or in outreach");
     tile("Calls placed", calls.attempts ?? 0, "plain", "connect rate " + pct(calls.connect_rate));
-    tile("Interviews booked", s.interviews ?? 0, "plain", (calls.booked ?? 0) + " BOOKED outcomes");
+    tile("Interviews booked", s.interviews ?? 0, (s.interviews_pending_approval ?? 0) ? "warning" : "plain", (s.interviews_pending_approval ?? 0) ? (s.interviews_pending_approval) + " awaiting approval" : (calls.booked ?? 0) + " BOOKED outcomes");
     tile("Transcripts delivered", tr.delivery_rate == null ? "–" : pct(tr.delivery_rate), tr.held_pii_review ? "warning" : "plain", (tr.delivered ?? 0) + "/" + ((tr.total ?? 0) - (tr.held_pii_review ?? 0)) + (tr.held_pii_review ? ", " + tr.held_pii_review + " held for review" : ""));
     tile("Gate escapes", comp.gate_escapes ?? 0, (comp.gate_escapes ?? 0) === 0 ? "good" : "critical", (comp.gate_escapes ?? 0) === 0 ? "none, as required" : "calls placed past a failed gate");
     tile("Dead-letter queue", s.dlq ?? 0, (s.dlq ?? 0) === 0 ? "good" : "serious", (s.dlq ?? 0) === 0 ? "empty" : "needs redrive");
@@ -173,15 +175,15 @@
     const interviews = d.interviews || [];
     document.getElementById("interviews-count").textContent = interviews.length + " booked";
     clear(document.getElementById("interviews")).appendChild(table(["Contact", "Scheduled for", "Status", "Confirmation", "Handoff"],
-      interviews.map((i) => [name(i.contact_id), fmtTime(i.scheduled_for), nice(i.status), nice(i.confirmation_email), i.calendar_event_ref ? el("a", { href: "https://github.com/UmaSanskriti/between-visits-workflow/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: ".ics", target: "_blank", rel: "noopener" }) : "–"]), { nowrap: [1] }));
+      interviews.map((i) => [name(i.contact_id), fmtTime(i.scheduled_for), i.status === "approved" ? status("good", "approved by " + i.approved_by) : status("warning", "draft, pending approval"), nice(i.confirmation_email), i.calendar_event_ref ? el("a", { href: "https://github.com/UmaSanskriti/between-visits-workflow/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: ".ics", target: "_blank", rel: "noopener" }) : "–"]), { nowrap: [1] }));
 
     // attempts
     const attempts = d.call_attempts || [];
     document.getElementById("attempts-count").textContent = attempts.length + " attempts";
     const dStatus = (t) => !t ? status("neutral", "none") : t.delivery_status === "delivered" ? status("good", "delivered") : t.delivery_status === "held_pii_review" ? status("warning", "held (PII)") : t.delivery_status === "failed" ? status("critical", "failed") : status("neutral", t.delivery_status);
-    clear(document.getElementById("attempts")).appendChild(table(["Started", "Contact", "#", "Outcome", "Sec", "Script", "Segment", "Transcript", "Fallbacks", "Note"],
-      attempts.map((a) => [fmtTime(a.started_at), name(a.contact_id), a.attempt_number, nice(a.outcome) || "(pending)", a.duration_sec, a.script_version, nice(a.segment), dStatus(transcriptsById[a.transcript_id]), (a.fallbacks_applied || []).join(", "), a.outcome_reason || (a.duplicate_events_ignored ? a.duplicate_events_ignored + " duplicate webhook ignored" : "")]),
-      { num: [2, 4], mono: [5], nowrap: [0, 3, 7] }));
+    clear(document.getElementById("attempts")).appendChild(table(["Started", "Contact", "#", "Outcome", "Failure category", "Sec", "Script", "Segment", "Transcript", "Fallbacks", "Note"],
+      attempts.map((a) => [fmtTime(a.started_at), name(a.contact_id), a.attempt_number, nice(a.outcome) || "(pending)", a.failure_category || "", a.duration_sec, a.script_version, nice(a.segment), dStatus(transcriptsById[a.transcript_id]), (a.fallbacks_applied || []).join(", "), a.outcome_reason || (a.duplicate_events_ignored ? a.duplicate_events_ignored + " duplicate webhook ignored" : "")]),
+      { num: [2, 5], mono: [6], nowrap: [0, 3, 4, 8] }));
 
     // segments
     const seg = calls.by_segment || {}, ver = calls.by_script_version || {};

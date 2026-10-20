@@ -142,5 +142,23 @@
   "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
   "id": "cr_ea478c8fcf",
   "revoked_at": ""
+ },
+ {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_021549c001",
+  "consent_type": "call_clearance",
+  "contact_id": "c_41cc51441d",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_b9dec5c665",
+  "revoked_at": ""
+ },
+ {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_61bc1438e5",
+  "consent_type": "call_clearance",
+  "contact_id": "c_b62f5021ad",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_abad3d8ebe",
+  "revoked_at": ""
  }
 ]

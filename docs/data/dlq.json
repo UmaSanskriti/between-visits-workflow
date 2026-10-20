@@ -3,8 +3,8 @@
   "attempts": 3,
   "call_attempt_id": "ca_831582c51e",
   "last_error": "mock Brain returned 500 (scenario delivery_fails)",
-  "run_id": "20261020T200149Z-001",
-  "timestamp": "2026-10-20T20:01:49Z",
+  "run_id": "20261020T201824Z-001",
+  "timestamp": "2026-10-20T20:18:24Z",
   "transcript_id": "tr_7726b3d263"
  }
 ]

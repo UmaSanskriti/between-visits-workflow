@@ -1,13 +1,13 @@
 [
  {
-  "call_attempt_id": "ca_235dad69f6",
-  "contact_id": "c_29816f6cb0",
-  "created_at": "2026-10-20T20:01:49Z",
-  "delivered_at": "2026-10-20T20:01:49Z",
+  "call_attempt_id": "ca_e0d96f14bc",
+  "contact_id": "c_251bab6d38",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
-  "id": "tr_02d4caf21b",
-  "idempotency_key": "ca_235dad69f6",
+  "id": "tr_d3d58c0594",
+  "idempotency_key": "ca_e0d96f14bc",
   "language": "en",
   "last_delivery_error": "",
   "pii_flagged": false,
@@ -16,25 +16,112 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Martinez, I'm calling from Between Visits, a Harvard student venture. Group primary care practices tell us GLP-1 patients need more support than a visit allows. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Patel's schedule?"
    },
    {
-    "speaker": "doctor",
+    "speaker": "office",
     "start_ms": 4000,
-    "text": "I'm with patients. Can you call back tomorrow afternoon?"
+    "text": "One moment, let me get someone."
    },
    {
     "speaker": "agent",
-    "start_ms": 10000,
-    "text": "Of course. I'll call back tomorrow afternoon. Thank you."
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Patel Family Medicine give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. I saw the new GLP-1 weight-management program on your site and wanted to reach out. We have spoken to some clinics and would love 30 minutes with Dr. Patel to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "Sure, GLP-1 follow-ups are a real strain. I can do 30 minutes."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Wonderful. I'll hold that slot and send the invite. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_a4b4369a69",
+  "idempotency_key": "ca_1c90a154b7",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps the doctor's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Beacon Hill Internal Medicine give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with the doctor to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "I appreciate it, but we're not taking on anything new right now."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Understood, thank you for your time. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_5adff537fa",
+  "idempotency_key": "ca_6e29b4cd45",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": []
+ },
+ {
+  "call_attempt_id": "ca_6b6ea10721",
+  "contact_id": "c_f9eafcfce6",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_591f3fdaca",
+  "idempotency_key": "ca_6b6ea10721",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla at Harvard Business School. We help independent practices give their GLP-1 patients complete care, and would love 30 minutes with Dr. Bhriain. Please call back at +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
    }
   ]
  },
  {
   "call_attempt_id": "ca_32994a1b75",
   "contact_id": "c_5bfd0187e6",
-  "created_at": "2026-10-20T20:01:49Z",
-  "delivered_at": "2026-10-20T20:01:49Z",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
   "id": "tr_0fab65b196",
@@ -47,25 +134,148 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Okafor, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Okafor's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Okafor Family Health give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with Dr. Okafor to hear whether it would work here."
    },
    {
     "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "Sure, GLP-1 follow-ups are a real strain. I can do 30 minutes."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Wonderful. I'll hold that slot and send the invite. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_02d4caf21b",
+  "idempotency_key": "ca_235dad69f6",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Martinez's schedule?"
+   },
+   {
+    "speaker": "office",
     "start_ms": 4000,
-    "text": "Sure, GLP-1 follow-ups are a real strain. I can do 20 minutes."
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Group primary care practices tell us GLP-1 patients need more support than a visit allows. Anirudh and his co-founder help independent practices like Fenway Group Practice give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. I saw your weight-management clinic page and wanted to reach out. We have spoken to some clinics and would love 30 minutes with Dr. Martinez to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "I'm with patients. Can you call back tomorrow afternoon?"
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Of course. I'll call back tomorrow afternoon. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_0fab65b196",
+  "idempotency_key": "ca_32994a1b75",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Goldberg's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Brookline Primary Care give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with Dr. Goldberg to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "Please don't call this office again. Take us off your list."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Understood, we won't contact you again. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_d6149fd0d8",
+  "contact_id": "c_01c54d811d",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_9491a6cd06",
+  "idempotency_key": "ca_d6149fd0d8",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Haddad's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "The doctor doesn't take calls like this. You can send something in writing."
    },
    {
     "speaker": "agent",
     "start_ms": 10000,
-    "text": "Wonderful. I'll book it and send a confirmation. Thank you, Doctor."
+    "text": "Thank you, I understand. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
    }
   ]
  },
  {
   "call_attempt_id": "ca_0454abe525",
   "contact_id": "c_c09828fbcf",
-  "created_at": "2026-10-20T20:01:49Z",
-  "delivered_at": "2026-10-20T20:01:49Z",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
   "id": "tr_1c2ec351e8",
@@ -78,7 +288,7 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Kim, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Kim's schedule?"
    },
    {
     "speaker": "other",
@@ -95,7 +305,7 @@
  {
   "call_attempt_id": "ca_79dcaa34ba",
   "contact_id": "c_d7b9cfa027",
-  "created_at": "2026-10-20T20:01:49Z",
+  "created_at": "2026-10-20T20:18:24Z",
   "delivered_at": "",
   "delivery_attempts": 0,
   "delivery_status": "held_pii_review",
@@ -109,17 +319,27 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Zhang, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Zhang's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like South End Internal Medicine give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with Dr. Zhang to hear whether it would work here."
    },
    {
     "speaker": "doctor",
-    "start_ms": 4000,
+    "start_ms": 29000,
     "text": "Not now. I have a patient, John Doe, date of birth 03/04/1980, waiting on me."
    },
    {
     "speaker": "agent",
-    "start_ms": 10000,
-    "text": "Understood, I'll let you go. Thank you, Doctor."
+    "start_ms": 35000,
+    "text": "Understood, I'll let you go. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
    }
   ]
  },
@@ -193,7 +413,7 @@
  {
   "call_attempt_id": "ca_831582c51e",
   "contact_id": "c_a776b6dc5b",
-  "created_at": "2026-10-20T20:01:49Z",
+  "created_at": "2026-10-20T20:18:24Z",
   "delivered_at": "",
   "delivery_attempts": 3,
   "delivery_status": "failed",
@@ -207,25 +427,35 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Rivera, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Rivera's schedule?"
    },
    {
-    "speaker": "doctor",
+    "speaker": "office",
     "start_ms": 4000,
-    "text": "Yes, happy to talk. Book me for 20 minutes."
+    "text": "One moment, let me get someone."
    },
    {
     "speaker": "agent",
-    "start_ms": 10000,
-    "text": "Great, I'll send the details. Thank you."
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Rivera Wellness give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with Dr. Rivera to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "Yes, happy to talk. Book me for 30 minutes."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Great, I'll send the details. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
    }
   ]
  },
  {
   "call_attempt_id": "ca_7e13816d5d",
   "contact_id": "c_2c3a09fcb5",
-  "created_at": "2026-10-20T20:01:49Z",
-  "delivered_at": "2026-10-20T20:01:49Z",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
   "id": "tr_8762bd62f2",
@@ -238,17 +468,99 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi, this is an automated AI assistant calling on behalf of Between Visits. This call is being recorded; let me know at any point if you'd rather it wasn't. Hi Dr. Bennett, I'm calling from Between Visits, a Harvard student venture. Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. We're building nutritionist and coach support that sits between visits, and we're learning from doctors before we build further. Would you be open to a 20-minute conversation with one of our founders about how you manage GLP-1 patients between visits? We can do a time that works for you."
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Bennett's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Solo primary care practices tell us GLP-1 follow-ups are eating into visit time. Anirudh and his co-founder help independent practices like Bennett Family Practice give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. I saw the nutrition counseling note on your website and wanted to reach out. We have spoken to some clinics and would love 30 minutes with Dr. Bennett to hear whether it would work here."
    },
    {
     "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "Sure, GLP-1 follow-ups are a real strain. I can do 30 minutes."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Wonderful. I'll hold that slot and send the invite. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_a53e649b44",
+  "idempotency_key": "ca_d39fa0c7be",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Raman's schedule?"
+   },
+   {
+    "speaker": "office",
     "start_ms": 4000,
-    "text": "Sure, GLP-1 follow-ups are a real strain. I can do 20 minutes."
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Group primary care practices tell us GLP-1 patients need more support than a visit allows. Anirudh and his co-founder help independent practices like Harborview Internal Medicine give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. We have spoken to some clinics and would love 30 minutes with Dr. Raman to hear whether it would work here."
+   },
+   {
+    "speaker": "office",
+    "start_ms": 29000,
+    "text": "We're owned by a hospital system, so this wouldn't apply to us."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Thank you for letting me know. We won't take more of your time. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_38db576121",
+  "contact_id": "c_b62f5021ad",
+  "created_at": "2026-10-20T20:18:24Z",
+  "delivered_at": "2026-10-20T20:18:24Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_e770475762",
+  "idempotency_key": "ca_38db576121",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Nguyen's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "No, I don't want to be recorded."
    },
    {
     "speaker": "agent",
     "start_ms": 10000,
-    "text": "Wonderful. I'll book it and send a confirmation. Thank you, Doctor."
+    "text": "Understood, I'll end the call here. Thank you."
    }
   ]
  },

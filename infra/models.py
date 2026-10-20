@@ -39,9 +39,18 @@ class Outcome(StrEnum):
     DO_NOT_CONTACT = "DO_NOT_CONTACT"
     WRONG_NUMBER = "WRONG_NUMBER"
     FAILED_TECHNICAL = "FAILED_TECHNICAL"
+    NOT_A_FIT = "NOT_A_FIT"  # playbook: hospital-owned or no GLP-1 patients
+    DECLINED_RECORDING = "DECLINED_RECORDING"  # playbook: objected to recording; call ended politely
 
 
-NO_RETRY_OUTCOMES = {Outcome.BOOKED, Outcome.DECLINED, Outcome.DO_NOT_CONTACT, Outcome.WRONG_NUMBER}
+NO_RETRY_OUTCOMES = {
+    Outcome.BOOKED,
+    Outcome.DECLINED,
+    Outcome.DO_NOT_CONTACT,
+    Outcome.WRONG_NUMBER,
+    Outcome.NOT_A_FIT,
+    Outcome.DECLINED_RECORDING,
+}
 CONNECTED_OUTCOMES = {
     Outcome.BOOKED,
     Outcome.CALLBACK_REQUESTED,
@@ -49,6 +58,22 @@ CONNECTED_OUTCOMES = {
     Outcome.GATEKEEPER_BLOCKED,
     Outcome.DECLINED,
     Outcome.DO_NOT_CONTACT,
+    Outcome.NOT_A_FIT,
+    Outcome.DECLINED_RECORDING,
+}
+
+# Playbook section 10: provisional failure category derived from the outcome; the reviewer loop may override it.
+FAILURE_CATEGORY = {
+    Outcome.NO_ANSWER: "No answer / voicemail",
+    Outcome.VOICEMAIL: "No answer / voicemail",
+    Outcome.GATEKEEPER_BLOCKED: "Screened out by front desk",
+    Outcome.DECLINED: "Pitch did not land",
+    Outcome.CALLBACK_REQUESTED: "Call back later",
+    Outcome.NOT_A_FIT: "Not a fit",
+    Outcome.DECLINED_RECORDING: "Hung up at AI disclosure",
+    Outcome.DO_NOT_CONTACT: "Do not contact",
+    Outcome.WRONG_NUMBER: "Wrong number (list data)",
+    Outcome.FAILED_TECHNICAL: "Technical failure",
 }
 
 
@@ -100,6 +125,7 @@ class Contact(Record):
     attempts: int = 0
     next_attempt_at: str = ""
     last_outcome: str = ""
+    hook: str = ""  # playbook section 4: one specific line from the practice website
     test_scenario: str = ""  # dry run only: drives the mock voice provider
     created_at: str = ""
     updated_at: str = ""
@@ -135,6 +161,7 @@ class CallAttempt(Record):
     status: str = CallStatus.QUEUED
     outcome: str = ""
     outcome_reason: str = ""
+    failure_category: str = ""
     duration_sec: int = 0
     provider: str = "mock"
     provider_call_id: str = ""
@@ -176,7 +203,9 @@ class Interview(Record):
     call_attempt_id: str
     scheduled_for: str = ""
     calendar_event_ref: str = ""
-    status: str = "scheduled"
+    status: str = "draft_pending_approval"  # playbook 5.12: nothing goes out without Anirudh
+    approved_by: str = ""
+    approved_at: str = ""
     confirmation_email: str = "skipped_no_verified_email"
     created_at: str = ""
 
@@ -214,6 +243,7 @@ class ScriptRecord(Record):
     pitch_angle: str
     first_message: str
     system_prompt: str
+    voicemail_message: str = ""
     variables_used: dict = field(default_factory=dict)
     fallbacks_applied: list[str] = field(default_factory=list)
     created_at: str = ""

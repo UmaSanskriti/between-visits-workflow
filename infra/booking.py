@@ -38,10 +38,10 @@ class FileBookingHandoff:
     def __init__(self, out_dir: Path | str):
         self.out_dir = Path(out_dir)
 
-    def handoff(self, store: Store, interview: Interview, contact: Contact, clock: Clock) -> str:
+    def handoff(self, store: Store, interview: Interview, contact: Contact, clock: Clock, minutes: int = 30) -> str:
         self.out_dir.mkdir(parents=True, exist_ok=True)
         start = parse_iso(interview.scheduled_for).astimezone(UTC)
-        end = start + timedelta(minutes=20)
+        end = start + timedelta(minutes=minutes)
         fmt = "%Y%m%dT%H%M%SZ"
         who = contact.full_name or "the doctor"
         ics = "\r\n".join(
@@ -54,9 +54,9 @@ class FileBookingHandoff:
                 f"DTSTAMP:{clock.now().astimezone(UTC).strftime(fmt)}",
                 f"DTSTART:{start.strftime(fmt)}",
                 f"DTEND:{end.strftime(fmt)}",
-                f"SUMMARY:Discovery interview with {who} ({contact.practice_name})",
-                f"DESCRIPTION:Booked by the Between Visits calling agent (dry run). Call attempt "
-                f"{interview.call_attempt_id}.",
+                f"SUMMARY:DRAFT pending approval: {minutes}-min conversation, {who} ({contact.practice_name})",
+                f"DESCRIPTION:Drafted by the calling agent (dry run); held for Anirudh's approval (playbook 5.12). "
+                f"Call attempt {interview.call_attempt_id}.",
                 "END:VEVENT",
                 "END:VCALENDAR",
                 "",
@@ -65,5 +65,17 @@ class FileBookingHandoff:
         path = self.out_dir / f"{interview.id}.ics"
         path.write_text(ics)
         ref = f"file:{path.as_posix()}"
-        store.update("interviews", interview, "handoff", {"calendar_event_ref": ref, "status": "handed_off"})
+        store.update("interviews", interview, "draft_invite", {"calendar_event_ref": ref})
         return ref
+
+
+def approve_interview(store: Store, interview: Interview, approver: str, clock: Clock) -> Interview:
+    """Playbook section 9: the invite goes out only after one-click approval."""
+    store.update(
+        "interviews",
+        interview,
+        "approve",
+        {"status": "approved", "approved_by": approver, "approved_at": iso(clock.now())},
+        actor=approver,
+    )
+    return interview

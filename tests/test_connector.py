@@ -16,12 +16,13 @@ def test_t01_complete_record_solo_primary_care(ran: Env):
     assert script.segment == "solo_primary_care"
     assert script.variables_used["doctor_name"] == "Dr. Patel"
     assert "Patel Family Medicine" in script.system_prompt
-    assert set(script.fallbacks_applied) <= {"ehr", "slot_options"}
+    assert set(script.fallbacks_applied) <= {"ehr"}
+    assert "weight-management program" in script.system_prompt  # the hook, playbook section 4
 
 
 def test_t02_missing_name_uses_fallback_greeting(ran: Env):
     script = ran.script("t_02")
-    assert "Hi, may I speak with the doctor?" in script.first_message
+    assert "whoever keeps the doctor's schedule" in script.first_message
     assert "doctor_name" in script.fallbacks_applied
 
 

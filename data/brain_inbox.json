@@ -2,91 +2,121 @@
  "ca_0454abe525": {
   "call_attempt_id": "ca_0454abe525",
   "contact_id": "c_c09828fbcf",
+  "failure_category": "Wrong number (list data)",
   "outcome": "WRONG_NUMBER",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 3
  },
  "ca_1c90a154b7": {
   "call_attempt_id": "ca_1c90a154b7",
   "contact_id": "c_b3b24d17b8",
+  "failure_category": "Pitch did not land",
   "outcome": "DECLINED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
-  "utterance_count": 3
+  "utterance_count": 5
  },
  "ca_235dad69f6": {
   "call_attempt_id": "ca_235dad69f6",
   "contact_id": "c_29816f6cb0",
+  "failure_category": "Call back later",
   "outcome": "CALLBACK_REQUESTED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "small_group_primary_care",
-  "utterance_count": 3
+  "utterance_count": 5
  },
  "ca_32994a1b75": {
   "call_attempt_id": "ca_32994a1b75",
   "contact_id": "c_5bfd0187e6",
+  "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 5
+ },
+ "ca_38db576121": {
+  "call_attempt_id": "ca_38db576121",
+  "contact_id": "c_b62f5021ad",
+  "failure_category": "Hung up at AI disclosure",
+  "outcome": "DECLINED_RECORDING",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 3
  },
  "ca_6b6ea10721": {
   "call_attempt_id": "ca_6b6ea10721",
   "contact_id": "c_f9eafcfce6",
+  "failure_category": "No answer / voicemail",
   "outcome": "VOICEMAIL",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_specialist",
   "utterance_count": 1
  },
  "ca_6e29b4cd45": {
   "call_attempt_id": "ca_6e29b4cd45",
   "contact_id": "c_da6677d004",
+  "failure_category": "No answer / voicemail",
   "outcome": "NO_ANSWER",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "default",
   "utterance_count": 0
  },
  "ca_7e13816d5d": {
   "call_attempt_id": "ca_7e13816d5d",
   "contact_id": "c_2c3a09fcb5",
+  "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
-  "utterance_count": 3
+  "utterance_count": 5
+ },
+ "ca_d39fa0c7be": {
+  "call_attempt_id": "ca_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "failure_category": "Not a fit",
+  "outcome": "NOT_A_FIT",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
+  "segment": "small_group_primary_care",
+  "utterance_count": 5
  },
  "ca_d6149fd0d8": {
   "call_attempt_id": "ca_d6149fd0d8",
   "contact_id": "c_01c54d811d",
+  "failure_category": "Screened out by front desk",
   "outcome": "GATEKEEPER_BLOCKED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "small_group_specialist",
   "utterance_count": 3
  },
  "ca_e0d96f14bc": {
   "call_attempt_id": "ca_e0d96f14bc",
   "contact_id": "c_251bab6d38",
+  "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
-  "utterance_count": 3
+  "utterance_count": 5
  },
  "ca_e9f7fe12db": {
   "call_attempt_id": "ca_e9f7fe12db",
   "contact_id": "c_48eaa6c438",
+  "failure_category": "Do not contact",
   "outcome": "DO_NOT_CONTACT",
-  "received_at": "2026-10-20T20:01:49Z",
-  "script_version": "2026-10-20.1",
+  "received_at": "2026-10-20T20:18:24Z",
+  "script_version": "v1",
   "segment": "solo_primary_care",
-  "utterance_count": 3
+  "utterance_count": 5
  }
 }

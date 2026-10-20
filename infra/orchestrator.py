@@ -10,6 +10,7 @@ from .clock import Clock, add_business_days, iso, to_local
 from .compliance import contains_opt_out, detect_patient_data, pre_call_gate
 from .config import Config
 from .models import (
+    FAILURE_CATEGORY,
     CallAttempt,
     CallStatus,
     Channel,
@@ -121,7 +122,7 @@ def schedule_calls(
             counts["brain_unavailable"] += 1
             continue
 
-        script, errors = build_script(contact, channel, brain_script, attempt_id, clock)
+        script, errors = build_script(contact, channel, brain_script, attempt_id, clock, cfg)
         if errors or script is None:
             for err in errors:
                 kind = "missing_field" if err.startswith("missing_required") else "unfilled_placeholder"
@@ -175,7 +176,10 @@ def schedule_calls(
                 metadata={
                     "scenario": contact.test_scenario,
                     "dry_run": True,
-                    "voicemail_message_enabled": cfg.voicemail_message_enabled,
+                    "voicemail_message": script.voicemail_message,  # empty unless features.voicemail_message
+                    "pitch": script.variables_used.get("pitch", ""),
+                    "close": script.variables_used.get("close", ""),
+                    "slot_1_iso": script.variables_used.get("slot_1_iso", ""),
                 },
             )
         )
@@ -274,6 +278,7 @@ def apply_outcome(
         "status": CallStatus.FAILED if outcome == Outcome.FAILED_TECHNICAL else CallStatus.COMPLETED,
         "outcome": outcome,
         "outcome_reason": reason,
+        "failure_category": "" if outcome == Outcome.BOOKED else FAILURE_CATEGORY.get(outcome, ""),
         "duration_sec": int(payload.get("duration_sec", 0)),
         "started_at": payload.get("started_at") or attempt.started_at,
         "ended_at": payload.get("ended_at", ""),
@@ -326,14 +331,14 @@ def apply_outcome(
         slot = payload.get("booked_slot") or iso(add_business_days(to_local(now, contact.time_zone), 3))
         interview, created = ensure_interview(store, contact, attempt, slot, clock)
         if created:
-            handoff.handoff(store, interview, contact, clock)
+            handoff.handoff(store, interview, contact, clock, cfg.interview_length_minutes)
         contact_changes.update(status=ContactStatus.BOOKED, next_attempt_at="")
     elif outcome == Outcome.DO_NOT_CONTACT:
         add_suppression(
             store, contact, channel, clock, source=f"call:{attempt.id}", reason="opt-out request during call (CMP-006)"
         )
         contact_changes.update(status=ContactStatus.SUPPRESSED, next_attempt_at="")
-    elif outcome == Outcome.DECLINED:
+    elif outcome in (Outcome.DECLINED, Outcome.NOT_A_FIT, Outcome.DECLINED_RECORDING):
         contact_changes.update(status=ContactStatus.DECLINED, next_attempt_at="")
     elif outcome == Outcome.WRONG_NUMBER:
         store.update(

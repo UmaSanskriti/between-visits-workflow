@@ -22,6 +22,7 @@ def build_package(store: Store, transcript) -> dict:
         "contact_id": contact.id,
         "script_version": attempt.script_version,
         "outcome": attempt.outcome,
+        "failure_category": attempt.failure_category,
         "started_at": attempt.started_at,
         "ended_at": attempt.ended_at,
         "doctor_meta": {
