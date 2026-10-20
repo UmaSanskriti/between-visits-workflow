@@ -27,8 +27,17 @@ Voice team --outcomes + transcripts--> CONNECTOR --transcript package + variant 
 
 ## Docs
 
-- [voice-interface.md](voice-interface.md): what I send to and receive from Voice
-- [brain-interface.md](brain-interface.md): what I send to and receive from Brain
+**Inputs**
+- [inputs/from-voice.md](inputs/from-voice.md): doctor records, call outcomes, transcripts
+- [inputs/from-brain.md](inputs/from-brain.md): base template, context, segment guidance
+
+**Outputs**
+- [outputs/to-voice.md](outputs/to-voice.md): personalized scripts and call queue
+- [outputs/to-brain.md](outputs/to-brain.md): transcript packages, outcome summary
+- [outputs/audit-log-and-errors.md](outputs/audit-log-and-errors.md): audit log and error report
+
+**Analysis and reference**
+- [analysis-of-past-scripts.md](analysis-of-past-scripts.md): learning from past scripts and calls
 - [script-variables.md](script-variables.md): every placeholder, source, fallback
 - [data-schema.md](data-schema.md): doctor, call, script, transcript records
 - [compliance.md](compliance.md): AI disclosure, consent, DNC, recording
