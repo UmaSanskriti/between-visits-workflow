@@ -16,6 +16,7 @@ end = "17:00"
 
 [retry]                     # CALL-007; playbook section 5.7 says at most two attempts unless a call back was requested
 max_attempts = 2
+callback_extra_attempts = 2   # a practice that asks for a call back may be called up to this many more times
 min_business_days = 1
 hours_local = [10, 14, 16]  # varied time of day per attempt
 technical_retry_minutes = 60

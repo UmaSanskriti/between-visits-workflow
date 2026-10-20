@@ -154,6 +154,58 @@
   ]
  },
  {
+  "call_attempt_id": "ca_0ed2163504",
+  "contact_id": "c_01c54d811d",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_3b5b5de2e4",
+  "idempotency_key": "ca_0ed2163504",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Haddad's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "The doctor doesn't take calls like this. You can send something in writing."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 10000,
+    "text": "Thank you, I understand. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_4be9141663",
+  "idempotency_key": "ca_3f31cb8771",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla at Harvard Business School. We help independent practices give their GLP-1 patients complete care, and would love 30 minutes with Dr. Bhriain. Please call back at +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
   "call_attempt_id": "ca_e9f7fe12db",
   "contact_id": "c_48eaa6c438",
   "created_at": "2026-10-20T20:18:24Z",
@@ -224,6 +276,21 @@
   "delivery_status": "delivered",
   "id": "tr_5adff537fa",
   "idempotency_key": "ca_6e29b4cd45",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": []
+ },
+ {
+  "call_attempt_id": "ca_b6119bd4c1",
+  "contact_id": "c_da6677d004",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_6e010c897f",
+  "idempotency_key": "ca_b6119bd4c1",
   "language": "en",
   "last_delivery_error": "",
   "pii_flagged": false,
@@ -498,37 +565,6 @@
   ]
  },
  {
-  "call_attempt_id": "ca_0ed2163504",
-  "contact_id": "c_01c54d811d",
-  "created_at": "2026-10-21T18:30:00Z",
-  "delivered_at": "2026-10-21T18:30:00Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_3b5b5de2e4",
-  "idempotency_key": "ca_0ed2163504",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Haddad's schedule?"
-   },
-   {
-    "speaker": "office",
-    "start_ms": 4000,
-    "text": "The doctor doesn't take calls like this. You can send something in writing."
-   },
-   {
-    "speaker": "agent",
-    "start_ms": 10000,
-    "text": "Thank you, I understand. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
-   }
-  ]
- },
- {
   "call_attempt_id": "ca_d580ef50d5",
   "contact_id": "c_29816f6cb0",
   "created_at": "2026-10-21T18:30:00Z",
@@ -566,42 +602,6 @@
     "speaker": "agent",
     "start_ms": 35000,
     "text": "Of course. I'll call back tomorrow afternoon. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
-   }
-  ]
- },
- {
-  "call_attempt_id": "ca_b6119bd4c1",
-  "contact_id": "c_da6677d004",
-  "created_at": "2026-10-21T18:30:00Z",
-  "delivered_at": "2026-10-21T18:30:00Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_6e010c897f",
-  "idempotency_key": "ca_b6119bd4c1",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": []
- },
- {
-  "call_attempt_id": "ca_3f31cb8771",
-  "contact_id": "c_f9eafcfce6",
-  "created_at": "2026-10-21T18:30:00Z",
-  "delivered_at": "2026-10-21T18:30:00Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_4be9141663",
-  "idempotency_key": "ca_3f31cb8771",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi, this is an AI assistant calling for Anirudh Bagla at Harvard Business School. We help independent practices give their GLP-1 patients complete care, and would love 30 minutes with Dr. Bhriain. Please call back at +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
    }
   ]
  }

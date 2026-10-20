@@ -61,6 +61,11 @@ def run_pipeline(
         "seed": Path(seed).name,
         "playbook": cfg.playbook,
         "callback_number_set": bool(cfg.callback_number),
+        "limits": {
+            "max_calls_per_day": cfg.max_calls_per_day,
+            "max_calls_per_run": cfg.max_calls_per_run,
+            "max_attempts": cfg.retry_max_attempts,
+        },
         "stages": {},
     }
     store.audit("run", run_id, "start", {}, {"trigger": trigger, "now_used": run["now_used"]}, run_id=run_id)

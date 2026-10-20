@@ -376,11 +376,14 @@ def apply_outcome(
 def retry_or_exhaust(
     contact: Contact, cfg: Config, clock: Clock, minutes: int | None = None, at: str | None = None
 ) -> dict:
-    """CALL-007: at least one business day apart, varied hours; stop after max attempts."""
+    """CALL-007: at least one business day apart, varied hours; stop after max attempts.
+
+    Playbook 5.7: the cap does not apply when the practice asked for a call back at a specific time.
+    """
+    if at and contact.attempts < cfg.retry_max_attempts + cfg.retry_callback_extra_attempts:
+        return {"status": ContactStatus.IN_OUTREACH, "next_attempt_at": at}
     if contact.attempts >= cfg.retry_max_attempts:
         return {"status": ContactStatus.UNREACHABLE, "next_attempt_at": ""}
-    if at:
-        return {"status": ContactStatus.IN_OUTREACH, "next_attempt_at": at}
     now = clock.now()
     if minutes:
         return {"status": ContactStatus.IN_OUTREACH, "next_attempt_at": iso(now + timedelta(minutes=minutes))}

@@ -3,116 +3,130 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Between Visits Ops</title>
-  <meta name="description" content="Visibility into the Between Visits calling-agent infra: dry-run pipeline state, compliance gate decisions, call outcomes, and transcript handoff.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232a78d6'/%3E%3Cpath d='M9 17l4 4 10-10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <title>Between Visits Reach-Out</title>
+  <meta name="description" content="Live tracker for the Between Visits clinic reach-out agent: every practice, every call, what it taught us, and the compliance gate that allowed it.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='15' cy='20' r='11' fill='%230a8f82'/%3E%3Ccircle cx='26' cy='20' r='11' fill='%23d9683a' fill-opacity='0.85'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <div>
-      <h1>Between Visits · infra v0</h1>
-      <p class="sub">Calling-agent pipeline: sourcing → verify → compliance gate → calls → transcripts → Brain</p>
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="15" cy="20" r="11" fill="#0a8f82"/><circle cx="26" cy="20" r="11" fill="#d9683a" fill-opacity="0.85"/></svg>
+        <div>
+          <h1>Between Visits</h1>
+          <div class="tag">Clinic Reach-Out Agent · live tracker</div>
+        </div>
+      </div>
       <div class="chips" id="run-chips"></div>
     </div>
     <div class="controls">
       <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow" target="_blank" rel="noopener">Repo</a>
-      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml" target="_blank" rel="noopener">Run pipeline</a>
+      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/blob/main/clinic-outreach-brain.md" target="_blank" rel="noopener">Playbook</a>
+      <a class="btn primary" href="https://github.com/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml" target="_blank" rel="noopener">Run the agent</a>
       <button id="theme" type="button" title="Toggle theme">Theme: system</button>
     </div>
   </header>
 
-  <div class="banner"><b>Dry run.</b> No real calls are placed. Every doctor on this page is fictional (555-01xx numbers). This page is public, so phone numbers and emails are masked at export time.</div>
-
   <div id="error" class="err"></div>
+
+  <section class="hero">
+    <div class="lead">
+      <div class="eyebrow" id="phase">Discovery phase</div>
+      <div class="hero-figure" id="hero-figure">–</div>
+      <p class="sub" id="hero-sub"></p>
+      <p class="mission">We help independent practices give their GLP-1 patients complete care <em>between visits</em>: side-effect management, nutrition, and movement, with the billing handled. Before we build more, we're asking doctors whether it would work for them. This agent books those conversations.</p>
+    </div>
+    <div class="side">
+      <div class="panel">
+        <h3>Today's batch</h3>
+        <p class="hint">The brief's cadence is ten practices per weekday, which matches the free Vapi number's limit.</p>
+        <div class="meter"><span id="batch-fill" style="width:0%"></span></div>
+        <div class="meter-label"><span id="batch-label">–</span><span id="batch-cap"></span></div>
+      </div>
+      <div class="panel">
+        <h3>How we'll judge it</h3>
+        <p class="hint">From the brief: the share of calls that reach a person and the share that book should rise from v1 to the latest script.</p>
+        <div class="trio" id="trio"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="loop">
+    <div class="head">
+      <h2>The loop</h2>
+      <p>Every call that doesn't book is categorised and fixes the next one. Live counts from the latest run.</p>
+    </div>
+    <div class="steps" id="loop-steps"></div>
+    <p class="back"><span class="arrow">↺</span><span id="loop-back"></span></p>
+  </section>
+
+  <div class="banner"><b>Dry run.</b> No real calls are placed yet; the voice provider and the Brain are stand-ins. Every practice on this page is fictional (555-01xx numbers). The page is public, so phones and emails are masked.</div>
+
   <div class="kpis" id="kpis"></div>
 
-  <div class="grid">
+  <section class="card" id="tracker">
+    <div class="head"><h2>Practice tracker</h2><span class="count" id="cards-count"></span></div>
+    <p class="desc">One card per practice, the brief's tracker row made visible: every call attempt, its outcome and failure category, where the transcript went, and anything it put in the error report or the alerts.</p>
+    <div class="filters" id="filters">
+      <button class="f" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="f" type="button" data-filter="booked" aria-pressed="false">Booked</button>
+      <button class="f" type="button" data-filter="outreach" aria-pressed="false">In outreach</button>
+      <button class="f" type="button" data-filter="queued" aria-pressed="false">Queued</button>
+      <button class="f" type="button" data-filter="attention" aria-pressed="false">Needs attention</button>
+      <button class="f" type="button" data-filter="closed" aria-pressed="false">Closed</button>
+      <input id="tracker-search" type="search" placeholder="Search doctor, practice, or id" autocomplete="off">
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <div class="grid3">
     <section class="card">
-      <div class="head"><h2>Funnel</h2><span class="count">contacts, cumulative</span></div>
-      <p class="desc">Sourced → verified → cleared to call → called → connected (a human or voicemail answered) → booked.</p>
-      <div class="bars" id="funnel"></div>
+      <div class="head"><h2>Why calls didn't book</h2><span class="count" id="fail-count"></span></div>
+      <p class="desc">Provisional failure categories from the brief. The reviewer confirms them and decides what to change next.</p>
+      <div class="bars" id="fail-bars"></div>
+      <div class="what" id="fail-what"></div>
+    </section>
+    <section class="card">
+      <div class="head"><h2>Script versions</h2></div>
+      <p class="desc">Each version's reach and booking rates. v2 should beat v1 on the same practices.</p>
+      <div class="table-wrap" id="versions"></div>
     </section>
     <section class="card">
       <div class="head"><h2>Call outcomes</h2><span class="count" id="outcomes-count"></span></div>
-      <p class="desc">All call attempts, by classified outcome.</p>
+      <p class="desc">All attempts, by classified outcome.</p>
       <div class="bars" id="outcomes"></div>
     </section>
   </div>
 
-  <section class="card">
-    <div class="head"><h2>Compliance gate · last run</h2><span class="count" id="gate-count"></span></div>
-    <p class="desc">Every open contact is evaluated before a call (CMP-001). Blocked = a hard gate failed. Deferred = outside the calling window or retry not due yet.</p>
-    <div class="table-wrap" id="gate"></div>
-  </section>
-
   <div class="grid">
     <section class="card">
-      <div class="head"><h2>Call queue</h2><span class="count" id="queue-count"></span></div>
-      <p class="desc">Contacts the scheduler will consider next, with their retry time.</p>
-      <div class="table-wrap" id="queue"></div>
+      <div class="head"><h2>Compliance gate · last run</h2><span class="count" id="gate-count"></span></div>
+      <p class="desc">Nothing is dialed unless every check passes: not suppressed, verified, cleared, inside business hours in the practice's time zone, retry due, under the attempt cap, kill switch off.</p>
+      <div class="table-wrap" id="gate"></div>
     </section>
     <section class="card">
-      <div class="head"><h2>Interviews booked</h2><span class="count" id="interviews-count"></span></div>
-      <p class="desc">One interview per BOOKED outcome, drafted as an .ics and held for Anirudh's approval (playbook section 9).</p>
-      <div class="table-wrap" id="interviews"></div>
+      <div class="head"><h2>Where practices are</h2><span class="count">cumulative</span></div>
+      <p class="desc">Sourced → verified → cleared to call → called → reached a person or voicemail → booked.</p>
+      <div class="bars" id="funnel"></div>
     </section>
   </div>
 
-  <section class="card">
-    <div class="head"><h2>Call attempts</h2><span class="count" id="attempts-count"></span></div>
-    <p class="desc">Most recent first. Each attempt records its script version, the gate result that allowed it, and a provisional failure category (playbook section 10).</p>
-    <div class="table-wrap" id="attempts"></div>
-  </section>
+  <h2 style="font-size:18px;margin:22px 0 6px">Operations detail</h2>
+  <details class="ops"><summary>Call queue <span class="count" id="queue-count"></span></summary><p class="desc">Who the scheduler considers next, with the retry time.</p><div class="table-wrap" id="queue"></div></details>
+  <details class="ops"><summary>Booked conversations <span class="count" id="interviews-count"></span></summary><p class="desc">Drafted as an .ics and held for Anirudh's one-click approval before anything is sent.</p><div class="table-wrap" id="interviews"></div></details>
+  <details class="ops"><summary>Transcripts → Brain <span class="count" id="transcripts-count"></span></summary><p class="desc">Stored before delivery, delivered with an idempotency key, held when patient data is suspected.</p><div class="table-wrap" id="transcripts"></div></details>
+  <details class="ops"><summary>Error report <span class="count" id="errors-count"></span></summary><p class="desc">Missing fields, duplicates, malformed transcripts, delivery failures.</p><div class="table-wrap" id="errors"></div></details>
+  <details class="ops"><summary>Alerts and dead-letter queue <span class="count" id="alerts-count"></span></summary><p class="desc">Things an operator should look at.</p><div class="table-wrap" id="alerts"></div></details>
+  <details class="ops"><summary>Runs <span class="count" id="runs-count"></span></summary><p class="desc">Each run of the agent, most recent first.</p><div class="table-wrap" id="runs"></div></details>
+  <details class="ops"><summary>Audit log <span class="count" id="audit-count"></span></summary><p class="desc">Append-only state transitions, latest 100.</p><div class="table-wrap" id="audit"></div></details>
+  <details class="ops"><summary>Contact lookup</summary><p class="desc">Full history for one practice: record, channels, gate decisions, attempts and scripts, audit trail.</p><div class="search"><input id="search" type="search" placeholder="Search by name, external id (t_01), or contact id" autocomplete="off"></div><div id="history" class="muted">Type to search.</div></details>
 
-  <div class="grid">
-    <section class="card">
-      <div class="head"><h2>Outcomes by segment</h2></div>
-      <p class="desc">Connector outcome summary: conversion per segment and script version, including declines and no-answers.</p>
-      <div class="table-wrap" id="segments"></div>
-    </section>
-    <section class="card">
-      <div class="head"><h2>Transcripts → Brain</h2><span class="count" id="transcripts-count"></span></div>
-      <p class="desc">Stored before delivery, delivered with an idempotency key, held when patient data is suspected.</p>
-      <div class="table-wrap" id="transcripts"></div>
-    </section>
-  </div>
-
-  <div class="grid">
-    <section class="card">
-      <div class="head"><h2>Error report</h2><span class="count" id="errors-count"></span></div>
-      <p class="desc">Missing fields, duplicates, malformed transcripts, delivery failures.</p>
-      <div class="table-wrap" id="errors"></div>
-    </section>
-    <section class="card">
-      <div class="head"><h2>Alerts and dead-letter queue</h2><span class="count" id="alerts-count"></span></div>
-      <p class="desc">Things an operator should look at.</p>
-      <div class="table-wrap" id="alerts"></div>
-    </section>
-  </div>
-
-  <section class="card">
-    <div class="head"><h2>Contact history</h2></div>
-    <p class="desc">Full history for one contact (OPS-001): record, channels, gate decisions, attempts, audit trail.</p>
-    <div class="search"><input id="search" type="search" placeholder="Search by name, external id (t_01), or contact id" autocomplete="off"></div>
-    <div id="history" class="muted">Type to search.</div>
-  </section>
-
-  <div class="grid">
-    <section class="card">
-      <div class="head"><h2>Runs</h2><span class="count" id="runs-count"></span></div>
-      <p class="desc">Each pipeline run, most recent first.</p>
-      <div class="table-wrap" id="runs"></div>
-    </section>
-    <section class="card">
-      <div class="head"><h2>Audit log</h2><span class="count" id="audit-count"></span></div>
-      <p class="desc">Append-only state transitions (DB-002), latest 100.</p>
-      <div class="table-wrap" id="audit"></div>
-    </section>
-  </div>
-
-  <footer id="footer"></footer>
+  <footer><span id="footer"></span><span>Between Visits · LTV founder workflow · not legal advice</span></footer>
 </div>
 <div class="tooltip" id="tooltip"></div>
 <script src="app.js"></script>

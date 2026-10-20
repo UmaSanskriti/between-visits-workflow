@@ -75,7 +75,10 @@ def pre_call_gate(store: Store, contact: Contact, channel: Channel | None, cfg: 
             reasons.append("channel_not_verified")
         if channel.call_clearance != Clearance.CLEARED:
             reasons.append("call_clearance_not_cleared")
-    if contact.attempts >= cfg.retry_max_attempts:
+    cap = cfg.retry_max_attempts
+    if contact.last_outcome == "CALLBACK_REQUESTED" and contact.next_attempt_at:
+        cap += cfg.retry_callback_extra_attempts  # playbook 5.7: unless they asked for a call back
+    if contact.attempts >= cap:
         reasons.append("max_attempts_reached")
     ok, why = in_calling_window(now, contact.time_zone or cfg.default_time_zone, cfg)
     if not ok:

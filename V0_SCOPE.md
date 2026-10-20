@@ -51,7 +51,7 @@ the playbook where the two differ, because it is the document Anirudh approves s
 | Topic | Spec draft | Playbook v1 | v0 does |
 |---|---|---|---|
 | Ask | 20-minute interview | 30-minute conversation | 30 minutes (`[booking].interview_length_minutes`) |
-| Attempts | max 3 | max 2 unless call back requested | 2 (`[retry].max_attempts`) |
+| Attempts | max 3 | max 2 unless call back requested | 2 (`[retry].max_attempts`), and up to 2 more only after a call-back request (`callback_extra_attempts`) |
 | Voicemail | off unless approved | approved voicemail script in section 6 | on, with that text |
 | Opening | AI + recording disclosure, wording TBD | LOCKED two sentences | reproduced verbatim in `compliance.py` |
 | Who we ask for | the doctor | office manager / whoever keeps the schedule | route line after the opening |

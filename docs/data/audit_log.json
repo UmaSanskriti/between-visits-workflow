@@ -5592,5 +5592,102 @@
   "entity_id": "20261021T183000Z-004",
   "run_id": "20261021T183000Z-004",
   "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-20T20:35:25Z",
+   "trigger": "local"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261020T203525Z-005",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "contact_not_verified:no_callable_channel",
+    "no_phone_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "call_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "suppressed:contact:c_48eaa6c438"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_48eaa6c438",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261020T203525Z-005",
+  "run_id": "20261020T203525Z-005",
+  "timestamp": "2026-10-20T20:35:25Z"
  }
 ]

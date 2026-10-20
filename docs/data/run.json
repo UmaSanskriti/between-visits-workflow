@@ -1,31 +1,36 @@
 {
  "brain_down": false,
  "callback_number_set": true,
- "finished_at": "2026-10-21T18:30:00Z",
+ "finished_at": "2026-10-20T20:35:25Z",
  "gate_escapes": 0,
- "git_sha": "de48efd",
+ "git_sha": "a89c24a",
  "kill_switch": false,
+ "limits": {
+  "max_attempts": 2,
+  "max_calls_per_day": 50,
+  "max_calls_per_run": 25
+ },
  "mode": "dry_run",
- "now_used": "2026-10-21T18:30:00Z",
+ "now_used": "2026-10-20T20:35:25Z",
  "paused": false,
  "playbook": "clinic-outreach-brain.md",
- "run_id": "20261021T183000Z-004",
+ "run_id": "20261020T203525Z-005",
  "seed": "test_doctors.csv",
- "simulated_time": true,
+ "simulated_time": false,
  "stages": {
   "calls": {
-   "allowed": 5,
+   "allowed": 0,
    "blocked": 5,
    "brain_unavailable": 0,
    "capped": 0,
-   "considered": 10,
+   "considered": 5,
    "deferred": 0,
-   "placed": 5,
+   "placed": 0,
    "script_errors": 0
   },
   "delivery": {
-   "attempted": 4,
-   "delivered": 4,
+   "attempted": 0,
+   "delivered": 0,
    "duplicates": 0,
    "failed": 0,
    "held": 1
@@ -44,16 +49,16 @@
    "duplicates": 1,
    "failed": 1,
    "suppressed": 0,
-   "verified": 6
+   "verified": 1
   },
   "webhooks": {
-   "applied": 5,
+   "applied": 0,
    "bad_signature": 0,
-   "duplicates_ignored": 5,
-   "events": 10,
+   "duplicates_ignored": 0,
+   "events": 0,
    "unknown_call": 0
   }
  },
- "started_at": "2026-10-21T18:30:00Z",
- "trigger": "workflow_dispatch"
+ "started_at": "2026-10-20T20:35:25Z",
+ "trigger": "local"
 }

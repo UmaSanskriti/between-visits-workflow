@@ -35,9 +35,9 @@ docs/data/*.json ◄── export ◄── summary ◄── deliver transcript
 | Gate | Kill switch, pause, suppression, verification, clearance, calling window in the recipient's time zone, retry due time, max attempts. Every decision is logged | CMP-001/002, CALL-009 |
 | Script | Resolve from the Brain (no script, no call), choose segment and pitch angle, fill placeholders (doctor, practice, hook, four calendar slots, callback number) with fallbacks, refuse any unfilled placeholder or missing callback number, always prepend the LOCKED AI + recording opening | CALL-002, BRN-001..003, CMP-004/005, playbook 4-6 |
 | Call | `VoiceProvider` interface with a mock that emits HMAC-signed webhooks, each one twice | CALL-003/005 |
-| Outcomes | Eleven outcomes (the spec's nine plus the playbook's `NOT_A_FIT` and `DECLINED_RECORDING`), a provisional failure category per call, retry policy (≥1 business day, varied hours, max 2 per playbook), opt-out phrase detection that forces `DO_NOT_CONTACT` and writes a suppression, wrong-number channel failure, draft interview + .ics held for approval on `BOOKED` | CALL-006/007, CMP-006, LOG-001..004, playbook 9-10 |
+| Outcomes | Eleven outcomes (the spec's nine plus the playbook's `NOT_A_FIT` and `DECLINED_RECORDING`), a provisional failure category per call, retry policy (≥1 business day, varied hours, max 2 per playbook, plus a bounded allowance when a practice asks for a call back), opt-out phrase detection that forces `DO_NOT_CONTACT` and writes a suppression, wrong-number channel failure, draft interview + .ics held for approval on `BOOKED` | CALL-006/007, CMP-006, LOG-001..004, playbook 9-10 |
 | Transcripts | Stored before delivery, patient-data heuristic holds a transcript, redacted package with idempotency key, retries, dead-letter queue, alerts | BRN-004..007, CMP-009 |
-| Visibility | Summary by outcome, script version, and segment; masked export; audit log; dashboard | LOG-005, OPS-001, NFR-004/009 |
+| Visibility | Summary by outcome, script version, segment, and failure category; masked export; audit log; the tracker dashboard (one card per practice with every attempt, transcript status, errors, and alerts) | LOG-005, OPS-001, NFR-004/009, brief section 6 |
 
 ## Quick start
 

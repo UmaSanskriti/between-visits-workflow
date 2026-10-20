@@ -32,6 +32,7 @@ class Config:
     calling_end: str = "17:00"
     retry_max_attempts: int = 3
     retry_min_business_days: int = 1
+    retry_callback_extra_attempts: int = 2
     retry_hours_local: list[int] = field(default_factory=lambda: [10, 14, 16])
     technical_retry_minutes: int = 60
     brain_retry_minutes: int = 15
@@ -75,6 +76,7 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
         retry = raw.get("retry", {})
         cfg.retry_max_attempts = int(retry.get("max_attempts", cfg.retry_max_attempts))
         cfg.retry_min_business_days = int(retry.get("min_business_days", cfg.retry_min_business_days))
+        cfg.retry_callback_extra_attempts = int(retry.get("callback_extra_attempts", cfg.retry_callback_extra_attempts))
         cfg.retry_hours_local = [int(h) for h in retry.get("hours_local", cfg.retry_hours_local)]
         cfg.technical_retry_minutes = int(retry.get("technical_retry_minutes", cfg.technical_retry_minutes))
         cfg.brain_retry_minutes = int(retry.get("brain_retry_minutes", cfg.brain_retry_minutes))

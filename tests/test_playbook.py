@@ -87,3 +87,19 @@ def test_interview_is_a_draft_until_approved(ran: Env):
     approve_interview(ran.store, interview, "Anirudh Bagla", ran.clock)
     assert interview.status == "approved" and interview.approved_by == "Anirudh Bagla"
     assert any(e["action"] == "approve" and e["actor"] == "Anirudh Bagla" for e in ran.store.audit_log)
+
+
+def test_callback_requests_are_honored_beyond_the_attempt_cap(ran: Env):
+    """Playbook 5.7: at most two attempts unless they asked for a call back (bounded by callback_extra_attempts)."""
+    for _ in range(6):  # Wed..Mon: call backs land on the next business afternoon
+        ran.clock.advance(days=1)
+        ran.run()
+    contact = ran.contact("t_07")
+    assert len(ran.attempts("t_07")) == ran.cfg.retry_max_attempts + 1
+    assert contact.status == ContactStatus.IN_OUTREACH and contact.next_attempt_at
+    for _ in range(2):
+        ran.clock.advance(days=1)
+        ran.run()
+    ceiling = ran.cfg.retry_max_attempts + ran.cfg.retry_callback_extra_attempts
+    assert len(ran.attempts("t_07")) == ceiling
+    assert ran.contact("t_07").status == ContactStatus.UNREACHABLE
