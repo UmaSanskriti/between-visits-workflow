@@ -12,6 +12,8 @@
   const LOCAL = "http://127.0.0.1:8787";
   const LIVE_VIEW = new URLSearchParams(location.search).get("source") === "live";
   const SRC = LIVE_VIEW ? LOCAL + "/data-live/" : "data/";
+  // An https page may call the loopback service only when the fetch opts in (Chrome private network access).
+  const localFetch = (url, opts) => fetch(url, Object.assign({ cache: "no-store", targetAddressSpace: "loopback" }, opts || {}));
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -99,7 +101,7 @@
   async function loadAll() {
     const stamp = Date.now(), out = {};
     await Promise.all(FILES.map(async (name) => {
-      try { const res = await fetch(SRC + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
+      try { const res = await (LIVE_VIEW ? localFetch : fetch)(SRC + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
       catch (e) { out[name] = null; }
     }));
     return out;
@@ -420,7 +422,7 @@
   // ---------- live call panel (talks to the local control service) ----------
   async function localState() {
     const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 1500);
-    try { const res = await fetch(LOCAL + "/api/state", { signal: ctl.signal, cache: "no-store" }); clearTimeout(t); return res.ok ? await res.json() : null; }
+    try { const res = await localFetch(LOCAL + "/api/state", { signal: ctl.signal }); clearTimeout(t); return res.ok ? await res.json() : null; }
     catch (e) { clearTimeout(t); return null; }
   }
   function renderLive(st) {
@@ -459,7 +461,7 @@
     timer = setInterval(tick, 2000);
     $("call-btn").addEventListener("click", async () => {
       $("call-btn").disabled = true;
-      try { const res = await fetch(LOCAL + "/api/call", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
+      try { const res = await localFetch(LOCAL + "/api/call", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
       catch (e) { $("live-note").textContent = "Could not reach the local service."; }
       tick();
     });

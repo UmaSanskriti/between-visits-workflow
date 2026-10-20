@@ -227,6 +227,7 @@ def make_handler(service: LiveService):
                 self.send_header("Vary", "Origin")
             self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
             self.send_header("Access-Control-Allow-Headers", "Content-Type")
+            self.send_header("Access-Control-Allow-Private-Network", "true")
             self.send_header("Cache-Control", "no-store")
 
         def _json(self, code: int, payload):
