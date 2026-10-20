@@ -1,6 +1,6 @@
 # Compliance
 
-**Not legal advice.** The playbook and the infra spec both say counsel must review consent language, call flows and recording practices before any live call. The healthcare regulatory lawyer is on the list.
+**Not legal advice.** The playbook and the infra spec both say counsel must review consent language, call flows and recording practices before any live call. The healthcare regulatory lawyer is on the list. The founders have decided AI-voice calls are permitted (see "Founder decisions" below); these docs record that decision and do not verify it.
 
 ## Rules the connector enforces
 From playbook §5 (LOCKED) and infra spec §7 (hard gates):
@@ -36,8 +36,13 @@ Target: **0 gate escapes**.
 - **Consent evidence** (CMP-010): `consent_record` with timestamp and source.
 - **Privacy** (NFR-004): contact data is business-contact PII; mask phone and email in logs; support deletion on request, including recordings and transcripts.
 
+## Founder decisions (2026-10-20)
+1. **AI-voice calls are permitted** (spec Q2). The connector still enforces `call_clearance` per channel, so someone authorized must set it, and the consent record (CMP-010) should note the basis. The basis is not written down in these docs yet.
+2. **No audio files are kept** (spec Q3). The transcript is the record, so `recording_ref` is dropped and audio is discarded after transcription and analysis. The recording-objection rule stays: if anyone objects, end politely and log `DECLINED_RECORDING`.
+3. **Speaker and tone data replaces the audio.** The transcript must capture tone, intonation and speaker type, and the AI-or-human flag, at call time ([data-schema.md](data-schema.md)). Inferring a speaker's gender from their voice is sensitive and is not settled; see [open-questions.md](open-questions.md).
+
 ## Decisions still needed
-1. Legal position on AI-voice calls to practice numbers (spec Q2). **Blocks any live call, even to team numbers.**
-2. Recording policy: record all calls, or transcript only? (spec Q3)
-3. Retention periods for contacts, recordings, transcripts (spec Q6)
+1. Does the LOCKED opening ("recorded for our notes") still cover live audio analysis when nothing is stored? Only Anirudh and the lawyer can change it.
+2. Is voice analysis (tone, perceived gender) acceptable in Massachusetts and the other states we call? Counsel to confirm.
+3. Retention periods for contacts and transcripts (spec Q6)
 4. Dashboard privacy: GitHub Pages on a public repo is public, which is fine for fictional data but must change before real data.

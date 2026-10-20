@@ -12,7 +12,7 @@ Every placeholder the connector fills, aligned with playbook §4 and §6. If a s
 | `{segment}` | Connector: specialty × practice size | `default` | Picks pitch angle |
 | `{pitch_angle}` | Connector, using Brain guidance for the segment | Brain default angle | |
 | `{slot_1}` … `{slot_4}` | Anirudh's calendar (stub in v0): next 10 business days, 30 minutes, Boston time | at least `slot_1` and `slot_2` required; otherwise ask for "the best week or time of day" | Offer 1-2 first, then 3-4 |
-| `{callback_number}` | Config | **Required. No fallback**; blocks the call when empty | Currently TBD in the playbook |
+| `{callback_number}` | Config | **Required. No fallback**; blocks the call when empty | Eng team picks the number; still TBD in the playbook |
 | `{ask}` | Brain | **Required** | 30-minute conversation |
 | `{caller_identity}` | Brain | **Required** | Anirudh Bagla, HBS student |
 | `{script_version}` | Brain | **Required** | Logged, not spoken |

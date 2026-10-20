@@ -42,6 +42,16 @@ Use fictional contacts only. Never test with real phone numbers. The tests live 
 - AC-9 kill switch yields zero new calls
 - AC-10 first utterance carries the AI and recording disclosure
 
+## Speaker and tone data (no audio kept)
+
+| Case | Expected |
+|------|----------|
+| Completed call | Every utterance has `speaker_type`; no audio reference stored anywhere |
+| IVR / phone tree | Tagged `ivr`, not counted as a person reached |
+| Voicemail greeting | Tagged `voicemail_greeting`; outcome `VOICEMAIL` |
+| Tone data missing or low confidence | Transcript still delivered; confidence recorded; flagged in the error report |
+| Audio present from the provider | Discarded after transcription; verify nothing persists |
+
 ## Checks
 - [ ] No unfilled placeholder ever reaches Voice
 - [ ] The LOCKED opening is verbatim in every `first_message`

@@ -22,6 +22,8 @@ Also track:
 - Where in the call it was lost (`lost_at`), especially the first 15 seconds at the AI disclosure
 - Recurring objections and which responses worked
 - Differences by segment (solo vs. group, specialty)
+- Tone and intonation around the failure point, for example a rushed or annoyed reply right after the AI disclosure. With no audio kept, this comes only from the per-utterance tone data, so its quality limits this analysis.
+- Whether the other party was a human, an IVR or a voicemail greeting, so tree and voicemail calls do not distort pitch results
 
 ## Method
 - Join on `call_attempt_id` to `script_version` and the contact's segment.

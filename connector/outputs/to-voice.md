@@ -21,13 +21,17 @@ Ordered list of contacts with the script attached. It contains only contacts tha
 - The AI and recording disclosure is **always prepended**, whatever the Brain sent (BRN-001, CMP-004, CMP-005).
 - No literal `{placeholder}` may reach Voice. Required fields missing (including `callback_number`) block the call and go to the error report.
 - Max 2 attempts per practice, plus up to 2 more only after a call-back request. No retry after DECLINED, NOT_A_FIT, DECLINED_RECORDING, DO_NOT_CONTACT or WRONG_NUMBER.
-- Daily cap: 10 calls/day on the free Vapi number (the dry run uses 50).
+- Daily cap: **10 calls/day** (founder decision; matches the free Vapi number). `config.toml` still says 50 for the dry run and must be set to 10 before live.
+- No audio is kept. Voice must return tone, intonation and speaker-type data with the transcript ([../inputs/from-voice.md](../inputs/from-voice.md)).
 - Voicemail uses the playbook's approved text. A feature flag off means hang up and log `VOICEMAIL`.
 - Any request for a human: give Anirudh's name and callback number.
 
 ## Resolved
 - Infra owns the AI and recording disclosure lines.
 - Script delivery format is the `CallRequest`.
+
+## Delegated to the eng team
+- Voice provider choice and the callback number
 
 ## To pin down **[CONFIRM]**
 1. Vapi length limits, supported variables, pronunciation handling

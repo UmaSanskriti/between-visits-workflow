@@ -25,9 +25,15 @@ In v0 the Voice side is a mock behind a `VoiceProvider` interface (`place_call`,
 - started_at, ended_at, duration
 - booked slot and the email collected on the call (used only for the invite)
 
-## Transcripts and recordings
-- Utterances with speaker and `start_ms`, `recording_ref` (signed, expiring URL or object key)
-- Raw transcripts stay in the infra DB; the Brain gets the redacted package ([../outputs/to-brain.md](../outputs/to-brain.md))
+## Transcripts (no audio kept)
+Founder decision: no audio files are stored, so the transcript is the whole record. Each utterance needs:
+- `speaker` and `start_ms`
+- `speaker_type`: `ai_agent | human | ivr | voicemail_greeting`
+- `speaker_role` where known: front desk, office manager, doctor, unknown
+- Tone and intonation: a tone label (for example warm, hesitant, annoyed, rushed), plus pace, pauses and rising or falling pitch where available, each with a confidence
+- Optional and sensitive: perceived speaker gender, with a confidence; see [../open-questions.md](../open-questions.md) before relying on it
+
+This must be captured during the call, because the audio is discarded afterward. Raw transcripts stay in the infra DB; the Brain gets the redacted package ([../outputs/to-brain.md](../outputs/to-brain.md)).
 
 ## Webhook behavior
 - Call state is driven by provider webhooks with a polling fallback (CALL-005)
@@ -42,7 +48,11 @@ Record shapes: [../data-schema.md](../data-schema.md)
 - **call_id owner:** infra (`call_attempt_id`)
 - **Delivery to Voice:** a `CallRequest` object, mapped later to a Vapi assistant payload
 
+## Delegated to the eng team
+- Voice provider choice (currently Vapi, backup Retell) and the callback number
+
 ## To pin down **[CONFIRM]**
+0. Who produces tone, intonation and speaker-type data (the provider, or an analysis step on the live audio), and how reliable it is
 1. Vapi payload mapping and length limits on prompt / first message
 2. How fast outcomes and transcripts arrive after a call
 3. Whether past calls can be exported in bulk

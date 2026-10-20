@@ -13,8 +13,8 @@ Any state -> SUPPRESSED (terminal, on a do-not-contact request)
 |--------|-----------|
 | `contact` | id, full_name, credentials, specialty, practice_name, address, city, state, status, verification_status, created_at, updated_at |
 | `channel` | id, contact_id, type (`phone`/`email`/`web_form`), value, line_type, verified, call_clearance, source, source_url, retrieved_at |
-| `call_attempt` | id, contact_id, channel_id, scheduled_at, started_at, ended_at, status, outcome, outcome_reason, failure_category, lost_at, provider, provider_call_id, script_version, recording_ref, transcript_id |
-| `transcript` | id, call_attempt_id, utterances, language, created_at, delivery_status, delivered_at |
+| `call_attempt` | id, contact_id, channel_id, scheduled_at, started_at, ended_at, status, outcome, outcome_reason, failure_category, lost_at, provider, provider_call_id, script_version, transcript_id (no audio reference) |
+| `transcript` | id, call_attempt_id, utterances (with speaker type, role, tone, intonation), language, created_at, delivery_status, delivered_at |
 | `interview` | id, contact_id, call_attempt_id, scheduled_for, calendar_event_ref, status (`draft_pending_approval` until Anirudh approves) |
 | `suppression` | id, identifier (phone/email/contact), reason, source, created_at |
 | `consent_record` | id, contact_id, channel_id, consent_type, evidence_ref, captured_at, revoked_at |
@@ -47,10 +47,29 @@ Any state -> SUPPRESSED (terminal, on a do-not-contact request)
   "lost_at": null,
   "started_at": "2026-10-21T14:02:11Z",
   "ended_at": "2026-10-21T14:05:40Z",
-  "utterances": [{"speaker": "agent", "start_ms": 0, "text": "..."}],
-  "recording_ref": "signed-url-or-object-key"
+  "utterances": [
+    {
+      "speaker": "agent",
+      "start_ms": 0,
+      "text": "...",
+      "speaker_type": "ai_agent",
+      "speaker_role": null,
+      "tone": {"label": "neutral", "confidence": 0.8},
+      "intonation": {"pace_wpm": 150, "pause_before_ms": 200, "pitch_trend": "falling"}
+    },
+    {
+      "speaker": "doctor_side",
+      "start_ms": 4200,
+      "text": "...",
+      "speaker_type": "human",
+      "speaker_role": "front_desk",
+      "tone": {"label": "rushed", "confidence": 0.6},
+      "intonation": {"pace_wpm": 185, "pause_before_ms": 600, "pitch_trend": "rising"}
+    }
+  ]
 }
 ```
+No audio is stored, so there is no `recording_ref`. Tone and intonation are captured during the call. Perceived gender is not in the schema until the open question is settled.
 
 ## Outcomes
 `BOOKED | CALLBACK_REQUESTED | NO_ANSWER | VOICEMAIL | GATEKEEPER_BLOCKED | DECLINED | NOT_A_FIT | DECLINED_RECORDING | DO_NOT_CONTACT | WRONG_NUMBER | FAILED_TECHNICAL`

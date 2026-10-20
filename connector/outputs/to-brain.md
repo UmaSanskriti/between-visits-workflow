@@ -5,7 +5,8 @@ Status: DRAFT, aligned with infra spec §8.2 and `V0_SCOPE.md`. Items marked **[
 ## 3. Transcript package: `POST /v1/transcripts`
 One per completed call.
 - `idempotency_key`, `call_attempt_id`, `contact_id`, `script_version`, `outcome`, `started_at`, `ended_at`
-- `utterances` (speaker, `start_ms`, text), `recording_ref`
+- `utterances`: `speaker`, `start_ms`, text, `speaker_type`, `speaker_role`, tone label, intonation features and confidences. There is no `recording_ref`, because no audio is kept (founder decision).
+- Perceived speaker gender only if the open question is settled; otherwise omitted
 - `failure_category` and `lost_at`, so the Brain's reviewer loop can start from them
 
 Delivery:
