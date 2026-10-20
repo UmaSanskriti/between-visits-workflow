@@ -6,3 +6,9 @@ __pycache__/
 *.egg-info/
 build/
 .DS_Store
+
+# live demo: secrets, the real number, raw call data (publish docs/data-live deliberately)
+.env
+seeds/live/
+data-live/
+docs/data-live/

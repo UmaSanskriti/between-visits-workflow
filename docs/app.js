@@ -9,6 +9,7 @@
   const FILES = ["run", "summary", "contacts", "call_attempts", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
   const ICON = { good: "✓", warning: "!", serious: "▲", critical: "✕", neutral: "·" };
   const TZ = "America/New_York";
+  const SRC = new URLSearchParams(location.search).get("source") === "live" ? "data-live/" : "data/";
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -96,7 +97,7 @@
   async function loadAll() {
     const stamp = Date.now(), out = {};
     await Promise.all(FILES.map(async (name) => {
-      try { const res = await fetch("data/" + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
+      try { const res = await fetch(SRC + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
       catch (e) { out[name] = null; }
     }));
     return out;
@@ -125,7 +126,8 @@
   function nextStep(c, interview, gate) {
     if (c.status === "BOOKED" && interview) {
       const when = fmtTime(interview.scheduled_for);
-      return interview.status === "approved" ? ["good", when + ", invite approved by " + interview.approved_by] : ["warning", when + ", invite waiting for approval"];
+      const lead = interview.scheduled_for ? when + ", " : "Agreed to talk; Anirudh reaches out" + (interview.contact_method && interview.contact_method !== "unknown" ? " via " + nice(interview.contact_method) : "") + ", ";
+      return interview.status === "approved" ? ["good", lead + "approved by " + interview.approved_by] : ["warning", lead + "waiting for approval"];
     }
     if (c.status === "IN_OUTREACH") return ["brand", c.next_attempt_at ? "Retry " + fmtTime(c.next_attempt_at) + (c.last_outcome === "CALLBACK_REQUESTED" ? " (asked for a call back)" : "") : "Call in progress"];
     if (c.status === "READY") return ["neutral", gate && !gate.allowed ? (gate.deferred ? "Waiting: " + gate.reasons.map(nice).join(", ") : "Blocked: " + gate.reasons.map(nice).join(", ")) : "Call when the window opens"];
@@ -161,7 +163,9 @@
 
     // header chips
     const chips = clear($("run-chips"));
-    chips.appendChild(el("span", { class: "chip mode", title: "No real calls are placed; the voice provider and the Brain are stand-ins and every practice is fictional." }, [el("b", { text: "DRY RUN" })]));
+    if (run.mode === "live") chips.appendChild(el("span", { class: "chip critical", title: "Real calls through Vapi to allowlisted team numbers only." }, [el("span", { class: "dot" }), el("b", { text: "LIVE" })]));
+    else chips.appendChild(el("span", { class: "chip mode", title: "No real calls are placed; the voice provider and the Brain are stand-ins and every practice is fictional." }, [el("b", { text: "DRY RUN" })]));
+    chips.appendChild(el("a", { class: "chip", href: SRC === "data/" ? "?source=live" : "./", text: SRC === "data/" ? "Live demo data →" : "← Dry-run data" }));
     chips.appendChild(el("span", { class: "chip" }, ["Snapshot ", el("b", { text: run.finished_at ? fmtTime(run.finished_at) : "never" })]));
     if (run.simulated_time) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "simulated clock ", el("b", { text: fmtTime(run.now_used) })]));
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
@@ -305,6 +309,7 @@
         ]);
         if (a.outcome_reason) line.appendChild(el("div", { class: "muted small", text: a.outcome_reason }));
         if (a.callback_requested_at) line.appendChild(el("div", { class: "muted small", text: "Call back requested for " + fmtTime(a.callback_requested_at) }));
+        if (a.provider === "vapi") line.appendChild(el("div", { class: "muted small" }, ["Vapi: " + (a.provider_ended_reason || "") + (a.cost_usd ? " · $" + a.cost_usd.toFixed(2) : ""), a.recording_ref && a.recording_ref.startsWith("http") ? [" · ", el("a", { href: a.recording_ref, text: "recording", target: "_blank", rel: "noopener" })] : null].flat().filter(Boolean)));
         if (t && t.utterances && t.utterances.length) line.appendChild(el("details", null, [el("summary", { text: "Transcript, " + plural(t.utterances.length, "line") + (t.pii_flagged ? " · flagged: " + t.pii_reason : "") }), el("ul", { class: "utter" }, t.utterances.map((u) => el("li", { class: u.speaker }, [el("b", { text: u.speaker }), u.text])))]));
         if (sc) line.appendChild(el("details", null, [el("summary", { text: "Script used" }), el("pre", { class: "block", text: sc.first_message + "\n\n— system prompt —\n" + sc.system_prompt })]));
         sec.appendChild(el("div", { class: "attempt" }, [el("div", { class: "num", text: String(a.attempt_number) }), line]));
@@ -314,7 +319,15 @@
       if (v.interview) {
         const i = v.interview;
         card.appendChild(el("div", { class: "sec" }, [el("h4", null, ["Conversation", el("span", { text: i.status === "approved" ? "approved" : "awaiting approval" })]),
-          el("div", { class: "small" }, [fmtTime(i.scheduled_for) + " · 30 min · " + nice(i.confirmation_email) + " ", i.calendar_event_ref ? el("a", { href: REPO + "/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: "draft .ics", target: "_blank", rel: "noopener" }) : null])]));
+          el("div", { class: "small" }, [i.scheduled_for ? fmtTime(i.scheduled_for) + " · 30 min · " : "No time fixed yet · ", nice(i.confirmation_email) + " ", i.calendar_event_ref ? el("a", { href: REPO + "/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: "draft .ics", target: "_blank", rel: "noopener" }) : null]),
+          (i.contact_email || i.contact_method || i.contact_number || i.availability || i.notes) ? el("div", { class: "handoff" }, [
+            el("h4", { text: "Handoff to Anirudh" }),
+            i.contact_email ? el("div", { class: "issue" }, [el("span", { class: "k", text: "email" }), el("span", { text: i.contact_email })]) : null,
+            (i.contact_method && i.contact_method !== "unknown") ? el("div", { class: "issue" }, [el("span", { class: "k", text: "reach via" }), el("span", { text: nice(i.contact_method) + (i.contact_number ? " · " + i.contact_number : "") })]) : null,
+            i.availability ? el("div", { class: "issue" }, [el("span", { class: "k", text: "available" }), el("span", { text: i.availability })]) : null,
+            i.person_spoken_to ? el("div", { class: "issue" }, [el("span", { class: "k", text: "spoke to" }), el("span", { text: nice(i.person_spoken_to) })]) : null,
+            i.notes ? el("div", { class: "issue" }, [el("span", { class: "k", text: "notes" }), el("span", { text: i.notes })]) : null,
+          ]) : null]));
       }
       const n = v.errs.length + v.als.length + v.dl.length;
       const issues = el("div", { class: "sec" }, [el("h4", null, ["Errors and alerts", el("span", { text: n ? plural(v.errs.length, "error") + ", " + plural(v.als.length, "alert") + (v.dl.length ? ", " + v.dl.length + " dead-lettered" : "") : "none" })])]);

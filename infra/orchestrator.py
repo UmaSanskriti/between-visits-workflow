@@ -69,6 +69,7 @@ def schedule_calls(
             "allowed": gate.allowed,
             "deferred": gate.deferred,
             "reasons": gate.reasons,
+            "waivers": gate.waivers,
         }
         if not gate.allowed:
             store.logs["gate_decisions"].append(decision)
@@ -82,7 +83,8 @@ def schedule_calls(
             )
             counts["deferred" if gate.deferred else "blocked"] += 1
             continue
-        if counts["placed"] >= cfg.max_calls_per_run or placed_today + counts["placed"] >= cfg.max_calls_per_day:
+        per_run = cfg.live_max_calls_per_run if cfg.mode == "live" else cfg.max_calls_per_run
+        if counts["placed"] >= per_run or placed_today + counts["placed"] >= cfg.max_calls_per_day:
             decision.update({"allowed": False, "deferred": True, "reasons": ["call_cap_reached"]})
             store.logs["gate_decisions"].append(decision)
             counts["capped"] += 1
@@ -284,6 +286,8 @@ def apply_outcome(
         "ended_at": payload.get("ended_at", ""),
         "recording_ref": payload.get("recording_ref", ""),
         "callback_requested_at": payload.get("callback_at", ""),
+        "cost_usd": float(payload.get("cost_usd", 0) or 0),
+        "provider_ended_reason": payload.get("ended_reason", ""),
     }
     # BRN-004: the transcript record exists before any delivery is attempted. LOG-002: raw text retained.
     if malformed:
@@ -327,10 +331,12 @@ def apply_outcome(
     store.update("call_attempts", attempt, "completed", changes, run_id=run_id, contact_id=contact.id)
 
     contact_changes: dict = {"last_outcome": outcome}
-    if outcome == Outcome.BOOKED:
-        slot = payload.get("booked_slot") or iso(add_business_days(to_local(now, contact.time_zone), 3))
-        interview, created = ensure_interview(store, contact, attempt, slot, clock)
-        if created:
+    if outcome in (Outcome.BOOKED, Outcome.AGREED_TO_TALK):
+        slot = payload.get("booked_slot") or ""
+        if outcome == Outcome.BOOKED and not slot:
+            slot = iso(add_business_days(to_local(now, contact.time_zone), 3))
+        interview, created = ensure_interview(store, contact, attempt, slot, clock, payload.get("handoff") or {})
+        if created and slot:
             handoff.handoff(store, interview, contact, clock, cfg.interview_length_minutes)
         contact_changes.update(status=ContactStatus.BOOKED, next_attempt_at="")
     elif outcome == Outcome.DO_NOT_CONTACT:

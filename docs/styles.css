@@ -205,3 +205,6 @@ pre.block { font-family: var(--mono); font-size: 12px; white-space: pre-wrap; ba
 .tooltip b { font-size: 14px; }
 .tooltip .k { display: inline-block; width: 10px; height: 2px; background: var(--series-1); vertical-align: middle; margin-right: 6px; }
 footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
+
+.handoff { margin-top: 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--brand-soft); }
+.handoff h4 { margin: 0 0 4px; font-size: 11.5px; font-weight: 600; color: var(--brand-ink); letter-spacing: 0.05em; text-transform: uppercase; }

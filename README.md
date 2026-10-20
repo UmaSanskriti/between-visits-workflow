@@ -46,7 +46,7 @@ uv venv --python 3.12 && source .venv/bin/activate      # or: python3.12 -m venv
 pip install -e ".[dev]"
 pytest                                                   # 46 tests, ~5 s
 python -m infra run --reset                              # full dry run from a clean slate
-python -m infra run --now 2026-10-21T15:00:00Z           # run "as if" it were Wednesday 11:00 ET
+python -m infra run --now 2026-10-21T15:00:00Z           # run "as if" it were Wednesday 11:00 ET (--now works before or after `run`)
 python -m http.server -d docs 8000                       # open http://localhost:8000
 ```
 
@@ -80,11 +80,36 @@ Two workflows in [`.github/workflows/`](.github/workflows/):
 **Kill switch without a deploy:** set the repository variable `BV_KILL_SWITCH` to `1`
 (Settings → Secrets and variables → Actions → Variables). The next run places zero calls and says why.
 
+## Going live, staged (Vapi)
+
+`mode = "live"` exists now, behind two explicit switches and a hard allowlist. Only numbers on the allowlist can
+ever be dialed; everything else is blocked at the gate with `not_in_live_allowlist`. The staged test is meant for
+team-owned phones, one call per run, capped at seven minutes.
+
+1. Copy `.env.example` to `.env` (gitignored) and fill in `VAPI_API_KEY` and `BV_LIVE_ALLOWLIST` (your own number).
+   Optional: `VAPI_PHONE_NUMBER_ID` to dial from a specific number, `BV_CALLBACK_NUMBER` for the number the agent
+   gives for call backs (defaults to the number it dials from).
+2. Copy `seeds/live.example/` to `seeds/live/` (gitignored) and put the same number in `demo.csv` and `clearances.csv`.
+3. `python -m infra vapi check`: verifies the key, lists phone numbers, creates or updates the assistant
+   (`between-visits-reachout-v1`) with script v1, the end-call tool, voicemail detection, and the structured-outcome
+   schema. No call is placed. Note: Vapi's docs say free Vapi numbers cannot place outbound calls; if the account
+   has only a free number, import a Twilio, Telnyx, or Vonage number and point `VAPI_PHONE_NUMBER_ID` at it.
+4. `python -m infra live-demo`: runs ingest, verify, and the gate for `seeds/live/`, and prints the exact call body
+   that would be sent. Nothing is dialed.
+5. `python -m infra live-demo --dial`: places the call, polls Vapi until it ends, classifies the outcome from the
+   structured data, stores the transcript, and drafts the handoff. State goes to `data-live/` and the masked
+   snapshot to `docs/data-live/` (both gitignored); view it with `python -m http.server -d docs` at `?source=live`.
+
+**What counts as success for the agent:** the doctor's email, or an agreement that Anirudh may contact the doctor
+(a call, WhatsApp, iMessage, email, or in person all count), captured with the best days and times and the number to
+text. A fixed slot is a bonus (`BOOKED`); agreement without a slot is `AGREED_TO_TALK`. Both land on the practice card
+as "Handoff to Anirudh".
+
 ## Repository layout
 
 ```
 infra/            the pipeline package (config, models, store, sourcing, verify, compliance, brain, scripts,
-                  voice, orchestrator, delivery, booking, summary, export, pipeline, cli)
+                  voice, vapi, orchestrator, delivery, booking, summary, export, pipeline, cli)
 tests/            acceptance criteria AC-1..AC-10, connector test plan t_01..t_08 + edge cases, unit tests
 seeds/            fictional doctors, clearances, suppressions (inputs)
 data/             system of record for the dry run: one JSON file per table + audit_log.jsonl (committed)

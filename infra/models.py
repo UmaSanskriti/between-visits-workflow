@@ -41,6 +41,7 @@ class Outcome(StrEnum):
     FAILED_TECHNICAL = "FAILED_TECHNICAL"
     NOT_A_FIT = "NOT_A_FIT"  # playbook: hospital-owned or no GLP-1 patients
     DECLINED_RECORDING = "DECLINED_RECORDING"  # playbook: objected to recording; call ended politely
+    AGREED_TO_TALK = "AGREED_TO_TALK"  # agreed to talk to Anirudh; email/channel captured, no slot fixed yet
 
 
 NO_RETRY_OUTCOMES = {
@@ -50,6 +51,7 @@ NO_RETRY_OUTCOMES = {
     Outcome.WRONG_NUMBER,
     Outcome.NOT_A_FIT,
     Outcome.DECLINED_RECORDING,
+    Outcome.AGREED_TO_TALK,
 }
 CONNECTED_OUTCOMES = {
     Outcome.BOOKED,
@@ -60,6 +62,7 @@ CONNECTED_OUTCOMES = {
     Outcome.DO_NOT_CONTACT,
     Outcome.NOT_A_FIT,
     Outcome.DECLINED_RECORDING,
+    Outcome.AGREED_TO_TALK,
 }
 
 # Playbook section 10: provisional failure category derived from the outcome; the reviewer loop may override it.
@@ -172,6 +175,8 @@ class CallAttempt(Record):
     fallbacks_applied: list[str] = field(default_factory=list)
     recording_ref: str = ""
     transcript_id: str = ""
+    cost_usd: float = 0.0
+    provider_ended_reason: str = ""
     processed_event_ids: list[str] = field(default_factory=list)
     duplicate_events_ignored: int = 0
     callback_requested_at: str = ""
@@ -203,6 +208,12 @@ class Interview(Record):
     call_attempt_id: str
     scheduled_for: str = ""
     calendar_event_ref: str = ""
+    contact_email: str = ""
+    contact_method: str = ""  # phone_call | whatsapp | imessage | email | in_person | unknown
+    contact_number: str = ""
+    availability: str = ""
+    person_spoken_to: str = ""
+    notes: str = ""
     status: str = "draft_pending_approval"  # playbook 5.12: nothing goes out without Anirudh
     approved_by: str = ""
     approved_at: str = ""

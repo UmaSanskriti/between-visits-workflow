@@ -42,6 +42,17 @@ class Config:
     delivery_backoff_seconds: float = 0.0
     voicemail_message_enabled: bool = False
     brain_down: bool = False
+    live_allowlist: list[str] = field(default_factory=list)
+    live_ignore_window: bool = False
+    live_max_calls_per_run: int = 1
+    live_poll_timeout_seconds: int = 600
+    live_max_call_seconds: int = 420
+    live_assistant_name: str = "between-visits-reachout-v1"
+    live_voice_id: str = "Paige"
+    live_model: str = "gpt-4o"
+    vapi_api_key: str = ""
+    vapi_phone_number_id: str = ""
+    vapi_area_code: str = "617"
     now_override: datetime | None = None
     data_dir: Path = Path("data")
     export_dir: Path = Path("docs/data")
@@ -88,6 +99,15 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
         cfg.delivery_backoff_seconds = float(delivery.get("backoff_seconds", cfg.delivery_backoff_seconds))
         features = raw.get("features", {})
         cfg.voicemail_message_enabled = bool(features.get("voicemail_message", cfg.voicemail_message_enabled))
+        live = raw.get("live", {})
+        cfg.live_allowlist = [str(x) for x in live.get("allowlist", cfg.live_allowlist)]
+        cfg.live_max_calls_per_run = int(live.get("max_calls_per_run", cfg.live_max_calls_per_run))
+        cfg.live_poll_timeout_seconds = int(live.get("poll_timeout_seconds", cfg.live_poll_timeout_seconds))
+        cfg.live_max_call_seconds = int(live.get("max_call_seconds", cfg.live_max_call_seconds))
+        cfg.live_assistant_name = live.get("assistant_name", cfg.live_assistant_name)
+        cfg.live_voice_id = live.get("voice_id", cfg.live_voice_id)
+        cfg.live_model = live.get("model", cfg.live_model)
+        cfg.vapi_area_code = str(live.get("area_code", cfg.vapi_area_code))
         paths = raw.get("paths", {})
         cfg.data_dir = Path(paths.get("data_dir", cfg.data_dir))
         cfg.export_dir = Path(paths.get("export_dir", cfg.export_dir))
@@ -102,13 +122,41 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
             raise ConfigError(f"BV_NOW must be ISO 8601, got {env['BV_NOW']!r}") from exc
     if env.get("BV_CALLBACK_NUMBER") is not None:
         cfg.callback_number = env["BV_CALLBACK_NUMBER"].strip()
+    cfg.vapi_api_key = env.get("VAPI_API_KEY", "").strip()
+    cfg.vapi_phone_number_id = env.get("VAPI_PHONE_NUMBER_ID", "").strip()
+    cfg.live_ignore_window = _flag(env, "BV_LIVE_IGNORE_WINDOW", cfg.live_ignore_window)
+    if env.get("BV_LIVE_ALLOWLIST"):
+        cfg.live_allowlist = [x.strip() for x in env["BV_LIVE_ALLOWLIST"].split(",") if x.strip()]
     if env.get("BV_DATA_DIR"):
         cfg.data_dir = Path(env["BV_DATA_DIR"])
     if env.get("BV_EXPORT_DIR"):
         cfg.export_dir = Path(env["BV_EXPORT_DIR"])
 
-    if cfg.mode != "dry_run":
-        raise ConfigError(
-            f"mode={cfg.mode!r} is not supported in v0. Only dry_run exists; no live voice provider is wired."
-        )
+    if cfg.mode == "live":
+        if not _flag(env, "BV_ALLOW_LIVE_CALLS", False):
+            raise ConfigError("mode=live needs BV_ALLOW_LIVE_CALLS=1 as an explicit, per-run opt-in.")
+        if not cfg.live_allowlist:
+            raise ConfigError(
+                "mode=live needs a non-empty [live].allowlist (or BV_LIVE_ALLOWLIST): only listed "
+                "numbers may be dialed in the staged live test."
+            )
+    elif cfg.mode != "dry_run":
+        raise ConfigError(f"mode={cfg.mode!r} is not supported. Use dry_run or live.")
     return cfg
+
+
+def load_dotenv(path: str | Path, env: dict | None = None) -> dict:
+    """Minimal KEY=VALUE loader for a gitignored .env (no dependency). Existing variables win."""
+    env = os.environ if env is None else env
+    p = Path(path)
+    if not p.exists():
+        return env
+    for line in p.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip().strip("'\"")
+        if key and key not in env:
+            env[key] = value
+    return env

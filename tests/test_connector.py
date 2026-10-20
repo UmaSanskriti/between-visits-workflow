@@ -141,5 +141,6 @@ def test_outcome_summary_matches_raw_counts(ran: Env):
     summary = build_summary(ran.store, ran.store.logs["runs"][-1])
     by_version = summary["calls"]["by_script_version"]
     assert sum(v["attempts"] for v in by_version.values()) == len(ran.store.call_attempts)
-    assert summary["calls"]["booked"] == sum(1 for a in ran.store.call_attempts.values() if a.outcome == Outcome.BOOKED)
+    secured = {Outcome.BOOKED, Outcome.AGREED_TO_TALK}
+    assert summary["calls"]["booked"] == sum(1 for a in ran.store.call_attempts.values() if a.outcome in secured)
     assert summary["compliance"]["gate_escapes"] == 0

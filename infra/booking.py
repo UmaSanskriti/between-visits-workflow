@@ -12,12 +12,16 @@ from .store import Store
 
 
 def ensure_interview(
-    store: Store, contact: Contact, attempt: CallAttempt, slot: str, clock: Clock
+    store: Store, contact: Contact, attempt: CallAttempt, slot: str, clock: Clock, handoff: dict | None = None
 ) -> tuple[Interview, bool]:
     """Idempotent: one interview per call attempt (AC-8)."""
     interview_id = "int_" + hashlib.sha1(attempt.id.encode()).hexdigest()[:10]
     existing = store.interviews.get(interview_id)
+    handoff = handoff or {}
     if existing:
+        changes = {k: v for k, v in handoff.items() if v and getattr(existing, k, None) != v}
+        if changes:
+            store.update("interviews", existing, "handoff_details", changes, call_attempt_id=attempt.id)
         return existing, False
     emails = [ch for ch in store.channels_for(contact.id, "email") if ch.verified]
     interview = Interview(
@@ -26,6 +30,12 @@ def ensure_interview(
         call_attempt_id=attempt.id,
         scheduled_for=slot,
         confirmation_email=f"dry_run_would_send:{emails[0].value}" if emails else "skipped_no_verified_email",
+        contact_email=handoff.get("contact_email", ""),
+        contact_method=handoff.get("contact_method", ""),
+        contact_number=handoff.get("contact_number", ""),
+        availability=handoff.get("availability", ""),
+        person_spoken_to=handoff.get("person_spoken_to", ""),
+        notes=handoff.get("notes", ""),
         created_at=iso(clock.now()),
     )
     store.add("interviews", interview, call_attempt_id=attempt.id, contact_id=contact.id)

@@ -1,4 +1,13 @@
 {
+ "cr_099fbd3cc4": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_e4e3c37052",
+  "consent_type": "call_clearance",
+  "contact_id": "c_fb34444215",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_099fbd3cc4",
+  "revoked_at": ""
+ },
  "cr_0f446ce295": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_4da2cae231",

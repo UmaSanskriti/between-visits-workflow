@@ -39,6 +39,7 @@ class GateResult:
     allowed: bool
     reasons: list[str] = field(default_factory=list)
     deferred: bool = False
+    waivers: list[str] = field(default_factory=list)
 
 
 def in_calling_window(now_utc: datetime, tz_name: str, cfg: Config) -> tuple[bool, str]:
@@ -75,18 +76,25 @@ def pre_call_gate(store: Store, contact: Contact, channel: Channel | None, cfg: 
             reasons.append("channel_not_verified")
         if channel.call_clearance != Clearance.CLEARED:
             reasons.append("call_clearance_not_cleared")
+        if cfg.mode == "live" and channel.value not in cfg.live_allowlist:
+            reasons.append("not_in_live_allowlist")  # staged live test: team-owned numbers only (spec 10.1)
     cap = cfg.retry_max_attempts
     if contact.last_outcome == "CALLBACK_REQUESTED" and contact.next_attempt_at:
         cap += cfg.retry_callback_extra_attempts  # playbook 5.7: unless they asked for a call back
     if contact.attempts >= cap:
         reasons.append("max_attempts_reached")
+    waivers: list[str] = []
     ok, why = in_calling_window(now, contact.time_zone or cfg.default_time_zone, cfg)
     if not ok:
-        reasons.append(why)
+        team_number = channel is not None and channel.value in cfg.live_allowlist
+        if cfg.mode == "live" and cfg.live_ignore_window and team_number:
+            waivers.append("calling_window_waived_for_allowlisted_team_number")  # staged demo only, never a practice
+        else:
+            reasons.append(why)
     if contact.next_attempt_at and parse_iso(contact.next_attempt_at) > now:
         reasons.append(f"retry_not_due_until:{contact.next_attempt_at}")
     deferred = bool(reasons) and all(r.startswith(DEFERRAL_PREFIXES) for r in reasons)
-    return GateResult(allowed=not reasons, reasons=reasons, deferred=deferred)
+    return GateResult(allowed=not reasons, reasons=reasons, deferred=deferred, waivers=waivers)
 
 
 def contains_opt_out(text: str) -> bool:

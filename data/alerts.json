@@ -2,21 +2,15 @@
  {
   "call_attempt_id": "ca_79dcaa34ba",
   "detail": "tr_1fa555f306 held: patient identifier (CMP-009)",
-  "timestamp": "2026-10-20T20:18:24Z",
+  "timestamp": "2026-10-20T19:00:00Z",
   "transcript_id": "tr_1fa555f306",
   "type": "transcript_held_pii_review"
  },
  {
   "detail": "tr_7726b3d263 dead-lettered after 3 attempts",
-  "run_id": "20261020T201824Z-001",
-  "timestamp": "2026-10-20T20:18:24Z",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z",
   "transcript_id": "tr_7726b3d263",
   "type": "transcript_delivery_failed"
- },
- {
-  "contact_id": "c_866bc1a7db",
-  "detail": "c_866bc1a7db: 2 technical failures",
-  "timestamp": "2026-10-21T18:30:00Z",
-  "type": "repeated_technical_failure"
  }
 ]

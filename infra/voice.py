@@ -131,6 +131,23 @@ SCENARIOS: dict[str, tuple[str, int, bool, list[tuple[str, str]]]] = {
             ("agent", "Thank you for letting me know. We won't take more of your time. {close}"),
         ],
     ),
+    "agreed": (
+        Outcome.AGREED_TO_TALK,
+        96,
+        True,
+        [
+            (
+                "office",
+                "The doctor is with patients, but she'd be happy to talk. Send the details to "
+                "drchen@example.test, or text her on WhatsApp at this number. Tuesday or Thursday afternoons are best.",
+            ),
+            (
+                "agent",
+                "Perfect, I'll pass that to Anirudh: drchen@example.test, WhatsApp on this number, Tuesday or "
+                "Thursday afternoons. {close}",
+            ),
+        ],
+    ),
     "declined_recording": (
         Outcome.DECLINED_RECORDING,
         8,
@@ -199,7 +216,19 @@ class MockVoiceProvider:
             "recording_ref": f"mock://recordings/{provider_call_id}" if duration > 0 else "",
             "booked_slot": "",
             "callback_at": "",
+            "handoff": {},
+            "ended_reason": "mock:" + scenario,
+            "cost_usd": 0.0,
         }
+        if outcome == Outcome.AGREED_TO_TALK:
+            payload["handoff"] = {
+                "contact_email": "drchen@example.test",
+                "contact_method": "whatsapp",
+                "contact_number": request.to_number,
+                "availability": "Tue or Thu afternoons",
+                "person_spoken_to": "assistant",
+                "notes": "send details first, then text",
+            }
         local = to_local(started, request.time_zone)
         if outcome == Outcome.BOOKED:
             fallback = add_business_days(local, 3).replace(hour=15, minute=0, second=0, microsecond=0).isoformat()

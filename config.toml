@@ -29,6 +29,16 @@ max_calls_per_day = 50      # playbook section 15: a free Vapi number allows 10 
 [booking]
 interview_length_minutes = 30   # playbook section 2: a 30-minute conversation (the spec draft said 20)
 
+[live]                      # staged live test (spec 10.1): only these numbers can ever be dialed
+allowlist = []              # keep empty here; real team numbers go in the gitignored .env as BV_LIVE_ALLOWLIST=+1...,+1...
+max_calls_per_run = 1
+poll_timeout_seconds = 600
+max_call_seconds = 420      # hard cap per call, to protect trial credits
+assistant_name = "between-visits-reachout-v1"
+voice_id = "Elliot"         # a currently active Vapi voice
+model = "gpt-4o"
+area_code = "617"
+
 [delivery]                  # BRN-005
 max_attempts = 3
 backoff_seconds = 0         # 0 in dry run so test runs finish instantly

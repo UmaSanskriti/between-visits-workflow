@@ -1,118 +1,121 @@
 {
- "alerts": 3,
+ "alerts": 2,
  "calls": {
-  "attempts": 21,
-  "booked": 4,
+  "attempts": 17,
+  "booked": 5,
   "by_failure_category": {
-   "Call back later": 2,
+   "Call back later": 1,
    "Do not contact": 1,
    "Hung up at AI disclosure": 1,
-   "No answer / voicemail": 4,
+   "No answer / voicemail": 2,
    "Not a fit": 1,
    "Pitch did not land": 3,
-   "Screened out by front desk": 2,
-   "Technical failure": 2,
+   "Screened out by front desk": 1,
+   "Technical failure": 1,
    "Wrong number (list data)": 1
   },
   "by_outcome": {
+   "AGREED_TO_TALK": 1,
    "BOOKED": 4,
-   "CALLBACK_REQUESTED": 2,
+   "CALLBACK_REQUESTED": 1,
    "DECLINED": 3,
    "DECLINED_RECORDING": 1,
    "DO_NOT_CONTACT": 1,
-   "FAILED_TECHNICAL": 2,
-   "GATEKEEPER_BLOCKED": 2,
+   "FAILED_TECHNICAL": 1,
+   "GATEKEEPER_BLOCKED": 1,
    "NOT_A_FIT": 1,
-   "NO_ANSWER": 2,
-   "VOICEMAIL": 2,
+   "NO_ANSWER": 1,
+   "VOICEMAIL": 1,
    "WRONG_NUMBER": 1
   },
   "by_script_version": {
    "v1": {
-    "attempts": 21,
-    "booked": 4,
+    "attempts": 17,
+    "booked": 5,
     "by_outcome": {
+     "AGREED_TO_TALK": 1,
      "BOOKED": 4,
-     "CALLBACK_REQUESTED": 2,
+     "CALLBACK_REQUESTED": 1,
      "DECLINED": 3,
      "DECLINED_RECORDING": 1,
      "DO_NOT_CONTACT": 1,
-     "FAILED_TECHNICAL": 2,
-     "GATEKEEPER_BLOCKED": 2,
+     "FAILED_TECHNICAL": 1,
+     "GATEKEEPER_BLOCKED": 1,
      "NOT_A_FIT": 1,
-     "NO_ANSWER": 2,
-     "VOICEMAIL": 2,
+     "NO_ANSWER": 1,
+     "VOICEMAIL": 1,
      "WRONG_NUMBER": 1
     },
-    "conversion": 0.19,
+    "conversion": 0.294,
     "declined": 3
    }
   },
   "by_segment": {
    "default": {
-    "attempts": 2,
+    "attempts": 1,
     "booked": 0,
     "by_outcome": {
-     "NO_ANSWER": 2
+     "NO_ANSWER": 1
     },
     "conversion": 0.0,
     "declined": 0
    },
    "small_group_primary_care": {
-    "attempts": 5,
+    "attempts": 3,
     "booked": 0,
     "by_outcome": {
-     "CALLBACK_REQUESTED": 2,
-     "FAILED_TECHNICAL": 2,
+     "CALLBACK_REQUESTED": 1,
+     "FAILED_TECHNICAL": 1,
      "NOT_A_FIT": 1
     },
     "conversion": 0.0,
     "declined": 0
    },
    "small_group_specialist": {
-    "attempts": 2,
+    "attempts": 1,
     "booked": 0,
     "by_outcome": {
-     "GATEKEEPER_BLOCKED": 2
+     "GATEKEEPER_BLOCKED": 1
     },
     "conversion": 0.0,
     "declined": 0
    },
    "solo_primary_care": {
-    "attempts": 10,
-    "booked": 4,
+    "attempts": 11,
+    "booked": 5,
     "by_outcome": {
+     "AGREED_TO_TALK": 1,
      "BOOKED": 4,
      "DECLINED": 3,
      "DECLINED_RECORDING": 1,
      "DO_NOT_CONTACT": 1,
      "WRONG_NUMBER": 1
     },
-    "conversion": 0.4,
+    "conversion": 0.455,
     "declined": 3
    },
    "solo_specialist": {
-    "attempts": 2,
+    "attempts": 1,
     "booked": 0,
     "by_outcome": {
-     "VOICEMAIL": 2
+     "VOICEMAIL": 1
     },
     "conversion": 0.0,
     "declined": 0
    }
   },
-  "completed": 21,
-  "connect_rate": 0.762,
-  "duplicate_webhooks_ignored": 21
+  "completed": 17,
+  "connect_rate": 0.824,
+  "duplicate_webhooks_ignored": 17
  },
  "compliance": {
-  "consent_records": 18,
+  "consent_records": 19,
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 5,
-   "considered": 5,
+   "allowed": 17,
+   "blocked": 4,
+   "considered": 21,
    "deferred": 0
   },
   "paused": false,
@@ -120,53 +123,54 @@
  },
  "contacts": {
   "by_status": {
-   "BOOKED": 4,
+   "BOOKED": 5,
    "DECLINED": 5,
+   "IN_OUTREACH": 5,
    "READY": 1,
    "SOURCED": 1,
    "SUPPRESSED": 2,
-   "UNREACHABLE": 6,
+   "UNREACHABLE": 1,
    "VERIFIED": 1
   },
   "by_verification": {
    "failed": 2,
    "unverified": 1,
-   "verified": 17
+   "verified": 18
   },
-  "total": 20,
-  "verified": 17
+  "total": 21,
+  "verified": 18
  },
  "dlq": 1,
  "errors": 4,
  "funnel": [
   {
-   "count": 20,
+   "count": 21,
    "stage": "Sourced"
   },
   {
-   "count": 17,
+   "count": 18,
    "stage": "Verified"
   },
   {
-   "count": 16,
+   "count": 17,
    "stage": "Cleared to call"
   },
   {
-   "count": 16,
+   "count": 17,
    "stage": "Called"
   },
   {
-   "count": 13,
+   "count": 14,
    "stage": "Connected"
   },
   {
-   "count": 4,
+   "count": 5,
    "stage": "Booked"
   }
  ],
- "generated_at": "2026-10-20T20:43:41Z",
- "interviews": 4,
- "interviews_pending_approval": 4,
+ "generated_at": "2026-10-20T19:00:00Z",
+ "interviews": 5,
+ "interviews_pending_approval": 5,
  "queue": [
   {
    "attempts": 0,
@@ -178,16 +182,71 @@
    "practice": "Shah Primary Care",
    "segment": "solo_primary_care",
    "status": "READY"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_866bc1a7db",
+   "external_id": "t_17",
+   "last_outcome": "FAILED_TECHNICAL",
+   "name": "Victor Adeyemi",
+   "next_attempt_at": "2026-10-20T20:00:00Z",
+   "practice": "Dorchester Medical",
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_da6677d004",
+   "external_id": "t_03",
+   "last_outcome": "NO_ANSWER",
+   "name": "Marcus Lee",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Lee Medical",
+   "segment": "default",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_01c54d811d",
+   "external_id": "t_10",
+   "last_outcome": "GATEKEEPER_BLOCKED",
+   "name": "Omar Haddad",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Haddad Endocrine Associates",
+   "segment": "small_group_specialist",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_29816f6cb0",
+   "external_id": "t_07",
+   "last_outcome": "CALLBACK_REQUESTED",
+   "name": "Rosa Martinez",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Fenway Group Practice",
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "contact_id": "c_f9eafcfce6",
+   "external_id": "t_04",
+   "last_outcome": "VOICEMAIL",
+   "name": "Siobhan Ni Bhriain",
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "practice": "Charles River Endocrinology",
+   "segment": "solo_specialist",
+   "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261020T204341Z-006",
+ "run_id": "20261020T190000Z-001",
  "transcripts": {
-  "brain_inbox": 16,
-  "delivered": 16,
-  "delivery_rate": 0.941,
+  "brain_inbox": 13,
+  "delivered": 13,
+  "delivery_rate": 0.929,
   "failed": 1,
   "held_pii_review": 1,
   "pending": 0,
-  "total": 18
+  "total": 15
  }
 }

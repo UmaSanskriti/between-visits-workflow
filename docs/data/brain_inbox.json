@@ -4,19 +4,9 @@
   "contact_id": "c_c09828fbcf",
   "failure_category": "Wrong number (list data)",
   "outcome": "WRONG_NUMBER",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
-  "utterance_count": 3
- },
- "ca_0ed2163504": {
-  "call_attempt_id": "ca_0ed2163504",
-  "contact_id": "c_01c54d811d",
-  "failure_category": "Screened out by front desk",
-  "outcome": "GATEKEEPER_BLOCKED",
-  "received_at": "2026-10-21T18:30:00Z",
-  "script_version": "v1",
-  "segment": "small_group_specialist",
   "utterance_count": 3
  },
  "ca_1c90a154b7": {
@@ -24,7 +14,7 @@
   "contact_id": "c_b3b24d17b8",
   "failure_category": "Pitch did not land",
   "outcome": "DECLINED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 5
@@ -34,9 +24,19 @@
   "contact_id": "c_29816f6cb0",
   "failure_category": "Call back later",
   "outcome": "CALLBACK_REQUESTED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "small_group_primary_care",
+  "utterance_count": 5
+ },
+ "ca_26b6ee67d1": {
+  "call_attempt_id": "ca_26b6ee67d1",
+  "contact_id": "c_fb34444215",
+  "failure_category": "",
+  "outcome": "AGREED_TO_TALK",
+  "received_at": "2026-10-20T19:00:00Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
   "utterance_count": 5
  },
  "ca_32994a1b75": {
@@ -44,7 +44,7 @@
   "contact_id": "c_5bfd0187e6",
   "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 5
@@ -54,27 +54,17 @@
   "contact_id": "c_b62f5021ad",
   "failure_category": "Hung up at AI disclosure",
   "outcome": "DECLINED_RECORDING",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 3
- },
- "ca_3f31cb8771": {
-  "call_attempt_id": "ca_3f31cb8771",
-  "contact_id": "c_f9eafcfce6",
-  "failure_category": "No answer / voicemail",
-  "outcome": "VOICEMAIL",
-  "received_at": "2026-10-21T18:30:00Z",
-  "script_version": "v1",
-  "segment": "solo_specialist",
-  "utterance_count": 1
  },
  "ca_6b6ea10721": {
   "call_attempt_id": "ca_6b6ea10721",
   "contact_id": "c_f9eafcfce6",
   "failure_category": "No answer / voicemail",
   "outcome": "VOICEMAIL",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_specialist",
   "utterance_count": 1
@@ -84,7 +74,7 @@
   "contact_id": "c_da6677d004",
   "failure_category": "No answer / voicemail",
   "outcome": "NO_ANSWER",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "default",
   "utterance_count": 0
@@ -94,37 +84,17 @@
   "contact_id": "c_2c3a09fcb5",
   "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 5
- },
- "ca_b6119bd4c1": {
-  "call_attempt_id": "ca_b6119bd4c1",
-  "contact_id": "c_da6677d004",
-  "failure_category": "No answer / voicemail",
-  "outcome": "NO_ANSWER",
-  "received_at": "2026-10-21T18:30:00Z",
-  "script_version": "v1",
-  "segment": "default",
-  "utterance_count": 0
  },
  "ca_d39fa0c7be": {
   "call_attempt_id": "ca_d39fa0c7be",
   "contact_id": "c_41cc51441d",
   "failure_category": "Not a fit",
   "outcome": "NOT_A_FIT",
-  "received_at": "2026-10-20T20:18:24Z",
-  "script_version": "v1",
-  "segment": "small_group_primary_care",
-  "utterance_count": 5
- },
- "ca_d580ef50d5": {
-  "call_attempt_id": "ca_d580ef50d5",
-  "contact_id": "c_29816f6cb0",
-  "failure_category": "Call back later",
-  "outcome": "CALLBACK_REQUESTED",
-  "received_at": "2026-10-21T18:30:00Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "small_group_primary_care",
   "utterance_count": 5
@@ -134,7 +104,7 @@
   "contact_id": "c_01c54d811d",
   "failure_category": "Screened out by front desk",
   "outcome": "GATEKEEPER_BLOCKED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "small_group_specialist",
   "utterance_count": 3
@@ -144,7 +114,7 @@
   "contact_id": "c_251bab6d38",
   "failure_category": "",
   "outcome": "BOOKED",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 5
@@ -154,7 +124,7 @@
   "contact_id": "c_48eaa6c438",
   "failure_category": "Do not contact",
   "outcome": "DO_NOT_CONTACT",
-  "received_at": "2026-10-20T20:18:24Z",
+  "received_at": "2026-10-20T19:00:00Z",
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 5

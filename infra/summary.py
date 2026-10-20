@@ -15,7 +15,7 @@ def _breakdown(attempts, key):
     out = {}
     for name, rows in sorted(groups.items()):
         outcomes = Counter(str(a.outcome) if a.outcome else "(pending)" for a in rows)
-        booked = outcomes.get(Outcome.BOOKED, 0)
+        booked = outcomes.get(Outcome.BOOKED, 0) + outcomes.get(Outcome.AGREED_TO_TALK, 0)
         out[name] = {
             "attempts": len(rows),
             "booked": booked,
@@ -37,7 +37,7 @@ def build_summary(store: Store, run: dict) -> dict:
     verified = sum(1 for c in contacts if c.verification_status == "verified")
     completed = [a for a in attempts if a.outcome]
     connected = sum(1 for a in completed if a.outcome in CONNECTED_OUTCOMES)
-    booked = sum(1 for a in completed if a.outcome == Outcome.BOOKED)
+    booked = sum(1 for a in completed if a.outcome in (Outcome.BOOKED, Outcome.AGREED_TO_TALK))
     deliverable = [t for t in transcripts if t.delivery_status != DeliveryStatus.HELD]
     delivered = sum(1 for t in deliverable if t.delivery_status == DeliveryStatus.DELIVERED)
     gate_escapes = sum(1 for a in attempts if a.gate_result != "allowed")
