@@ -13,7 +13,12 @@
   const LIVE_VIEW = new URLSearchParams(location.search).get("source") === "live";
   const SRC = LIVE_VIEW ? LOCAL + "/data-live/" : "data/";
   // An https page may call the loopback service only when the fetch opts in (Chrome private network access).
-  const localFetch = (url, opts) => fetch(url, Object.assign({ cache: "no-store", targetAddressSpace: "loopback" }, opts || {}));
+  function localFetch(url, opts) {
+    opts = Object.assign({ cache: "no-store", targetAddressSpace: "loopback" }, opts || {});
+    if (!opts.signal) { const ctl = new AbortController(); setTimeout(() => ctl.abort(), 4000); opts.signal = ctl.signal; }
+    return fetch(url, opts);
+  }
+  const LOCAL_CONSOLE = LOCAL + "/?source=live";
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -470,7 +475,14 @@
 
   Promise.all([loadAll(), loadLiveRun(), localState()]).then(([d, live, local]) => {
     wireLive(local);
-    if (!d.summary) { $("error").textContent = LIVE_VIEW ? "No live data yet. Start `python -m infra serve` on the machine with the Vapi key, then press Call my phone." : "No pipeline data yet. Run the agent (Actions → Dry-run pipeline) or `python -m infra run` locally."; return; }
+    if (!d.summary) {
+      const err = clear($("error"));
+      if (LIVE_VIEW) {
+        err.appendChild(document.createTextNode(local ? "The local service answered but has no live data yet. Press Call my phone to start." : "This page cannot reach the local service at 127.0.0.1:8787. Start it with `python -m infra serve`, allow the browser's local-network prompt if one appears, or open the same dashboard served locally: "));
+        if (!local) err.appendChild(el("a", { href: LOCAL_CONSOLE, text: LOCAL_CONSOLE }));
+      } else { err.textContent = "No pipeline data yet. Run the agent (Actions → Dry-run pipeline) or `python -m infra run` locally."; }
+      if (!local) return;
+    }
     render(d, live);
     setInterval(async () => { const live2 = await loadLiveRun(); const running = live2 && (live2.status === "in_progress" || live2.status === "queued"); const was = $("ring").classList.contains("running"); if (running !== was) location.reload(); }, 60000);
   }).catch((e) => { $("error").textContent = "Failed to render: " + e.message; console.error(e); });
