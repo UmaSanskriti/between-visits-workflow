@@ -1,19 +1,34 @@
 # Output: To Voice
 
-Status: DRAFT. Items marked **[CONFIRM]** need an answer from the Voice team.
+Status: DRAFT, aligned with `V0_SCOPE.md`. Items marked **[CONFIRM]** are still open.
 
-## 1. Personalized script per call (JSON)
-call_id, doctor_id, script_version, segment, first_message, system_prompt, variables_used, fallbacks_applied, fallback_text. Shape: [../data-schema.md](../data-schema.md)
+## 1. Personalized script per call: `CallRequest`
+| Field | Content |
+|-------|---------|
+| `call_attempt_id`, `contact_id`, `script_version`, `attempt_number` | Traceability |
+| `segment` | From specialty × practice size |
+| `first_message` | The LOCKED opening (AI disclosure + recording consent) followed by the route line |
+| `system_prompt` | Pitch, ask for time with `slot_1..4`, close with `callback_number`, objection handling, voicemail text |
+| `variables_used`, `fallbacks_applied` | What was filled and what fell back |
+| metadata | Channel, time zone, clearance |
+
+Shape: [../data-schema.md](../data-schema.md). Maps to a Vapi assistant payload later.
 
 ## 2. Call queue
-Ordered list of doctors with the script attached and priority or segment tags. Excludes DNC doctors and anyone outside permitted calling hours ([../compliance.md](../compliance.md)).
+Ordered list of contacts with the script attached. It contains only contacts that passed the pre-call gate (CMP-001): not suppressed, channel verified, inside the calling window in their time zone, `call_clearance` set, kill switch off.
 
 ## Rules
-- A literal `{placeholder}` must never reach Voice; use fallbacks ([../script-variables.md](../script-variables.md)).
-- If a required field (e.g. AI disclosure) is missing, the call is blocked and logged to the error report.
+- The AI and recording disclosure is **always prepended**, whatever the Brain sent (BRN-001, CMP-004, CMP-005).
+- No literal `{placeholder}` may reach Voice. Required fields missing (including `callback_number`) block the call and go to the error report.
+- Max 2 attempts per practice, plus up to 2 more only after a call-back request. No retry after DECLINED, NOT_A_FIT, DECLINED_RECORDING, DO_NOT_CONTACT or WRONG_NUMBER.
+- Daily cap: 10 calls/day on the free Vapi number (the dry run uses 50).
+- Voicemail uses the playbook's approved text. A feature flag off means hang up and log `VOICEMAIL`.
+- Any request for a human: give Anirudh's name and callback number.
+
+## Resolved
+- Infra owns the AI and recording disclosure lines.
+- Script delivery format is the `CallRequest`.
 
 ## To pin down **[CONFIRM]**
-1. How Voice accepts a script: API, webhook, or file; JSON format
-2. Prompt and first-message length limits
-3. Supported variables; name-pronunciation handling
-4. Who owns AI disclosure, voicemail behavior, retries, calling hours, opt-outs
+1. Vapi length limits, supported variables, pronunciation handling
+2. Caller ID registration so the number is not labelled "Spam Likely" (CMP-007)

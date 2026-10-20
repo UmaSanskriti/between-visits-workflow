@@ -1,25 +1,43 @@
 # Open Questions
 
-## Voice team
-- [ ] Script delivery: API, webhook, or file? Format?
-- [ ] Prompt and first-message length limits
-- [ ] Supported variables; name-pronunciation handling
-- [ ] Who owns AI disclosure, voicemail behavior, retries, calling hours, opt-outs
-- [ ] How and how fast are failures reported
-- [ ] Who generates call_id
+Updated against the infra spec §12, `V0_SCOPE.md` and playbook §15.
+
+## Resolved (provisionally, in v0)
+- [x] Who generates call_id: infra (`call_attempt_id`)
+- [x] Who owns AI and recording disclosure: infra, prepended to every script
+- [x] Script delivery to Voice: a `CallRequest`
+- [x] Brain template required fields: `ask`, `caller_identity`, `script_version`
+- [x] Raw or redacted transcripts: redacted to the Brain, raw kept in infra
+- [x] Who picks the pitch angle: Brain guidance, connector picks the segment
+- [x] Does the agent only book, or run the interview: books only; Anirudh takes the meeting
+- [x] Survivorship bias: no-answers produce an empty transcript record
+- [x] Ask length and attempts: 30 minutes, max 2 (playbook wins over the spec draft)
+
+## Blocks live calls
+- [ ] **Legal position on AI-voice calls** (counsel): TCPA consent and clearance process (spec Q2)
+- [ ] **Voice provider** decision: build vs. buy; the playbook names Vapi (spec Q1)
+- [ ] **Recording policy**: record, or transcript only (spec Q3)
+- [ ] **Volume and spend cap** (spec Q7); the free Vapi number allows 10 calls/day
+- [ ] **Callback number** (playbook §15), required before any live call
+
+## Voice / infra team
+- [ ] Vapi prompt and first-message length limits; name pronunciation
+- [ ] Outcome and transcript latency; failure reporting channel
+- [ ] Bulk export of past calls
+- [ ] Caller ID registration for spam-label reputation
 
 ## Brain team
-- [ ] Transcript schema and delivery method
-- [ ] Template update cadence and version signaling
-- [ ] Who chooses the pitch angle per segment (Brain rules vs. Connector logic)
-- [ ] Raw or redacted transcripts
-- [ ] How variant feedback is returned
+- [ ] Final `/v1/scripts/resolve` and `/v1/transcripts` schema and ownership (spec Q8)
+- [ ] Placeholder syntax: `{{double}}` vs `{snake_case}`
+- [ ] How a new script version is announced; Anirudh approves each one
+- [ ] Do `failure_category` and `lost_at` come from the connector or the Brain's reviewer?
 
-## Compliance / course
-- [ ] Is AI-voice cold calling permitted for this project (TCPA consent)?
-- [ ] Recording consent approach by state
-- [ ] Retention and redaction policy
+## Founders / Anirudh
+- [ ] Calendar: HBS Outlook or Google (spec Q4)
+- [ ] Days he can visit in person, and travel distance
+- [ ] Who listens to the first live call
+- [ ] Contact data sources and budget (spec Q5); target list (playbook §3 defines it; seed-only for now)
+- [ ] Retention periods (spec Q6)
 
-## Product
-- [ ] Does the agent only book, or also run the interview? (Current assumption: book only; human interviews.)
-- [ ] How to avoid survivorship bias in what the Brain learns
+## Analysis
+- [ ] Who runs the analysis of past scripts: connector joins the data, Brain reviewer interprets it (see [analysis-of-past-scripts.md](analysis-of-past-scripts.md))

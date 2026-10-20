@@ -1,69 +1,62 @@
 # Data Schema
 
-Draft record shapes. Field names are proposals until agreed with Voice and Brain.
+Aligned with the logical model in infra spec §6.1 (v0 stores these as JSON files per table). Field names are provisional until the Brain team confirms the final schema.
 
-## Doctor
-```json
-{
-  "doctor_id": "d_001",
-  "name": "Priya Patel",
-  "preferred_name": "Dr. Patel",
-  "practice_name": "Patel Family Medicine",
-  "phone": "+16175550100",
-  "specialty": "family medicine",
-  "practice_size": "solo",
-  "location": "Boston, MA",
-  "time_zone": "America/New_York",
-  "lead_source": "directory",
-  "dnc": false,
-  "consent_status": "none"
-}
+## Contact lifecycle
+```
+NEW -> SOURCED -> VERIFIED -> READY -> IN_OUTREACH -> BOOKED | DECLINED | UNREACHABLE
+Any state -> SUPPRESSED (terminal, on a do-not-contact request)
 ```
 
-## Script (connector output, one per call)
+## Entities
+| Entity | Key fields |
+|--------|-----------|
+| `contact` | id, full_name, credentials, specialty, practice_name, address, city, state, status, verification_status, created_at, updated_at |
+| `channel` | id, contact_id, type (`phone`/`email`/`web_form`), value, line_type, verified, call_clearance, source, source_url, retrieved_at |
+| `call_attempt` | id, contact_id, channel_id, scheduled_at, started_at, ended_at, status, outcome, outcome_reason, failure_category, lost_at, provider, provider_call_id, script_version, recording_ref, transcript_id |
+| `transcript` | id, call_attempt_id, utterances, language, created_at, delivery_status, delivered_at |
+| `interview` | id, contact_id, call_attempt_id, scheduled_for, calendar_event_ref, status (`draft_pending_approval` until Anirudh approves) |
+| `suppression` | id, identifier (phone/email/contact), reason, source, created_at |
+| `consent_record` | id, contact_id, channel_id, consent_type, evidence_ref, captured_at, revoked_at |
+| `audit_log` | id, entity, entity_id, action, before, after, actor, timestamp |
+
+## Script: `CallRequest` (connector output)
 ```json
 {
-  "call_id": "c_001",
-  "doctor_id": "d_001",
-  "script_version": "v1.0",
+  "call_attempt_id": "ca_789",
+  "contact_id": "c_123",
+  "script_version": "v1",
+  "attempt_number": 1,
   "segment": "solo_primary_care",
-  "first_message": "...",
-  "system_prompt": "...",
-  "variables_used": {"doctor_name": "Dr. Patel", "specialty": "family medicine"},
-  "fallbacks_applied": ["ehr"],
-  "fallback_text": "..."
-}
-```
-
-## Call
-```json
-{
-  "call_id": "c_001",
-  "doctor_id": "d_001",
-  "script_version": "v1.0",
-  "status": "booked",
-  "timestamp": "2026-10-20T14:00:00Z",
-  "duration_sec": 142,
-  "booked_slot": "2026-10-23T15:00:00-04:00",
-  "contact_email": "...",
-  "audio_url": "..."
+  "first_message": "<LOCKED opening> + <route line>",
+  "system_prompt": "pitch, ask for time, close, objections, voicemail",
+  "variables_used": {"doctor": "Dr. Chen", "practice": "Example Family Practice", "hook": "new weight-management programme"},
+  "fallbacks_applied": ["practice_size"]
 }
 ```
 
 ## Transcript package (to Brain)
 ```json
 {
-  "call_id": "c_001",
-  "script_version": "v1.0",
-  "outcome": "booked",
-  "doctor_meta": {"segment": "solo_primary_care", "specialty": "family medicine", "practice_size": "solo"},
-  "transcript": [{"speaker": "agent", "text": "..."}, {"speaker": "doctor", "text": "..."}],
-  "pii_handling": "redacted"
+  "idempotency_key": "call_attempt_789",
+  "call_attempt_id": "ca_789",
+  "contact_id": "c_123",
+  "script_version": "v1",
+  "outcome": "BOOKED",
+  "failure_category": null,
+  "lost_at": null,
+  "started_at": "2026-10-21T14:02:11Z",
+  "ended_at": "2026-10-21T14:05:40Z",
+  "utterances": [{"speaker": "agent", "start_ms": 0, "text": "..."}],
+  "recording_ref": "signed-url-or-object-key"
 }
 ```
 
-## Audit log entry
-`{timestamp, event, call_id, actor, payload_ref, result}`
+## Outcomes
+`BOOKED | CALLBACK_REQUESTED | NO_ANSWER | VOICEMAIL | GATEKEEPER_BLOCKED | DECLINED | NOT_A_FIT | DECLINED_RECORDING | DO_NOT_CONTACT | WRONG_NUMBER | FAILED_TECHNICAL`
 
-## Error report entry
-`{timestamp, call_id, error_type, field, detail}` where `error_type` is one of `missing_field | delivery_failed | malformed_transcript`.
+## Failure categories (playbook §10)
+No answer / voicemail; Stuck in phone tree; Hung up at AI disclosure; Screened out by front desk; Pitch did not land; Interested, no time agreed; Call back later; Not a fit.
+
+## Audit and error records
+See [outputs/audit-log-and-errors.md](outputs/audit-log-and-errors.md).
