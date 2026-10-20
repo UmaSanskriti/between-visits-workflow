@@ -100,6 +100,25 @@ team-owned phones, one call per run, capped at seven minutes.
    structured data, stores the transcript, and drafts the handoff. State goes to `data-live/` and the masked
    snapshot to `docs/data-live/` (both gitignored); view it with `python -m http.server -d docs` at `?source=live`.
 
+**Dashboard-driven call with live transcript.** The dashboard is a static page and the Vapi key must never
+reach the browser, so a small local service holds the key and does the dialing:
+
+```bash
+python -m infra serve            # on the machine with .env; opens http://127.0.0.1:8787 and a Cloudflare quick tunnel
+```
+
+Open the dashboard (locally at `http://127.0.0.1:8787/?source=live`, or the GitHub Pages site with `?source=live`).
+A "Live call" panel appears when the service is reachable. Pressing **Call my phone** runs the same preview and gate,
+then dials through Vapi. While the call is on, Vapi posts transcript events to the service through the tunnel and the
+panel shows them as they happen; when it ends, the outcome, the handoff, the cost, and the recording link appear,
+and the practice card is updated. Without `cloudflared` (`brew install cloudflared`) there is no tunnel, so the
+transcript appears only after the call ends.
+
+**Twilio number.** Free Vapi numbers cannot place outbound calls. With a Twilio account (trial is fine: it can only
+call numbers you verified by SMS, and it plays a short "press any key" message first), put `TWILIO_PHONE_NUMBER`,
+`TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in `.env` and run `python -m infra vapi import-twilio`, or import the
+number in the Vapi dashboard. Imported numbers are preferred automatically.
+
 **What counts as success for the agent:** the doctor's email, or an agreement that Anirudh may contact the doctor
 (a call, WhatsApp, iMessage, email, or in person all count), captured with the best days and times and the number to
 text. A fixed slot is a bonus (`BOOKED`); agreement without a slot is `AGREED_TO_TALK`. Both land on the practice card
@@ -109,7 +128,7 @@ as "Handoff to Anirudh".
 
 ```
 infra/            the pipeline package (config, models, store, sourcing, verify, compliance, brain, scripts,
-                  voice, vapi, orchestrator, delivery, booking, summary, export, pipeline, cli)
+                  voice, vapi, live, serve, orchestrator, delivery, booking, summary, export, pipeline, cli)
 tests/            acceptance criteria AC-1..AC-10, connector test plan t_01..t_08 + edge cases, unit tests
 seeds/            fictional doctors, clearances, suppressions (inputs)
 data/             system of record for the dry run: one JSON file per table + audit_log.jsonl (committed)

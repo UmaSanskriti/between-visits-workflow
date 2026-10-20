@@ -30,6 +30,18 @@
 
   <div id="error" class="err"></div>
 
+  <section class="card livecall" id="livecall" hidden>
+    <div class="head"><h2>Live call</h2><span class="count" id="live-meta"></span></div>
+    <div class="live-row">
+      <div class="live-status"><span class="live-dot" id="live-dot"></span><span id="live-status">connecting…</span></div>
+      <button type="button" class="btn primary" id="call-btn">Call my phone</button>
+    </div>
+    <div class="live-note" id="live-note"></div>
+    <div class="transcript" id="live-transcript"></div>
+    <div class="live-result" id="live-result" hidden></div>
+    <details class="small"><summary>Service log</summary><pre class="block" id="live-log"></pre></details>
+  </section>
+
   <section class="loop" aria-label="The agent's loop">
     <div class="ring" id="ring">
       <svg viewBox="0 0 520 520" aria-hidden="true">

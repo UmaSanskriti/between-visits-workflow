@@ -75,7 +75,11 @@ def _parser() -> argparse.ArgumentParser:
     hist.add_argument("contact", help="contact id, external id, or name substring")
     sub.add_parser("reset", help="wipe data/ and docs/data")
     vp = sub.add_parser("vapi", help="Vapi account checks with free API calls (needs VAPI_API_KEY in .env)")
-    vp.add_argument("action", choices=["check"])
+    vp.add_argument(
+        "action",
+        choices=["check", "import-twilio"],
+        help="check: verify key, number, assistant; import-twilio: import TWILIO_PHONE_NUMBER from .env",
+    )
     vp.add_argument("--create-number", action="store_true", help="create a free Vapi number if the account has none")
     ld = sub.add_parser("live-demo", help="staged live call to an allowlisted number (seeds/live/, data-live/)")
     ld.add_argument("--dial", action="store_true", help="actually place the call; without it, only print the payload")
@@ -84,6 +88,10 @@ def _parser() -> argparse.ArgumentParser:
     ld.add_argument(
         "--any-time", action="store_true", help="waive the business-hours window for allowlisted team numbers"
     )
+    sv = sub.add_parser("serve", help="local control service: dashboard button, live transcript, webhook intake")
+    sv.add_argument("--port", type=int, default=8787)
+    sv.add_argument("--no-tunnel", action="store_true", help="skip the Cloudflare quick tunnel (no live transcript)")
+    sv.add_argument("--business-hours", action="store_true", help="do not waive the calling window for team numbers")
     return p
 
 
@@ -124,6 +132,10 @@ def main(argv=None) -> int:
         env["BV_DATA_DIR"] = args.data_dir
     if args.export_dir:
         env["BV_EXPORT_DIR"] = args.export_dir
+    if args.command == "serve":
+        from .serve import main as serve_main
+
+        return serve_main(port=args.port, no_tunnel=args.no_tunnel, any_time=not args.business_hours)
     try:
         cfg = load_config(args.config, env=env)
     except ConfigError as exc:
@@ -269,40 +281,31 @@ def main(argv=None) -> int:
 
 
 def _vapi_commands(args, cfg, clock, store: Store) -> int:
-    from .compliance import pre_call_gate
-    from .pipeline import run_pipeline
-    from .scripts import build_script
-    from .vapi import VapiClient, VapiError, VapiVoiceProvider, call_body
-    from .voice import CallRequest
+    from . import live
+    from .vapi import VapiError
 
-    def connect() -> VapiVoiceProvider | None:
-        try:
-            client = VapiClient(cfg.vapi_api_key)
-        except VapiError as exc:
-            print(f"vapi: {exc}. Put VAPI_API_KEY=... in {ROOT / '.env'} (gitignored).", file=sys.stderr)
-            return None
-        provider = VapiVoiceProvider(client, cfg, clock)
-        try:
-            assistants = client.list_assistants()
-            print(f"vapi: key ok, {len(assistants)} assistant(s) in the account")
-            for n in client.list_phone_numbers():
-                print(
-                    f"vapi: number {n.get('number') or '?'}  id={n.get('id')}  provider={n.get('provider')}  "
-                    f"status={n.get('status')}"
-                )
-            provider.ensure_phone_number(create_if_missing=args.create_number)
-            if not cfg.callback_number:
-                cfg.callback_number = provider.phone_number
-            provider.ensure_assistant(cfg.callback_number)
-        except VapiError as exc:
-            print(f"vapi: {exc}", file=sys.stderr)
-            return None
-        print(f"vapi: dialing from {provider.phone_number or provider.phone_number_id}; callback {cfg.callback_number}")
-        return provider
-
+    log = print
     if args.command == "vapi":
-        provider = connect()
-        if provider is None:
+        try:
+            if args.action == "import-twilio":
+                env = load_dotenv(ROOT / ".env", dict(os.environ))
+                number = env.get("TWILIO_PHONE_NUMBER", "")
+                sid, token = env.get("TWILIO_ACCOUNT_SID", ""), env.get("TWILIO_AUTH_TOKEN", "")
+                if not (number and sid and token):
+                    print(
+                        "vapi: set TWILIO_PHONE_NUMBER, TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN in .env first",
+                        file=sys.stderr,
+                    )
+                    return 2
+                from .vapi import VapiClient, VapiVoiceProvider
+
+                provider = VapiVoiceProvider(VapiClient(cfg.vapi_api_key), cfg, clock, log=log)
+                created = provider.import_twilio_number(number, sid, token)
+                print(f"vapi: imported as {created.get('id')}; imported numbers are preferred automatically")
+                return 0
+            live.connect(cfg, clock, log, create_number=args.create_number)
+        except VapiError as exc:
+            print(f"vapi: {exc}. Keys go in {ROOT / '.env'} (gitignored).", file=sys.stderr)
             return 2
         print("vapi: ready (no call placed)")
         return 0
@@ -310,83 +313,30 @@ def _vapi_commands(args, cfg, clock, store: Store) -> int:
     # live-demo: gate + script preview needs no credentials; dialing does
     if args.reset:
         store.reset()
-    print(f"live: allowlist {cfg.live_allowlist}; seeds {args.seed}; data {cfg.data_dir}")
-    brain = MockBrain(store, clock)
-    run_pipeline(
-        store,
-        cfg,
-        clock,
-        brain,
-        MockVoiceProvider(cfg.webhook_secret, clock),
-        args.seed,
-        args.clearances,
-        args.suppressions,
-        stages=("ingest", "verify"),
-        trigger="live-demo-preview",
-    )
-    previews = 0
-    for contact in store.contacts.values():
-        phones = list(store.channels_for(contact.id, "phone"))
-        channel = next((ch for ch in phones if ch.verified), phones[0] if phones else None)
-        gate = pre_call_gate(store, contact, channel, cfg, clock)
-        verdict = ("ALLOWED" if gate.allowed else "blocked: " + ", ".join(gate.reasons)) + (
-            " (waived: " + ", ".join(gate.waivers) + ")" if gate.waivers else ""
-        )
-        print(f"live: {contact.full_name or contact.id} ({channel.value if channel else 'no phone'}) -> {verdict}")
-        if not gate.allowed or channel is None:
-            continue
-        script, errors = build_script(
-            contact, channel, brain.resolve_script({"contact": {"segment": contact.segment}}), "preview", clock, cfg
-        )
-        if errors:
-            print(f"live: script blocked: {errors}")
-            continue
-        body = call_body(
-            CallRequest(
-                call_attempt_id="preview",
-                contact_id=contact.id,
-                to_number=channel.value,
-                from_number=cfg.callback_number,
-                first_message=script.first_message,
-                system_prompt=script.system_prompt,
-                script_version=script.script_version,
-            ),
-            "<assistant id>",
-            "<phone number id>",
-        )
-        shown = json.loads(json.dumps(body))
-        prompt = shown["assistantOverrides"]["variableValues"]["system_prompt"]
-        shown["assistantOverrides"]["variableValues"]["system_prompt"] = prompt[:300] + f" ... ({len(prompt)} chars)"
-        print("live: call body preview:\n" + json.dumps(shown, indent=1))
-        previews += 1
+    paths = live.LivePaths(seed=Path(args.seed), clearances=Path(args.clearances), suppressions=Path(args.suppressions))
+    print(f"live: allowlist {cfg.live_allowlist}; seeds {paths.seed}; data {cfg.data_dir}")
+    allowed = live.preview(store, cfg, clock, paths, log)
+    for item in allowed:
+        print("live: call body preview:\n" + json.dumps(item["body"], indent=1))
     if not args.dial:
-        print(f"live: preview only ({previews} call(s) would be placed). Re-run with --dial to place the call.")
+        print(f"live: preview only ({len(allowed)} call(s) would be placed). Re-run with --dial to place the call.")
         return 0
-    if not previews:
+    if not allowed:
         print("live: nothing to dial", file=sys.stderr)
         return 1
-    provider = connect()
-    if provider is None:
+    try:
+        provider = live.connect(cfg, clock, log, create_number=args.create_number)
+    except VapiError as exc:
+        print(f"vapi: {exc}. Keys go in {ROOT / '.env'} (gitignored).", file=sys.stderr)
         return 2
-    run, summary = run_pipeline(
-        store,
-        cfg,
-        clock,
-        brain,
-        provider,
-        args.seed,
-        args.clearances,
-        args.suppressions,
-        stages=("call", "deliver"),
-        trigger="live-demo",
-    )
-    _print_report(run, summary)
-    for i in store.interviews.values():
+    result = live.dial(store, cfg, clock, provider, paths, log)
+    _print_report(result["run"], result["summary"])
+    for i in result["handoffs"]:
         print(
-            f"live: handoff -> email={i.contact_email or '-'} method={i.contact_method or '-'} "
-            f"number={i.contact_number or '-'} availability={i.availability or '-'} notes={i.notes or '-'}"
+            f"live: handoff -> email={i['contact_email'] or '-'} method={i['contact_method'] or '-'} "
+            f"number={i['contact_number'] or '-'} availability={i['availability'] or '-'} notes={i['notes'] or '-'}"
         )
-    return 3 if run["gate_escapes"] else 0
+    return 3 if result["run"]["gate_escapes"] else 0
 
 
 def _print_report(run: dict, summary: dict) -> None:

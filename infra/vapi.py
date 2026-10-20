@@ -189,14 +189,14 @@ class VapiClient:
         return self.request("GET", f"/call/{call_id}")
 
 
-def assistant_body(cfg: Config, callback_number: str) -> dict:
+def assistant_body(cfg: Config, callback_number: str, server_url: str = "", server_secret: str = "") -> dict:
     """The saved assistant. Per-call text arrives through variableValues (LiquidJS templates)."""
     voicemail = (
         "Hi, this is an AI assistant calling for Anirudh Bagla at Harvard Business School. We help independent "
         "practices give their GLP-1 patients complete care, and would love 30 minutes with the doctor. "
         f"Please call back at {callback_number}. Thank you."
     )
-    return {
+    body = {
         "name": cfg.live_assistant_name,
         "firstMessage": "{{first_message}}",
         "firstMessageMode": "assistant-speaks-first",
@@ -222,6 +222,12 @@ def assistant_body(cfg: Config, callback_number: str) -> dict:
         },
         "metadata": {"playbook": cfg.playbook, "owner": "between-visits-infra"},
     }
+    if server_url:
+        body["server"] = {"url": server_url, "timeoutSeconds": 20}
+        if server_secret:
+            body["server"]["secret"] = server_secret
+        body["serverMessages"] = ["status-update", "end-of-call-report", "transcript", "hang"]
+    return body
 
 
 def call_body(request: CallRequest, assistant_id: str, phone_number_id: str) -> dict:
@@ -319,7 +325,7 @@ def event_from_call(call: dict, call_attempt_id: str, fallback_started: datetime
     for m in messages:
         role = m.get("role")
         text = m.get("message") or m.get("content") or ""
-        if role == "bot":
+        if role in ("bot", "assistant"):
             speaker = "agent"
         elif role == "user":
             speaker = speaker_for_user
@@ -379,10 +385,11 @@ class VapiVoiceProvider:
         self.phone_number = ""
         self._pending: list[tuple[str, str, datetime]] = []  # (provider_call_id, call_attempt_id, placed_at)
         self.calls_placed = 0
+        self.on_poll = None  # callback(call_dict) on every poll, used by the local service for live status
 
     # ---- setup (free API calls) ----
-    def ensure_assistant(self, callback_number: str) -> str:
-        body = assistant_body(self.cfg, callback_number)
+    def ensure_assistant(self, callback_number: str, server_url: str = "", server_secret: str = "") -> str:
+        body = assistant_body(self.cfg, callback_number, server_url, server_secret)
         existing = [a for a in self.client.list_assistants() if a.get("name") == body["name"]]
         if existing:
             self.assistant_id = existing[0]["id"]
@@ -403,7 +410,8 @@ class VapiVoiceProvider:
                 raise VapiError(f"VAPI_PHONE_NUMBER_ID {self.cfg.vapi_phone_number_id} not found in this account")
         elif numbers:
             active = [n for n in numbers if n.get("status") in (None, "active")]
-            chosen = (active or numbers)[0]
+            imported = [n for n in active if n.get("provider") != "vapi"]  # free Vapi numbers cannot dial out
+            chosen = (imported or active or numbers)[0]
         elif create_if_missing:
             chosen = self.client.create_phone_number(
                 {
@@ -423,6 +431,26 @@ class VapiVoiceProvider:
                 "if the call fails at start, import a Twilio/Telnyx/Vonage number instead"
             )
         return self.phone_number_id
+
+    def import_twilio_number(
+        self, number: str, account_sid: str, auth_token: str, name: str = "between-visits-twilio"
+    ) -> dict:
+        """Import a Twilio number so outbound calls go through Twilio (free Vapi numbers cannot dial out)."""
+        existing = [n for n in self.client.list_phone_numbers() if n.get("number") == number]
+        if existing:
+            self.log(f"vapi: {number} already imported ({existing[0].get('id')})")
+            return existing[0]
+        created = self.client.create_phone_number(
+            {
+                "provider": "twilio",
+                "number": number,
+                "twilioAccountSid": account_sid,
+                "twilioAuthToken": auth_token,
+                "name": name,
+            }
+        )
+        self.log(f"vapi: imported Twilio number {number} ({created.get('id')})")
+        return created
 
     # ---- VoiceProvider ----
     def place_call(self, request: CallRequest) -> str:
@@ -449,6 +477,8 @@ class VapiVoiceProvider:
             call_id, attempt_id, placed_at = self._pending[0]
             call = self.client.get_call(call_id)
             status = call.get("status")
+            if self.on_poll:
+                self.on_poll(call)
             self.log(f"vapi: call {call_id} {status}" + (f" ({call.get('endedReason')})" if status == "ended" else ""))
             if status == "ended":
                 if not (call.get("analysis") or {}).get("structuredData") and not _looks_like_no_connect(call):

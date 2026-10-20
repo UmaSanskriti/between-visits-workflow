@@ -9,7 +9,9 @@
   const FILES = ["run", "summary", "contacts", "call_attempts", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
   const ICON = { good: "✓", warning: "!", serious: "▲", critical: "✕", neutral: "·" };
   const TZ = "America/New_York";
-  const SRC = new URLSearchParams(location.search).get("source") === "live" ? "data-live/" : "data/";
+  const LOCAL = "http://127.0.0.1:8787";
+  const LIVE_VIEW = new URLSearchParams(location.search).get("source") === "live";
+  const SRC = LIVE_VIEW ? LOCAL + "/data-live/" : "data/";
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -165,7 +167,7 @@
     const chips = clear($("run-chips"));
     if (run.mode === "live") chips.appendChild(el("span", { class: "chip critical", title: "Real calls through Vapi to allowlisted team numbers only." }, [el("span", { class: "dot" }), el("b", { text: "LIVE" })]));
     else chips.appendChild(el("span", { class: "chip mode", title: "No real calls are placed; the voice provider and the Brain are stand-ins and every practice is fictional." }, [el("b", { text: "DRY RUN" })]));
-    chips.appendChild(el("a", { class: "chip", href: SRC === "data/" ? "?source=live" : "./", text: SRC === "data/" ? "Live demo data →" : "← Dry-run data" }));
+    chips.appendChild(el("a", { class: "chip", href: LIVE_VIEW ? "./" : "?source=live", text: LIVE_VIEW ? "← Dry-run data" : "Live demo data →" }));
     chips.appendChild(el("span", { class: "chip" }, ["Snapshot ", el("b", { text: run.finished_at ? fmtTime(run.finished_at) : "never" })]));
     if (run.simulated_time) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "simulated clock ", el("b", { text: fmtTime(run.now_used) })]));
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
@@ -415,8 +417,58 @@
     $("footer").textContent = "Snapshot " + (s.generated_at ? fmtTime(s.generated_at) : "–") + " · run " + (run.run_id || "–") + (newer ? " · a newer run has finished, refresh shortly" : "");
   }
 
-  Promise.all([loadAll(), loadLiveRun()]).then(([d, live]) => {
-    if (!d.summary) { $("error").textContent = "No pipeline data yet. Run the agent (Actions → Dry-run pipeline) or `python -m infra run` locally."; return; }
+  // ---------- live call panel (talks to the local control service) ----------
+  async function localState() {
+    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 1500);
+    try { const res = await fetch(LOCAL + "/api/state", { signal: ctl.signal, cache: "no-store" }); clearTimeout(t); return res.ok ? await res.json() : null; }
+    catch (e) { clearTimeout(t); return null; }
+  }
+  function renderLive(st) {
+    const panel = $("livecall"); panel.hidden = false;
+    const dot = $("live-dot"), btn = $("call-btn"), note = $("live-note"), tr = $("live-transcript"), res = $("live-result");
+    const labels = { idle: "Agent idle", preparing: "Preparing the call", dialing: "Dialing your phone", in_call: "On the call", ended: "Call ended", error: "Error" };
+    $("live-status").textContent = labels[st.status] || st.status;
+    dot.className = "live-dot" + (["preparing", "dialing", "in_call"].includes(st.status) ? " on" : st.status === "error" ? " err" : "");
+    const busy = ["preparing", "dialing", "in_call"].includes(st.status);
+    btn.disabled = busy;
+    btn.textContent = busy ? "Call in progress…" : (st.status === "ended" || st.status === "error" ? "Call again" : "Call my phone");
+    const c = st.call || {};
+    $("live-meta").textContent = (st.live_events ? "live transcript on" : "transcript after the call") + (st.tunnel_url ? "" : " · no tunnel") + (st.updated_at ? " · " + fmtTime(st.updated_at) : "");
+    const bits = [];
+    if (c.to) bits.push("to " + c.to); if (c.from) bits.push("from " + c.from); if (c.vapi_status) bits.push("Vapi: " + c.vapi_status); if (c.ended_reason) bits.push(nice(c.ended_reason));
+    note.textContent = st.status === "error" ? st.error : (bits.join(" · ") || (st.status === "idle" ? "Service connected on this machine. Pressing the button dials the allowlisted number through Vapi." : ""));
+    clear(tr);
+    (st.transcript || []).forEach((u) => tr.appendChild(el("div", { class: "bubble " + u.role }, [el("span", { class: "who", text: u.role === "agent" ? "agent" : "you" }), u.text])));
+    if (st.partial) tr.appendChild(el("div", { class: "bubble partial " + st.partial.role }, [el("span", { class: "who", text: st.partial.role === "agent" ? "agent" : "you" }), st.partial.text]));
+    tr.scrollTop = tr.scrollHeight;
+    if (st.result) {
+      res.hidden = false; clear(res);
+      const r = st.result, h = r.handoff || {};
+      res.appendChild(el("div", null, [el("b", { text: "Outcome: " }), nice(r.outcome) + (r.failure_category ? " · " + r.failure_category : "") + (r.duration_sec ? " · " + r.duration_sec + "s" : "") + (r.cost_usd ? " · $" + Number(r.cost_usd).toFixed(2) : "")]));
+      if (h.contact_email || h.contact_method || h.availability || h.notes) res.appendChild(el("div", null, [el("b", { text: "Handoff: " }), [h.contact_email, h.contact_method && h.contact_method !== "unknown" ? nice(h.contact_method) + (h.contact_number ? " " + h.contact_number : "") : "", h.availability, h.notes].filter(Boolean).join(" · ")]));
+      if (r.recording_ref && r.recording_ref.startsWith("http")) res.appendChild(el("a", { href: r.recording_ref, text: "Recording", target: "_blank", rel: "noopener" }));
+      if (c.summary) res.appendChild(el("div", { class: "muted small", text: c.summary }));
+    } else { res.hidden = true; }
+    $("live-log").textContent = (st.log || []).slice(-25).join("\n");
+    return busy;
+  }
+  function wireLive(initial) {
+    if (!initial) return;
+    let wasBusy = renderLive(initial), timer = null;
+    const tick = async () => { const st = await localState(); if (!st) return; const busy = renderLive(st); if (wasBusy && !busy && LIVE_VIEW) setTimeout(() => location.reload(), 1500); wasBusy = busy; };
+    timer = setInterval(tick, 2000);
+    $("call-btn").addEventListener("click", async () => {
+      $("call-btn").disabled = true;
+      try { const res = await fetch(LOCAL + "/api/call", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
+      catch (e) { $("live-note").textContent = "Could not reach the local service."; }
+      tick();
+    });
+    return timer;
+  }
+
+  Promise.all([loadAll(), loadLiveRun(), localState()]).then(([d, live, local]) => {
+    wireLive(local);
+    if (!d.summary) { $("error").textContent = LIVE_VIEW ? "No live data yet. Start `python -m infra serve` on the machine with the Vapi key, then press Call my phone." : "No pipeline data yet. Run the agent (Actions → Dry-run pipeline) or `python -m infra run` locally."; return; }
     render(d, live);
     setInterval(async () => { const live2 = await loadLiveRun(); const running = live2 && (live2.status === "in_progress" || live2.status === "queued"); const was = $("ring").classList.contains("running"); if (running !== was) location.reload(); }, 60000);
   }).catch((e) => { $("error").textContent = "Failed to render: " + e.message; console.error(e); });

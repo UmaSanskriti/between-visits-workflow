@@ -266,3 +266,49 @@ def test_calling_window_waiver_applies_only_to_allowlisted_numbers_in_live_mode(
     assert any(r.startswith("outside_calling_window") for r in blocked.reasons)
     cfg.live_ignore_window = False
     assert not pre_call_gate(store, contact, team, cfg, FixedClock(evening)).allowed
+
+
+def test_imported_numbers_are_preferred_over_free_vapi_numbers(tmp_path):
+    transport = FakeTransport()
+    original = transport.__call__
+
+    def with_two_numbers(method, path, body=None):
+        if path.startswith("/phone-number") and method == "GET":
+            transport.calls.append((method, path, body))
+            return 200, [
+                {"id": "pn_free", "number": "+16175550198", "provider": "vapi", "status": "active"},
+                {"id": "pn_tw", "number": "+16175550199", "provider": "twilio", "status": "active"},
+            ]
+        return original(method, path, body)
+
+    transport.__call__ = with_two_numbers  # type: ignore[method-assign]
+    provider = VapiVoiceProvider(
+        VapiClient("k", transport=with_two_numbers),
+        live_cfg(tmp_path),
+        FixedClock(NOW),
+        log=lambda *a: None,
+        sleep=lambda s: None,
+    )
+    assert provider.ensure_phone_number() == "pn_tw"
+
+
+def test_import_twilio_number_body(tmp_path):
+    transport = FakeTransport()
+    created = {}
+
+    def t(method, path, body=None):
+        if path == "/phone-number" and method == "POST":
+            created.update(body)
+            return 201, {"id": "pn_new", **body}
+        return transport(method, path, body)
+
+    provider = VapiVoiceProvider(VapiClient("k", transport=t), live_cfg(tmp_path), FixedClock(NOW), log=lambda *a: None)
+    out = provider.import_twilio_number("+16175550177", "ACxxx", "tok")
+    assert out["id"] == "pn_new"
+    assert created == {
+        "provider": "twilio",
+        "number": "+16175550177",
+        "twilioAccountSid": "ACxxx",
+        "twilioAuthToken": "tok",
+        "name": "between-visits-twilio",
+    }
