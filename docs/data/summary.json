@@ -1,79 +1,79 @@
 {
- "alerts": 2,
+ "alerts": 3,
  "calls": {
-  "attempts": 16,
+  "attempts": 21,
   "booked": 4,
   "by_failure_category": {
-   "Call back later": 1,
+   "Call back later": 2,
    "Do not contact": 1,
    "Hung up at AI disclosure": 1,
-   "No answer / voicemail": 2,
+   "No answer / voicemail": 4,
    "Not a fit": 1,
    "Pitch did not land": 3,
-   "Screened out by front desk": 1,
-   "Technical failure": 1,
+   "Screened out by front desk": 2,
+   "Technical failure": 2,
    "Wrong number (list data)": 1
   },
   "by_outcome": {
    "BOOKED": 4,
-   "CALLBACK_REQUESTED": 1,
+   "CALLBACK_REQUESTED": 2,
    "DECLINED": 3,
    "DECLINED_RECORDING": 1,
    "DO_NOT_CONTACT": 1,
-   "FAILED_TECHNICAL": 1,
-   "GATEKEEPER_BLOCKED": 1,
+   "FAILED_TECHNICAL": 2,
+   "GATEKEEPER_BLOCKED": 2,
    "NOT_A_FIT": 1,
-   "NO_ANSWER": 1,
-   "VOICEMAIL": 1,
+   "NO_ANSWER": 2,
+   "VOICEMAIL": 2,
    "WRONG_NUMBER": 1
   },
   "by_script_version": {
    "v1": {
-    "attempts": 16,
+    "attempts": 21,
     "booked": 4,
     "by_outcome": {
      "BOOKED": 4,
-     "CALLBACK_REQUESTED": 1,
+     "CALLBACK_REQUESTED": 2,
      "DECLINED": 3,
      "DECLINED_RECORDING": 1,
      "DO_NOT_CONTACT": 1,
-     "FAILED_TECHNICAL": 1,
-     "GATEKEEPER_BLOCKED": 1,
+     "FAILED_TECHNICAL": 2,
+     "GATEKEEPER_BLOCKED": 2,
      "NOT_A_FIT": 1,
-     "NO_ANSWER": 1,
-     "VOICEMAIL": 1,
+     "NO_ANSWER": 2,
+     "VOICEMAIL": 2,
      "WRONG_NUMBER": 1
     },
-    "conversion": 0.25,
+    "conversion": 0.19,
     "declined": 3
    }
   },
   "by_segment": {
    "default": {
-    "attempts": 1,
+    "attempts": 2,
     "booked": 0,
     "by_outcome": {
-     "NO_ANSWER": 1
+     "NO_ANSWER": 2
     },
     "conversion": 0.0,
     "declined": 0
    },
    "small_group_primary_care": {
-    "attempts": 3,
+    "attempts": 5,
     "booked": 0,
     "by_outcome": {
-     "CALLBACK_REQUESTED": 1,
-     "FAILED_TECHNICAL": 1,
+     "CALLBACK_REQUESTED": 2,
+     "FAILED_TECHNICAL": 2,
      "NOT_A_FIT": 1
     },
     "conversion": 0.0,
     "declined": 0
    },
    "small_group_specialist": {
-    "attempts": 1,
+    "attempts": 2,
     "booked": 0,
     "by_outcome": {
-     "GATEKEEPER_BLOCKED": 1
+     "GATEKEEPER_BLOCKED": 2
     },
     "conversion": 0.0,
     "declined": 0
@@ -92,28 +92,28 @@
     "declined": 3
    },
    "solo_specialist": {
-    "attempts": 1,
+    "attempts": 2,
     "booked": 0,
     "by_outcome": {
-     "VOICEMAIL": 1
+     "VOICEMAIL": 2
     },
     "conversion": 0.0,
     "declined": 0
    }
   },
-  "completed": 16,
-  "connect_rate": 0.812,
-  "duplicate_webhooks_ignored": 16
+  "completed": 21,
+  "connect_rate": 0.762,
+  "duplicate_webhooks_ignored": 21
  },
  "compliance": {
   "consent_records": 18,
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
+   "allowed": 5,
    "blocked": 5,
    "considered": 10,
-   "deferred": 5
+   "deferred": 0
   },
   "paused": false,
   "suppressions": 3
@@ -122,11 +122,10 @@
   "by_status": {
    "BOOKED": 4,
    "DECLINED": 5,
-   "IN_OUTREACH": 5,
    "READY": 1,
    "SOURCED": 1,
    "SUPPRESSED": 2,
-   "UNREACHABLE": 1,
+   "UNREACHABLE": 6,
    "VERIFIED": 1
   },
   "by_verification": {
@@ -165,7 +164,7 @@
    "stage": "Booked"
   }
  ],
- "generated_at": "2026-10-20T20:18:40Z",
+ "generated_at": "2026-10-21T18:30:00Z",
  "interviews": 4,
  "interviews_pending_approval": 4,
  "queue": [
@@ -179,71 +178,16 @@
    "practice": "Shah Primary Care",
    "segment": "solo_primary_care",
    "status": "READY"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_866bc1a7db",
-   "external_id": "t_17",
-   "last_outcome": "FAILED_TECHNICAL",
-   "name": "Victor Adeyemi",
-   "next_attempt_at": "2026-10-20T21:18:24Z",
-   "practice": "Dorchester Medical",
-   "segment": "small_group_primary_care",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_da6677d004",
-   "external_id": "t_03",
-   "last_outcome": "NO_ANSWER",
-   "name": "Marcus Lee",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Lee Medical",
-   "segment": "default",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_01c54d811d",
-   "external_id": "t_10",
-   "last_outcome": "GATEKEEPER_BLOCKED",
-   "name": "Omar Haddad",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Haddad Endocrine Associates",
-   "segment": "small_group_specialist",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_29816f6cb0",
-   "external_id": "t_07",
-   "last_outcome": "CALLBACK_REQUESTED",
-   "name": "Rosa Martinez",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Fenway Group Practice",
-   "segment": "small_group_primary_care",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_f9eafcfce6",
-   "external_id": "t_04",
-   "last_outcome": "VOICEMAIL",
-   "name": "Siobhan Ni Bhriain",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Charles River Endocrinology",
-   "segment": "solo_specialist",
-   "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261020T201840Z-003",
+ "run_id": "20261021T183000Z-004",
  "transcripts": {
-  "brain_inbox": 12,
-  "delivered": 12,
-  "delivery_rate": 0.923,
+  "brain_inbox": 16,
+  "delivered": 16,
+  "delivery_rate": 0.941,
   "failed": 1,
   "held_pii_review": 1,
   "pending": 0,
-  "total": 14
+  "total": 18
  }
 }

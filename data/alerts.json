@@ -12,5 +12,11 @@
   "timestamp": "2026-10-20T20:18:24Z",
   "transcript_id": "tr_7726b3d263",
   "type": "transcript_delivery_failed"
+ },
+ {
+  "contact_id": "c_866bc1a7db",
+  "detail": "c_866bc1a7db: 2 technical failures",
+  "timestamp": "2026-10-21T18:30:00Z",
+  "type": "repeated_technical_failure"
  }
 ]

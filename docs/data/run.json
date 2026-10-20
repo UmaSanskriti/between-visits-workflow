@@ -1,31 +1,31 @@
 {
  "brain_down": false,
  "callback_number_set": true,
- "finished_at": "2026-10-20T20:18:40Z",
+ "finished_at": "2026-10-21T18:30:00Z",
  "gate_escapes": 0,
- "git_sha": "1988788",
+ "git_sha": "de48efd",
  "kill_switch": false,
  "mode": "dry_run",
- "now_used": "2026-10-20T20:18:40Z",
+ "now_used": "2026-10-21T18:30:00Z",
  "paused": false,
  "playbook": "clinic-outreach-brain.md",
- "run_id": "20261020T201840Z-003",
+ "run_id": "20261021T183000Z-004",
  "seed": "test_doctors.csv",
- "simulated_time": false,
+ "simulated_time": true,
  "stages": {
   "calls": {
-   "allowed": 0,
+   "allowed": 5,
    "blocked": 5,
    "brain_unavailable": 0,
    "capped": 0,
    "considered": 10,
-   "deferred": 5,
-   "placed": 0,
+   "deferred": 0,
+   "placed": 5,
    "script_errors": 0
   },
   "delivery": {
-   "attempted": 0,
-   "delivered": 0,
+   "attempted": 4,
+   "delivered": 4,
    "duplicates": 0,
    "failed": 0,
    "held": 1
@@ -47,13 +47,13 @@
    "verified": 6
   },
   "webhooks": {
-   "applied": 0,
+   "applied": 5,
    "bad_signature": 0,
-   "duplicates_ignored": 0,
-   "events": 0,
+   "duplicates_ignored": 5,
+   "events": 10,
    "unknown_call": 0
   }
  },
- "started_at": "2026-10-20T20:18:40Z",
- "trigger": "push"
+ "started_at": "2026-10-21T18:30:00Z",
+ "trigger": "workflow_dispatch"
 }

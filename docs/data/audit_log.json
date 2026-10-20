@@ -4699,5 +4699,898 @@
   "entity_id": "20261020T201840Z-003",
   "run_id": "20261020T201840Z-003",
   "timestamp": "2026-10-20T20:18:40Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T18:30:00Z",
+   "trigger": "workflow_dispatch"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T183000Z-004",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "generated",
+  "actor": "system",
+  "after": {
+   "fallbacks_applied": [
+    "ehr",
+    "hook"
+   ],
+   "script_version": "v1",
+   "segment": "small_group_specialist"
+  },
+  "before": {},
+  "contact_id": "c_01c54d811d",
+  "entity": "script",
+  "entity_id": "ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "ca_0ed2163504",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_01c54d811d",
+  "entity": "call_attempts",
+  "entity_id": "ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "placed",
+  "actor": "system",
+  "after": {
+   "provider_call_id": "mock_ca_0ed2163504",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "before": {
+   "provider_call_id": "",
+   "started_at": "",
+   "status": "queued"
+  },
+  "entity": "call_attempts",
+  "entity_id": "ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "call_placed",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_0ed2163504",
+  "entity": "contacts",
+  "entity_id": "c_01c54d811d",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "contact_not_verified:no_callable_channel",
+    "no_phone_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "call_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "generated",
+  "actor": "system",
+  "after": {
+   "fallbacks_applied": [
+    "ehr"
+   ],
+   "script_version": "v1",
+   "segment": "small_group_primary_care"
+  },
+  "before": {},
+  "contact_id": "c_29816f6cb0",
+  "entity": "script",
+  "entity_id": "ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "ca_d580ef50d5",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_29816f6cb0",
+  "entity": "call_attempts",
+  "entity_id": "ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "placed",
+  "actor": "system",
+  "after": {
+   "provider_call_id": "mock_ca_d580ef50d5",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "before": {
+   "provider_call_id": "",
+   "started_at": "",
+   "status": "queued"
+  },
+  "entity": "call_attempts",
+  "entity_id": "ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "call_placed",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_d580ef50d5",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "suppressed:contact:c_48eaa6c438"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_48eaa6c438",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "generated",
+  "actor": "system",
+  "after": {
+   "fallbacks_applied": [
+    "ehr",
+    "hook"
+   ],
+   "script_version": "v1",
+   "segment": "small_group_primary_care"
+  },
+  "before": {},
+  "contact_id": "c_866bc1a7db",
+  "entity": "script",
+  "entity_id": "ca_a2d54ec9c0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "ca_a2d54ec9c0",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_866bc1a7db",
+  "entity": "call_attempts",
+  "entity_id": "ca_a2d54ec9c0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "placed",
+  "actor": "system",
+  "after": {
+   "provider_call_id": "mock_ca_a2d54ec9c0",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "before": {
+   "provider_call_id": "",
+   "started_at": "",
+   "status": "queued"
+  },
+  "entity": "call_attempts",
+  "entity_id": "ca_a2d54ec9c0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "call_placed",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "next_attempt_at": "2026-10-20T21:18:24Z",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_a2d54ec9c0",
+  "entity": "contacts",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "generated",
+  "actor": "system",
+  "after": {
+   "fallbacks_applied": [
+    "specialty",
+    "ehr",
+    "hook"
+   ],
+   "script_version": "v1",
+   "segment": "default"
+  },
+  "before": {},
+  "contact_id": "c_da6677d004",
+  "entity": "script",
+  "entity_id": "ca_b6119bd4c1",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "ca_b6119bd4c1",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_da6677d004",
+  "entity": "call_attempts",
+  "entity_id": "ca_b6119bd4c1",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "placed",
+  "actor": "system",
+  "after": {
+   "provider_call_id": "mock_ca_b6119bd4c1",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "before": {
+   "provider_call_id": "",
+   "started_at": "",
+   "status": "queued"
+  },
+  "entity": "call_attempts",
+  "entity_id": "ca_b6119bd4c1",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "call_placed",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_b6119bd4c1",
+  "entity": "contacts",
+  "entity_id": "c_da6677d004",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "generated",
+  "actor": "system",
+  "after": {
+   "fallbacks_applied": [
+    "ehr",
+    "hook"
+   ],
+   "script_version": "v1",
+   "segment": "solo_specialist"
+  },
+  "before": {},
+  "contact_id": "c_f9eafcfce6",
+  "entity": "script",
+  "entity_id": "ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "ca_3f31cb8771",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_f9eafcfce6",
+  "entity": "call_attempts",
+  "entity_id": "ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "placed",
+  "actor": "system",
+  "after": {
+   "provider_call_id": "mock_ca_3f31cb8771",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "before": {
+   "provider_call_id": "",
+   "started_at": "",
+   "status": "queued"
+  },
+  "entity": "call_attempts",
+  "entity_id": "ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "call_placed",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_3f31cb8771",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_3b5b5de2e4"
+  },
+  "before": {},
+  "call_attempt_id": "ca_0ed2163504",
+  "contact_id": "c_01c54d811d",
+  "entity": "transcripts",
+  "entity_id": "tr_3b5b5de2e4",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "completed",
+  "actor": "system",
+  "after": {
+   "callback_requested_at": "",
+   "duration_sec": 33,
+   "ended_at": "2026-10-21T18:30:33Z",
+   "failure_category": "Screened out by front desk",
+   "outcome": "GATEKEEPER_BLOCKED",
+   "outcome_reason": "",
+   "recording_ref": "mock://recordings/mock_ca_0ed2163504",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "completed",
+   "transcript_id": "tr_3b5b5de2e4"
+  },
+  "before": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "",
+   "failure_category": "",
+   "outcome": "",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress",
+   "transcript_id": ""
+  },
+  "contact_id": "c_01c54d811d",
+  "entity": "call_attempts",
+  "entity_id": "ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "outcome_gatekeeper_blocked",
+  "actor": "system",
+  "after": {
+   "last_outcome": "GATEKEEPER_BLOCKED",
+   "next_attempt_at": "",
+   "status": "UNREACHABLE"
+  },
+  "before": {
+   "last_outcome": "GATEKEEPER_BLOCKED",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_0ed2163504",
+  "entity": "contacts",
+  "entity_id": "c_01c54d811d",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "webhook_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "mock_ca_0ed2163504:completed"
+  },
+  "before": {},
+  "entity": "call_attempt",
+  "entity_id": "ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_ecc279eb47"
+  },
+  "before": {},
+  "call_attempt_id": "ca_d580ef50d5",
+  "contact_id": "c_29816f6cb0",
+  "entity": "transcripts",
+  "entity_id": "tr_ecc279eb47",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "completed",
+  "actor": "system",
+  "after": {
+   "callback_requested_at": "2026-10-22T18:00:00Z",
+   "duration_sec": 61,
+   "ended_at": "2026-10-21T18:31:01Z",
+   "failure_category": "Call back later",
+   "outcome": "CALLBACK_REQUESTED",
+   "outcome_reason": "",
+   "recording_ref": "mock://recordings/mock_ca_d580ef50d5",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "completed",
+   "transcript_id": "tr_ecc279eb47"
+  },
+  "before": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "",
+   "failure_category": "",
+   "outcome": "",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress",
+   "transcript_id": ""
+  },
+  "contact_id": "c_29816f6cb0",
+  "entity": "call_attempts",
+  "entity_id": "ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "outcome_callback_requested",
+  "actor": "system",
+  "after": {
+   "last_outcome": "CALLBACK_REQUESTED",
+   "next_attempt_at": "",
+   "status": "UNREACHABLE"
+  },
+  "before": {
+   "last_outcome": "CALLBACK_REQUESTED",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_d580ef50d5",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "webhook_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "mock_ca_d580ef50d5:completed"
+  },
+  "before": {},
+  "entity": "call_attempt",
+  "entity_id": "ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "completed",
+  "actor": "system",
+  "after": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "2026-10-21T18:30:00Z",
+   "failure_category": "Technical failure",
+   "outcome": "FAILED_TECHNICAL",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "failed"
+  },
+  "before": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "",
+   "failure_category": "",
+   "outcome": "",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress"
+  },
+  "contact_id": "c_866bc1a7db",
+  "entity": "call_attempts",
+  "entity_id": "ca_a2d54ec9c0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "outcome_failed_technical",
+  "actor": "system",
+  "after": {
+   "last_outcome": "FAILED_TECHNICAL",
+   "next_attempt_at": "",
+   "status": "UNREACHABLE"
+  },
+  "before": {
+   "last_outcome": "FAILED_TECHNICAL",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_a2d54ec9c0",
+  "entity": "contacts",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "webhook_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "mock_ca_a2d54ec9c0:completed"
+  },
+  "before": {},
+  "entity": "call_attempt",
+  "entity_id": "ca_a2d54ec9c0",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_6e010c897f"
+  },
+  "before": {},
+  "call_attempt_id": "ca_b6119bd4c1",
+  "contact_id": "c_da6677d004",
+  "entity": "transcripts",
+  "entity_id": "tr_6e010c897f",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "completed",
+  "actor": "system",
+  "after": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "2026-10-21T18:30:00Z",
+   "failure_category": "No answer / voicemail",
+   "outcome": "NO_ANSWER",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "completed",
+   "transcript_id": "tr_6e010c897f"
+  },
+  "before": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "",
+   "failure_category": "",
+   "outcome": "",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress",
+   "transcript_id": ""
+  },
+  "contact_id": "c_da6677d004",
+  "entity": "call_attempts",
+  "entity_id": "ca_b6119bd4c1",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "outcome_no_answer",
+  "actor": "system",
+  "after": {
+   "last_outcome": "NO_ANSWER",
+   "next_attempt_at": "",
+   "status": "UNREACHABLE"
+  },
+  "before": {
+   "last_outcome": "NO_ANSWER",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_b6119bd4c1",
+  "entity": "contacts",
+  "entity_id": "c_da6677d004",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "webhook_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "mock_ca_b6119bd4c1:completed"
+  },
+  "before": {},
+  "entity": "call_attempt",
+  "entity_id": "ca_b6119bd4c1",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_4be9141663"
+  },
+  "before": {},
+  "call_attempt_id": "ca_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "entity": "transcripts",
+  "entity_id": "tr_4be9141663",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "completed",
+  "actor": "system",
+  "after": {
+   "callback_requested_at": "",
+   "duration_sec": 20,
+   "ended_at": "2026-10-21T18:30:20Z",
+   "failure_category": "No answer / voicemail",
+   "outcome": "VOICEMAIL",
+   "outcome_reason": "",
+   "recording_ref": "mock://recordings/mock_ca_3f31cb8771",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "completed",
+   "transcript_id": "tr_4be9141663"
+  },
+  "before": {
+   "callback_requested_at": "",
+   "duration_sec": 0,
+   "ended_at": "",
+   "failure_category": "",
+   "outcome": "",
+   "outcome_reason": "",
+   "recording_ref": "",
+   "started_at": "2026-10-21T18:30:00Z",
+   "status": "in_progress",
+   "transcript_id": ""
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "call_attempts",
+  "entity_id": "ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "outcome_voicemail",
+  "actor": "system",
+  "after": {
+   "last_outcome": "VOICEMAIL",
+   "next_attempt_at": "",
+   "status": "UNREACHABLE"
+  },
+  "before": {
+   "last_outcome": "VOICEMAIL",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "call_attempt_id": "ca_3f31cb8771",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "webhook_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "mock_ca_3f31cb8771:completed"
+  },
+  "before": {},
+  "entity": "call_attempt",
+  "entity_id": "ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "delivered",
+  "actor": "system",
+  "after": {
+   "delivered_at": "2026-10-21T18:30:00Z",
+   "delivery_status": "delivered",
+   "last_delivery_error": ""
+  },
+  "before": {
+   "delivered_at": "",
+   "delivery_status": "pending",
+   "last_delivery_error": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_3b5b5de2e4",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "delivered",
+  "actor": "system",
+  "after": {
+   "delivered_at": "2026-10-21T18:30:00Z",
+   "delivery_status": "delivered",
+   "last_delivery_error": ""
+  },
+  "before": {
+   "delivered_at": "",
+   "delivery_status": "pending",
+   "last_delivery_error": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_ecc279eb47",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "delivered",
+  "actor": "system",
+  "after": {
+   "delivered_at": "2026-10-21T18:30:00Z",
+   "delivery_status": "delivered",
+   "last_delivery_error": ""
+  },
+  "before": {
+   "delivered_at": "",
+   "delivery_status": "pending",
+   "last_delivery_error": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_6e010c897f",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "delivered",
+  "actor": "system",
+  "after": {
+   "delivered_at": "2026-10-21T18:30:00Z",
+   "delivery_status": "delivered",
+   "last_delivery_error": ""
+  },
+  "before": {
+   "delivered_at": "",
+   "delivery_status": "pending",
+   "last_delivery_error": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_4be9141663",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T183000Z-004",
+  "run_id": "20261021T183000Z-004",
+  "timestamp": "2026-10-21T18:30:00Z"
  }
 ]

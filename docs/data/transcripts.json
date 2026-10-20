@@ -496,5 +496,113 @@
     "text": "Understood, I'll end the call here. Thank you."
    }
   ]
+ },
+ {
+  "call_attempt_id": "ca_0ed2163504",
+  "contact_id": "c_01c54d811d",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_3b5b5de2e4",
+  "idempotency_key": "ca_0ed2163504",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Haddad's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "The doctor doesn't take calls like this. You can send something in writing."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 10000,
+    "text": "Thank you, I understand. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_d580ef50d5",
+  "contact_id": "c_29816f6cb0",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_ecc279eb47",
+  "idempotency_key": "ca_d580ef50d5",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla, a student at Harvard Business School. This call is recorded for our notes. Is that okay? Could I speak with the office manager, or whoever keeps Dr. Martinez's schedule?"
+   },
+   {
+    "speaker": "office",
+    "start_ms": 4000,
+    "text": "One moment, let me get someone."
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 9000,
+    "text": "Group primary care practices tell us GLP-1 patients need more support than a visit allows. Anirudh and his co-founder help independent practices like Fenway Group Practice give their GLP-1 patients complete care: side-effect management, nutrition and exercise support. Practices share a team of nutritionists they could not hire on their own, and the insurance billing is handled for them. We believe it can raise revenue per patient by up to six times while giving patients better care. Large health systems already run this model, and we are bringing it to independent practices. I saw your weight-management clinic page and wanted to reach out. We have spoken to some clinics and would love 30 minutes with Dr. Martinez to hear whether it would work here."
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 29000,
+    "text": "I'm with patients. Can you call back tomorrow afternoon?"
+   },
+   {
+    "speaker": "agent",
+    "start_ms": 35000,
+    "text": "Of course. I'll call back tomorrow afternoon. Before I go: that's Anirudh Bagla, and the callback number is +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "ca_b6119bd4c1",
+  "contact_id": "c_da6677d004",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_6e010c897f",
+  "idempotency_key": "ca_b6119bd4c1",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": []
+ },
+ {
+  "call_attempt_id": "ca_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "created_at": "2026-10-21T18:30:00Z",
+  "delivered_at": "2026-10-21T18:30:00Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_4be9141663",
+  "idempotency_key": "ca_3f31cb8771",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi, this is an AI assistant calling for Anirudh Bagla at Harvard Business School. We help independent practices give their GLP-1 patients complete care, and would love 30 minutes with Dr. Bhriain. Please call back at +1\u2022\u2022\u2022\u2022\u2022\u20220199. Thank you."
+   }
+  ]
  }
 ]

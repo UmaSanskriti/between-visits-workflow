@@ -1,7 +1,7 @@
 [
  {
   "address": "55 Fruit St",
-  "attempts": 1,
+  "attempts": 2,
   "channels": [
    {
     "call_clearance": "cleared",
@@ -28,17 +28,17 @@
   "id": "c_01c54d811d",
   "last_outcome": "GATEKEEPER_BLOCKED",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "2026-10-21T18:00:00Z",
+  "next_attempt_at": "",
   "practice_name": "Haddad Endocrine Associates",
   "practice_size": "small_group",
   "pronunciation_hint": "",
   "segment": "small_group_specialist",
   "specialty": "endocrinology",
   "state": "MA",
-  "status": "IN_OUTREACH",
+  "status": "UNREACHABLE",
   "test_scenario": "gatekeeper",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-20T20:18:24Z",
+  "updated_at": "2026-10-21T18:30:00Z",
   "verification_reason": "",
   "verification_status": "verified"
  },
@@ -187,7 +187,7 @@
  },
  {
   "address": "1 Fenway",
-  "attempts": 1,
+  "attempts": 2,
   "channels": [
    {
     "call_clearance": "cleared",
@@ -214,17 +214,17 @@
   "id": "c_29816f6cb0",
   "last_outcome": "CALLBACK_REQUESTED",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "2026-10-21T18:00:00Z",
+  "next_attempt_at": "",
   "practice_name": "Fenway Group Practice",
   "practice_size": "small_group",
   "pronunciation_hint": "",
   "segment": "small_group_primary_care",
   "specialty": "internal medicine",
   "state": "MA",
-  "status": "IN_OUTREACH",
+  "status": "UNREACHABLE",
   "test_scenario": "callback",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-20T20:18:24Z",
+  "updated_at": "2026-10-21T18:30:00Z",
   "verification_reason": "",
   "verification_status": "verified"
  },
@@ -488,7 +488,7 @@
  },
  {
   "address": "1 Dorchester Ave",
-  "attempts": 1,
+  "attempts": 2,
   "channels": [
    {
     "call_clearance": "cleared",
@@ -515,17 +515,17 @@
   "id": "c_866bc1a7db",
   "last_outcome": "FAILED_TECHNICAL",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "2026-10-20T21:18:24Z",
+  "next_attempt_at": "",
   "practice_name": "Dorchester Medical",
   "practice_size": "small_group",
   "pronunciation_hint": "",
   "segment": "small_group_primary_care",
   "specialty": "internal medicine",
   "state": "MA",
-  "status": "IN_OUTREACH",
+  "status": "UNREACHABLE",
   "test_scenario": "technical",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-20T20:18:24Z",
+  "updated_at": "2026-10-21T18:30:00Z",
   "verification_reason": "",
   "verification_status": "verified"
  },
@@ -789,7 +789,7 @@
  },
  {
   "address": "88 Tremont St",
-  "attempts": 1,
+  "attempts": 2,
   "channels": [
    {
     "call_clearance": "not_cleared",
@@ -830,23 +830,23 @@
   "id": "c_da6677d004",
   "last_outcome": "NO_ANSWER",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "2026-10-21T18:00:00Z",
+  "next_attempt_at": "",
   "practice_name": "Lee Medical",
   "practice_size": "small_group",
   "pronunciation_hint": "",
   "segment": "default",
   "specialty": "",
   "state": "MA",
-  "status": "IN_OUTREACH",
+  "status": "UNREACHABLE",
   "test_scenario": "no_answer",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-20T20:18:24Z",
+  "updated_at": "2026-10-21T18:30:00Z",
   "verification_reason": "",
   "verification_status": "verified"
  },
  {
   "address": "5 Cambridge Pkwy",
-  "attempts": 1,
+  "attempts": 2,
   "channels": [
    {
     "call_clearance": "cleared",
@@ -873,17 +873,17 @@
   "id": "c_f9eafcfce6",
   "last_outcome": "VOICEMAIL",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "2026-10-21T18:00:00Z",
+  "next_attempt_at": "",
   "practice_name": "Charles River Endocrinology",
   "practice_size": "solo",
   "pronunciation_hint": "shiv-AWN nee BREE-an",
   "segment": "solo_specialist",
   "specialty": "endocrinology",
   "state": "MA",
-  "status": "IN_OUTREACH",
+  "status": "UNREACHABLE",
   "test_scenario": "voicemail",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-20T20:18:24Z",
+  "updated_at": "2026-10-21T18:30:00Z",
   "verification_reason": "",
   "verification_status": "verified"
  }

@@ -34,6 +34,41 @@
   "transcript_id": "tr_1c2ec351e8",
   "updated_at": "2026-10-20T20:18:24Z"
  },
+ "ca_0ed2163504": {
+  "attempt_number": 2,
+  "callback_requested_at": "",
+  "channel_id": "ch_1a19dbc957",
+  "contact_id": "c_01c54d811d",
+  "created_at": "2026-10-21T18:30:00Z",
+  "duplicate_events_ignored": 1,
+  "duration_sec": 33,
+  "ended_at": "2026-10-21T18:30:33Z",
+  "failure_category": "Screened out by front desk",
+  "fallbacks_applied": [
+   "ehr",
+   "hook"
+  ],
+  "gate_result": "allowed",
+  "id": "ca_0ed2163504",
+  "outcome": "GATEKEEPER_BLOCKED",
+  "outcome_reason": "",
+  "pitch_angle": "Specialist groups tell us GLP-1 patients need structured nutrition support between visits.",
+  "processed_event_ids": [
+   "mock_ca_0ed2163504:completed"
+  ],
+  "provider": "mock",
+  "provider_call_id": "mock_ca_0ed2163504",
+  "recording_ref": "mock://recordings/mock_ca_0ed2163504",
+  "run_id": "20261021T183000Z-004",
+  "scheduled_at": "2026-10-21T18:30:00Z",
+  "script_id": "clinic-outreach-v1",
+  "script_version": "v1",
+  "segment": "small_group_specialist",
+  "started_at": "2026-10-21T18:30:00Z",
+  "status": "completed",
+  "transcript_id": "tr_3b5b5de2e4",
+  "updated_at": "2026-10-21T18:30:00Z"
+ },
  "ca_1c90a154b7": {
   "attempt_number": 1,
   "callback_requested_at": "",
@@ -173,6 +208,41 @@
   "status": "completed",
   "transcript_id": "tr_e770475762",
   "updated_at": "2026-10-20T20:18:24Z"
+ },
+ "ca_3f31cb8771": {
+  "attempt_number": 2,
+  "callback_requested_at": "",
+  "channel_id": "ch_38dfb97cd2",
+  "contact_id": "c_f9eafcfce6",
+  "created_at": "2026-10-21T18:30:00Z",
+  "duplicate_events_ignored": 1,
+  "duration_sec": 20,
+  "ended_at": "2026-10-21T18:30:20Z",
+  "failure_category": "No answer / voicemail",
+  "fallbacks_applied": [
+   "ehr",
+   "hook"
+  ],
+  "gate_result": "allowed",
+  "id": "ca_3f31cb8771",
+  "outcome": "VOICEMAIL",
+  "outcome_reason": "",
+  "pitch_angle": "Specialists managing GLP-1 patients tell us the gaps between visits are where things slip.",
+  "processed_event_ids": [
+   "mock_ca_3f31cb8771:completed"
+  ],
+  "provider": "mock",
+  "provider_call_id": "mock_ca_3f31cb8771",
+  "recording_ref": "mock://recordings/mock_ca_3f31cb8771",
+  "run_id": "20261021T183000Z-004",
+  "scheduled_at": "2026-10-21T18:30:00Z",
+  "script_id": "clinic-outreach-v1",
+  "script_version": "v1",
+  "segment": "solo_specialist",
+  "started_at": "2026-10-21T18:30:00Z",
+  "status": "completed",
+  "transcript_id": "tr_4be9141663",
+  "updated_at": "2026-10-21T18:30:00Z"
  },
  "ca_6b6ea10721": {
   "attempt_number": 1,
@@ -349,6 +419,77 @@
   "transcript_id": "tr_7726b3d263",
   "updated_at": "2026-10-20T20:18:24Z"
  },
+ "ca_a2d54ec9c0": {
+  "attempt_number": 2,
+  "callback_requested_at": "",
+  "channel_id": "ch_42ac4cfa29",
+  "contact_id": "c_866bc1a7db",
+  "created_at": "2026-10-21T18:30:00Z",
+  "duplicate_events_ignored": 1,
+  "duration_sec": 0,
+  "ended_at": "2026-10-21T18:30:00Z",
+  "failure_category": "Technical failure",
+  "fallbacks_applied": [
+   "ehr",
+   "hook"
+  ],
+  "gate_result": "allowed",
+  "id": "ca_a2d54ec9c0",
+  "outcome": "FAILED_TECHNICAL",
+  "outcome_reason": "",
+  "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
+  "processed_event_ids": [
+   "mock_ca_a2d54ec9c0:completed"
+  ],
+  "provider": "mock",
+  "provider_call_id": "mock_ca_a2d54ec9c0",
+  "recording_ref": "",
+  "run_id": "20261021T183000Z-004",
+  "scheduled_at": "2026-10-21T18:30:00Z",
+  "script_id": "clinic-outreach-v1",
+  "script_version": "v1",
+  "segment": "small_group_primary_care",
+  "started_at": "2026-10-21T18:30:00Z",
+  "status": "failed",
+  "transcript_id": "",
+  "updated_at": "2026-10-21T18:30:00Z"
+ },
+ "ca_b6119bd4c1": {
+  "attempt_number": 2,
+  "callback_requested_at": "",
+  "channel_id": "ch_4da2cae231",
+  "contact_id": "c_da6677d004",
+  "created_at": "2026-10-21T18:30:00Z",
+  "duplicate_events_ignored": 1,
+  "duration_sec": 0,
+  "ended_at": "2026-10-21T18:30:00Z",
+  "failure_category": "No answer / voicemail",
+  "fallbacks_applied": [
+   "specialty",
+   "ehr",
+   "hook"
+  ],
+  "gate_result": "allowed",
+  "id": "ca_b6119bd4c1",
+  "outcome": "NO_ANSWER",
+  "outcome_reason": "",
+  "pitch_angle": "Doctors tell us GLP-1 patients need more support between visits than a visit allows.",
+  "processed_event_ids": [
+   "mock_ca_b6119bd4c1:completed"
+  ],
+  "provider": "mock",
+  "provider_call_id": "mock_ca_b6119bd4c1",
+  "recording_ref": "",
+  "run_id": "20261021T183000Z-004",
+  "scheduled_at": "2026-10-21T18:30:00Z",
+  "script_id": "clinic-outreach-v1",
+  "script_version": "v1",
+  "segment": "default",
+  "started_at": "2026-10-21T18:30:00Z",
+  "status": "completed",
+  "transcript_id": "tr_6e010c897f",
+  "updated_at": "2026-10-21T18:30:00Z"
+ },
  "ca_cf9b5882df": {
   "attempt_number": 1,
   "callback_requested_at": "",
@@ -418,6 +559,40 @@
   "status": "completed",
   "transcript_id": "tr_a53e649b44",
   "updated_at": "2026-10-20T20:18:24Z"
+ },
+ "ca_d580ef50d5": {
+  "attempt_number": 2,
+  "callback_requested_at": "2026-10-22T18:00:00Z",
+  "channel_id": "ch_2b7bcb4ad3",
+  "contact_id": "c_29816f6cb0",
+  "created_at": "2026-10-21T18:30:00Z",
+  "duplicate_events_ignored": 1,
+  "duration_sec": 61,
+  "ended_at": "2026-10-21T18:31:01Z",
+  "failure_category": "Call back later",
+  "fallbacks_applied": [
+   "ehr"
+  ],
+  "gate_result": "allowed",
+  "id": "ca_d580ef50d5",
+  "outcome": "CALLBACK_REQUESTED",
+  "outcome_reason": "",
+  "pitch_angle": "Group primary care practices tell us GLP-1 patients need more support than a visit allows.",
+  "processed_event_ids": [
+   "mock_ca_d580ef50d5:completed"
+  ],
+  "provider": "mock",
+  "provider_call_id": "mock_ca_d580ef50d5",
+  "recording_ref": "mock://recordings/mock_ca_d580ef50d5",
+  "run_id": "20261021T183000Z-004",
+  "scheduled_at": "2026-10-21T18:30:00Z",
+  "script_id": "clinic-outreach-v1",
+  "script_version": "v1",
+  "segment": "small_group_primary_care",
+  "started_at": "2026-10-21T18:30:00Z",
+  "status": "completed",
+  "transcript_id": "tr_ecc279eb47",
+  "updated_at": "2026-10-21T18:30:00Z"
  },
  "ca_d6149fd0d8": {
   "attempt_number": 1,
