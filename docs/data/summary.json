@@ -113,10 +113,10 @@
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 17,
-   "blocked": 4,
-   "considered": 21,
-   "deferred": 0
+   "allowed": 0,
+   "blocked": 5,
+   "considered": 10,
+   "deferred": 5
   },
   "paused": false,
   "suppressions": 3
@@ -168,7 +168,7 @@
    "stage": "Booked"
   }
  ],
- "generated_at": "2026-10-20T19:00:00Z",
+ "generated_at": "2026-10-20T21:26:39Z",
  "interviews": 5,
  "interviews_pending_approval": 5,
  "queue": [
@@ -239,7 +239,7 @@
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261020T190000Z-001",
+ "run_id": "20261020T212639Z-002",
  "transcripts": {
   "brain_inbox": 13,
   "delivered": 13,

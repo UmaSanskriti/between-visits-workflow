@@ -192,8 +192,8 @@
   "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
   "type": "phone",
   "value": "+16175550111",
-  "verification_reason": "wrong_number",
-  "verified": false
+  "verification_reason": "",
+  "verified": true
  },
  "ch_7acca703d9": {
   "call_clearance": "cleared",
