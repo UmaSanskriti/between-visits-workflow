@@ -222,7 +222,7 @@ def preview_email(store: Store, cfg: Config, clock: Clock, paths: LivePaths, log
         paths.seed,
         paths.clearances,
         paths.suppressions,
-        stages=("ingest", "verify"),
+        stages=("ingest", "verify", "enrich"),
         trigger="email-preview",
         mailer=MockEmailProvider(clock),
     )
@@ -236,7 +236,12 @@ def preview_email(store: Store, cfg: Config, clock: Clock, paths: LivePaths, log
         if not gate.allowed or channel is None:
             continue
         draft, errors = build_email(
-            contact, channel, brain.resolve_email({"contact": {"segment": contact.segment}}), cfg, clock
+            contact,
+            channel,
+            brain.resolve_email({"contact": {"segment": contact.segment}}),
+            cfg,
+            clock,
+            store.enrichments.get(contact.id),
         )
         if errors:
             log(f"email: blocked by email rules: {errors}")
@@ -249,6 +254,7 @@ def preview_email(store: Store, cfg: Config, clock: Clock, paths: LivePaths, log
                 "subject": draft.subject,
                 "body": draft.body,
                 "word_count": draft.word_count,
+                "personalization": draft.personalization,
             }
         )
     return allowed

@@ -256,7 +256,21 @@ class LiveService:
                     "sent_at": a.sent_at,
                     "error": a.outcome_reason if a.status == "failed" else "",
                     "reply": None,
+                    "personalization": list(a.personalization),
+                    "research": None,
                 }
+                enrichment = store.enrichments.get(a.contact_id)
+                if enrichment:
+                    email["research"] = {
+                        "summary": enrichment.summary,
+                        "hook": enrichment.hook,
+                        "services": list(enrichment.services),
+                        "doctor_bio": enrichment.doctor_bio,
+                        "glp1": enrichment.glp1_mentioned,
+                        "source": enrichment.source,
+                        "source_note": enrichment.source_note,
+                        "website": enrichment.website,
+                    }
                 log(f"run: {a.id} {email['status']} for {email['contact_name']} -> {email['to']}")
             else:
                 email = {"status": "error", "error": "the gate allowed no practice this run; see the service log"}

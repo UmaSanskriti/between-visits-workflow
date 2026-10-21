@@ -24,7 +24,7 @@
   "duplicate_of": "",
   "external_id": "t_10",
   "full_name": "Omar Haddad",
-  "hook": "",
+  "hook": "you added a GLP-1 titration clinic this year",
   "id": "c_01c54d811d",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -38,9 +38,10 @@
   "status": "VERIFIED",
   "test_scenario": "gatekeeper",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "no_email_channel",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "30 Newbury St",
@@ -67,7 +68,7 @@
   "duplicate_of": "",
   "external_id": "t_08",
   "full_name": "Ken Watanabe",
-  "hook": "",
+  "hook": "you launched an adolescent healthy-weight program this year",
   "id": "c_070728f30d",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -81,9 +82,10 @@
   "status": "IN_OUTREACH",
   "test_scenario": "booked|email_no_reply",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:33Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "77 Mass Ave",
@@ -124,7 +126,7 @@
   "duplicate_of": "",
   "external_id": "t_16",
   "full_name": "Nina Shah",
-  "hook": "",
+  "hook": "you added travel-medicine visits",
   "id": "c_0de2e04276",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -138,9 +140,10 @@
   "status": "READY",
   "test_scenario": "booked|email_agreed",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "12 Beacon St",
@@ -197,7 +200,8 @@
   "time_zone": "America/New_York",
   "updated_at": "2026-10-21T02:02:53Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "1 Fenway",
@@ -254,7 +258,8 @@
   "time_zone": "America/New_York",
   "updated_at": "2026-10-21T02:05:53Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "22 Elm St",
@@ -311,7 +316,8 @@
   "time_zone": "America/New_York",
   "updated_at": "2026-10-21T02:05:53Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "2 Harbor St",
@@ -352,7 +358,7 @@
   "duplicate_of": "",
   "external_id": "t_19",
   "full_name": "Priya Raman",
-  "hook": "",
+  "hook": "you focus on cardiometabolic health",
   "id": "c_41cc51441d",
   "last_outcome": "DECLINED",
   "lead_source": "csv:test_doctors.csv",
@@ -366,9 +372,10 @@
   "status": "DECLINED",
   "test_scenario": "not_a_fit|email_declined",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "1 Harvard St",
@@ -409,7 +416,7 @@
   "duplicate_of": "",
   "external_id": "t_09",
   "full_name": "Hannah Goldberg",
-  "hook": "",
+  "hook": "you introduced a concierge membership this year",
   "id": "c_48eaa6c438",
   "last_outcome": "DO_NOT_CONTACT",
   "lead_source": "csv:test_doctors.csv",
@@ -423,9 +430,10 @@
   "status": "SUPPRESSED",
   "test_scenario": "stop_calling|email_stop",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "700 Centre St",
@@ -452,7 +460,7 @@
   "duplicate_of": "",
   "external_id": "t_13",
   "full_name": "Luis Ortega",
-  "hook": "",
+  "hook": "you added same-day telehealth slots",
   "id": "c_517863c95b",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -466,9 +474,10 @@
   "status": "VERIFIED",
   "test_scenario": "malformed_transcript",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "no_email_channel",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "9 Kalakaua Ave",
@@ -495,7 +504,7 @@
   "duplicate_of": "",
   "external_id": "t_06",
   "full_name": "Dana Okafor",
-  "hook": "",
+  "hook": "you run monthly group nutrition classes",
   "id": "c_5bfd0187e6",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -509,9 +518,10 @@
   "status": "VERIFIED",
   "test_scenario": "booked",
   "time_zone": "Pacific/Honolulu",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "no_email_channel",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "12 Beacon St",
@@ -538,7 +548,7 @@
   "duplicate_of": "c_251bab6d38",
   "external_id": "t_12",
   "full_name": "Dr. Priya Patel",
-  "hook": "",
+  "hook": "you launched a GLP-1 follow-up clinic this fall",
   "id": "c_761872151b",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -552,9 +562,10 @@
   "status": "SOURCED",
   "test_scenario": "booked",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "duplicate_of:c_251bab6d38",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "1 Dorchester Ave",
@@ -581,7 +592,7 @@
   "duplicate_of": "",
   "external_id": "t_17",
   "full_name": "Victor Adeyemi",
-  "hook": "",
+  "hook": "you expanded your diabetes education program",
   "id": "c_866bc1a7db",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -595,9 +606,10 @@
   "status": "VERIFIED",
   "test_scenario": "technical",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "no_email_channel",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "200 Harvard Ave",
@@ -624,7 +636,7 @@
   "duplicate_of": "",
   "external_id": "t_05",
   "full_name": "Alan Chen",
-  "hook": "",
+  "hook": "you started Saturday clinics this year",
   "id": "c_8a72860e91",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -638,9 +650,10 @@
   "status": "SUPPRESSED",
   "test_scenario": "booked",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-  "verification_status": "unverified"
+  "verification_status": "unverified",
+  "website": ""
  },
  {
   "address": "3 Dudley St",
@@ -667,7 +680,7 @@
   "duplicate_of": "",
   "external_id": "t_15",
   "full_name": "Sam Rivera",
-  "hook": "",
+  "hook": "you launched a lifestyle-medicine program",
   "id": "c_a776b6dc5b",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -681,9 +694,10 @@
   "status": "VERIFIED",
   "test_scenario": "delivery_fails",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T01:57:54Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "no_email_channel",
-  "verification_status": "failed"
+  "verification_status": "failed",
+  "website": ""
  },
  {
   "address": "40 Charles St",
@@ -724,7 +738,7 @@
   "duplicate_of": "",
   "external_id": "t_02",
   "full_name": "",
-  "hook": "",
+  "hook": "you added evening telehealth hours this year",
   "id": "c_b3b24d17b8",
   "last_outcome": "DECLINED",
   "lead_source": "csv:test_doctors.csv",
@@ -738,9 +752,10 @@
   "status": "DECLINED",
   "test_scenario": "declined|email_declined",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "18 Elm St",
@@ -781,7 +796,7 @@
   "duplicate_of": "",
   "external_id": "t_20",
   "full_name": "Tom Nguyen",
-  "hook": "",
+  "hook": "you extended evening hours this year",
   "id": "c_b62f5021ad",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -795,9 +810,10 @@
   "status": "IN_OUTREACH",
   "test_scenario": "declined_recording|email_no_reply",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "14 Centre St",
@@ -838,7 +854,7 @@
   "duplicate_of": "",
   "external_id": "t_11",
   "full_name": "Grace Kim",
-  "hook": "",
+  "hook": "you started a postpartum support group",
   "id": "c_c09828fbcf",
   "last_outcome": "BOUNCED",
   "lead_source": "csv:test_doctors.csv",
@@ -852,9 +868,10 @@
   "status": "UNREACHABLE",
   "test_scenario": "wrong_number|email_bounce",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "600 Harrison Ave",
@@ -895,7 +912,7 @@
   "duplicate_of": "",
   "external_id": "t_14",
   "full_name": "Emily Zhang",
-  "hook": "",
+  "hook": "you opened a weight-management clinic this year",
   "id": "c_d7b9cfa027",
   "last_outcome": "AGREED_TO_TALK",
   "lead_source": "csv:test_doctors.csv",
@@ -909,9 +926,10 @@
   "status": "BOOKED",
   "test_scenario": "patient_data|email_pii",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "88 Tremont St",
@@ -952,7 +970,7 @@
   "duplicate_of": "",
   "external_id": "t_03",
   "full_name": "Marcus Lee",
-  "hook": "",
+  "hook": "you expanded the walk-in clinic this year",
   "id": "c_da6677d004",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -966,9 +984,10 @@
   "status": "IN_OUTREACH",
   "test_scenario": "no_answer|email_no_reply",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "5 Cambridge Pkwy",
@@ -1009,7 +1028,7 @@
   "duplicate_of": "",
   "external_id": "t_04",
   "full_name": "Siobhan Ni Bhriain",
-  "hook": "",
+  "hook": "you published a patient guide to managing GLP-1 side effects",
   "id": "c_f9eafcfce6",
   "last_outcome": "REPLIED_OTHER",
   "lead_source": "csv:test_doctors.csv",
@@ -1023,9 +1042,10 @@
   "status": "IN_OUTREACH",
   "test_scenario": "voicemail|email_other",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:31:02Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  },
  {
   "address": "9 Brattle St",
@@ -1082,6 +1102,7 @@
   "time_zone": "America/New_York",
   "updated_at": "2026-10-21T02:05:53Z",
   "verification_reason": "",
-  "verification_status": "verified"
+  "verification_status": "verified",
+  "website": ""
  }
 ]

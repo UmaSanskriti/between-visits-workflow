@@ -91,6 +91,7 @@ def ingest(store: Store, adapter: SourceAdapter, clock: Clock, default_tz: str) 
             "lead_source": row["source"],
             "pronunciation_hint": row.get("pronunciation_hint", ""),
             "hook": row.get("hook", ""),
+            "website": row.get("website", ""),
             "test_scenario": row.get("scenario", ""),
         }
         contact = store.contacts.get(cid)

@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from ..calendar import stub_slots
 from ..clock import Clock
 from ..config import Config
-from ..models import Channel, Contact
+from ..models import Channel, Contact, Enrichment
 
 PLACEHOLDER_RE = re.compile(r"\{[a-z_0-9]+\}")
 OPT_OUT_LINE = 'Reply "stop" and we won\'t contact you again.'
@@ -23,6 +23,7 @@ class EmailDraft:
     variables_used: dict = field(default_factory=dict)
     fallbacks_applied: list[str] = field(default_factory=list)
     word_count: int = 0
+    personalization: list[str] = field(default_factory=list)
 
 
 class _Vars(dict):
@@ -35,11 +36,17 @@ def _fill(template: str, variables: dict) -> str:
 
 
 def build_email(
-    contact: Contact, channel: Channel, brain_email: dict, cfg: Config, clock: Clock
+    contact: Contact,
+    channel: Channel,
+    brain_email: dict,
+    cfg: Config,
+    clock: Clock,
+    enrichment: Enrichment | None = None,
 ) -> tuple[EmailDraft | None, list[str]]:
     variables: dict = {}
     fallbacks: list[str] = []
     errors: list[str] = []
+    personalization: list[str] = []
 
     last_name = contact.full_name.strip().split()[-1] if contact.full_name.strip() else ""
     if last_name:
@@ -62,11 +69,40 @@ def build_email(
         variables["practice_name"] = "your practice"
         fallbacks.append("practice_name")
 
-    if contact.hook.strip():
+    # Personalisation: what we found about the practice (enrichment) beats the seed hook, which beats nothing.
+    if enrichment and enrichment.hook.strip():
+        variables["hook_sentence"] = (
+            f"I saw on your site that {enrichment.hook.strip().rstrip('.')} and wanted to reach out. "
+        )
+        personalization.append("hook: " + enrichment.hook.strip())
+    elif contact.hook.strip():
         variables["hook_sentence"] = f"I saw {contact.hook.strip()} and wanted to reach out. "
+        personalization.append("hook: " + contact.hook.strip())
     else:
         variables["hook_sentence"] = ""
         fallbacks.append("hook")
+    variables["persona_sentence"] = ""
+    if enrichment:
+        practice = contact.practice_name.strip() or "your practice"
+        if enrichment.glp1_mentioned:
+            variables["persona_sentence"] = (
+                f"Since {practice} already supports GLP-1 patients, your view of what happens between visits "
+                "would be especially useful."
+            )
+            personalization.append("offers GLP-1 care")
+        elif enrichment.weight_management_mentioned:
+            variables["persona_sentence"] = (
+                "Your weight-management program is exactly the setting we are trying to learn from."
+            )
+            personalization.append("runs a weight-management program")
+        if enrichment.patient_focus.strip():
+            focus = enrichment.patient_focus.strip().rstrip(".")
+            variables["persona_sentence"] = (
+                variables["persona_sentence"] + " " if variables["persona_sentence"] else ""
+            ) + (f"Given your focus on {focus}, I'd value your perspective.")
+            personalization.append("focus: " + focus)
+        if enrichment.doctor_bio.strip():
+            personalization.append("bio: " + enrichment.doctor_bio.strip()[:80])
 
     slots = stub_slots(clock.now(), contact.time_zone or cfg.default_time_zone)
     if len(slots) >= 2:
@@ -92,7 +128,12 @@ def build_email(
     if errors:
         return None, errors
 
+    variables["core_paragraph"] = _fill(brain_email.get("core_paragraph", ""), variables)
     body = _fill(brain_email.get("body", ""), variables).strip() + "\n"
+    if len(body.split()) > MAX_WORDS and brain_email.get("core_paragraph_short"):
+        variables["core_paragraph"] = _fill(brain_email["core_paragraph_short"], variables)  # keep under the cap
+        body = _fill(brain_email.get("body", ""), variables).strip() + "\n"
+        fallbacks.append("core_paragraph_shortened")
     subject = variables["subject"]
     leftover = sorted(set(PLACEHOLDER_RE.findall(subject + " " + body)))
     if leftover:
@@ -120,6 +161,7 @@ def build_email(
             variables_used=spoken,
             fallbacks_applied=fallbacks,
             word_count=words,
+            personalization=personalization,
         ),
         [],
     )

@@ -148,6 +148,12 @@ def build_summary(store: Store, run: dict) -> dict:
         "run_id": run_id,
         "channel": channel,
         "emails": email_summary(store, run),
+        "enrichment": {
+            "total": len(store.enrichments),
+            "seed": sum(1 for e in store.enrichments.values() if e.source == "seed"),
+            "web": sum(1 for e in store.enrichments.values() if e.source == "web"),
+            "with_glp1": sum(1 for e in store.enrichments.values() if e.glp1_mentioned),
+        },
         "contacts": {
             "total": len(contacts),
             "verified": verified,

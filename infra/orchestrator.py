@@ -529,7 +529,7 @@ def send_emails(
             counts["brain_unavailable"] += 1
             continue
 
-        draft, errors = build_email(contact, channel, brain_email, cfg, clock)
+        draft, errors = build_email(contact, channel, brain_email, cfg, clock, store.enrichments.get(contact.id))
         if errors or draft is None:
             for err in errors:
                 kind = "missing_field" if err.startswith("missing_required") else "email_rule"
@@ -572,6 +572,7 @@ def send_emails(
             script_version=draft.script_version,
             segment=contact.segment or "default",
             fallbacks_applied=draft.fallbacks_applied,
+            personalization=draft.personalization,
             created_at=iso(now),
             updated_at=iso(now),
         )

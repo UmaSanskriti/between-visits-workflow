@@ -97,15 +97,22 @@ EMAIL_SUBJECT_FALLBACK = "30 minutes with your practice? (HBS research, not sale
 # Playbook section 8b, cold email to an address published on the practice website. Plain text, under 150 words.
 EMAIL_BODY_TEMPLATE = (
     "{greeting}\n\n"
-    "I'm Anirudh Bagla, a student at Harvard Business School. {hook_sentence}\n\n"
-    "My co-founder and I are exploring a way for independent practices like {practice_name} to give GLP-1 "
-    "patients complete care, side-effect management, nutrition and exercise, through a shared team of "
-    "nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we "
-    "want to know if it would work for independent practices.\n\n"
+    "I'm Anirudh Bagla, a student at Harvard Business School. {hook_sentence}{persona_sentence}\n\n"
+    "{core_paragraph}\n\n"
     "We're not selling anything. Would you have 30 minutes on {slot_1} or {slot_2}, by phone or in person at "
     "your practice?\n\n"
     "Thank you,\n{sender_name}{signature_number}\n\n"
     "{opt_out_line}"
+)
+EMAIL_CORE_PARAGRAPH = (
+    "My co-founder and I are exploring a way for independent practices like {practice_name} to give GLP-1 "
+    "patients complete care, side-effect management, nutrition and exercise, through a shared team of "
+    "nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we "
+    "want to know if it would work for independent practices."
+)
+EMAIL_CORE_PARAGRAPH_SHORT = (
+    "My co-founder and I are exploring shared nutritionist and coach support for GLP-1 patients at independent "
+    "practices like {practice_name}, with the insurance billing handled. We want to know if it would work for you."
 )
 
 BANNED_CLAIMS = [
@@ -183,6 +190,8 @@ class MockBrain:
             "subject": EMAIL_SUBJECT_TEMPLATE,
             "subject_fallback": EMAIL_SUBJECT_FALLBACK,
             "body": EMAIL_BODY_TEMPLATE,
+            "core_paragraph": EMAIL_CORE_PARAGRAPH,
+            "core_paragraph_short": EMAIL_CORE_PARAGRAPH_SHORT,
             "rules": ["plain text", "under 150 words", "one ask", "no attachments", "opt-out line", "real sender name"],
             "banned_claims": BANNED_CLAIMS,
         }

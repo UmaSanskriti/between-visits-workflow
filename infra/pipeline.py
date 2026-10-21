@@ -10,6 +10,7 @@ from .brain import BrainClient
 from .clock import Clock, iso
 from .config import Config
 from .delivery import deliver_transcripts
+from .email.enrich import SeedEnricher, WebEnricher, enrich_contacts
 from .email.provider import MockEmailProvider
 from .export import export
 from .orchestrator import process_email_events, process_events, schedule_calls, send_emails
@@ -19,7 +20,7 @@ from .summary import build_summary
 from .verify import MockLineTypeLookup, verify
 from .voice import VoiceProvider
 
-ALL_STAGES = ("ingest", "verify", "call", "deliver")
+ALL_STAGES = ("ingest", "verify", "enrich", "call", "deliver")
 
 
 def git_sha() -> str:
@@ -47,6 +48,8 @@ def run_pipeline(
     trigger: str = "local",
     on_stage=None,
     mailer=None,
+    refresh_enrichment: bool = False,
+    enrichers=None,
 ) -> tuple[dict, dict]:
     """`on_stage(name, status, counts)` is called with ("<stage>", "start", {}) and ("<stage>", "done", counts)
     for ingest, verify, call, webhooks, deliver, then ("run", "done", {...}). Used by the dashboard service."""
@@ -96,6 +99,12 @@ def run_pipeline(
             store, MockLineTypeLookup(hints), clock, load_clearances(clearances), channel=cfg.outreach_channel
         )
         emit("verify", "done", run["stages"]["verify"])
+    if "enrich" in stages:
+        emit("enrich", "start")
+        if enrichers is None:
+            enrichers = [SeedEnricher(Path(seed).parent / "enrichment.csv", clock), WebEnricher(clock)]
+        run["stages"]["enrich"] = enrich_contacts(store, clock, enrichers, refresh=refresh_enrichment)
+        emit("enrich", "done", run["stages"]["enrich"])
     if "call" in stages and cfg.outreach_channel == "email":
         if mailer is None:
             if cfg.mode == "live":

@@ -1,177 +1,5 @@
 [
  {
-  "call_attempt_id": "em_1dd7b77892",
-  "contact_id": "c_070728f30d",
-  "created_at": "2026-10-21T02:05:33Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_5f981d4531",
-  "idempotency_key": "em_1dd7b77892:sent",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Watanabe,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Watanabe Pediatrics to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n"
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_e0d96f14bc",
-  "contact_id": "c_251bab6d38",
-  "created_at": "2026-10-21T02:02:53Z",
-  "delivered_at": "2026-10-21T02:04:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_72814132e4",
-  "idempotency_key": "em_e0d96f14bc:sent",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Patel,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw the new GLP-1 weight-management program on your site and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Patel Family Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n"
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_235dad69f6",
-  "contact_id": "c_29816f6cb0",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_df79bd95ef",
-  "idempotency_key": "em_235dad69f6:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Martinez,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw your weight-management clinic page and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Fenway Group Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   },
-   {
-    "speaker": "doctor",
-    "start_ms": 0,
-    "text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it."
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_7e13816d5d",
-  "contact_id": "c_2c3a09fcb5",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_7e0e02e827",
-  "idempotency_key": "em_7e13816d5d:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Bennett,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw the nutrition counseling note on your website and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Bennett Family Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   },
-   {
-    "speaker": "doctor",
-    "start_ms": 0,
-    "text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it."
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_d39fa0c7be",
-  "contact_id": "c_41cc51441d",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_7bcf8e455a",
-  "idempotency_key": "em_d39fa0c7be:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Raman,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Harborview Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   },
-   {
-    "speaker": "doctor",
-    "start_ms": 0,
-    "text": "Thanks for reaching out, but we're not able to take this on right now."
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_e9f7fe12db",
-  "contact_id": "c_48eaa6c438",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_b9ed93f342",
-  "idempotency_key": "em_e9f7fe12db:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Goldberg,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Brookline Primary Care to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   },
-   {
-    "speaker": "doctor",
-    "start_ms": 0,
-    "text": "Please stop emailing us. Remove this address from your list."
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_1c90a154b7",
-  "contact_id": "c_b3b24d17b8",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_6cf3e3ffa7",
-  "idempotency_key": "em_1c90a154b7:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi there,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Beacon Hill Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   },
-   {
-    "speaker": "doctor",
-    "start_ms": 0,
-    "text": "Thanks for reaching out, but we're not able to take this on right now."
-   }
-  ]
- },
- {
   "call_attempt_id": "em_38db576121",
   "contact_id": "c_b62f5021ad",
   "created_at": "2026-10-21T02:05:53Z",
@@ -193,14 +21,14 @@
   ]
  },
  {
-  "call_attempt_id": "em_0454abe525",
-  "contact_id": "c_c09828fbcf",
+  "call_attempt_id": "em_26b6ee67d1",
+  "contact_id": "c_fb34444215",
   "created_at": "2026-10-21T02:05:53Z",
   "delivered_at": "2026-10-21T02:05:53Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
-  "id": "tr_fe051d28df",
-  "idempotency_key": "em_0454abe525:sent",
+  "id": "tr_45de111de9",
+  "idempotency_key": "em_26b6ee67d1:reply",
   "language": "en",
   "last_delivery_error": "",
   "pii_flagged": false,
@@ -209,54 +37,12 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi Dr. Kim,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Kim Family Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_79dcaa34ba",
-  "contact_id": "c_d7b9cfa027",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "",
-  "delivery_attempts": 0,
-  "delivery_status": "held_pii_review",
-  "id": "tr_b3c99276d4",
-  "idempotency_key": "em_79dcaa34ba:reply",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": true,
-  "pii_reason": "date of birth",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Zhang,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like South End Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+    "text": "Hi Dr. Chen,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw your weight-management clinic page and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Chen Family Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
    },
    {
     "speaker": "doctor",
     "start_ms": 0,
-    "text": "Sure. One of my patients, date of birth 03/04/1980, asked about this last week, so it's timely."
-   }
-  ]
- },
- {
-  "call_attempt_id": "em_6e29b4cd45",
-  "contact_id": "c_da6677d004",
-  "created_at": "2026-10-21T02:05:53Z",
-  "delivered_at": "2026-10-21T02:05:53Z",
-  "delivery_attempts": 0,
-  "delivery_status": "delivered",
-  "id": "tr_64bfe04e59",
-  "idempotency_key": "em_6e29b4cd45:sent",
-  "language": "en",
-  "last_delivery_error": "",
-  "pii_flagged": false,
-  "pii_reason": "",
-  "utterances": [
-   {
-    "speaker": "agent",
-    "start_ms": 0,
-    "text": "Hi Dr. Lee,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Lee Medical to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+    "text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it."
    }
   ]
  },
@@ -287,14 +73,14 @@
   ]
  },
  {
-  "call_attempt_id": "em_26b6ee67d1",
-  "contact_id": "c_fb34444215",
-  "created_at": "2026-10-21T02:05:53Z",
+  "call_attempt_id": "em_1dd7b77892",
+  "contact_id": "c_070728f30d",
+  "created_at": "2026-10-21T02:05:33Z",
   "delivered_at": "2026-10-21T02:05:53Z",
   "delivery_attempts": 0,
   "delivery_status": "delivered",
-  "id": "tr_45de111de9",
-  "idempotency_key": "em_26b6ee67d1:reply",
+  "id": "tr_5f981d4531",
+  "idempotency_key": "em_1dd7b77892:sent",
   "language": "en",
   "last_delivery_error": "",
   "pii_flagged": false,
@@ -303,12 +89,226 @@
    {
     "speaker": "agent",
     "start_ms": 0,
-    "text": "Hi Dr. Chen,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw your weight-management clinic page and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Chen Family Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+    "text": "Hi Dr. Watanabe,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Watanabe Pediatrics to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n"
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_64bfe04e59",
+  "idempotency_key": "em_6e29b4cd45:sent",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Lee,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Lee Medical to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_6cf3e3ffa7",
+  "idempotency_key": "em_1c90a154b7:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi there,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Beacon Hill Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Thanks for reaching out, but we're not able to take this on right now."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_e0d96f14bc",
+  "contact_id": "c_251bab6d38",
+  "created_at": "2026-10-21T02:02:53Z",
+  "delivered_at": "2026-10-21T02:04:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_72814132e4",
+  "idempotency_key": "em_e0d96f14bc:sent",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Patel,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw the new GLP-1 weight-management program on your site and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Patel Family Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n"
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_7bcf8e455a",
+  "idempotency_key": "em_d39fa0c7be:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Raman,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Harborview Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Thanks for reaching out, but we're not able to take this on right now."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_7e0e02e827",
+  "idempotency_key": "em_7e13816d5d:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Bennett,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw the nutrition counseling note on your website and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Bennett Family Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
    },
    {
     "speaker": "doctor",
     "start_ms": 0,
     "text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_79dcaa34ba",
+  "contact_id": "c_d7b9cfa027",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "",
+  "delivery_attempts": 0,
+  "delivery_status": "held_pii_review",
+  "id": "tr_b3c99276d4",
+  "idempotency_key": "em_79dcaa34ba:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": true,
+  "pii_reason": "date of birth",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Zhang,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like South End Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Sure. One of my patients, date of birth 03/04/1980, asked about this last week, so it's timely."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_b9ed93f342",
+  "idempotency_key": "em_e9f7fe12db:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Goldberg,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Brookline Primary Care to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Please stop emailing us. Remove this address from your list."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_df79bd95ef",
+  "idempotency_key": "em_235dad69f6:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Martinez,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw your weight-management clinic page and wanted to reach out. \n\nMy co-founder and I are exploring a way for independent practices like Fenway Group Practice to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it."
+   }
+  ]
+ },
+ {
+  "call_attempt_id": "em_0454abe525",
+  "contact_id": "c_c09828fbcf",
+  "created_at": "2026-10-21T02:05:53Z",
+  "delivered_at": "2026-10-21T02:05:53Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_fe051d28df",
+  "idempotency_key": "em_0454abe525:sent",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Kim,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Kim Family Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n"
    }
   ]
  }

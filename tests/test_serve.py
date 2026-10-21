@@ -299,7 +299,7 @@ def test_real_agent_run_queues_the_first_eligible_practice(tmp_path):
         time.sleep(0.2)
     run = state.snapshot()["run"]
     assert run["status"] == "done", run
-    assert list(run["stages"]) == ["ingest", "verify", "call", "webhooks", "deliver"]
+    assert list(run["stages"]) == ["ingest", "verify", "enrich", "call", "webhooks", "deliver"]
     e = run["email"]
     assert e["status"] == "queued" and e["transport"] == "outbox" and e["contact_name"] == "Priya Patel"
     assert e["subject"].startswith("30 minutes with Dr. Patel") and "stop" in e["body"]

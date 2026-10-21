@@ -6,7 +6,7 @@
 
   const REPO = "https://github.com/UmaSanskriti/between-visits-workflow";
   const API_RUNS = "https://api.github.com/repos/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml/runs?per_page=1";
-  const FILES = ["run", "summary", "contacts", "call_attempts", "email_attempts", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
+  const FILES = ["run", "summary", "contacts", "call_attempts", "email_attempts", "enrichments", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
   const ICON = { good: "✓", warning: "!", serious: "▲", critical: "✕", neutral: "·" };
   const TZ = "America/New_York";
   const LOCAL = "http://127.0.0.1:8787";
@@ -166,6 +166,7 @@
     const byId = Object.fromEntries(contacts.map((c) => [c.id, c]));
     const attemptById = Object.fromEntries(attempts.map((a) => [a.id, a]));
     const emailById = Object.fromEntries(emailAttempts.map((a) => [a.id, a]));
+    const enrichByContact = Object.fromEntries((d.enrichments || []).map((e) => [e.contact_id, e]));
     const anyAttempt = (id) => attemptById[id] || emailById[id];
     const transcriptById = Object.fromEntries(transcripts.map((t) => [t.id, t]));
     const name = (cid) => { const c = byId[cid]; return c ? (c.full_name || "(no name)") + (c.external_id ? " · " + c.external_id : "") : cid; };
@@ -308,6 +309,8 @@
       tile("Agreed", agreedTotal, pendingApproval ? "warning" : "good", pendingApproval ? pendingApproval + " awaiting approval" : "handoffs to Anirudh");
       tile("Awaiting reply", awaitingReply, followUpsDue ? "warning" : "plain", followUpsDue ? followUpsDue + " follow-ups due" : "emailed, no reply yet");
       tile("Emails " + (run.simulated_time ? "that day" : "today"), todayEmails + " / " + ecap, todayEmails >= ecap ? "warning" : "plain", todayEmails >= ecap ? "daily cap reached" : "daily cap");
+      const enr = s.enrichment || {};
+      tile("Researched", (enr.total ?? Object.keys(enrichByContact).length) + " / " + contacts.length, "plain", (enr.with_glp1 ?? 0) + " mention GLP-1 care");
     } else {
       tile("Booked", contacts.filter((c) => c.status === "BOOKED").length, pendingApproval ? "warning" : "good", pendingApproval ? pendingApproval + " awaiting approval" : "all approved");
       tile("In queue", queue.length, "plain", retries + " retries scheduled");
@@ -361,6 +364,7 @@
         ]);
         if (m.outcome_reason) line.appendChild(el("div", { class: "muted small", text: m.outcome_reason }));
         if (m.redirected_to) line.appendChild(el("div", { class: "muted small", text: "delivered to " + m.redirected_to + " for the demo" }));
+        if (m.personalization && m.personalization.length) line.appendChild(el("div", { class: "muted small", text: "Personalised with: " + m.personalization.join(" · ") }));
         if (m.body) line.appendChild(el("details", null, [el("summary", { text: "Email sent" }), el("pre", { class: "block", text: m.body })]));
         if (m.reply_text) line.appendChild(el("details", { open: "" }, [el("summary", { text: "Reply" + (m.replied_at ? " · " + fmtTime(m.replied_at) : "") }), el("div", { class: "reply-quote", text: m.reply_text })]));
         if (hasHandoff(m.handoff)) line.appendChild(handoffBlock(m.handoff));
@@ -376,6 +380,15 @@
         pill(tone === "neutral" ? "" : tone, label)]));
       const [nk, ntext] = nextStep(c, v.interview, v.gate);
       card.appendChild(el("div", { class: "next " + (nk === "brand" || nk === "neutral" ? "" : nk) }, [el("b", { text: "Next: " }), ntext]));
+      const en = enrichByContact[c.id];
+      if (en) {
+        const about = el("div", { class: "about" }, [el("h4", null, ["About the practice", el("span", { text: en.source === "web" ? "from " + (en.website || "the website").replace(/^https?:\/\//, "") : "from seed fixture" })])]);
+        if (en.summary) about.appendChild(el("div", { class: "small", text: en.summary }));
+        if (en.services && en.services.length) about.appendChild(el("div", { class: "chips-sm" }, en.services.slice(0, 6).map((sv) => el("span", { class: "m", text: sv }))));
+        if (en.doctor_bio) about.appendChild(el("div", { class: "muted small", text: en.doctor_bio }));
+        if (en.recent_note) about.appendChild(el("div", { class: "muted small", text: "Recent: " + en.recent_note }));
+        card.appendChild(about);
+      }
 
       if (isEmail) {
         if (v.mails.length) card.appendChild(emailSection(v));
@@ -534,6 +547,14 @@
     const picked = e && e.contact_name ? "Picked " + (e.contact_name.startsWith("Dr") ? e.contact_name : "Dr. " + e.contact_name.split(" ").slice(-1)[0]) + ", " + (e.practice || "") : (em ? "Gate: " + (em.allowed ?? 0) + " allowed, " + (em.blocked ?? 0) + " blocked, " + (em.deferred ?? 0) + " deferred" : "Checking the gate");
     step(e ? "done" : (stageDone("verify") && running ? "active" : ""), picked, em && e ? [el("div", { class: "d", text: "Gate: allowed (cleared address, not suppressed)" + (em.blocked ? " · " + em.blocked + " others blocked" : "") })] : []);
     if (e && e.status === "error" && !e.subject) { step("err", "No email could be composed", [el("div", { class: "d", text: e.error || "" })]); return; }
+    // 2b. research
+    if (e && e.research) {
+      const r = e.research;
+      step("done", "Researched the practice: " + (r.summary || r.hook || "no details found"), [
+        el("div", { class: "d", text: (r.services && r.services.length ? "Services: " + r.services.slice(0, 5).join(", ") + ". " : "") + (r.doctor_bio ? r.doctor_bio + " " : "") + (r.glp1 ? "Already supports GLP-1 patients." : "") }),
+        el("div", { class: "d muted", text: (r.source === "web" ? "From the practice website" : "From the seed fixture standing in for a web lookup") + (e.personalization && e.personalization.length ? " · used in the draft: " + e.personalization.join(" · ") : "") }),
+      ]);
+    } else if (e && e.subject) step("done", "Researched the practice: nothing on file", [el("div", { class: "d muted", text: "No enrichment for this practice; the generic template was used." })]);
     // 3. compose
     step(e && e.subject ? "done" : (running ? "active" : ""), e && e.subject ? "Composed the email" : "Composing the email", e && e.subject ? [el("div", { class: "d subject", text: "Subject: " + e.subject }), el("details", null, [el("summary", { text: "Read the email" }), el("pre", { class: "block", text: e.body || "" })])] : []);
     // 4. send

@@ -59,7 +59,9 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--reset", action="store_true", help="wipe data/ first")
     run.add_argument("--trigger", default=os.environ.get("GITHUB_EVENT_NAME", "local"))
     for name in ALL_STAGES:
-        sub.add_parser(name, help=f"run only the {name} stage (then summary + export)")
+        stage = sub.add_parser(name, help=f"run only the {name} stage (then summary + export)")
+        if name == "enrich":
+            stage.add_argument("--refresh", action="store_true", help="re-run the research for every practice")
     sub.add_parser("summary", help="print the summary JSON")
     sub.add_parser("export", help="re-export docs/data from the current state")
     sup = sub.add_parser("suppress", help="add a do-not-contact entry (OPS-001)")
@@ -227,6 +229,7 @@ def main(argv=None) -> int:
             args.suppressions,
             stages=stages,
             trigger=trigger,
+            refresh_enrichment=bool(getattr(args, "refresh", False)),
         )
         _print_report(run, summary)
         return 3 if run["gate_escapes"] else 0
@@ -324,6 +327,7 @@ def main(argv=None) -> int:
             "channels": [ch.to_dict() for ch in store.channels_for(contact.id)],
             "call_attempts": [a.to_dict() for a in store.attempts_for(contact.id)],
             "email_attempts": [a.to_dict() for a in store.email_attempts.values() if a.contact_id == contact.id],
+            "enrichment": (store.enrichments[contact.id].to_dict() if contact.id in store.enrichments else None),
             "interviews": [i.to_dict() for i in store.interviews.values() if i.contact_id == contact.id],
             "gate_decisions": [d for d in store.logs["gate_decisions"] if d["contact_id"] == contact.id],
             "audit": [

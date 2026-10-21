@@ -64,6 +64,10 @@ class Store:
     def scripts(self):
         return self.tables["scripts"]
 
+    @property
+    def enrichments(self):
+        return self.tables["enrichments"]
+
     # ---- persistence -----------------------------------------------------
     def load(self) -> Store:
         for name, cls in TABLES.items():

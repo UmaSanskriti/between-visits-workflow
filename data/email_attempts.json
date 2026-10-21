@@ -15,6 +15,7 @@
   "id": "em_0454abe525",
   "outcome": "BOUNCED",
   "outcome_reason": "550 5.1.1 The email account that you tried to reach does not exist.",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_0454abe525@between-visits.test>:bounce"
   ],
@@ -50,6 +51,7 @@
   "id": "em_1c90a154b7",
   "outcome": "DECLINED",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_1c90a154b7@between-visits.test>:reply"
   ],
@@ -84,6 +86,7 @@
   "id": "em_1dd7b77892",
   "outcome": "",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [],
   "provider": "gmail-connector",
   "provider_message_id": "1a15c34a97448e6f",
@@ -121,6 +124,7 @@
   "id": "em_235dad69f6",
   "outcome": "AGREED_TO_TALK",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_235dad69f6@between-visits.test>:reply"
   ],
@@ -160,6 +164,7 @@
   "id": "em_26b6ee67d1",
   "outcome": "AGREED_TO_TALK",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_26b6ee67d1@between-visits.test>:reply"
   ],
@@ -194,6 +199,7 @@
   "id": "em_38db576121",
   "outcome": "",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [],
   "provider": "mock",
   "provider_message_id": "<mock-em_38db576121@between-visits.test>",
@@ -233,6 +239,7 @@
   "id": "em_6b6ea10721",
   "outcome": "REPLIED_OTHER",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_6b6ea10721@between-visits.test>:reply"
   ],
@@ -267,6 +274,7 @@
   "id": "em_6e29b4cd45",
   "outcome": "",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [],
   "provider": "mock",
   "provider_message_id": "<mock-em_6e29b4cd45@between-visits.test>",
@@ -306,6 +314,7 @@
   "id": "em_79dcaa34ba",
   "outcome": "AGREED_TO_TALK",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_79dcaa34ba@between-visits.test>:reply"
   ],
@@ -345,6 +354,7 @@
   "id": "em_7e13816d5d",
   "outcome": "AGREED_TO_TALK",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_7e13816d5d@between-visits.test>:reply"
   ],
@@ -379,6 +389,7 @@
   "id": "em_d39fa0c7be",
   "outcome": "DECLINED",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_d39fa0c7be@between-visits.test>:reply"
   ],
@@ -411,6 +422,7 @@
   "id": "em_e0d96f14bc",
   "outcome": "",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [],
   "provider": "gmail-connector",
   "provider_message_id": "1a15c27e77ecf5a9",
@@ -443,6 +455,7 @@
   "id": "em_e9f7fe12db",
   "outcome": "DO_NOT_CONTACT",
   "outcome_reason": "",
+  "personalization": [],
   "processed_event_ids": [
    "<mock-em_e9f7fe12db@between-visits.test>:reply"
   ],

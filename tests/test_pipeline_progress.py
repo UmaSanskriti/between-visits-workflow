@@ -14,6 +14,8 @@ def test_on_stage_events_are_ordered(tmp_path):
         ("ingest", "done"),
         ("verify", "start"),
         ("verify", "done"),
+        ("enrich", "start"),
+        ("enrich", "done"),
         ("call", "start"),
         ("call", "done"),
         ("webhooks", "start"),
@@ -24,6 +26,7 @@ def test_on_stage_events_are_ordered(tmp_path):
     ]
     by_name = {(n, s): c for n, s, c in events}
     assert by_name[("ingest", "done")]["rows"] == 21
+    assert by_name[("enrich", "done")]["enriched_seed"] == 21
     assert by_name[("call", "done")]["placed"] > 0
     assert by_name[("run", "done")]["gate_escapes"] == 0 and by_name[("run", "done")]["run_id"]
     assert SEED.exists() and CLEARANCES.exists() and SUPPRESSIONS.exists()

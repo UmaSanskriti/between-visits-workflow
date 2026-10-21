@@ -67,6 +67,7 @@ def export(store: Store, export_dir: Path | str, summary: dict, run: dict) -> li
         ),
     )
     dump("scripts", [s.to_dict() for s in store.scripts.values()])
+    dump("enrichments", [e.to_dict() for e in store.enrichments.values()])
     dump("transcripts", [t.to_dict() for t in store.transcripts.values()])
     dump("interviews", [i.to_dict() for i in store.interviews.values()])
     dump("suppressions", [s.to_dict() for s in store.suppressions.values()])

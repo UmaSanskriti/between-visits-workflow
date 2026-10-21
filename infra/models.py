@@ -138,6 +138,7 @@ class Contact(Record):
     next_attempt_at: str = ""
     last_outcome: str = ""
     hook: str = ""  # playbook section 4: one specific line from the practice website
+    website: str = ""  # practice website, when known (feeds the web enricher)
     test_scenario: str = ""  # dry run only: drives the mock voice provider
     created_at: str = ""
     updated_at: str = ""
@@ -221,8 +222,33 @@ class EmailAttempt(Record):
     handoff: dict = field(default_factory=dict)
     transcript_id: str = ""
     fallbacks_applied: list[str] = field(default_factory=list)
+    personalization: list[str] = field(default_factory=list)  # facts from the enrichment used in this draft
     processed_event_ids: list[str] = field(default_factory=list)
     duplicate_events_ignored: int = 0
+    created_at: str = ""
+    updated_at: str = ""
+
+
+@dataclass
+class Enrichment(Record):
+    """What we would normally find online about the practice (brief step 2). Keyed by contact id."""
+
+    id: str  # == contact_id
+    contact_id: str
+    source: str = "seed"  # seed | web
+    website: str = ""
+    summary: str = ""
+    services: list[str] = field(default_factory=list)
+    glp1_mentioned: bool = False
+    weight_management_mentioned: bool = False
+    doctor_bio: str = ""
+    patient_focus: str = ""
+    recent_note: str = ""
+    languages: str = ""
+    hook: str = ""  # a clause that completes "I saw on your site that {hook}"
+    source_note: str = ""
+    retrieved_at: str = ""
+    confidence: str = "low"  # low | medium | high
     created_at: str = ""
     updated_at: str = ""
 
@@ -308,6 +334,7 @@ TABLES: dict[str, type[Record]] = {
     "channels": Channel,
     "call_attempts": CallAttempt,
     "email_attempts": EmailAttempt,
+    "enrichments": Enrichment,
     "transcripts": Transcript,
     "interviews": Interview,
     "suppressions": Suppression,
