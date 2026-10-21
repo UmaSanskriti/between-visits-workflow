@@ -1,5 +1,5 @@
 {
- "alerts": 3,
+ "alerts": 4,
  "calls": {
   "attempts": 0,
   "booked": 0,
@@ -13,29 +13,29 @@
  },
  "channel": "email",
  "compliance": {
-  "consent_records": 32,
+  "consent_records": 51,
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 0,
-   "considered": 0,
-   "deferred": 0
+   "allowed": 1,
+   "blocked": 58,
+   "considered": 71,
+   "deferred": 12
   },
   "paused": false,
   "suppressions": 1
  },
  "contacts": {
   "by_status": {
-   "IN_OUTREACH": 5,
-   "READY": 9,
-   "SOURCED": 51,
+   "IN_OUTREACH": 6,
+   "READY": 8,
+   "SOURCED": 3,
    "SUPPRESSED": 1,
-   "VERIFIED": 5
+   "VERIFIED": 53
   },
   "by_verification": {
-   "failed": 6,
-   "unverified": 51,
+   "failed": 56,
+   "unverified": 1,
    "verified": 14
   },
   "total": 71,
@@ -44,18 +44,18 @@
  "dlq": 0,
  "emails": {
   "agreed": 0,
-  "attempts": 5,
-  "awaiting_reply": 5,
+  "attempts": 7,
+  "awaiting_reply": 6,
   "bounced": 0,
   "by_outcome": {
-   "(awaiting reply)": 5
+   "(awaiting reply)": 7
   },
   "by_script_version": {
    "v1": {
-    "attempts": 5,
+    "attempts": 7,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 5
+     "(pending)": 7
     },
     "conversion": 0.0,
     "declined": 0
@@ -72,10 +72,10 @@
     "declined": 0
    },
    "solo_primary_care": {
-    "attempts": 2,
+    "attempts": 4,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 2
+     "(pending)": 4
     },
     "conversion": 0.0,
     "declined": 0
@@ -99,7 +99,7 @@
   "queued": 0,
   "replied": 0,
   "reply_rate": 0.0,
-  "sent": 5,
+  "sent": 6,
   "stop": 0
  },
  "enrichment": {
@@ -108,7 +108,7 @@
   "web": 0,
   "with_glp1": 7
  },
- "errors": 6,
+ "errors": 56,
  "funnel": [
   {
    "count": 71,
@@ -123,7 +123,7 @@
    "stage": "Cleared to email"
   },
   {
-   "count": 5,
+   "count": 6,
    "stage": "Emailed"
   },
   {
@@ -135,7 +135,7 @@
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T03:40:46Z",
+ "generated_at": "2026-10-21T05:22:18Z",
  "interviews": 0,
  "interviews_pending_approval": 0,
  "practices": {
@@ -178,19 +178,6 @@
    "name": "Grace Kim",
    "next_attempt_at": "",
    "practice": "Kim Family Medicine",
-   "queued_email": false,
-   "segment": "solo_primary_care",
-   "status": "READY"
-  },
-  {
-   "attempts": 0,
-   "awaiting_reply": false,
-   "contact_id": "c_48eaa6c438",
-   "external_id": "t_09",
-   "last_outcome": "",
-   "name": "Hannah Goldberg",
-   "next_attempt_at": "",
-   "practice": "Brookline Primary Care",
    "queued_email": false,
    "segment": "solo_primary_care",
    "status": "READY"
@@ -324,16 +311,29 @@
    "queued_email": false,
    "segment": "small_group_primary_care",
    "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_48eaa6c438",
+   "external_id": "t_09",
+   "last_outcome": "",
+   "name": "Hannah Goldberg",
+   "next_attempt_at": "2026-10-24T03:43:13Z",
+   "practice": "Brookline Primary Care",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T034046Z-008",
+ "run_id": "20261021T052218Z-010",
  "transcripts": {
-  "brain_inbox": 13,
-  "delivered": 2,
-  "delivery_rate": 0.4,
+  "brain_inbox": 17,
+  "delivered": 6,
+  "delivery_rate": 1.0,
   "failed": 0,
   "held_pii_review": 0,
-  "pending": 3,
-  "total": 5
+  "pending": 0,
+  "total": 6
  }
 }

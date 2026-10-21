@@ -1,6 +1,80 @@
 [
  {
   "attempt_number": 1,
+  "body": "Hi there,\n\nI'm Anirudh Bagla, a student at Harvard Business School. Given your focus on adult chronic care, I'd value your perspective. I noticed you added evening telehealth hours this year and wanted to reach out.\n\nMy co-founder and I are exploring shared nutritionist and coach support for GLP-1 patients at independent practices like Beacon Hill Internal Medicine, with the insurance billing handled. We want to know if it would work for you.\n\nWe're not selling anything. Would you have 30 minutes on Fri 10/23 2:00pm or Tue 10/27 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n",
+  "channel_id": "ch_b401e0efc6",
+  "contact_id": "c_b3b24d17b8",
+  "created_at": "2026-10-21T05:22:18Z",
+  "duplicate_events_ignored": 0,
+  "failure_category": "",
+  "fallbacks_applied": [
+   "doctor_name"
+  ],
+  "gate_result": "allowed",
+  "handoff": {},
+  "id": "em_1c90a154b7",
+  "outcome": "",
+  "outcome_reason": "",
+  "personalization": [
+   "hook: you added evening telehealth hours this year",
+   "focus: adult chronic care",
+   "bio: The practice website lists no physician biography."
+  ],
+  "processed_event_ids": [],
+  "provider": "",
+  "provider_message_id": "",
+  "redirected_to": "",
+  "replied_at": "",
+  "reply_text": "",
+  "run_id": "20261021T052218Z-010",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "sent_at": "",
+  "status": "draft",
+  "subject": "30 minutes with your practice? (HBS research, not sales)",
+  "thread_id": "",
+  "transcript_id": "",
+  "updated_at": "2026-10-21T05:22:37Z",
+  "variant": 1
+ },
+ {
+  "attempt_number": 1,
+  "body": "Hi Dr. Goldberg,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I noticed you introduced a concierge membership this year and wanted to reach out. Given your focus on long-term patient relationships, I'd value your perspective.\n\nMy co-founder and I are exploring a way for independent practices like Brookline Primary Care to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n",
+  "channel_id": "ch_c81ee09672",
+  "contact_id": "c_48eaa6c438",
+  "created_at": "2026-10-21T03:43:12Z",
+  "duplicate_events_ignored": 0,
+  "failure_category": "",
+  "fallbacks_applied": [],
+  "gate_result": "allowed",
+  "handoff": {},
+  "id": "em_e9f7fe12db",
+  "outcome": "",
+  "outcome_reason": "",
+  "personalization": [
+   "hook: you introduced a concierge membership this year",
+   "focus: long-term patient relationships",
+   "bio: Dr. Hannah Goldberg has practised family medicine in Brookline for 20 years."
+  ],
+  "processed_event_ids": [],
+  "provider": "smtp",
+  "provider_message_id": "<\u2022\u2022\u2022@gmail.com>",
+  "redirected_to": "s\u2022\u2022\u2022@gse.harvard.edu",
+  "replied_at": "",
+  "reply_text": "",
+  "run_id": "20261021T034312Z-009",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "sent_at": "2026-10-21T03:43:13Z",
+  "status": "sent",
+  "subject": "30 minutes with Dr. Goldberg? (HBS research, not sales)",
+  "thread_id": "",
+  "transcript_id": "tr_b9ed93f342",
+  "updated_at": "2026-10-21T03:43:13Z",
+  "variant": 0
+ },
+ {
+  "attempt_number": 1,
   "body": "Hi Dr. Raman,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw on your site that you focus on cardiometabolic health and wanted to reach out. Given your focus on cardiometabolic health, I'd value your perspective.\n\nMy co-founder and I are exploring a way for independent practices like Harborview Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n",
   "channel_id": "ch_7d785a7774",
   "contact_id": "c_41cc51441d",
@@ -32,7 +106,8 @@
   "subject": "30 minutes with Dr. Raman? (HBS research, not sales)",
   "thread_id": "",
   "transcript_id": "tr_7bcf8e455a",
-  "updated_at": "2026-10-21T02:57:46Z"
+  "updated_at": "2026-10-21T02:57:46Z",
+  "variant": 0
  },
  {
   "attempt_number": 1,
@@ -70,7 +145,8 @@
   "subject": "30 minutes with Dr. Bennett? (HBS research, not sales)",
   "thread_id": "",
   "transcript_id": "tr_7e0e02e827",
-  "updated_at": "2026-10-21T02:55:22Z"
+  "updated_at": "2026-10-21T02:55:22Z",
+  "variant": 0
  },
  {
   "attempt_number": 1,
@@ -108,7 +184,8 @@
   "subject": "30 minutes with Dr. Martinez? (HBS research, not sales)",
   "thread_id": "1a15c4f1c002fa97",
   "transcript_id": "tr_df79bd95ef",
-  "updated_at": "2026-10-21T02:34:39Z"
+  "updated_at": "2026-10-21T02:34:39Z",
+  "variant": 0
  },
  {
   "attempt_number": 1,
@@ -141,7 +218,8 @@
   "subject": "30 minutes with Dr. Watanabe? (HBS research, not sales)",
   "thread_id": "1a15c34a97448e6f",
   "transcript_id": "tr_5f981d4531",
-  "updated_at": "2026-10-21T02:05:33Z"
+  "updated_at": "2026-10-21T02:05:33Z",
+  "variant": 0
  },
  {
   "attempt_number": 1,
@@ -172,6 +250,7 @@
   "subject": "30 minutes with Dr. Patel? (HBS research, not sales)",
   "thread_id": "1a15c27e77ecf5a9",
   "transcript_id": "tr_72814132e4",
-  "updated_at": "2026-10-21T02:02:53Z"
+  "updated_at": "2026-10-21T02:02:53Z",
+  "variant": 0
  }
 ]

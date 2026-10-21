@@ -6,6 +6,20 @@
    {
     "call_clearance": "cleared",
     "contact_id": "c_01c54d811d",
+    "id": "ch_10ce09be02",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220110",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220110",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_01c54d811d",
     "id": "ch_1a19dbc957",
     "line_type": "landline",
     "raw_value": "617-555-0110",
@@ -37,12 +51,12 @@
   "specialty": "endocrinology",
   "state": "MA",
   "status": "VERIFIED",
-  "test_scenario": "gatekeeper",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "no_email_channel",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://haddadendocrine.example"
  },
  {
   "address": "22 Mill St",
@@ -60,7 +74,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224345",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -77,16 +91,16 @@
   "practice_name": "Arlington Family Practice P.c",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -127,12 +141,12 @@
   "specialty": "pediatrics",
   "state": "MA",
   "status": "IN_OUTREACH",
-  "test_scenario": "booked|email_no_reply",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://watanabepeds.example"
  },
  {
   "address": "77 Mass Ave",
@@ -165,6 +179,20 @@
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220116",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "not_cleared",
+    "contact_id": "c_0de2e04276",
+    "id": "ch_b1ceab7dce",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220116",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220116",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -186,12 +214,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "booked|email_agreed",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://shahprimarycare.example"
  },
  {
   "address": "777 Concord Ave Ste 105",
@@ -209,7 +237,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224085",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
@@ -226,16 +254,16 @@
   "practice_name": "Xpc Health PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -254,7 +282,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20227900",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
@@ -271,16 +299,16 @@
   "practice_name": "Wellesley Family Care Associates, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -299,7 +327,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220616",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Brookline",
@@ -316,16 +344,16 @@
   "practice_name": "Cathleen London MD PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -344,7 +372,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20225000",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -361,16 +389,16 @@
   "practice_name": "One Medical Group, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -389,7 +417,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20223003",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Needham",
@@ -406,16 +434,16 @@
   "practice_name": "Genera Health Direct LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -434,7 +462,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224371",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -451,16 +479,16 @@
   "practice_name": "Mightier Clinical Services Of Ca, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -479,7 +507,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20221555",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Braintree",
@@ -496,16 +524,16 @@
   "practice_name": "Braintree Family Physician INC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -524,7 +552,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229015",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Watertown",
@@ -541,22 +569,36 @@
   "practice_name": "3 Billion Beats Medical, P.a.",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
   "address": "12 Beacon St",
   "attempts": 1,
   "channels": [
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_251bab6d38",
+    "id": "ch_0cfad226de",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
+    "verification_reason": "",
+    "verified": true
+   },
    {
     "call_clearance": "cleared",
     "contact_id": "c_251bab6d38",
@@ -605,12 +647,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "IN_OUTREACH",
-  "test_scenario": "booked|email_agreed",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:07:57Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://patelfamilymedicine.example"
  },
  {
   "address": "1 Fenway",
@@ -643,6 +685,20 @@
     "value": "s\u2022\u2022\u2022@fenwaygroup.example.test",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_29816f6cb0",
+    "id": "ch_3374ea8e64",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220107",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220107",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -664,12 +720,12 @@
   "specialty": "internal medicine",
   "state": "MA",
   "status": "IN_OUTREACH",
-  "test_scenario": "callback|email_agreed",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:07:57Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://fenwaygroup.example"
  },
  {
   "address": "22 Elm St",
@@ -702,6 +758,20 @@
     "value": "l\u2022\u2022\u2022@bennettfp.example.test",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_2c3a09fcb5",
+    "id": "ch_a88f6014c5",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220118",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220118",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Somerville",
@@ -723,12 +793,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "IN_OUTREACH",
-  "test_scenario": "booked|email_agreed",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:07:57Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://bennettfamily.example"
  },
  {
   "address": "90 Canal St",
@@ -746,7 +816,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224483",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -763,16 +833,16 @@
   "practice_name": "Plume Health, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -791,7 +861,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220052",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Needham",
@@ -808,16 +878,16 @@
   "practice_name": "Greater Boston Family Medicine PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -836,7 +906,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220365",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -853,16 +923,16 @@
   "practice_name": "Dr Michael J Lowney,pc",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -881,7 +951,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20225001",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -898,16 +968,16 @@
   "practice_name": "Higuchi Medical Care, PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -941,6 +1011,20 @@
     "value": "i\u2022\u2022\u2022@harborview-im.example.test",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_41cc51441d",
+    "id": "ch_991382a969",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220119",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220119",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -962,17 +1046,31 @@
   "specialty": "internal medicine",
   "state": "MA",
   "status": "IN_OUTREACH",
-  "test_scenario": "not_a_fit|email_declined",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://harborviewim.example"
  },
  {
   "address": "1 Harvard St",
-  "attempts": 0,
+  "attempts": 1,
   "channels": [
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_48eaa6c438",
+    "id": "ch_078be250c8",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220109",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220109",
+    "verification_reason": "",
+    "verified": true
+   },
    {
     "call_clearance": "cleared",
     "contact_id": "c_48eaa6c438",
@@ -1012,7 +1110,7 @@
   "id": "c_48eaa6c438",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "",
+  "next_attempt_at": "2026-10-24T03:43:13Z",
   "practice_name": "Brookline Primary Care",
   "practice_size": "solo",
   "pronunciation_hint": "",
@@ -1020,13 +1118,13 @@
   "source_tag": "dummy",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "READY",
-  "test_scenario": "stop_calling|email_stop",
+  "status": "IN_OUTREACH",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:13Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://brooklineprimary.example"
  },
  {
   "address": "1400 Centre St Ste 206",
@@ -1044,7 +1142,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220402",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Newton",
@@ -1061,16 +1159,16 @@
   "practice_name": "Michelle Master MD Family Medicine PLLC.",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1089,7 +1187,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220191",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Waltham",
@@ -1106,16 +1204,16 @@
   "practice_name": "Waltham Family Practice, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1134,7 +1232,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229577",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Somerville",
@@ -1151,22 +1249,36 @@
   "practice_name": "Davis Square Family Practice",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
   "address": "700 Centre St",
   "attempts": 0,
   "channels": [
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_517863c95b",
+    "id": "ch_623b9085ee",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220113",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220113",
+    "verification_reason": "",
+    "verified": true
+   },
    {
     "call_clearance": "cleared",
     "contact_id": "c_517863c95b",
@@ -1201,12 +1313,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "VERIFIED",
-  "test_scenario": "malformed_transcript",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "no_email_channel",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://jpprimary.example"
  },
  {
   "address": "9 Kalakaua Ave",
@@ -1219,6 +1331,20 @@
     "line_type": "landline",
     "raw_value": "808-555-0106",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220106",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_5bfd0187e6",
+    "id": "ch_d34810f23f",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220106",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -1246,12 +1372,12 @@
   "specialty": "family medicine",
   "state": "HI",
   "status": "VERIFIED",
-  "test_scenario": "booked",
+  "test_scenario": "",
   "time_zone": "Pacific/Honolulu",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "no_email_channel",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://okaforfamilyhealth.example"
  },
  {
   "address": "32 South St",
@@ -1269,7 +1395,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20225295",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Waltham",
@@ -1286,16 +1412,16 @@
   "practice_name": "Cabin Medical LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1314,7 +1440,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20228520",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -1331,16 +1457,16 @@
   "practice_name": "Selfrx LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1359,7 +1485,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224088",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
@@ -1376,16 +1502,16 @@
   "practice_name": "Renaissance Family Medicine Of Wellesley LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1404,13 +1530,13 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20227900",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
   "created_at": "2026-10-21T03:37:13Z",
   "credentials": "MD",
-  "duplicate_of": "",
+  "duplicate_of": "c_199fe0187d",
   "external_id": "npi:1427094234",
   "full_name": "David Chodirker",
   "hook": "",
@@ -1421,22 +1547,36 @@
   "practice_name": "David P Chodirker MD",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
   "status": "SOURCED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "duplicate_of:c_199fe0187d",
+  "verification_status": "failed",
   "website": ""
  },
  {
   "address": "12 Beacon St",
   "attempts": 0,
   "channels": [
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_761872151b",
+    "id": "ch_0446d1a234",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
+    "verification_reason": "",
+    "verified": true
+   },
    {
     "call_clearance": "cleared",
     "contact_id": "c_761872151b",
@@ -1471,12 +1611,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "SOURCED",
-  "test_scenario": "booked",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "duplicate_of:c_251bab6d38",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://patelfamilymedicine.example"
  },
  {
   "address": "1337 Mass Ave",
@@ -1494,7 +1634,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229270",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -1511,16 +1651,16 @@
   "practice_name": "Tova Health LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1534,6 +1674,20 @@
     "line_type": "landline",
     "raw_value": "617-555-0117",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220117",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_866bc1a7db",
+    "id": "ch_7ad274567e",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220117",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -1561,12 +1715,12 @@
   "specialty": "internal medicine",
   "state": "MA",
   "status": "VERIFIED",
-  "test_scenario": "technical",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "no_email_channel",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://dorchestermedical.example"
  },
  {
   "address": "200 Harvard Ave",
@@ -1579,6 +1733,20 @@
     "line_type": "landline",
     "raw_value": "617-555-0105",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_8a72860e91",
+    "id": "ch_d322ccc60f",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -1606,12 +1774,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "SUPPRESSED",
-  "test_scenario": "booked",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
   "verification_status": "unverified",
-  "website": ""
+  "website": "https://chenprimarycare.example"
  },
  {
   "address": "675 Main St",
@@ -1629,7 +1797,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224934",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Melrose",
@@ -1646,16 +1814,16 @@
   "practice_name": "Main Street Family Practice PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1674,7 +1842,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20221500",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -1691,16 +1859,16 @@
   "practice_name": "Personal Health MD, LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1719,7 +1887,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20222157",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Watertown",
@@ -1736,16 +1904,16 @@
   "practice_name": "Careteam Health Sc PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1764,7 +1932,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20222427",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
@@ -1781,16 +1949,16 @@
   "practice_name": "Lifestylerx Florida, P.a.",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1809,7 +1977,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20225000",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -1826,16 +1994,16 @@
   "practice_name": "Pratt Medical Group, INC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "internal medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1854,7 +2022,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20221000",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Melrose",
@@ -1871,16 +2039,16 @@
   "practice_name": "David M. Wahl, MD",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1899,7 +2067,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20222970",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -1916,16 +2084,16 @@
   "practice_name": "Maureen Norman DO",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -1939,6 +2107,20 @@
     "line_type": "voip",
     "raw_value": "617-555-0115",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220115",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_a776b6dc5b",
+    "id": "ch_9a990db7bf",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220115",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -1966,12 +2148,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "VERIFIED",
-  "test_scenario": "delivery_fails",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "no_email_channel",
   "verification_status": "failed",
-  "website": ""
+  "website": "https://riverawellness.example"
  },
  {
   "address": "585 Lebanon St",
@@ -1989,7 +2171,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20223000",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Melrose",
@@ -2006,16 +2188,16 @@
   "practice_name": "Massachusetts Acute Care Specialists PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "internal medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2034,7 +2216,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20222400",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -2051,16 +2233,16 @@
   "practice_name": "Albright Associates",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2079,7 +2261,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20221300",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
@@ -2096,16 +2278,16 @@
   "practice_name": "One Medical Group, INC.",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "internal medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2123,6 +2305,20 @@
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "email",
     "value": "f\u2022\u2022\u2022@beaconhill-im.example.test",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_b3b24d17b8",
+    "id": "ch_e4d5d2bc45",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220102",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220102",
     "verification_reason": "",
     "verified": true
    },
@@ -2160,12 +2356,12 @@
   "specialty": "internal medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "declined|email_declined",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://beaconhillim.example"
  },
  {
   "address": "18 Elm St",
@@ -2178,6 +2374,20 @@
     "line_type": "landline",
     "raw_value": "617-555-0120",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220120",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_b62f5021ad",
+    "id": "ch_b8798115c4",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220120",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -2219,12 +2429,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "declined_recording|email_no_reply",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://nguyenfamilyhealth.example"
  },
  {
   "address": "60 Walnut St Bsmt",
@@ -2242,7 +2452,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229503",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
@@ -2259,16 +2469,16 @@
   "practice_name": "Bespoke Primary Care, PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2287,7 +2497,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20223087",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
@@ -2304,16 +2514,16 @@
   "practice_name": "Vim Medicine",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2332,7 +2542,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20228252",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
@@ -2349,16 +2559,16 @@
   "practice_name": "Liza Medical PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2392,6 +2602,20 @@
     "value": "g\u2022\u2022\u2022@kimfamilymed.example.test",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_c09828fbcf",
+    "id": "ch_b98752274c",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220111",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220111",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Jamaica Plain",
@@ -2413,12 +2637,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "wrong_number|email_bounce",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://kimfamilymedicine.example"
  },
  {
   "address": "40 Spring St",
@@ -2436,7 +2660,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20226334",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Watertown",
@@ -2453,16 +2677,16 @@
   "practice_name": "Tramontozzi LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2481,7 +2705,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229856",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Brookline",
@@ -2498,16 +2722,16 @@
   "practice_name": "Yuko Mccolgan MD LLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2526,7 +2750,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20226405",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Brookline",
@@ -2543,16 +2767,16 @@
   "practice_name": "National Health Services, INC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2571,7 +2795,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220200",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Dedham",
@@ -2588,16 +2812,16 @@
   "practice_name": "Drx Uc Dedham PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2616,7 +2840,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229700",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -2633,16 +2857,16 @@
   "practice_name": "Family Practice Group PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2661,7 +2885,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220789",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -2678,16 +2902,16 @@
   "practice_name": "One Call Healthcare PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2721,6 +2945,20 @@
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220114",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_d7b9cfa027",
+    "id": "ch_e74abbe284",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220114",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220114",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -2742,12 +2980,12 @@
   "specialty": "internal medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "patient_data|email_pii",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://southendim.example"
  },
  {
   "address": "88 Tremont St",
@@ -2780,6 +3018,20 @@
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220103",
     "verification_reason": "",
     "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_da6677d004",
+    "id": "ch_87cbfabfd3",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220103",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220103",
+    "verification_reason": "",
+    "verified": true
    }
   ],
   "city": "Boston",
@@ -2801,12 +3053,12 @@
   "specialty": "",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "no_answer|email_no_reply",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:10:17Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://leemedical.example"
  },
  {
   "address": "180 Massachusetts Ave",
@@ -2824,7 +3076,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20221901",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Arlington",
@@ -2841,16 +3093,16 @@
   "practice_name": "Rothfeld Center For Integrative Medicine",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2869,7 +3121,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20222160",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Somerville",
@@ -2886,16 +3138,16 @@
   "practice_name": "Nancy Landry PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2914,7 +3166,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229500",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
@@ -2931,16 +3183,16 @@
   "practice_name": "Occupational Medicine Of Massachusetts, PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -2959,7 +3211,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20228236",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Wellesley",
@@ -2976,16 +3228,16 @@
   "practice_name": "Wellspace Primary Care PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3004,7 +3256,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20228004",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Winchester",
@@ -3021,16 +3273,16 @@
   "practice_name": "Rebecca Anne Spoerri-bowman",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3049,7 +3301,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220200",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Medford",
@@ -3066,16 +3318,16 @@
   "practice_name": "Poul M Laplante MD PC Medford Family Care",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3094,7 +3346,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20229827",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Brookline",
@@ -3111,16 +3363,16 @@
   "practice_name": "Northeast Vasectomy And Family Planning PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3139,7 +3391,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20223306",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Newton",
@@ -3156,16 +3408,16 @@
   "practice_name": "Comprehensive Medical Services PC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3179,6 +3431,20 @@
     "line_type": "landline",
     "raw_value": "617.555.0104",
     "retrieved_at": "2026-10-21T01:57:54Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220104",
+    "verification_reason": "",
+    "verified": true
+   },
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_f9eafcfce6",
+    "id": "ch_cc7984ba6c",
+    "line_type": "unknown",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220104",
+    "retrieved_at": "2026-10-21T03:43:12Z",
     "source": "csv:test_doctors.csv",
     "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
     "type": "phone",
@@ -3220,17 +3486,31 @@
   "specialty": "endocrinology",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "voicemail|email_other",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:40:46Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://charlesriverendo.example"
  },
  {
   "address": "9 Brattle St",
   "attempts": 0,
   "channels": [
+   {
+    "call_clearance": "cleared",
+    "contact_id": "c_fb34444215",
+    "id": "ch_852a1a23f2",
+    "line_type": "landline",
+    "raw_value": "+1\u2022\u2022\u2022\u2022\u2022\u20220121",
+    "retrieved_at": "2026-10-21T03:43:12Z",
+    "source": "csv:test_doctors.csv",
+    "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+    "type": "phone",
+    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220121",
+    "verification_reason": "",
+    "verified": true
+   },
    {
     "call_clearance": "cleared",
     "contact_id": "c_fb34444215",
@@ -3279,12 +3559,12 @@
   "specialty": "family medicine",
   "state": "MA",
   "status": "READY",
-  "test_scenario": "agreed|email_agreed",
+  "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:07:57Z",
+  "updated_at": "2026-10-21T03:43:12Z",
   "verification_reason": "",
   "verification_status": "verified",
-  "website": ""
+  "website": "https://chenfamilypractice.example"
  },
  {
   "address": "87 Chestnut St",
@@ -3302,7 +3582,7 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20225515",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Needham",
@@ -3319,16 +3599,16 @@
   "practice_name": "Needham Family Practice Assoc. P.c.",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "SOURCED",
+  "status": "VERIFIED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "no_email_channel",
+  "verification_status": "failed",
   "website": ""
  },
  {
@@ -3347,13 +3627,13 @@
     "type": "phone",
     "value": "+1\u2022\u2022\u2022\u2022\u2022\u20224085",
     "verification_reason": "",
-    "verified": false
+    "verified": true
    }
   ],
   "city": "Cambridge",
   "created_at": "2026-10-21T03:37:13Z",
   "credentials": "MD",
-  "duplicate_of": "",
+  "duplicate_of": "c_1611a4c45e",
   "external_id": "npi:1629925425",
   "full_name": "Paulius Mui",
   "hook": "",
@@ -3364,16 +3644,16 @@
   "practice_name": "617 Primary Care PLLC",
   "practice_size": "",
   "pronunciation_hint": "",
-  "segment": "",
+  "segment": "unknown_size_primary_care",
   "source_tag": "real",
   "specialty": "family medicine",
   "state": "MA",
   "status": "SOURCED",
   "test_scenario": "",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:37:13Z",
-  "verification_reason": "",
-  "verification_status": "unverified",
+  "updated_at": "2026-10-21T03:43:12Z",
+  "verification_reason": "duplicate_of:c_1611a4c45e",
+  "verification_status": "failed",
   "website": ""
  }
 ]

@@ -35,6 +35,16 @@ def _fill(template: str, variables: dict) -> str:
     return (template or "").format_map(_Vars(variables))
 
 
+def _variant_opening(body: str, v: int) -> str:
+    if v != 2:
+        return body
+    return body.replace(
+        "I'm Anirudh Bagla, a student at Harvard Business School.",
+        "I'm Anirudh Bagla, an HBS student researching how independent practices care for GLP-1 patients.",
+        1,
+    )
+
+
 def build_email(
     contact: Contact,
     channel: Channel,
@@ -42,7 +52,11 @@ def build_email(
     cfg: Config,
     clock: Clock,
     enrichment: Enrichment | None = None,
+    variant: int = 0,
 ) -> tuple[EmailDraft | None, list[str]]:
+    """variant 0 = default; 1 = short core paragraph; 2 = research-led opening + the later two slots;
+    3 = no hook, lead with the practice focus and a different subject. All obey the same rules."""
+    v = variant % 4
     variables: dict = {}
     fallbacks: list[str] = []
     errors: list[str] = []
@@ -102,6 +116,8 @@ def build_email(
             personalization.append("bio: " + enrichment.doctor_bio.strip()[:80])
 
     slots = stub_slots(clock.now(), contact.time_zone or cfg.default_time_zone)
+    if v == 2 and len(slots) >= 4:
+        slots = slots[2:]
     if len(slots) >= 2:
         variables["slot_1"], variables["slot_2"] = slots[0]["label"], slots[1]["label"]
         variables["slot_1_iso"] = slots[0]["iso"]
@@ -125,11 +141,22 @@ def build_email(
     if errors:
         return None, errors
 
-    variables["core_paragraph"] = _fill(brain_email.get("core_paragraph", ""), variables)
+    if v == 3 and variables.get("hook_sentence"):
+        variables["hook_sentence"] = ""
+        personalization = [p for p in personalization if not p.startswith("hook: ")]
+    if v == 3 and last_name:
+        variables["subject"] = f"A question for Dr. {last_name} about GLP-1 patients (HBS research)"
+    if v == 1:  # persona first, then the hook
+        h, ps = variables.get("hook_sentence", "").strip(), variables.get("persona_sentence", "").strip()
+        variables["hook_sentence"], variables["persona_sentence"] = (ps + " " if ps else ""), h
+    core_key = "core_paragraph_short" if v == 1 and brain_email.get("core_paragraph_short") else "core_paragraph"
+    variables["core_paragraph"] = _fill(brain_email.get(core_key, ""), variables)
     body = _fill(brain_email.get("body", ""), variables).strip() + "\n"
+    body = _variant_opening(body, v)
     if len(body.split()) > MAX_WORDS and brain_email.get("core_paragraph_short"):
         variables["core_paragraph"] = _fill(brain_email["core_paragraph_short"], variables)  # keep under the cap
         body = _fill(brain_email.get("body", ""), variables).strip() + "\n"
+        body = _variant_opening(body, v)
         fallbacks.append("core_paragraph_shortened")
     subject = variables["subject"]
     leftover = sorted(set(PLACEHOLDER_RE.findall(subject + " " + body)))

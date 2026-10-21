@@ -224,6 +224,7 @@ class EmailAttempt(Record):
     transcript_id: str = ""
     fallbacks_applied: list[str] = field(default_factory=list)
     personalization: list[str] = field(default_factory=list)  # facts from the enrichment used in this draft
+    variant: int = 0  # composer variant (Regenerate cycles 0..3)
     processed_event_ids: list[str] = field(default_factory=list)
     duplicate_events_ignored: int = 0
     created_at: str = ""

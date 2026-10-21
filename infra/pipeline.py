@@ -50,6 +50,7 @@ def run_pipeline(
     mailer=None,
     refresh_enrichment: bool = False,
     enrichers=None,
+    draft_only: bool = False,
 ) -> tuple[dict, dict]:
     """`on_stage(name, status, counts)` is called with ("<stage>", "start", {}) and ("<stage>", "done", counts)
     for ingest, verify, call, webhooks, deliver, then ("run", "done", {...}). Used by the dashboard service."""
@@ -112,7 +113,7 @@ def run_pipeline(
             mailer = MockEmailProvider(clock)
         # progress names stay "call"/"webhooks" so the dashboard's stage mapping works for both channels
         emit("call", "start", {"channel": "email"})
-        run["stages"]["email"] = send_emails(store, cfg, clock, brain, mailer, run_id)
+        run["stages"]["email"] = send_emails(store, cfg, clock, brain, mailer, run_id, draft_only=draft_only)
         store.save()  # a real send is never lost to a later stage failing
         emit("call", "done", {**run["stages"]["email"], "channel": "email"})
         emit("webhooks", "start", {"channel": "email"})

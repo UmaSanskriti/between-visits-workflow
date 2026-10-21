@@ -543,8 +543,9 @@
   function stageCounts(run, key) { const st = run.stages || {}; return (st[key] && st[key].counts) || null; }
   function renderAgentSteps(run) {
     const host = $("agent-steps");
-    if (!run || (run.status === "idle" && !run.email)) { host.hidden = true; return; }
-    host.hidden = false; clear(host);
+    const feedBits = [$("feed"), $("replay") && $("replay").parentNode, $("now")];
+    if (!run || (run.status === "idle" && !run.email)) { host.hidden = true; feedBits.forEach((n) => { if (n) n.hidden = false; }); return; }
+    host.hidden = false; clear(host); feedBits.forEach((n) => { if (n) n.hidden = true; });
     const e = run.email || null;
     const ing = stageCounts(run, "ingest"), ver = stageCounts(run, "verify"), em = stageCounts(run, "email") || stageCounts(run, "call");
     const running = run.status === "running";
@@ -564,6 +565,32 @@
         el("div", { class: "d muted", text: (r.source === "web" ? "From the practice website" : "From the seed fixture standing in for a web lookup") + (e.personalization && e.personalization.length ? " · used in the draft: " + e.personalization.join(" · ") : "") }),
       ]);
     } else if (e && e.subject) step("done", "Researched the practice: nothing on file", [el("div", { class: "d muted", text: "No enrichment for this practice; the generic template was used." })]);
+    // 3. compose: a draft waits for review
+    if (e && e.status === "draft") {
+      const li = step("active", "Draft ready for review", [
+        el("div", { class: "d subject" }, ["Subject: " + (e.subject || ""), el("span", { class: "variant", text: "variant " + ((e.variant || 0) + 1) + " of 4" })]),
+        el("pre", { class: "block draft", text: e.body || "" }),
+        e.personalization && e.personalization.length ? el("div", { class: "d muted", text: "Personalised with: " + e.personalization.join(" · ") }) : null,
+        el("div", { class: "d muted", text: "Goes to " + (e.to || "the demo inbox") + " for the demo, from your linked account." }),
+      ]);
+      const send = el("button", { type: "button", class: "btn primary", text: "Send" });
+      const regen = el("button", { type: "button", class: "btn", text: "Regenerate" });
+      const note = el("span", { class: "count" });
+      const act = async (path, busyText) => {
+        send.disabled = regen.disabled = true; note.textContent = busyText;
+        try {
+          const res = await localFetch(LOCAL + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ attempt: e.attempt_id || "" }) });
+          const body = await res.json();
+          if (!res.ok) { note.textContent = body.message || body.error || "failed"; send.disabled = regen.disabled = false; return; }
+          run.email = body.email; renderAgentSteps(run);
+          window.dispatchEvent(new CustomEvent("bv-email-changed", { detail: run }));
+        } catch (err) { note.textContent = "Could not reach the local service."; send.disabled = regen.disabled = false; }
+      };
+      send.addEventListener("click", () => act("/api/draft/send", "Sending…"));
+      regen.addEventListener("click", () => act("/api/draft/regenerate", "Rewriting…"));
+      li.appendChild(el("div", { class: "row" }, [send, regen, note]));
+      return;
+    }
     // 3. compose
     step(e && e.subject ? "done" : (running ? "active" : ""), e && e.subject ? "Composed the email" : "Composing the email", e && e.subject ? [el("div", { class: "d subject", text: "Subject: " + e.subject }), el("details", null, [el("summary", { text: "Read the email" }), el("pre", { class: "block", text: e.body || "" })])] : []);
     // 4. send
@@ -628,6 +655,8 @@
       const run = st.run;
       if (run.status === "running") showRunProgress(run); else if (run.status === "done" || run.status === "error") finish(run);
     };
+    window.addEventListener("bv-email-changed", (ev) => watchEmail(ev.detail));
+    if (local.run && local.run.email && local.run.status !== "running") { renderAgentSteps(local.run); watchEmail(local.run); }  // a draft or sent email survives a reload
     btn.addEventListener("click", async () => {
       btn.disabled = true; btn.textContent = "Running…"; $("error").textContent = ""; lastEmailStatus = null;
       try {

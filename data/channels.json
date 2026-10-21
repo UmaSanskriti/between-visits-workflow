@@ -13,6 +13,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_0446d1a234": {
+  "call_clearance": "cleared",
+  "contact_id": "c_761872151b",
+  "id": "ch_0446d1a234",
+  "line_type": "landline",
+  "raw_value": "+16175550101",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550101",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_07391e1f09": {
   "call_clearance": "not_cleared",
   "contact_id": "c_1a7bc1d830",
@@ -25,7 +39,21 @@
   "type": "phone",
   "value": "+16172320616",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_078be250c8": {
+  "call_clearance": "cleared",
+  "contact_id": "c_48eaa6c438",
+  "id": "ch_078be250c8",
+  "line_type": "landline",
+  "raw_value": "+16175550109",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550109",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_09b9987882": {
   "call_clearance": "cleared",
@@ -41,6 +69,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_0cfad226de": {
+  "call_clearance": "cleared",
+  "contact_id": "c_251bab6d38",
+  "id": "ch_0cfad226de",
+  "line_type": "landline",
+  "raw_value": "+16175550101",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550101",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_0e89462c4c": {
   "call_clearance": "not_cleared",
   "contact_id": "c_e5dfe94c3b",
@@ -53,7 +95,7 @@
   "type": "phone",
   "value": "+17813048236",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_0e902c2389": {
   "call_clearance": "not_cleared",
@@ -67,7 +109,7 @@
   "type": "phone",
   "value": "+17816482970",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_0fdf5cb5aa": {
   "call_clearance": "cleared",
@@ -83,6 +125,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_10ce09be02": {
+  "call_clearance": "cleared",
+  "contact_id": "c_01c54d811d",
+  "id": "ch_10ce09be02",
+  "line_type": "landline",
+  "raw_value": "+16175550110",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550110",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_10cfe7770b": {
   "call_clearance": "not_cleared",
   "contact_id": "c_05acf6e6d9",
@@ -95,7 +151,7 @@
   "type": "phone",
   "value": "+17816464345",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_11ae1d1b03": {
   "call_clearance": "not_cleared",
@@ -109,7 +165,7 @@
   "type": "phone",
   "value": "+17819793000",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_14b62de826": {
   "call_clearance": "not_cleared",
@@ -137,7 +193,7 @@
   "type": "phone",
   "value": "+17816411901",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_1a19dbc957": {
   "call_clearance": "cleared",
@@ -179,7 +235,7 @@
   "type": "phone",
   "value": "+15085633003",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_27c14ef7c6": {
   "call_clearance": "not_cleared",
@@ -193,7 +249,7 @@
   "type": "phone",
   "value": "+17814610200",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_2b7bcb4ad3": {
   "call_clearance": "cleared",
@@ -223,6 +279,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_3374ea8e64": {
+  "call_clearance": "cleared",
+  "contact_id": "c_29816f6cb0",
+  "id": "ch_3374ea8e64",
+  "line_type": "unknown",
+  "raw_value": "+16175550107",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550107",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_389831c596": {
   "call_clearance": "not_cleared",
   "contact_id": "c_e0521515a1",
@@ -235,7 +305,7 @@
   "type": "phone",
   "value": "+18153639500",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_38dfb97cd2": {
   "call_clearance": "cleared",
@@ -263,7 +333,7 @@
   "type": "phone",
   "value": "+16173836405",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_3f01d3a16d": {
   "call_clearance": "not_cleared",
@@ -277,7 +347,7 @@
   "type": "phone",
   "value": "+16178799827",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_42ac4cfa29": {
   "call_clearance": "cleared",
@@ -305,7 +375,7 @@
   "type": "phone",
   "value": "+17812357900",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_4da2cae231": {
   "call_clearance": "cleared",
@@ -333,7 +403,7 @@
   "type": "phone",
   "value": "+16178435001",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_511ed11b93": {
   "call_clearance": "not_cleared",
@@ -347,7 +417,7 @@
   "type": "phone",
   "value": "+17814358004",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_52806280cd": {
   "call_clearance": "cleared",
@@ -389,7 +459,7 @@
   "type": "phone",
   "value": "+16176365000",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_5dad0aa7b5": {
   "call_clearance": "cleared",
@@ -433,6 +503,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_623b9085ee": {
+  "call_clearance": "cleared",
+  "contact_id": "c_517863c95b",
+  "id": "ch_623b9085ee",
+  "line_type": "landline",
+  "raw_value": "+16175550113",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550113",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_6cb9050e2f": {
   "call_clearance": "not_cleared",
   "contact_id": "c_21ba85d66c",
@@ -445,7 +529,7 @@
   "type": "phone",
   "value": "+17818481555",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_6edba34a63": {
   "call_clearance": "cleared",
@@ -487,7 +571,7 @@
   "type": "phone",
   "value": "+16172642400",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_72234ef006": {
   "call_clearance": "not_cleared",
@@ -501,7 +585,7 @@
   "type": "phone",
   "value": "+16178269270",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_7acca703d9": {
   "call_clearance": "cleared",
@@ -517,6 +601,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_7ad274567e": {
+  "call_clearance": "cleared",
+  "contact_id": "c_866bc1a7db",
+  "id": "ch_7ad274567e",
+  "line_type": "unknown",
+  "raw_value": "+16175550117",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550117",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_7ca14021d6": {
   "call_clearance": "not_cleared",
   "contact_id": "c_24e5c6f4c7",
@@ -529,7 +627,7 @@
   "type": "phone",
   "value": "+16178239015",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_7d785a7774": {
   "call_clearance": "cleared",
@@ -557,7 +655,7 @@
   "type": "phone",
   "value": "+16173250365",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_81d3f65664": {
   "call_clearance": "not_cleared",
@@ -571,7 +669,7 @@
   "type": "phone",
   "value": "+16176282160",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_84daa6ecd1": {
   "call_clearance": "not_cleared",
@@ -585,7 +683,35 @@
   "type": "phone",
   "value": "+17813060200",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_852a1a23f2": {
+  "call_clearance": "cleared",
+  "contact_id": "c_fb34444215",
+  "id": "ch_852a1a23f2",
+  "line_type": "landline",
+  "raw_value": "+16175550121",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550121",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_87cbfabfd3": {
+  "call_clearance": "cleared",
+  "contact_id": "c_da6677d004",
+  "id": "ch_87cbfabfd3",
+  "line_type": "unknown",
+  "raw_value": "+16175550103",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550103",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_8a82185b3d": {
   "call_clearance": "cleared",
@@ -613,7 +739,7 @@
   "type": "phone",
   "value": "+16176754085",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_9027d015c4": {
   "call_clearance": "not_cleared",
@@ -627,7 +753,7 @@
   "type": "phone",
   "value": "+19782544371",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_90853491d8": {
   "call_clearance": "cleared",
@@ -669,7 +795,7 @@
   "type": "phone",
   "value": "+17813140191",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_95ee0f7128": {
   "call_clearance": "cleared",
@@ -697,7 +823,7 @@
   "type": "phone",
   "value": "+17816624934",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_97a11270d8": {
   "call_clearance": "not_cleared",
@@ -711,7 +837,7 @@
   "type": "phone",
   "value": "+15082338252",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_98136a0928": {
   "call_clearance": "not_cleared",
@@ -725,7 +851,21 @@
   "type": "phone",
   "value": "+17812965295",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_991382a969": {
+  "call_clearance": "cleared",
+  "contact_id": "c_41cc51441d",
+  "id": "ch_991382a969",
+  "line_type": "unknown",
+  "raw_value": "+16175550119",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550119",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_99a4cc0177": {
   "call_clearance": "not_cleared",
@@ -739,7 +879,7 @@
   "type": "phone",
   "value": "+16178771000",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_9a28948fd8": {
   "call_clearance": "not_cleared",
@@ -753,7 +893,21 @@
   "type": "phone",
   "value": "+17786532427",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_9a990db7bf": {
+  "call_clearance": "cleared",
+  "contact_id": "c_a776b6dc5b",
+  "id": "ch_9a990db7bf",
+  "line_type": "unknown",
+  "raw_value": "+16175550115",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550115",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_9daccaa816": {
   "call_clearance": "not_cleared",
@@ -767,7 +921,7 @@
   "type": "phone",
   "value": "+16175851500",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_a430f71960": {
   "call_clearance": "not_cleared",
@@ -781,7 +935,21 @@
   "type": "phone",
   "value": "+16179035000",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_a88f6014c5": {
+  "call_clearance": "cleared",
+  "contact_id": "c_2c3a09fcb5",
+  "id": "ch_a88f6014c5",
+  "line_type": "unknown",
+  "raw_value": "+16175550118",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550118",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_aa3747135a": {
   "call_clearance": "not_cleared",
@@ -795,7 +963,7 @@
   "type": "phone",
   "value": "+16179653306",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_aadbc94b7d": {
   "call_clearance": "not_cleared",
@@ -809,7 +977,21 @@
   "type": "phone",
   "value": "+16175751300",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_b1ceab7dce": {
+  "call_clearance": "not_cleared",
+  "contact_id": "c_0de2e04276",
+  "id": "ch_b1ceab7dce",
+  "line_type": "unknown",
+  "raw_value": "+16175550116",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550116",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_b2040979ce": {
   "call_clearance": "not_cleared",
@@ -823,7 +1005,7 @@
   "type": "phone",
   "value": "+16175669856",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_b3dd13f0cc": {
   "call_clearance": "not_cleared",
@@ -837,7 +1019,7 @@
   "type": "phone",
   "value": "+17814445515",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_b401e0efc6": {
   "call_clearance": "cleared",
@@ -865,7 +1047,35 @@
   "type": "phone",
   "value": "+17819730052",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_b8798115c4": {
+  "call_clearance": "cleared",
+  "contact_id": "c_b62f5021ad",
+  "id": "ch_b8798115c4",
+  "line_type": "unknown",
+  "raw_value": "+16175550120",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550120",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_b98752274c": {
+  "call_clearance": "cleared",
+  "contact_id": "c_c09828fbcf",
+  "id": "ch_b98752274c",
+  "line_type": "unknown",
+  "raw_value": "+16175550111",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550111",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_bb9d6c09c0": {
   "call_clearance": "not_cleared",
@@ -879,7 +1089,7 @@
   "type": "phone",
   "value": "+17202484483",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_bc36da86a2": {
   "call_clearance": "not_cleared",
@@ -893,7 +1103,7 @@
   "type": "phone",
   "value": "+16179236334",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_c8143f50ff": {
   "call_clearance": "cleared",
@@ -937,6 +1147,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_cc7984ba6c": {
+  "call_clearance": "cleared",
+  "contact_id": "c_f9eafcfce6",
+  "id": "ch_cc7984ba6c",
+  "line_type": "unknown",
+  "raw_value": "+16175550104",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550104",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_ccfa7699dd": {
   "call_clearance": "not_cleared",
   "contact_id": "c_b9037150ca",
@@ -949,7 +1173,35 @@
   "type": "phone",
   "value": "+16175319503",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_d322ccc60f": {
+  "call_clearance": "cleared",
+  "contact_id": "c_8a72860e91",
+  "id": "ch_d322ccc60f",
+  "line_type": "unknown",
+  "raw_value": "+16175550105",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550105",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_d34810f23f": {
+  "call_clearance": "cleared",
+  "contact_id": "c_5bfd0187e6",
+  "id": "ch_d34810f23f",
+  "line_type": "unknown",
+  "raw_value": "+18085550106",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+18085550106",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_d51cba31b9": {
   "call_clearance": "cleared",
@@ -977,7 +1229,7 @@
   "type": "phone",
   "value": "+17812357900",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_dd755405c4": {
   "call_clearance": "not_cleared",
@@ -991,7 +1243,7 @@
   "type": "phone",
   "value": "+16178660789",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_df4d7c2a74": {
   "call_clearance": "cleared",
@@ -1033,7 +1285,21 @@
   "type": "phone",
   "value": "+16174023087",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_e4d5d2bc45": {
+  "call_clearance": "cleared",
+  "contact_id": "c_b3b24d17b8",
+  "id": "ch_e4d5d2bc45",
+  "line_type": "landline",
+  "raw_value": "+16175550102",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550102",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_e4e3c37052": {
   "call_clearance": "cleared",
@@ -1061,7 +1327,7 @@
   "type": "phone",
   "value": "+16174022157",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_e56579ac5b": {
   "call_clearance": "not_cleared",
@@ -1075,7 +1341,21 @@
   "type": "phone",
   "value": "+16176669577",
   "verification_reason": "",
-  "verified": false
+  "verified": true
+ },
+ "ch_e74abbe284": {
+  "call_clearance": "cleared",
+  "contact_id": "c_d7b9cfa027",
+  "id": "ch_e74abbe284",
+  "line_type": "unknown",
+  "raw_value": "+16175550114",
+  "retrieved_at": "2026-10-21T03:43:12Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "phone",
+  "value": "+16175550114",
+  "verification_reason": "",
+  "verified": true
  },
  "ch_e8185bdbb6": {
   "call_clearance": "not_cleared",
@@ -1089,7 +1369,7 @@
   "type": "phone",
   "value": "+17812354088",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_f08b3d9cb4": {
   "call_clearance": "not_cleared",
@@ -1103,7 +1383,7 @@
   "type": "phone",
   "value": "+16177950402",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_f12042871e": {
   "call_clearance": "not_cleared",
@@ -1117,7 +1397,7 @@
   "type": "phone",
   "value": "+17816489700",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_f3968c57ee": {
   "call_clearance": "not_cleared",
@@ -1131,7 +1411,7 @@
   "type": "phone",
   "value": "+15086548520",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_f701c2e571": {
   "call_clearance": "not_cleared",
@@ -1145,7 +1425,7 @@
   "type": "phone",
   "value": "+16176754085",
   "verification_reason": "",
-  "verified": false
+  "verified": true
  },
  "ch_fb340917a5": {
   "call_clearance": "cleared",

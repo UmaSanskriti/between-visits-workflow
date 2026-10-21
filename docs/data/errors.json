@@ -46,5 +46,405 @@
   "error_type": "missing_field",
   "field": "email",
   "timestamp": "2026-10-21T01:57:54Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_05acf6e6d9",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_1611a4c45e",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_199fe0187d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_1a7bc1d830",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_2004959ac3",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_20dc68eee6",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_213fc4ed75",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_21ba85d66c",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_24e5c6f4c7",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_38d228fcca",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_3a42c3fb71",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_3ee78eb543",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_400eec2162",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_4a783c6318",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_50af95bd3a",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_5101976690",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_68579bb0f7",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_6edbe48087",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_6fbf6326c3",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_74d2359082",
+  "detail": "matches c_199fe0187d; review and merge (VER-004)",
+  "error_type": "duplicate_candidate",
+  "field": "name+practice/phone",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_7f7d4b22c6",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_8f627c7a4e",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_9076b3cedd",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_98e0989d5e",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_9bb1b797fa",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_9c1328c14d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_9cd56d51ec",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_9edd059d84",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_ae7d01fc6d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_af1cb99e8b",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_b2c9e106b2",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_b9037150ca",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_b9de195f6d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_beabe5f3ca",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_c613a045ad",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_c81984b416",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_cd05e91635",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_d32ce7f323",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_d3594d520d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_d7543e28de",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_db08ce9dd0",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_dcfeb1a292",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_e0521515a1",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_e5dfe94c3b",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_ece8a26ef9",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_f2e719af49",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_f7dd13bce4",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_f8c55ce9c1",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_fd18a11406",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-21T03:43:12Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_fdaaba4b1b",
+  "detail": "matches c_1611a4c45e; review and merge (VER-004)",
+  "error_type": "duplicate_candidate",
+  "field": "name+practice/phone",
+  "timestamp": "2026-10-21T03:43:12Z"
  }
 ]

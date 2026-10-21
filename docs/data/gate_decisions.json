@@ -1980,5 +1980,2019 @@
   "waivers": [
    "delivery_redirected_to_demo_inbox"
   ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_01c54d811d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_05acf6e6d9",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_c85f152af5",
+  "contact_id": "c_070728f30d",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:05:33Z"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_14b62de826",
+  "contact_id": "c_0de2e04276",
+  "deferred": false,
+  "reasons": [
+   "email_clearance_not_cleared"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_1611a4c45e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_199fe0187d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_1a7bc1d830",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_2004959ac3",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_20dc68eee6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_213fc4ed75",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_21ba85d66c",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_24e5c6f4c7",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_52806280cd",
+  "contact_id": "c_251bab6d38",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:02:53Z"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_2ec822826d",
+  "contact_id": "c_29816f6cb0",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:34:39Z"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_27177384c8",
+  "contact_id": "c_2c3a09fcb5",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:55:22Z"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_38d228fcca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_3a42c3fb71",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_3ee78eb543",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_400eec2162",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_7d785a7774",
+  "contact_id": "c_41cc51441d",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:57:46Z"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": true,
+  "channel": "email",
+  "channel_id": "ch_c81ee09672",
+  "contact_id": "c_48eaa6c438",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_4a783c6318",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_50af95bd3a",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_5101976690",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_517863c95b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_5bfd0187e6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_68579bb0f7",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_6edbe48087",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_6fbf6326c3",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_74d2359082",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_199fe0187d",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_761872151b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_251bab6d38",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_7f7d4b22c6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_866bc1a7db",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_8a72860e91",
+  "deferred": false,
+  "reasons": [
+   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_8f627c7a4e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9076b3cedd",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_98e0989d5e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9bb1b797fa",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9c1328c14d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9cd56d51ec",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9edd059d84",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_a776b6dc5b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_ae7d01fc6d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_af1cb99e8b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b2c9e106b2",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_b401e0efc6",
+  "contact_id": "c_b3b24d17b8",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_e207f6adf5",
+  "contact_id": "c_b62f5021ad",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b9037150ca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b9de195f6d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_beabe5f3ca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_95ee0f7128",
+  "contact_id": "c_c09828fbcf",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_c613a045ad",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_c81984b416",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_cd05e91635",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d32ce7f323",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d3594d520d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d7543e28de",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_6f5e721f2c",
+  "contact_id": "c_d7b9cfa027",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_09b9987882",
+  "contact_id": "c_da6677d004",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_db08ce9dd0",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_dcfeb1a292",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_e0521515a1",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_e5dfe94c3b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_ece8a26ef9",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f2e719af49",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f7dd13bce4",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f8c55ce9c1",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_df4d7c2a74",
+  "contact_id": "c_f9eafcfce6",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_8a82185b3d",
+  "contact_id": "c_fb34444215",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_fd18a11406",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_fdaaba4b1b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_1611a4c45e",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T034312Z-009",
+  "timestamp": "2026-10-21T03:43:12Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_01c54d811d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_05acf6e6d9",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_c85f152af5",
+  "contact_id": "c_070728f30d",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:05:33Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_14b62de826",
+  "contact_id": "c_0de2e04276",
+  "deferred": false,
+  "reasons": [
+   "email_clearance_not_cleared"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_1611a4c45e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_199fe0187d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_1a7bc1d830",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_2004959ac3",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_20dc68eee6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_213fc4ed75",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_21ba85d66c",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_24e5c6f4c7",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_52806280cd",
+  "contact_id": "c_251bab6d38",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:02:53Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_2ec822826d",
+  "contact_id": "c_29816f6cb0",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:34:39Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_27177384c8",
+  "contact_id": "c_2c3a09fcb5",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:55:22Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_38d228fcca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_3a42c3fb71",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_3ee78eb543",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_400eec2162",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_7d785a7774",
+  "contact_id": "c_41cc51441d",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T02:57:46Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_c81ee09672",
+  "contact_id": "c_48eaa6c438",
+  "deferred": true,
+  "reasons": [
+   "retry_not_due_until:2026-10-24T03:43:13Z"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_4a783c6318",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_50af95bd3a",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_5101976690",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_517863c95b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_5bfd0187e6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_68579bb0f7",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_6edbe48087",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_6fbf6326c3",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_74d2359082",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_199fe0187d",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_761872151b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_251bab6d38",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_7f7d4b22c6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_866bc1a7db",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_8a72860e91",
+  "deferred": false,
+  "reasons": [
+   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_8f627c7a4e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9076b3cedd",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_98e0989d5e",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9bb1b797fa",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9c1328c14d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9cd56d51ec",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_9edd059d84",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_a776b6dc5b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_ae7d01fc6d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_af1cb99e8b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b2c9e106b2",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": true,
+  "channel": "email",
+  "channel_id": "ch_b401e0efc6",
+  "contact_id": "c_b3b24d17b8",
+  "deferred": false,
+  "reasons": [],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_e207f6adf5",
+  "contact_id": "c_b62f5021ad",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b9037150ca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_b9de195f6d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_beabe5f3ca",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_95ee0f7128",
+  "contact_id": "c_c09828fbcf",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_c613a045ad",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_c81984b416",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_cd05e91635",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d32ce7f323",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d3594d520d",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_d7543e28de",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_6f5e721f2c",
+  "contact_id": "c_d7b9cfa027",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_09b9987882",
+  "contact_id": "c_da6677d004",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_db08ce9dd0",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_dcfeb1a292",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_e0521515a1",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_e5dfe94c3b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_ece8a26ef9",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f2e719af49",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f7dd13bce4",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_f8c55ce9c1",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_df4d7c2a74",
+  "contact_id": "c_f9eafcfce6",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "ch_8a82185b3d",
+  "contact_id": "c_fb34444215",
+  "deferred": true,
+  "reasons": [
+   "email_cap_reached"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": [
+   "delivery_redirected_to_demo_inbox"
+  ]
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_fd18a11406",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_fdaaba4b1b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:duplicate_of:c_1611a4c45e",
+   "no_email_channel"
+  ],
+  "run_id": "20261021T052218Z-010",
+  "timestamp": "2026-10-21T05:22:18Z",
+  "waivers": []
  }
 ]

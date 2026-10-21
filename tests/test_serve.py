@@ -279,8 +279,8 @@ def test_dry_run_data_route_is_served_and_confined(server):
     assert code == 404
 
 
-def test_real_agent_run_queues_the_first_eligible_practice(tmp_path):
-    """No credentials: the run picks the first cleared dummy doctor, composes, and queues for the Gmail connector."""
+def test_real_agent_run_drafts_then_sends_on_approval(tmp_path):
+    """No credentials: the run drafts for the first cleared dummy doctor; Regenerate recomposes; Send queues it."""
     import time
 
     state = LiveState()
@@ -303,10 +303,26 @@ def test_real_agent_run_queues_the_first_eligible_practice(tmp_path):
     run = state.snapshot()["run"]
     assert run["status"] == "done", run
     assert list(run["stages"]) == ["ingest", "verify", "enrich", "call", "webhooks", "deliver"]
-    e = run["email"]
+    draft = run["email"]
+    assert draft["status"] == "draft" and draft["contact_name"] == "Priya Patel" and draft["variant"] == 0
+    assert not (tmp_path / "data" / "outbox").exists() or not any((tmp_path / "data" / "outbox").iterdir())
+    # pressing Run again reuses the open draft instead of drafting a second practice
+    ok, _ = service.start_run(reset=False)
+    while time.monotonic() < deadline and state.snapshot()["run"]["status"] == "running":
+        time.sleep(0.2)
+    assert state.snapshot()["run"]["email"]["attempt_id"] == draft["attempt_id"]
+    # Regenerate: same attempt, next variant, different text
+    code, payload = service.regenerate_current_draft()
+    assert code == 200 and payload["email"]["variant"] == 1 and payload["email"]["attempt_id"] == draft["attempt_id"]
+    assert payload["email"]["body"] != draft["body"] and "stop" in payload["email"]["body"]
+    # Send: the usual transport takes over
+    code, payload = service.send_current_draft()
+    assert code == 200, payload
+    e = state.snapshot()["run"]["email"]
     assert e["status"] == "queued" and e["transport"] == "outbox" and e["contact_name"] == "Priya Patel"
     assert e["subject"].startswith("30 minutes with Dr. Patel") and "stop" in e["body"]
     assert "@" in e["to"] and "\u2022" in e["to"]  # masked, never the raw address
+    assert service.send_current_draft()[0] == 404  # nothing left to send
     assert (tmp_path / "export" / "run.json").exists() and (
         tmp_path / "data" / "outbox" / (e["attempt_id"] + ".json")
     ).exists()
@@ -362,3 +378,17 @@ def test_outbox_sent_and_reply_endpoints(server):
     service.busy_flag = True
     code, _, _ = call(base + "/api/reply", "POST", {"text": "yes"}, headers={"Origin": "http://127.0.0.1:8787"})
     assert code == 409
+
+
+def test_draft_endpoints_origin_and_routing(server):
+    base, service, _ = server
+    calls = []
+    service.send_current_draft = lambda attempt="": calls.append(("send", attempt)) or (200, {"ok": True})
+    service.regenerate_current_draft = lambda attempt="": calls.append(("regen", attempt)) or (200, {"ok": True})
+    code, _, _ = call(base + "/api/draft/send", "POST", {}, headers={"Origin": "https://evil.example"})
+    assert code == 403 and calls == []
+    code, _, _ = call(
+        base + "/api/draft/regenerate", "POST", {"attempt": "em_1"}, headers={"Origin": "http://127.0.0.1:8787"}
+    )
+    code2, _, _ = call(base + "/api/draft/send", "POST", {}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 200 and code2 == 200 and calls == [("regen", "em_1"), ("send", "")]

@@ -7,6 +7,8 @@ Runs on the operator's machine (where the Vapi key lives). The public dashboard 
   GET  /api/outbox     queued messages with their full text (the Gmail driver reads them)
   POST /api/outbox/<attempt>/sent   {message_id, thread_id}: the message went out
   POST /api/reply      {attempt?, text, from?, at?}: a reply arrived (pasted, or read from Gmail)
+  POST /api/draft/send        send the draft the last run composed (after review on the dashboard)
+  POST /api/draft/regenerate  recompose that draft with the next composer variant
   GET  /data/...       the export (docs/data), so the page shows the fresh run without a push
   POST /api/call       staged live call through Vapi (kept for when a Twilio number exists)
   POST /api/webhook    Vapi server messages via a tunnel
@@ -32,6 +34,7 @@ from .brain import MockBrain
 from .clock import Clock, iso
 from .config import ConfigError, load_config, load_dotenv
 from .export import mask_email, mask_phone
+from .orchestrator import current_draft, regenerate_draft, send_draft
 from .pipeline import run_pipeline
 from .store import Store
 from .voice import MockVoiceProvider
@@ -311,6 +314,7 @@ class LiveService:
         env = live.live_env(env, any_time=self.any_time)
         cfg = load_config(ROOT / "config.toml", env=env)
         cfg.live_max_calls_per_run = 1  # one practice per press of the button
+        self._last_cfg = cfg
         clock = Clock()
         store = Store(cfg.data_dir, clock).load()
         return cfg, clock, store
@@ -354,47 +358,16 @@ class LiveService:
                 trigger="dashboard",
                 on_stage=on_stage,
                 mailer=provider,
+                draft_only=True,
             )
-            attempts = [a for a in store.email_attempts.values() if a.run_id == run["run_id"]]
+            store.save()
+            draft = current_draft(store)
+            attempts = [draft] if draft else []
             email: dict
             if attempts:
                 a = attempts[0]
-                contact = store.contacts.get(a.contact_id)
-                outbox = {m["attempt_id"]: m for m in live.email_outbox(store)}
-                ch = store.channels.get(a.channel_id)
-                to = outbox.get(a.id, {}).get("to") or (ch.value if ch else "")
-                email = {
-                    "attempt_id": a.id,
-                    "contact_id": a.contact_id,
-                    "contact_name": contact.full_name if contact else "",
-                    "practice": contact.practice_name if contact else "",
-                    "to": mask_email(to),
-                    "redirected_to": a.redirected_to,
-                    "subject": a.subject,
-                    "body": a.body,
-                    "status": "sent" if a.status == "sent" else ("error" if a.status == "failed" else "queued"),
-                    "transport": getattr(provider, "name", ""),
-                    "provider_message_id": a.provider_message_id,
-                    "thread_id": a.thread_id,
-                    "sent_at": a.sent_at,
-                    "error": a.outcome_reason if a.status == "failed" else "",
-                    "reply": None,
-                    "personalization": list(a.personalization),
-                    "research": None,
-                }
-                enrichment = store.enrichments.get(a.contact_id)
-                if enrichment:
-                    email["research"] = {
-                        "summary": enrichment.summary,
-                        "hook": enrichment.hook,
-                        "services": list(enrichment.services),
-                        "doctor_bio": enrichment.doctor_bio,
-                        "glp1": enrichment.glp1_mentioned,
-                        "source": enrichment.source,
-                        "source_note": enrichment.source_note,
-                        "website": enrichment.website,
-                    }
-                log(f"run: {a.id} {email['status']} for {email['contact_name']} -> {email['to']}")
+                email = self._email_view(store, a, provider)
+                log(f"run: draft {a.id} (variant {a.variant}) ready for {email['contact_name']}; Send or Regenerate")
             else:
                 email = {"status": "error", "error": "the gate allowed no practice this run; see the service log"}
                 log("run: no email was composed; every practice was blocked or deferred")
@@ -415,6 +388,109 @@ class LiveService:
         except Exception as exc:  # noqa: BLE001
             log(f"run: unexpected error: {exc!r}")
             self.state.run_update(status="error", error=repr(exc), finished_at=iso(Clock().now()))
+
+    def _email_view(self, store, a, provider) -> dict:
+        """The dashboard's view of one attempt: draft, queued, sent or failed."""
+        contact = store.contacts.get(a.contact_id)
+        outbox = {m["attempt_id"]: m for m in live.email_outbox(store)}
+        ch = store.channels.get(a.channel_id)
+        to = outbox.get(a.id, {}).get("to") or (ch.value if ch else "")
+        if a.status == "draft" and getattr(self, "_last_cfg", None) is not None:
+            demo = self._last_cfg.email_demo_recipient
+            to = demo or to
+        email = {
+            "attempt_id": a.id,
+            "contact_id": a.contact_id,
+            "contact_name": contact.full_name if contact else "",
+            "practice": contact.practice_name if contact else "",
+            "to": mask_email(to),
+            "redirected_to": a.redirected_to,
+            "subject": a.subject,
+            "body": a.body,
+            "status": {"sent": "sent", "failed": "error", "draft": "draft"}.get(a.status, "queued"),
+            "variant": a.variant,
+            "transport": getattr(provider, "name", ""),
+            "provider_message_id": a.provider_message_id,
+            "thread_id": a.thread_id,
+            "sent_at": a.sent_at,
+            "error": a.outcome_reason if a.status == "failed" else "",
+            "reply": None,
+            "personalization": list(a.personalization),
+            "research": None,
+        }
+        enrichment = store.enrichments.get(a.contact_id)
+        if enrichment:
+            email["research"] = {
+                "summary": enrichment.summary,
+                "hook": enrichment.hook,
+                "services": list(enrichment.services),
+                "doctor_bio": enrichment.doctor_bio,
+                "glp1": enrichment.glp1_mentioned,
+                "source": enrichment.source,
+                "source_note": enrichment.source_note,
+                "website": enrichment.website,
+            }
+        return email
+
+    def send_current_draft(self, attempt_id: str = "") -> tuple[int, dict]:
+        """Send button: the approved draft goes out through the usual transport (SMTP or the Gmail outbox)."""
+        if self.busy():
+            return 409, {"ok": False, "message": "a run is in progress"}
+        log = self.state.log
+        try:
+            cfg, clock, store = self._agent_context()
+            draft = store.email_attempts.get(attempt_id) if attempt_id else current_draft(store)
+            if draft is None or draft.status != "draft":
+                return 404, {"ok": False, "message": "no draft to send; run the agent first"}
+            provider = live.connect_email(cfg, clock, log)
+            result, attempt = send_draft(store, cfg, clock, provider, draft.id, run_id=f"send-{draft.id}")
+            store.save()
+            self._export(store)
+            email = self._email_view(store, attempt, provider)
+            if result == "failed":
+                email["status"] = "error"
+            self.state.run_update(email=email)
+            log(f"run: draft {attempt.id} {result} for {email['contact_name']} -> {email['to']}")
+            try:
+                self.sheet_export(log)
+            except Exception as exc:  # noqa: BLE001
+                log(f"sheet: export after send failed: {exc}")
+            return 200, {"ok": result != "failed", "status": result, "email": email}
+        except ValueError as exc:  # the gate blocked it at send time
+            log(f"run: send blocked: {exc}")
+            return 409, {"ok": False, "message": str(exc)}
+        except (ConfigError, RuntimeError, OSError, live.EmailSendError) as exc:
+            log(f"run: send error: {exc}")
+            return 400, {"ok": False, "message": str(exc)}
+
+    def regenerate_current_draft(self, attempt_id: str = "") -> tuple[int, dict]:
+        """Regenerate button: recompose the same practice's draft with the next composer variant."""
+        if self.busy():
+            return 409, {"ok": False, "message": "a run is in progress"}
+        log = self.state.log
+        try:
+            cfg, clock, store = self._agent_context()
+            draft = store.email_attempts.get(attempt_id) if attempt_id else current_draft(store)
+            if draft is None or draft.status != "draft":
+                return 404, {"ok": False, "message": "no draft to regenerate; run the agent first"}
+            attempt = regenerate_draft(store, cfg, clock, MockBrain(store, clock), draft.id)
+            store.save()
+            self._export(store)
+            email = self._email_view(store, attempt, None)
+            self.state.run_update(email=email)
+            log(f"run: draft {attempt.id} regenerated (variant {attempt.variant})")
+            return 200, {"ok": True, "email": email}
+        except ValueError as exc:
+            return 400, {"ok": False, "message": str(exc)}
+        except (ConfigError, RuntimeError, OSError) as exc:
+            return 400, {"ok": False, "message": str(exc)}
+
+    def _export(self, store) -> None:
+        from .export import export
+        from .summary import build_summary
+
+        last = store.logs["runs"][-1] if store.logs["runs"] else {}
+        export(store, self._last_cfg.export_dir, build_summary(store, last), last)
 
     def outbox(self) -> list[dict]:
         cfg, clock, store = self._agent_context()
@@ -663,6 +739,16 @@ def make_handler(service: LiveService):
                 reset = bool(body.get("reset", False))  # state persists; the agent moves to the next practice
                 ok, msg = service.start_run(reset=bool(reset), now=str(body.get("now") or ""))
                 return self._json(200 if ok else 409, {"started": ok, "message": msg})
+            if path in ("/api/draft/send", "/api/draft/regenerate"):
+                if not self._origin_ok():
+                    return self._json(403, {"error": "origin not allowed"})
+                body = self._body() or {}
+                attempt_id = str(body.get("attempt") or "")
+                if path.endswith("send"):
+                    code, payload = service.send_current_draft(attempt_id)
+                else:
+                    code, payload = service.regenerate_current_draft(attempt_id)
+                return self._json(code, payload)
             m = re.fullmatch(r"/api/outbox/([A-Za-z0-9_.-]+)/sent", path)
             if m:
                 if not self._origin_ok():

@@ -1,4 +1,13 @@
 {
+ "cr_0082124dbf": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_852a1a23f2",
+  "consent_type": "call_clearance",
+  "contact_id": "c_fb34444215",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_0082124dbf",
+  "revoked_at": ""
+ },
  "cr_099fbd3cc4": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_e4e3c37052",
@@ -6,6 +15,15 @@
   "contact_id": "c_fb34444215",
   "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
   "id": "cr_099fbd3cc4",
+  "revoked_at": ""
+ },
+ "cr_0b85e6c8ab": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_991382a969",
+  "consent_type": "call_clearance",
+  "contact_id": "c_41cc51441d",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_0b85e6c8ab",
   "revoked_at": ""
  },
  "cr_0f446ce295": {
@@ -17,6 +35,15 @@
   "id": "cr_0f446ce295",
   "revoked_at": ""
  },
+ "cr_116162401b": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_e74abbe284",
+  "consent_type": "call_clearance",
+  "contact_id": "c_d7b9cfa027",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_116162401b",
+  "revoked_at": ""
+ },
  "cr_1201017b20": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_95ee0f7128",
@@ -24,6 +51,24 @@
   "contact_id": "c_c09828fbcf",
   "evidence_ref": "clearances.csv:founders:dry-run test address (.test domain; published on the practice site per playbook 8b)",
   "id": "cr_1201017b20",
+  "revoked_at": ""
+ },
+ "cr_1231a21001": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_b98752274c",
+  "consent_type": "call_clearance",
+  "contact_id": "c_c09828fbcf",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_1231a21001",
+  "revoked_at": ""
+ },
+ "cr_1594c547bf": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_0446d1a234",
+  "consent_type": "call_clearance",
+  "contact_id": "c_761872151b",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_1594c547bf",
   "revoked_at": ""
  },
  "cr_1d5e131231": {
@@ -53,6 +98,15 @@
   "id": "cr_228d9a2f51",
   "revoked_at": ""
  },
+ "cr_31c658e523": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_10ce09be02",
+  "consent_type": "call_clearance",
+  "contact_id": "c_01c54d811d",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_31c658e523",
+  "revoked_at": ""
+ },
  "cr_35062211c6": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_5dad0aa7b5",
@@ -62,6 +116,24 @@
   "id": "cr_35062211c6",
   "revoked_at": ""
  },
+ "cr_3bf1aa2d72": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_d34810f23f",
+  "consent_type": "call_clearance",
+  "contact_id": "c_5bfd0187e6",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_3bf1aa2d72",
+  "revoked_at": ""
+ },
+ "cr_3e6b171fd0": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_d322ccc60f",
+  "consent_type": "call_clearance",
+  "contact_id": "c_8a72860e91",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_3e6b171fd0",
+  "revoked_at": ""
+ },
  "cr_4238c7b087": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_7acca703d9",
@@ -69,6 +141,15 @@
   "contact_id": "c_5bfd0187e6",
   "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
   "id": "cr_4238c7b087",
+  "revoked_at": ""
+ },
+ "cr_47249fd02c": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_e4d5d2bc45",
+  "consent_type": "call_clearance",
+  "contact_id": "c_b3b24d17b8",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_47249fd02c",
   "revoked_at": ""
  },
  "cr_4a5956ff9a": {
@@ -143,6 +224,15 @@
   "id": "cr_69072e0c74",
   "revoked_at": ""
  },
+ "cr_6bda6d7177": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_a88f6014c5",
+  "consent_type": "call_clearance",
+  "contact_id": "c_2c3a09fcb5",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_6bda6d7177",
+  "revoked_at": ""
+ },
  "cr_6c01dc851e": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_d51cba31b9",
@@ -152,6 +242,24 @@
   "id": "cr_6c01dc851e",
   "revoked_at": ""
  },
+ "cr_6e2462c9b6": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_9a990db7bf",
+  "consent_type": "call_clearance",
+  "contact_id": "c_a776b6dc5b",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_6e2462c9b6",
+  "revoked_at": ""
+ },
+ "cr_6f951d78ce": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_3374ea8e64",
+  "consent_type": "call_clearance",
+  "contact_id": "c_29816f6cb0",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_6f951d78ce",
+  "revoked_at": ""
+ },
  "cr_7fba5fca42": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_fb340917a5",
@@ -159,6 +267,24 @@
   "contact_id": "c_b3b24d17b8",
   "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
   "id": "cr_7fba5fca42",
+  "revoked_at": ""
+ },
+ "cr_86c95b2905": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_cc7984ba6c",
+  "consent_type": "call_clearance",
+  "contact_id": "c_f9eafcfce6",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_86c95b2905",
+  "revoked_at": ""
+ },
+ "cr_8d82d9570f": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_b8798115c4",
+  "consent_type": "call_clearance",
+  "contact_id": "c_b62f5021ad",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_8d82d9570f",
   "revoked_at": ""
  },
  "cr_9501093d1a": {
@@ -177,6 +303,15 @@
   "contact_id": "c_2c3a09fcb5",
   "evidence_ref": "clearances.csv:founders:dry-run test address (.test domain; published on the practice site per playbook 8b)",
   "id": "cr_974d88eabf",
+  "revoked_at": ""
+ },
+ "cr_9e939812a4": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_078be250c8",
+  "consent_type": "call_clearance",
+  "contact_id": "c_48eaa6c438",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_9e939812a4",
   "revoked_at": ""
  },
  "cr_abad3d8ebe": {
@@ -206,6 +341,15 @@
   "id": "cr_be8b244711",
   "revoked_at": ""
  },
+ "cr_c2a8adfdf6": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_7ad274567e",
+  "consent_type": "call_clearance",
+  "contact_id": "c_866bc1a7db",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_c2a8adfdf6",
+  "revoked_at": ""
+ },
  "cr_c2dc0f6db2": {
   "captured_at": "2026-10-20T00:00:00Z",
   "channel_id": "ch_7d785a7774",
@@ -213,6 +357,15 @@
   "contact_id": "c_41cc51441d",
   "evidence_ref": "clearances.csv:founders:dry-run test address (.test domain; published on the practice site per playbook 8b)",
   "id": "cr_c2dc0f6db2",
+  "revoked_at": ""
+ },
+ "cr_c55fb912db": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_0cfad226de",
+  "consent_type": "call_clearance",
+  "contact_id": "c_251bab6d38",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_c55fb912db",
   "revoked_at": ""
  },
  "cr_cb548f1135": {
@@ -231,6 +384,24 @@
   "contact_id": "c_761872151b",
   "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
   "id": "cr_d0e6fc57fd",
+  "revoked_at": ""
+ },
+ "cr_d19afd94d4": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_623b9085ee",
+  "consent_type": "call_clearance",
+  "contact_id": "c_517863c95b",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_d19afd94d4",
+  "revoked_at": ""
+ },
+ "cr_db08866447": {
+  "captured_at": "2026-10-20T00:00:00Z",
+  "channel_id": "ch_87cbfabfd3",
+  "consent_type": "call_clearance",
+  "contact_id": "c_da6677d004",
+  "evidence_ref": "clearances.csv:founders:dry-run test number (fictional 555-01xx range)",
+  "id": "cr_db08866447",
   "revoked_at": ""
  },
  "cr_e03a98e6f4": {

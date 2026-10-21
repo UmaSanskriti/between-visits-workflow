@@ -437,10 +437,19 @@ def _pick_email_channel(store: Store, contact: Contact) -> Channel | None:
 
 
 def send_emails(
-    store: Store, cfg: Config, clock: Clock, brain: BrainClient, mailer: EmailProvider, run_id: str
+    store: Store,
+    cfg: Config,
+    clock: Clock,
+    brain: BrainClient,
+    mailer: EmailProvider | None,
+    run_id: str,
+    draft_only: bool = False,
 ) -> dict:
-    """Gate every open contact, compose the playbook email, send (or queue for the Gmail connector)."""
+    """Gate every open contact, compose the playbook email, send (or queue for the Gmail connector).
+
+    With `draft_only` the composed email is stored as a draft for review (dashboard: Send / Regenerate)."""
     counts = {
+        "drafted": 0,
         "considered": 0,
         "allowed": 0,
         "blocked": 0,
@@ -454,12 +463,19 @@ def send_emails(
     }
     now = clock.now()
     today = iso(now)[:10]
-    sent_today = sum(1 for a in store.email_attempts.values() if (a.sent_at or a.created_at)[:10] == today)
+    sent_today = sum(
+        1 for a in store.email_attempts.values() if a.status != "draft" and (a.sent_at or a.created_at)[:10] == today
+    )
+    drafted_for = {a.contact_id for a in store.email_attempts.values() if a.status == "draft"}
+    if draft_only and drafted_for:  # one draft at a time: the open one waits for Send or Regenerate
+        counts["reused_draft"] = 1
+        counts["placed"] = 0
+        return counts
     if cfg.kill_switch:
         store.alert("kill_switch_on", "kill switch is on; no emails will be sent", run_id=run_id)
 
     for contact in list(store.contacts.values()):
-        if contact.status in CLOSED:
+        if contact.status in CLOSED or contact.id in drafted_for:
             continue
         counts["considered"] += 1
         channel = _pick_email_channel(store, contact)
@@ -488,7 +504,7 @@ def send_emails(
             counts["deferred" if gate.deferred else "blocked"] += 1
             continue
         per_run = cfg.live_max_calls_per_run if cfg.mode == "live" else cfg.email_max_per_run
-        placed = counts["sent"] + counts["queued"]
+        placed = counts["sent"] + counts["queued"] + counts["drafted"]
         if placed >= per_run or sent_today + placed >= cfg.email_max_per_day:
             decision.update({"allowed": False, "deferred": True, "reasons": ["email_cap_reached"]})
             store.logs["gate_decisions"].append(decision)
@@ -537,26 +553,6 @@ def send_emails(
             counts["compose_errors"] += 1
             continue
 
-        # a follow-up closes the previous unanswered email
-        for prev in store.email_attempts.values():
-            if prev.contact_id == contact.id and prev.status == "sent" and not prev.outcome:
-                store.update(
-                    "email_attempts",
-                    prev,
-                    "no_reply_followed_up",
-                    {
-                        "outcome": Outcome.NO_REPLY,
-                        "failure_category": FAILURE_CATEGORY[Outcome.NO_REPLY],
-                        "outcome_reason": "no reply before the follow-up",
-                    },
-                    run_id=run_id,
-                )
-
-        recipient = channel.value
-        redirected = ""
-        if cfg.mode == "live" and cfg.email_demo_recipient and cfg.email_demo_recipient != channel.value.lower():
-            recipient = cfg.email_demo_recipient  # staged demo: the practice's copy goes to the team inbox
-            redirected = mask_email(recipient)
         attempt = EmailAttempt(
             id=attempt_id,
             contact_id=contact.id,
@@ -566,60 +562,148 @@ def send_emails(
             gate_result="allowed",
             subject=draft.subject,
             body=draft.body,
-            status="queued",
-            redirected_to=redirected,
-            provider=mailer.name,
+            status="draft" if draft_only else "queued",
+            provider="" if draft_only else mailer.name,
             script_version=draft.script_version,
             segment=contact.segment or "default",
             fallbacks_applied=draft.fallbacks_applied,
             personalization=draft.personalization,
+            variant=0,
             created_at=iso(now),
             updated_at=iso(now),
         )
         store.add("email_attempts", attempt, run_id=run_id, contact_id=contact.id)
-        message = EmailMessage(
-            to=recipient,
-            from_name=cfg.email_from_name,
-            from_address=cfg.email_from_address or "dry-run@between-visits.test",
-            reply_to=cfg.email_reply_to,
-            subject=draft.subject,
-            body_text=draft.body,
-            headers={"X-BV-Attempt": attempt_id, "X-BV-Script": draft.script_version},
-            attempt_id=attempt_id,
-            contact_id=contact.id,
-            metadata={"scenario": contact.test_scenario, "dry_run": cfg.mode != "live"},
-        )
-        try:
-            message_id = mailer.send(message)
-        except EmailSendError as exc:
-            store.update(
-                "email_attempts",
-                attempt,
-                "send_failed",
-                {"status": "failed", "outcome_reason": str(exc)},
-                run_id=run_id,
-            )
-            store.error("delivery_failed", str(exc), call_id=attempt_id, contact_id=contact.id, field="email")
-            store.alert("email_send_failed", f"{attempt_id}: {exc}", contact_id=contact.id, run_id=run_id)
-            counts["failed"] += 1
+        if draft_only:
+            counts["drafted"] += 1
             continue
-        contact_changes = {"status": ContactStatus.IN_OUTREACH, "attempts": attempt_number, "last_outcome": ""}
-        if message_id:
-            mark_sent(store, cfg, clock, attempt, contact, message_id, mailer.name, run_id)
-            counts["sent"] += 1
-        else:  # queued in an outbox; the operator sends it and reports back with `email-sent`
-            contact_changes["next_attempt_at"] = ""
-            counts["queued"] += 1
-        store.update(
-            "contacts",
-            contact,
-            "email_sent" if message_id else "email_queued",
-            contact_changes,
-            run_id=run_id,
-            email_attempt_id=attempt_id,
-        )
+        counts[_deliver(store, cfg, clock, mailer, attempt, contact, channel, run_id)] += 1
     counts["placed"] = counts["sent"] + counts["queued"]  # alias so progress views treat both channels alike
     return counts
+
+
+def _deliver(
+    store: Store,
+    cfg: Config,
+    clock: Clock,
+    mailer: EmailProvider,
+    attempt: EmailAttempt,
+    contact: Contact,
+    channel: Channel,
+    run_id: str,
+) -> str:
+    """Send (or queue) one stored attempt. Returns "sent", "queued" or "failed"."""
+    # a follow-up closes the previous unanswered email
+    for prev in store.email_attempts.values():
+        if prev.id != attempt.id and prev.contact_id == contact.id and prev.status == "sent" and not prev.outcome:
+            store.update(
+                "email_attempts",
+                prev,
+                "no_reply_followed_up",
+                {
+                    "outcome": Outcome.NO_REPLY,
+                    "failure_category": FAILURE_CATEGORY[Outcome.NO_REPLY],
+                    "outcome_reason": "no reply before the follow-up",
+                },
+                run_id=run_id,
+            )
+    recipient = channel.value
+    redirected = ""
+    if cfg.mode == "live" and cfg.email_demo_recipient and cfg.email_demo_recipient != channel.value.lower():
+        recipient = cfg.email_demo_recipient  # staged demo: the practice's copy goes to the team inbox
+        redirected = mask_email(recipient)
+    store.update(
+        "email_attempts",
+        attempt,
+        "send_requested",
+        {"status": "queued", "provider": mailer.name, "redirected_to": redirected, "run_id": run_id},
+        run_id=run_id,
+    )
+    message = EmailMessage(
+        to=recipient,
+        from_name=cfg.email_from_name,
+        from_address=cfg.email_from_address or "dry-run@between-visits.test",
+        reply_to=cfg.email_reply_to,
+        subject=attempt.subject,
+        body_text=attempt.body,
+        headers={"X-BV-Attempt": attempt.id, "X-BV-Script": attempt.script_version},
+        attempt_id=attempt.id,
+        contact_id=contact.id,
+        metadata={"scenario": contact.test_scenario, "dry_run": cfg.mode != "live"},
+    )
+    try:
+        message_id = mailer.send(message)
+    except EmailSendError as exc:
+        store.update(
+            "email_attempts", attempt, "send_failed", {"status": "failed", "outcome_reason": str(exc)}, run_id=run_id
+        )
+        store.error("delivery_failed", str(exc), call_id=attempt.id, contact_id=contact.id, field="email")
+        store.alert("email_send_failed", f"{attempt.id}: {exc}", contact_id=contact.id, run_id=run_id)
+        return "failed"
+    contact_changes = {"status": ContactStatus.IN_OUTREACH, "attempts": attempt.attempt_number, "last_outcome": ""}
+    if message_id:
+        mark_sent(store, cfg, clock, attempt, contact, message_id, mailer.name, run_id)
+    else:  # queued in an outbox; the operator sends it and reports back with `email-sent`
+        contact_changes["next_attempt_at"] = ""
+    store.update(
+        "contacts",
+        contact,
+        "email_sent" if message_id else "email_queued",
+        contact_changes,
+        run_id=run_id,
+        email_attempt_id=attempt.id,
+    )
+    return "sent" if message_id else "queued"
+
+
+def current_draft(store: Store) -> EmailAttempt | None:
+    drafts = sorted((a for a in store.email_attempts.values() if a.status == "draft"), key=lambda a: a.created_at)
+    return drafts[-1] if drafts else None
+
+
+def send_draft(
+    store: Store, cfg: Config, clock: Clock, mailer: EmailProvider, attempt_id: str, run_id: str
+) -> tuple[str, EmailAttempt]:
+    """The operator approved the draft on the dashboard: send it through the usual path."""
+    attempt = store.email_attempts.get(attempt_id)
+    if attempt is None or attempt.status != "draft":
+        raise KeyError(attempt_id)
+    contact = store.contacts[attempt.contact_id]
+    channel = store.channels[attempt.channel_id]
+    gate = pre_send_gate(store, contact, channel, cfg, clock)  # re-checked at send time (suppression, kill switch)
+    if not gate.allowed:
+        raise ValueError("gate blocked the send: " + ", ".join(gate.reasons))
+    store.audit("email_attempt", attempt.id, "draft_approved", {}, {"variant": attempt.variant}, actor="operator")
+    return _deliver(store, cfg, clock, mailer, attempt, contact, channel, run_id), attempt
+
+
+def regenerate_draft(store: Store, cfg: Config, clock: Clock, brain: BrainClient, attempt_id: str) -> EmailAttempt:
+    """Recompose the draft with the next composer variant; same practice, same attempt id."""
+    attempt = store.email_attempts.get(attempt_id)
+    if attempt is None or attempt.status != "draft":
+        raise KeyError(attempt_id)
+    contact = store.contacts[attempt.contact_id]
+    channel = store.channels[attempt.channel_id]
+    brain_email = brain.resolve_email({"campaign_id": cfg.campaign_id, "contact": {"segment": contact.segment}})
+    variant = (attempt.variant + 1) % 4
+    draft, errors = build_email(
+        contact, channel, brain_email, cfg, clock, store.enrichments.get(contact.id), variant=variant
+    )
+    if errors or draft is None:
+        raise ValueError("could not recompose: " + ", ".join(errors))
+    store.update(
+        "email_attempts",
+        attempt,
+        "draft_regenerated",
+        {
+            "subject": draft.subject,
+            "body": draft.body,
+            "personalization": draft.personalization,
+            "fallbacks_applied": draft.fallbacks_applied,
+            "variant": variant,
+        },
+        actor="operator",
+    )
+    return attempt
 
 
 def mark_sent(
