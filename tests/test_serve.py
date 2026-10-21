@@ -290,6 +290,8 @@ def test_real_agent_run_queues_the_first_eligible_practice(tmp_path):
     service.env_overrides = {
         "BV_LIVE_ALLOWLIST": "ppatel@example.test",
         "EMAIL_DEMO_RECIPIENT": "ppatel@example.test",  # independent of whatever the local .env redirects to
+        "BV_SHEET": str(tmp_path / "practices.xlsx"),  # never the real practice sheet
+        "BV_SHEET_BACKEND": "xlsx",
         "EMAIL_TRANSPORT": "outbox",
         "SMTP_PASSWORD": "",
     }

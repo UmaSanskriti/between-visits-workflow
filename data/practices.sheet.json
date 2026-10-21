@@ -1,9 +1,9 @@
 {
  "backend": "xlsx",
- "export_mtime": 1792552979.56181,
- "fingerprint": "76e3fe633449b61d",
- "last_export": "2026-10-21T03:22:59Z",
- "last_import": "2026-10-21T03:10:17Z",
+ "export_mtime": 1792553850.040948,
+ "fingerprint": "6715e95915e3e001",
+ "last_export": "2026-10-21T03:37:30Z",
+ "last_import": "2026-10-21T03:37:05Z",
  "location": "data/practices.xlsx",
- "rows": 21
+ "rows": 71
 }

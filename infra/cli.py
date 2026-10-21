@@ -218,6 +218,7 @@ def main(argv=None) -> int:
         rows = adapter.fetch()
         out = write_sourced_csv(rows, args.out)
         print(f"source: {len(rows)} practices -> {out}")
+        store.load()  # the live store must be loaded before anything is appended, or its state is overwritten
         appended = _append_rows_to_sheet(rows, cfg, store, clock)
         if appended is not None:
             print(f"source: {appended} new practices appended to the sheet (tag real)")
