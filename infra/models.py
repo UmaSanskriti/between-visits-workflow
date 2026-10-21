@@ -246,8 +246,13 @@ class Enrichment(Record):
     patient_focus: str = ""
     recent_note: str = ""
     languages: str = ""
-    hook: str = ""  # a clause that completes "I saw on your site that {hook}"
+    hook: str = ""  # a clause that completes "I noticed {hook}"
     source_note: str = ""
+    research_note: str = ""  # what the research pass found or did not, and why
+    website_source: str = ""  # sheet | google_cse | guess
+    emails: list[dict] = field(default_factory=list)  # [{address, page_url, kind}] published on the site
+    phones_found: list[str] = field(default_factory=list)
+    phone_match: str = ""  # match | mismatch | unknown (site phone vs NPI phone)
     retrieved_at: str = ""
     confidence: str = "low"  # low | medium | high
     created_at: str = ""

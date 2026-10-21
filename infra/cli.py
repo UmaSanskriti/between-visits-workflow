@@ -72,8 +72,21 @@ def _parser() -> argparse.ArgumentParser:
     sub.add_parser("resume", help="resume calling (OPS-001)")
     sub.add_parser("redrive", help="move dead-lettered transcripts back to pending")
     appr = sub.add_parser("approve", help="approve a drafted interview invite (playbook section 9)")
-    appr.add_argument("interview", help="interview id, or a contact id / external id / name")
+    appr.add_argument("interview", nargs="?", default="", help="interview id, or a contact id / external id / name")
     appr.add_argument("--by", default="operator", help="approver name")
+    appr.add_argument(
+        "--real",
+        action="store_true",
+        help="clear every real practice whose email was published on its website (writes clearances)",
+    )
+    rs = sub.add_parser("research", help="real practices: find the website, read it, extract a published email")
+    rs.add_argument("--refresh", action="store_true", help="re-research practices that already have web research")
+    rs.add_argument("--max", type=int, default=0, help="stop after this many sites (0 = all)")
+    rs.add_argument("--contact", default="", help="only this contact (id or external id)")
+    rs.add_argument(
+        "--no-search", action="store_true", help="skip Google Custom Search; sheet websites and guesses only"
+    )
+    rs.add_argument("--all", action="store_true", help="include dummy practices (normally real only)")
     hist = sub.add_parser("history", help="full history for one contact (OPS-001)")
     hist.add_argument("contact", help="contact id, external id, or name substring")
     sub.add_parser("reset", help="wipe data/ and docs/data")
@@ -212,6 +225,7 @@ def main(argv=None) -> int:
         print(
             "source: this batch is NOT callable until Anirudh approves it and the numbers are cleared (clearances.csv)"
         )
+        print("source: next, `python -m infra research` finds each practice's website and a published email")
         return 0
     if args.command == "sheet":
         return _sheet_command(args, cfg, clock, store)
@@ -316,9 +330,20 @@ def main(argv=None) -> int:
         store.save()
         print(f"redrove {moved} transcript(s)")
         return 0
+    if args.command == "research":
+        return _research_command(args, cfg, clock, store, env)
+    if args.command == "approve" and args.real:
+        from .research import approve_real
+
+        result = approve_real(store, args.clearances, clock, args.by)
+        store.save()
+        return 0 if result["added"] >= 0 else 1
     if args.command == "approve":
         from .booking import approve_interview
 
+        if not args.interview:
+            print("approve: give an interview/contact, or --real", file=sys.stderr)
+            return 1
         interview = store.interviews.get(args.interview)
         if interview is None:
             contact = _find_contact(store, args.interview)
@@ -402,6 +427,63 @@ def _email_commands(args, cfg, clock, store: Store) -> int:
             "email: queued for the Gmail connector; after sending run: "
             f"python -m infra email-sent {result['queued'][0]['id']} --message-id <gmail id> --live"
         )
+    return 0
+
+
+def _research_command(args, cfg, clock, store: Store, env: dict) -> int:
+    from . import research as rs
+    from .email.enrich import WebEnricher, default_fetcher
+
+    data_dir = Path(cfg.data_dir)
+    fetcher = rs.CachingFetcher(default_fetcher, data_dir / "research" / "pages", clock, log=print)
+    finders: list = [rs.SheetWebsiteFinder()]
+    key, cx = env.get("GOOGLE_CSE_KEY", "").strip(), env.get("GOOGLE_CSE_CX", "").strip()
+    if key and cx and not args.no_search:
+        quota = rs.CseQuota(data_dir / "research" / "cse_quota.json", clock)
+        finders.append(rs.GoogleCseFinder(key, cx, quota, log=print))
+        print(f"research: Google Custom Search on; {quota.remaining()} queries left today")
+    elif not args.no_search:
+        print("research: GOOGLE_CSE_KEY / GOOGLE_CSE_CX not set; using sheet websites and guesses only")
+    finders.append(rs.GuessFinder(fetcher, log=print))
+    enricher = WebEnricher(clock, fetcher=fetcher, log=print)
+    ids = None
+    if args.contact:
+        c = _find_contact(store, args.contact)
+        if c is None:
+            print(f"research: no contact matches {args.contact!r}", file=sys.stderr)
+            return 1
+        ids = {c.id}
+    counts = rs.research_contacts(
+        store,
+        cfg,
+        clock,
+        rs.ChainFinder(finders),
+        enricher,
+        log=print,
+        only_real=not args.all,
+        max_sites=args.max,
+        refresh=args.refresh,
+        contact_ids=ids,
+    )
+    store.save()
+    print(
+        "research: "
+        + ", ".join(f"{k}={v}" for k, v in counts.items())
+        + f"; pages fetched={fetcher.fetches}, cached={fetcher.hits}"
+    )
+    try:
+        from . import sheet as sheetmod
+
+        rows = sheetmod.export_sheet(store, sheetmod.get_backend(cfg, env, log=print), clock)
+        print(f"research: practice sheet refreshed ({rows} rows)")
+    except Exception as exc:  # noqa: BLE001 - the sheet is a mirror, not the system of record
+        print(f"research: sheet not refreshed: {exc}")
+    last = store.logs["runs"][-1] if store.logs["runs"] else {}
+    export(store, cfg.export_dir, build_summary(store, last), last)
+    print(
+        "research: review the practice sheet, then `python -m infra approve --real --by <name>` to clear the "
+        "published emails, then run the agent"
+    )
     return 0
 
 

@@ -194,6 +194,29 @@ the workbook.
 - The workbook is gitignored (real practices are public business data we keep out of the public repo by default);
   `data/practices.sheet.json` / `data/practices.google.sheet.json` record the last import/export and a fingerprint.
 
+## Real practices
+
+The dummy list proves the loop; real practices come from public sources with provenance on every field.
+
+```bash
+python -m infra source npi --max 60            # CMS NPI Registry: independent FM/IM practices in Greater Boston
+python -m infra research --max 20              # website → pages → summary, services, GLP-1 mention, published email
+python -m infra approve --real --by "Anirudh"  # clear the website-published emails (clearances.csv)
+# then press Run the agent (or: python -m infra run)
+```
+
+- **Website discovery** tries, in order: the `website` column of the practice sheet, Google Custom Search
+  (`GOOGLE_CSE_KEY` and `GOOGLE_CSE_CX` in `.env`, from a Programmable Search Engine set to search the whole web;
+  100 free queries/day, the pass stops at 95 and says so), then a guessed `<practice-slug>.com/.org` that is kept
+  only if the page shows the practice's NPI phone. Directory sites (Healthgrades, Zocdoc, Yelp, …) are skipped.
+- **Reading the site** honours robots.txt, fetches the homepage plus a few about/services/contact pages at one
+  request per second, and caches pages for seven days under `data/research/pages/`.
+- **Email** comes only from the practice's own pages (`mailto:` links first, own-domain addresses preferred); it is
+  stored as an email channel with `source=website`, the page URL and the retrieval time, unverified and
+  `not_cleared` until `approve --real` writes the clearance. The phone found on the site is compared with the NPI
+  phone; a mismatch lowers confidence and is recorded in the research note.
+- The practice sheet and the dashboard card show the website, the published email and the research note.
+
 ## Repository layout
 
 ```

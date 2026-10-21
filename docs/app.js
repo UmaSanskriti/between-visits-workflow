@@ -391,6 +391,11 @@
         if (en.doctor_bio) about.appendChild(el("div", { class: "muted small", text: en.doctor_bio }));
         if (en.recent_note) about.appendChild(el("div", { class: "muted small", text: "Recent: " + en.recent_note }));
         if (en.patient_focus || en.languages) about.appendChild(el("div", { class: "muted small", text: [en.patient_focus ? "Focus: " + en.patient_focus : "", en.languages ? "Languages: " + en.languages : ""].filter(Boolean).join(" · ") }));
+        const site = en.website || c.website;
+        if (site && /^https?:\/\//.test(site)) about.appendChild(el("div", { class: "small" }, [el("a", { href: site, text: site.replace(/^https?:\/\//, "").replace(/\/$/, ""), target: "_blank", rel: "noopener" }), en.website_source ? el("span", { class: "muted", text: " · found via " + nice(en.website_source) + (en.phone_match === "match" ? ", phone matches" : en.phone_match === "mismatch" ? ", phone does not match" : "") }) : null]));
+        const published = (c.channels || []).find((ch) => ch.type === "email" && ch.source === "website");
+        if (published) about.appendChild(el("div", { class: "muted small", text: "Email " + published.value + " published on " + (published.source_url || "the site").replace(/^https?:\/\//, "") }));
+        if (en.research_note) about.appendChild(el("div", { class: "muted small", text: "Research: " + en.research_note }));
         card.appendChild(about);
       }
 
