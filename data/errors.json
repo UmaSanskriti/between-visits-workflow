@@ -5,7 +5,7 @@
   "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
   "field": "email",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  },
  {
   "call_id": "",
@@ -13,7 +13,7 @@
   "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
   "field": "email",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  },
  {
   "call_id": "",
@@ -21,7 +21,7 @@
   "detail": "matches c_251bab6d38; review and merge (VER-004)",
   "error_type": "duplicate_candidate",
   "field": "name+practice/phone",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  },
  {
   "call_id": "",
@@ -29,7 +29,7 @@
   "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
   "field": "email",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  },
  {
   "call_id": "",
@@ -37,7 +37,7 @@
   "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
   "field": "email",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  },
  {
   "call_id": "",
@@ -45,6 +45,6 @@
   "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
   "field": "email",
-  "timestamp": "2026-10-20T19:00:00Z"
+  "timestamp": "2026-10-21T01:57:54Z"
  }
 ]

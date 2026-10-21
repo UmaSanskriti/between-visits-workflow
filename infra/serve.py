@@ -516,7 +516,7 @@ def make_handler(service: LiveService):
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
                 body = self._body() or {}
-                reset = body.get("reset", True)
+                reset = bool(body.get("reset", False))  # state persists; the agent moves to the next practice
                 ok, msg = service.start_run(reset=bool(reset), now=str(body.get("now") or ""))
                 return self._json(200 if ok else 409, {"started": ok, "message": msg})
             m = re.fullmatch(r"/api/outbox/([A-Za-z0-9_.-]+)/sent", path)

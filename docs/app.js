@@ -601,7 +601,7 @@
     btn.addEventListener("click", async () => {
       btn.disabled = true; btn.textContent = "Running…"; $("error").textContent = ""; lastEmailStatus = null;
       try {
-        const res = await localFetch(LOCAL + "/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reset: true }) });
+        const res = await localFetch(LOCAL + "/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) });
         const body = await res.json();
         if (!res.ok) { $("error").textContent = body.message || body.error || "could not start"; btn.disabled = false; btn.textContent = "Run the agent"; return; }
       } catch (e) { $("error").textContent = "Could not reach the local service."; btn.disabled = false; btn.textContent = "Run the agent"; return; }

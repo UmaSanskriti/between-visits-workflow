@@ -1,5 +1,5 @@
 {
- "alerts": 3,
+ "alerts": 0,
  "calls": {
   "attempts": 0,
   "booked": 0,
@@ -17,23 +17,20 @@
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 10,
-   "considered": 13,
-   "deferred": 3
+   "allowed": 1,
+   "blocked": 8,
+   "considered": 21,
+   "deferred": 12
   },
   "paused": false,
-  "suppressions": 3
+  "suppressions": 1
  },
  "contacts": {
   "by_status": {
-   "BOOKED": 5,
-   "DECLINED": 2,
-   "IN_OUTREACH": 4,
-   "READY": 1,
+   "IN_OUTREACH": 2,
+   "READY": 12,
    "SOURCED": 1,
-   "SUPPRESSED": 2,
-   "UNREACHABLE": 1,
+   "SUPPRESSED": 1,
    "VERIFIED": 5
   },
   "by_verification": {
@@ -46,36 +43,26 @@
  },
  "dlq": 0,
  "emails": {
-  "agreed": 5,
-  "attempts": 14,
-  "awaiting_reply": 3,
-  "bounced": 1,
+  "agreed": 0,
+  "attempts": 2,
+  "awaiting_reply": 2,
+  "bounced": 0,
   "by_outcome": {
-   "(awaiting reply)": 3,
-   "AGREED_TO_TALK": 5,
-   "BOUNCED": 1,
-   "DECLINED": 2,
-   "DO_NOT_CONTACT": 1,
-   "REPLIED_OTHER": 2
+   "(awaiting reply)": 2
   },
   "by_script_version": {
    "v1": {
-    "attempts": 14,
-    "booked": 5,
+    "attempts": 2,
+    "booked": 0,
     "by_outcome": {
-     "(pending)": 3,
-     "AGREED_TO_TALK": 5,
-     "BOUNCED": 1,
-     "DECLINED": 2,
-     "DO_NOT_CONTACT": 1,
-     "REPLIED_OTHER": 2
+     "(pending)": 2
     },
-    "conversion": 0.357,
-    "declined": 2
+    "conversion": 0.0,
+    "declined": 0
    }
   },
   "by_segment": {
-   "default": {
+   "solo_primary_care": {
     "attempts": 1,
     "booked": 0,
     "by_outcome": {
@@ -84,51 +71,27 @@
     "conversion": 0.0,
     "declined": 0
    },
-   "small_group_primary_care": {
-    "attempts": 2,
-    "booked": 1,
-    "by_outcome": {
-     "AGREED_TO_TALK": 1,
-     "DECLINED": 1
-    },
-    "conversion": 0.5,
-    "declined": 1
-   },
-   "solo_primary_care": {
-    "attempts": 8,
-    "booked": 4,
-    "by_outcome": {
-     "(pending)": 1,
-     "AGREED_TO_TALK": 4,
-     "BOUNCED": 1,
-     "DECLINED": 1,
-     "DO_NOT_CONTACT": 1
-    },
-    "conversion": 0.5,
-    "declined": 1
-   },
    "solo_specialist": {
-    "attempts": 3,
+    "attempts": 1,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 1,
-     "REPLIED_OTHER": 2
+     "(pending)": 1
     },
     "conversion": 0.0,
     "declined": 0
    }
   },
-  "declined": 2,
-  "duplicate_events_ignored": 11,
+  "declined": 0,
+  "duplicate_events_ignored": 0,
   "failed": 0,
   "follow_ups_due": 0,
-  "needs_review": 2,
+  "needs_review": 0,
   "no_reply": 0,
   "queued": 0,
-  "replied": 10,
-  "reply_rate": 0.714,
-  "sent": 14,
-  "stop": 1
+  "replied": 0,
+  "reply_rate": 0.0,
+  "sent": 2,
+  "stop": 0
  },
  "errors": 6,
  "funnel": [
@@ -145,22 +108,100 @@
    "stage": "Cleared to email"
   },
   {
-   "count": 13,
+   "count": 2,
    "stage": "Emailed"
   },
   {
-   "count": 9,
+   "count": 0,
    "stage": "Replied"
   },
   {
-   "count": 5,
+   "count": 0,
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T01:50:42Z",
- "interviews": 5,
- "interviews_pending_approval": 5,
+ "generated_at": "2026-10-21T02:04:53Z",
+ "interviews": 0,
+ "interviews_pending_approval": 0,
  "queue": [
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_b3b24d17b8",
+   "external_id": "t_02",
+   "last_outcome": "",
+   "name": "(no name)",
+   "next_attempt_at": "",
+   "practice": "Beacon Hill Internal Medicine",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_d7b9cfa027",
+   "external_id": "t_14",
+   "last_outcome": "",
+   "name": "Emily Zhang",
+   "next_attempt_at": "",
+   "practice": "South End Internal Medicine",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_c09828fbcf",
+   "external_id": "t_11",
+   "last_outcome": "",
+   "name": "Grace Kim",
+   "next_attempt_at": "",
+   "practice": "Kim Family Medicine",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_48eaa6c438",
+   "external_id": "t_09",
+   "last_outcome": "",
+   "name": "Hannah Goldberg",
+   "next_attempt_at": "",
+   "practice": "Brookline Primary Care",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_2c3a09fcb5",
+   "external_id": "t_18",
+   "last_outcome": "",
+   "name": "Laura Bennett",
+   "next_attempt_at": "",
+   "practice": "Bennett Family Practice",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_da6677d004",
+   "external_id": "t_03",
+   "last_outcome": "",
+   "name": "Marcus Lee",
+   "next_attempt_at": "",
+   "practice": "Lee Medical",
+   "queued_email": false,
+   "segment": "default",
+   "status": "READY"
+  },
   {
    "attempts": 0,
    "awaiting_reply": false,
@@ -175,16 +216,81 @@
    "status": "READY"
   },
   {
-   "attempts": 2,
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_41cc51441d",
+   "external_id": "t_19",
+   "last_outcome": "",
+   "name": "Priya Raman",
+   "next_attempt_at": "",
+   "practice": "Harborview Internal Medicine",
+   "queued_email": false,
+   "segment": "small_group_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_29816f6cb0",
+   "external_id": "t_07",
+   "last_outcome": "",
+   "name": "Rosa Martinez",
+   "next_attempt_at": "",
+   "practice": "Fenway Group Practice",
+   "queued_email": false,
+   "segment": "small_group_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
    "awaiting_reply": false,
    "contact_id": "c_f9eafcfce6",
    "external_id": "t_04",
-   "last_outcome": "REPLIED_OTHER",
+   "last_outcome": "",
    "name": "Siobhan Ni Bhriain",
    "next_attempt_at": "",
    "practice": "Charles River Endocrinology",
    "queued_email": false,
    "segment": "solo_specialist",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_b62f5021ad",
+   "external_id": "t_20",
+   "last_outcome": "",
+   "name": "Tom Nguyen",
+   "next_attempt_at": "",
+   "practice": "Nguyen Family Health",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 0,
+   "awaiting_reply": false,
+   "contact_id": "c_fb34444215",
+   "external_id": "t_21",
+   "last_outcome": "",
+   "name": "Wei Chen",
+   "next_attempt_at": "",
+   "practice": "Chen Family Practice",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "READY"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_251bab6d38",
+   "external_id": "t_01",
+   "last_outcome": "",
+   "name": "Priya Patel",
+   "next_attempt_at": "2026-10-24T02:02:53Z",
+   "practice": "Patel Family Medicine",
+   "queued_email": false,
+   "segment": "solo_primary_care",
    "status": "IN_OUTREACH"
   },
   {
@@ -194,47 +300,21 @@
    "external_id": "t_08",
    "last_outcome": "",
    "name": "Ken Watanabe",
-   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "next_attempt_at": "2026-10-24T02:05:33Z",
    "practice": "Watanabe Pediatrics",
    "queued_email": false,
    "segment": "solo_specialist",
    "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "awaiting_reply": true,
-   "contact_id": "c_da6677d004",
-   "external_id": "t_03",
-   "last_outcome": "",
-   "name": "Marcus Lee",
-   "next_attempt_at": "2026-10-23T19:00:00Z",
-   "practice": "Lee Medical",
-   "queued_email": false,
-   "segment": "default",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "awaiting_reply": true,
-   "contact_id": "c_b62f5021ad",
-   "external_id": "t_20",
-   "last_outcome": "",
-   "name": "Tom Nguyen",
-   "next_attempt_at": "2026-10-23T19:00:00Z",
-   "practice": "Nguyen Family Health",
-   "queued_email": false,
-   "segment": "solo_primary_care",
-   "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T015042Z-003",
+ "run_id": "20261021T020453Z-002",
  "transcripts": {
-  "brain_inbox": 13,
-  "delivered": 13,
-  "delivery_rate": 1.0,
+  "brain_inbox": 1,
+  "delivered": 1,
+  "delivery_rate": 0.5,
   "failed": 0,
-  "held_pii_review": 1,
-  "pending": 0,
-  "total": 14
+  "held_pii_review": 0,
+  "pending": 1,
+  "total": 2
  }
 }
