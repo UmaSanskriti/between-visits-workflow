@@ -2,9 +2,9 @@
  "brain_down": false,
  "callback_number_set": true,
  "channel": "email",
- "finished_at": "2026-10-21T01:38:28Z",
+ "finished_at": "2026-10-21T01:50:42Z",
  "gate_escapes": 0,
- "git_sha": "5e00b65",
+ "git_sha": "231965b",
  "kill_switch": false,
  "limits": {
   "follow_up_days": 3,
@@ -15,32 +15,32 @@
   "max_messages": 2
  },
  "mode": "dry_run",
- "now_used": "2026-10-21T01:38:28Z",
+ "now_used": "2026-10-21T01:50:42Z",
  "paused": false,
  "playbook": "clinic-outreach-brain.md",
- "run_id": "20261021T013828Z-002",
+ "run_id": "20261021T015042Z-003",
  "seed": "test_doctors.csv",
  "simulated_time": false,
  "stages": {
   "delivery": {
-   "attempted": 1,
-   "delivered": 1,
+   "attempted": 0,
+   "delivered": 0,
    "duplicates": 0,
    "failed": 0,
    "held": 1
   },
   "email": {
-   "allowed": 1,
-   "blocked": 9,
+   "allowed": 0,
+   "blocked": 10,
    "brain_unavailable": 0,
    "capped": 0,
    "compose_errors": 0,
    "considered": 13,
    "deferred": 3,
    "failed": 0,
-   "placed": 1,
+   "placed": 0,
    "queued": 0,
-   "sent": 1
+   "sent": 0
   },
   "ingest": {
    "channels_created": 0,
@@ -49,9 +49,9 @@
    "rows": 21
   },
   "replies": {
-   "applied": 1,
-   "duplicates_ignored": 1,
-   "events": 2,
+   "applied": 0,
+   "duplicates_ignored": 0,
+   "events": 0,
    "expired_no_reply": 0,
    "unknown_message": 0
   },
@@ -66,6 +66,6 @@
    "verified": 5
   }
  },
- "started_at": "2026-10-21T01:38:28Z",
+ "started_at": "2026-10-21T01:50:42Z",
  "trigger": "push"
 }
