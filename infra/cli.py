@@ -77,12 +77,14 @@ def _parser() -> argparse.ArgumentParser:
     hist = sub.add_parser("history", help="full history for one contact (OPS-001)")
     hist.add_argument("contact", help="contact id, external id, or name substring")
     sub.add_parser("reset", help="wipe data/ and docs/data")
-    sh = sub.add_parser("sheet", help="two-way Excel sync of practice information (data/practices.xlsx)")
-    sh.add_argument("action", choices=["export", "import", "watch", "path"])
+    sh = sub.add_parser("sheet", help="two-way sync of practice information: Google Sheet, or data/practices.xlsx")
     sh.add_argument(
-        "--file", default="", help="workbook path (default: BV_SHEET, [sheet].path, or data/practices.xlsx)"
+        "action",
+        choices=["export", "import", "watch", "path", "bootstrap-google"],
+        help="bootstrap-google: create the 'practices' tab in GOOGLE_SHEET_ID and write the current database",
     )
-    sh.add_argument("--interval", type=float, default=3.0)
+    sh.add_argument("--file", default="", help="force the xlsx backend at this workbook path")
+    sh.add_argument("--interval", type=float, default=0.0, help="watch interval (default 10s Google, 3s xlsx)")
     vp = sub.add_parser("vapi", help="Vapi account checks with free API calls (needs VAPI_API_KEY in .env)")
     vp.add_argument(
         "action",
@@ -499,62 +501,94 @@ def _vapi_commands(args, cfg, clock, store: Store) -> int:
 def _sheet_command(args, cfg, clock, store: Store) -> int:
     from . import sheet as sheetmod
     from .export import export
+    from .gsheet import GoogleSheetError
     from .summary import build_summary
 
     store.load()  # this command is dispatched before the generic load
-    path = Path(args.file) if args.file else sheetmod.sheet_path(cfg)
-    if args.action == "path":
-        print(path)
-        return 0
-    if args.action == "export":
-        result = sheetmod.sync_sheet(store, path, clock)
-        print(
-            f"sheet: {result['rows']} practices -> {path}" + (" (imported edits first)" if result["imported"] else "")
-        )
-        return 0
-    if args.action == "import":
-        counts = sheetmod.import_sheet(store, path, clock)
-        last = store.logs["runs"][-1] if store.logs["runs"] else {}
-        export(store, cfg.export_dir, build_summary(store, last), last)
-        sheetmod.export_sheet(store, path, clock)
-        print(f"sheet: {counts}")
-        return 0
-    # watch: the same loop the service runs, without HTTP
-    import time as _time
-
-    print(f"sheet: watching {path} every {args.interval}s (Ctrl-C to stop)")
+    env = load_dotenv(ROOT / ".env", dict(os.environ))
     try:
-        while True:
-            if path.exists() and sheetmod.changed_since_export(path):
-                fresh = Store(cfg.data_dir, clock).load()
-                counts = sheetmod.import_sheet(fresh, path, clock)
-                last = fresh.logs["runs"][-1] if fresh.logs["runs"] else {}
-                export(fresh, cfg.export_dir, build_summary(fresh, last), last)
-                sheetmod.export_sheet(fresh, path, clock)
-                print(f"sheet: imported {counts['rows']} rows")
-            _time.sleep(args.interval)
-    except KeyboardInterrupt:
-        return 0
+        if args.action == "bootstrap-google":
+            env["BV_SHEET_BACKEND"] = "google"
+        backend = sheetmod.XlsxBackend(Path(args.file)) if args.file else sheetmod.get_backend(cfg, env)
+    except GoogleSheetError as exc:
+        print(f"sheet: {exc}", file=sys.stderr)
+        return 2
+    where = backend.describe()
+    try:
+        if args.action == "path":
+            print(f"{backend.name}: {where}")
+            return 0
+        if args.action == "bootstrap-google":
+            backend.ensure_tab(create=True)
+            rows = sheetmod.export_sheet(store, backend, clock)
+            print(f"sheet: wrote {rows} practices to {where} (tab '{sheetmod.SHEET_NAME}')")
+            print("sheet: edits there flow back while `python -m infra serve` or `python -m infra sheet watch` runs")
+            return 0
+        if args.action == "export":
+            result = sheetmod.sync_sheet(store, backend, clock)
+            print(
+                f"sheet: {result['rows']} practices -> {where}"
+                + (" (imported edits first)" if result["imported"] else "")
+            )
+            return 0
+        if args.action == "import":
+            counts = sheetmod.import_sheet(store, backend, clock)
+            last = store.logs["runs"][-1] if store.logs["runs"] else {}
+            export(store, cfg.export_dir, build_summary(store, last), last)
+            sheetmod.export_sheet(store, backend, clock)
+            print(f"sheet: {counts}")
+            return 0
+        # watch: the same loop the service runs, without HTTP
+        import time as _time
+
+        interval = args.interval or sheetmod.watch_interval(backend)
+        print(f"sheet: watching {where} every {interval:g}s (Ctrl-C to stop)")
+        try:
+            while True:
+                if backend.exists() and sheetmod.changed_since_export(backend):
+                    fresh = Store(cfg.data_dir, clock).load()
+                    counts = sheetmod.import_sheet(fresh, backend, clock)
+                    last = fresh.logs["runs"][-1] if fresh.logs["runs"] else {}
+                    export(fresh, cfg.export_dir, build_summary(fresh, last), last)
+                    sheetmod.export_sheet(fresh, backend, clock)
+                    print(f"sheet: imported {counts['rows']} rows")
+                _time.sleep(interval)
+        except KeyboardInterrupt:
+            return 0
+    except GoogleSheetError as exc:
+        print(f"sheet: {exc}", file=sys.stderr)
+        return 1
+
+
+def _sheet_backend_or_none(cfg):
+    from . import sheet as sheetmod
+
+    try:
+        backend = sheetmod.get_backend(cfg, log=lambda *a: None)
+        return backend if backend.exists() else None
+    except Exception as exc:  # noqa: BLE001 - the sheet is optional for these commands
+        print(f"sheet: skipped ({exc})", file=sys.stderr)
+        return None
 
 
 def _refresh_sheet_if_present(cfg, store: Store, clock) -> None:
     from . import sheet as sheetmod
 
-    path = sheetmod.sheet_path(cfg)
-    if path.exists():
+    backend = _sheet_backend_or_none(cfg)
+    if backend is not None:
         try:
-            sheetmod.sync_sheet(store, path, clock, log=lambda *a: None)
+            sheetmod.sync_sheet(store, backend, clock, log=lambda *a: None)
         except Exception as exc:  # noqa: BLE001
             print(f"sheet: refresh skipped ({exc})", file=sys.stderr)
 
 
 def _append_rows_to_sheet(rows: list[dict], cfg, store: Store, clock) -> int | None:
-    """Sourced practices go into the sheet (tag real) so the workbook is the full database."""
+    """Sourced practices go into the sheet (tag real) so the sheet is the full database."""
     from . import sheet as sheetmod
     from .sourcing import CsvSeedAdapter, ingest
 
-    path = sheetmod.sheet_path(cfg)
-    if not path.exists() and not store.contacts:
+    backend = _sheet_backend_or_none(cfg)
+    if backend is None and not store.contacts:
         return None
     before = len(store.contacts)
 
@@ -566,7 +600,8 @@ def _append_rows_to_sheet(rows: list[dict], cfg, store: Store, clock) -> int | N
 
     ingest(store, _Rows(), clock, cfg.default_time_zone)
     store.save()
-    sheetmod.sync_sheet(store, path, clock, log=lambda *a: None)
+    if backend is not None:
+        sheetmod.sync_sheet(store, backend, clock, log=lambda *a: None)
     return len(store.contacts) - before
 
 

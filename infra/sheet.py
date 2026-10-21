@@ -1,4 +1,5 @@
-"""Two-way sync between the practice database and an Excel workbook (data/practices.xlsx).
+"""Two-way sync between the practice database and a practice sheet: a Google Sheet (default when configured)
+or the offline workbook data/practices.xlsx.
 
 The sheet is the *practice information* database only: the columns we would scrape from the internet, with a
 dummy/real tag. Outreach state (attempts, status, clearances) never goes in; the dashboard owns that.
@@ -7,8 +8,10 @@ Rules:
 - export_sheet writes every contact (+ first phone, first email, enrichment) and records a fingerprint sidecar.
 - import_sheet upserts practice fields, channels and enrichment (source "sheet") by external_id; rows missing
   from the sheet are reported, never deleted.
-- sync_sheet applies the conflict rule: if the file changed since our last export, import first (the sheet wins
+- sync_sheet applies the conflict rule: if the sheet changed since our last export, import first (the sheet wins
   for practice fields), then export the merged state. An edit is never clobbered.
+- Storage is a SheetBackend (infra/gsheet.py): GoogleSheetBackend or XlsxBackend. Every public function here
+  accepts either a backend or a workbook path (a path means xlsx), so older callers keep working.
 """
 
 from __future__ import annotations
@@ -24,6 +27,7 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 
 from .clock import Clock, iso
+from .gsheet import GoogleSheetBackend, GoogleSheetError, SheetBackend
 from .models import Channel, Contact, ContactStatus, Enrichment
 from .store import Store
 
@@ -138,28 +142,143 @@ def _slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")[:40] or "practice"
 
 
-def fingerprint(path: Path) -> str:
-    return hashlib.sha1(path.read_bytes()).hexdigest()[:16] if path.exists() else ""
+class XlsxBackend:
+    """The offline workbook (openpyxl)."""
+
+    name = "xlsx"
+
+    def __init__(self, path: str | Path):
+        self.path = Path(path)
+        self.sidecar = sidecar_path(self.path)
+
+    def describe(self) -> str:
+        return str(self.path)
+
+    @property
+    def url(self) -> str:
+        return ""
+
+    def exists(self) -> bool:
+        return self.path.exists()
+
+    def mtime(self) -> float:
+        return self.path.stat().st_mtime if self.path.exists() else 0.0
+
+    def fingerprint(self) -> str:
+        return hashlib.sha1(self.path.read_bytes()).hexdigest()[:16] if self.path.exists() else ""
+
+    def read_rows(self) -> list[dict]:
+        wb = load_workbook(self.path, read_only=True, data_only=True)
+        ws = wb[SHEET_NAME] if SHEET_NAME in wb.sheetnames else wb.active
+        rows: list[dict] = []
+        header: list[str] = []
+        for i, values in enumerate(ws.iter_rows(values_only=True)):
+            if i == 0:
+                header = [_cell(v) for v in values]
+                continue
+            if not any(_cell(v) for v in values):
+                continue
+            row = {header[j]: _cell(values[j]) for j in range(min(len(header), len(values))) if header[j]}
+            rows.append(row)
+        wb.close()
+        return rows
+
+    def write_rows(self, rows: list[dict]) -> int:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        wb = Workbook()
+        ws = wb.active
+        ws.title = SHEET_NAME
+        ws.append(COLUMNS)
+        ws.freeze_panes = "A2"
+        for row in rows:
+            ws.append([row.get(col, "") for col in COLUMNS])
+        for i, col in enumerate(COLUMNS, start=1):
+            ws.column_dimensions[get_column_letter(i)].width = WIDTHS.get(col, 14)
+        wb.save(self.path)
+        return len(rows)
+
+    def write_back_ids(self, assignments: dict[int, str]) -> None:
+        """Fill generated external_ids into rows that had none (row index -> id)."""
+        if not assignments:
+            return
+        wb = load_workbook(self.path)
+        ws = wb[SHEET_NAME] if SHEET_NAME in wb.sheetnames else wb.active
+        col = COLUMNS.index("external_id") + 1
+        for row_idx, external_id in assignments.items():
+            ws.cell(row=row_idx, column=col, value=external_id)
+        wb.save(self.path)
 
 
-def read_sidecar(path: Path) -> dict:
-    sc = sidecar_path(path)
+def as_backend(target) -> SheetBackend:
+    """A backend as given, or an XlsxBackend for a workbook path."""
+    if hasattr(target, "read_rows") and hasattr(target, "fingerprint"):
+        return target
+    return XlsxBackend(Path(target))
+
+
+def _toml_sheet() -> dict:
+    config = ROOT / "config.toml"
+    return (tomllib.loads(config.read_text()).get("sheet") or {}) if config.exists() else {}
+
+
+def get_backend(cfg=None, env: dict | None = None, path: str | Path | None = None, log=print) -> SheetBackend:
+    """Selection rule: BV_SHEET_BACKEND or [sheet].backend ("google" | "xlsx" | "auto"); auto picks Google when
+    GOOGLE_SHEET_ID and GOOGLE_SERVICE_ACCOUNT_FILE are set and the key file exists, else the workbook."""
+    if env is None:
+        from .config import load_dotenv
+
+        env = load_dotenv(ROOT / ".env", dict(os.environ))
+    settings = _toml_sheet()
+    choice = (env.get("BV_SHEET_BACKEND") or settings.get("backend") or "auto").strip().lower()
+    sheet_id = (env.get("GOOGLE_SHEET_ID") or settings.get("google_sheet_id") or "").strip()
+    key_file = (env.get("GOOGLE_SERVICE_ACCOUNT_FILE") or "").strip()
+    key_ok = bool(key_file) and Path(key_file).expanduser().exists()
+    if choice == "google" or (choice == "auto" and sheet_id and key_ok):
+        if not sheet_id:
+            raise GoogleSheetError("backend google needs GOOGLE_SHEET_ID (in .env or [sheet].google_sheet_id)")
+        if not key_ok:
+            raise GoogleSheetError("backend google needs GOOGLE_SERVICE_ACCOUNT_FILE pointing to the JSON key")
+        data_dir = Path(getattr(cfg, "data_dir", "data")) if cfg is not None else Path("data")
+        return GoogleSheetBackend(
+            sheet_id,
+            key_file,
+            sidecar=data_dir / "practices.google.sheet.json",
+            columns=COLUMNS,
+            tab=SHEET_NAME,
+            log=log,
+        )
+    return XlsxBackend(path or sheet_path(cfg, env))
+
+
+def watch_interval(backend: SheetBackend) -> float:
+    return 10.0 if backend.name == "google" else 3.0  # API quota vs. a local file
+
+
+def fingerprint(target) -> str:
+    return as_backend(target).fingerprint()
+
+
+def read_sidecar(target) -> dict:
+    sc = as_backend(target).sidecar
     return json.loads(sc.read_text()) if sc.exists() else {}
 
 
-def write_sidecar(path: Path, **fields) -> dict:
-    data = read_sidecar(path)
+def write_sidecar(target, **fields) -> dict:
+    backend = as_backend(target)
+    data = read_sidecar(backend)
     data.update(fields)
-    sidecar_path(path).write_text(json.dumps(data, indent=1, sort_keys=True) + "\n")
+    backend.sidecar.parent.mkdir(parents=True, exist_ok=True)
+    backend.sidecar.write_text(json.dumps(data, indent=1, sort_keys=True) + "\n")
     return data
 
 
-def changed_since_export(path: Path) -> bool:
-    """True when the workbook differs from what we last wrote (someone edited it)."""
-    if not path.exists():
+def changed_since_export(target) -> bool:
+    """True when the sheet differs from what we last wrote (someone edited it)."""
+    backend = as_backend(target)
+    if not backend.exists():
         return False
-    side = read_sidecar(path)
-    return bool(side.get("fingerprint")) and fingerprint(path) != side["fingerprint"]
+    side = read_sidecar(backend)
+    return bool(side.get("fingerprint")) and backend.fingerprint() != side["fingerprint"]
 
 
 def row_for(store: Store, contact: Contact) -> dict:
@@ -203,73 +322,44 @@ def row_for(store: Store, contact: Contact) -> dict:
     }
 
 
-def export_sheet(store: Store, path: str | Path, clock: Clock | None = None) -> int:
-    """Write the whole practice database to the workbook. Returns the row count."""
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    wb = Workbook()
-    ws = wb.active
-    ws.title = SHEET_NAME
-    ws.append(COLUMNS)
-    ws.freeze_panes = "A2"
+def export_sheet(store: Store, target, clock: Clock | None = None) -> int:
+    """Write the whole practice database to the sheet. Returns the row count."""
+    backend = as_backend(target)
     contacts = sorted(store.contacts.values(), key=lambda c: (source_tag_for(c) != "dummy", c.external_id, c.full_name))
-    for contact in contacts:
-        row = row_for(store, contact)
-        ws.append([row[col] for col in COLUMNS])
-    for i, col in enumerate(COLUMNS, start=1):
-        ws.column_dimensions[get_column_letter(i)].width = WIDTHS.get(col, 14)
-    wb.save(path)
+    rows = [row_for(store, contact) for contact in contacts]
+    backend.write_rows(rows)
     now = iso((clock or Clock()).now())
     write_sidecar(
-        path, last_export=now, export_mtime=path.stat().st_mtime, fingerprint=fingerprint(path), rows=len(contacts)
+        backend,
+        last_export=now,
+        export_mtime=backend.mtime() if hasattr(backend, "mtime") else 0.0,
+        fingerprint=backend.fingerprint(),
+        rows=len(contacts),
+        backend=backend.name,
+        location=backend.describe(),
     )
     return len(contacts)
 
 
-def read_sheet_rows(path: str | Path) -> list[dict]:
+def read_sheet_rows(target) -> list[dict]:
     """Rows as dicts keyed by COLUMNS (unknown extra columns are kept too)."""
-    path = Path(path)
-    wb = load_workbook(path, read_only=True, data_only=True)
-    ws = wb[SHEET_NAME] if SHEET_NAME in wb.sheetnames else wb.active
-    rows: list[dict] = []
-    header: list[str] = []
-    for i, values in enumerate(ws.iter_rows(values_only=True)):
-        if i == 0:
-            header = [_cell(v) for v in values]
-            continue
-        if not any(_cell(v) for v in values):
-            continue
-        row = {header[j]: _cell(values[j]) for j in range(min(len(header), len(values))) if header[j]}
-        rows.append(row)
-    wb.close()
-    return rows
+    return as_backend(target).read_rows()
 
 
-def _write_back_ids(path: Path, assignments: dict[int, str]) -> None:
-    """Fill generated external_ids into rows that had none (row index -> id)."""
-    if not assignments:
-        return
-    wb = load_workbook(path)
-    ws = wb[SHEET_NAME] if SHEET_NAME in wb.sheetnames else wb.active
-    col = COLUMNS.index("external_id") + 1
-    for row_idx, external_id in assignments.items():
-        ws.cell(row=row_idx, column=col, value=external_id)
-    wb.save(path)
-
-
-def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dict:
-    """Upsert practice information from the workbook (the sheet wins for these fields). Never deletes."""
+def import_sheet(store: Store, target, clock: Clock, log=print) -> dict:
+    """Upsert practice information from the sheet (the sheet wins for these fields). Never deletes."""
     from .sourcing import contact_id_for  # local import: sourcing imports nothing from here
     from .verify import normalize_e164
 
-    path = Path(path)
+    backend = as_backend(target)
+    where = backend.describe()
     now = iso(clock.now())
     counts = {"rows": 0, "created": 0, "updated": 0, "unchanged": 0, "missing_from_sheet": 0}
     by_external = {c.external_id: c for c in store.contacts.values() if c.external_id}
     seen: set[str] = set()
     generated: dict[int, str] = {}
-    rows = read_sheet_rows(path)
-    for idx, row in enumerate(rows, start=2):  # openpyxl row numbers (1 = header)
+    rows = backend.read_rows()
+    for idx, row in enumerate(rows, start=2):  # sheet row numbers (1 = header)
         counts["rows"] += 1
         external_id = row.get("external_id", "")
         if not external_id:
@@ -280,6 +370,7 @@ def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dic
         tag = (row.get("source_tag") or "").lower() or ("dummy" if external_id.startswith("t_") else "real")
         contact = by_external.get(external_id)
         changes: dict = {}
+        previous: dict = {}
         if contact is None:
             seed_row = {
                 "external_id": external_id,
@@ -307,6 +398,7 @@ def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dic
         else:
             created = False
             en_existing = store.enrichments.get(contact.id)
+            previous = {col: getattr(contact, attr) for col, attr in CONTACT_FIELDS.items()}
             for col, attr in CONTACT_FIELDS.items():
                 value = row.get(col, "")
                 if col == "time_zone" and not value:
@@ -320,8 +412,8 @@ def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dic
                 changes["source_tag"] = tag
             if changes:
                 store.update("contacts", contact, "sheet_edit", changes, actor="sheet")
-        channel_changes = _upsert_channels(store, contact, row, normalize_e164, now)
-        enrich_changes = _upsert_enrichment(store, contact, row, now)
+        channel_changes = _upsert_channels(store, contact, row, normalize_e164, now, where)
+        enrich_changes = _upsert_enrichment(store, contact, row, now, where, previous)
         if created:
             continue
         if changes or channel_changes or enrich_changes:
@@ -332,13 +424,17 @@ def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dic
     counts["missing_from_sheet"] = len(missing)
     counts["missing_ids"] = missing[:50]
     if generated:
-        _write_back_ids(path, generated)
-    store.audit(
-        "sheet", str(path), "import", {}, {k: v for k, v in counts.items() if k != "missing_ids"}, actor="sheet"
-    )
+        backend.write_back_ids(generated)
+    store.audit("sheet", where, "import", {}, {k: v for k, v in counts.items() if k != "missing_ids"}, actor="sheet")
     store.save()
     write_sidecar(
-        path, last_import=now, fingerprint=fingerprint(path), export_mtime=path.stat().st_mtime, rows=len(rows)
+        backend,
+        last_import=now,
+        fingerprint=backend.fingerprint(),
+        export_mtime=backend.mtime() if hasattr(backend, "mtime") else 0.0,
+        rows=len(rows),
+        backend=backend.name,
+        location=where,
     )
     log(
         f"sheet: imported {counts['rows']} rows ({counts['created']} new, {counts['updated']} updated, "
@@ -347,7 +443,7 @@ def import_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dic
     return counts
 
 
-def _upsert_channels(store: Store, contact: Contact, row: dict, normalize_e164, now: str) -> bool:
+def _upsert_channels(store: Store, contact: Contact, row: dict, normalize_e164, now: str, where: str = "") -> bool:
     from .sourcing import short_hash
 
     changed = False
@@ -367,7 +463,7 @@ def _upsert_channels(store: Store, contact: Contact, row: dict, normalize_e164, 
             value=value,
             raw_value=raw,
             source="sheet",
-            source_url=row.get("source_url", "") or "practices.xlsx",
+            source_url=row.get("source_url", "") or where or "practice sheet",
             retrieved_at=now,
         )
         store.add("channels", channel, actor="sheet", contact_id=contact.id)
@@ -375,7 +471,9 @@ def _upsert_channels(store: Store, contact: Contact, row: dict, normalize_e164, 
     return changed
 
 
-def _upsert_enrichment(store: Store, contact: Contact, row: dict, now: str) -> bool:
+def _upsert_enrichment(
+    store: Store, contact: Contact, row: dict, now: str, where: str = "", previous: dict | None = None
+) -> bool:
     has_any = any(
         row.get(col) for col in ENRICH_FIELDS + ["services", "glp1_mentioned", "weight_management_mentioned", "hook"]
     )
@@ -396,9 +494,12 @@ def _upsert_enrichment(store: Store, contact: Contact, row: dict, now: str) -> b
     }
     existing = store.enrichments.get(contact.id)
     if existing is not None:
-        for col in ("hook", "website"):  # exported as the effective value: unchanged when it still matches
-            effective = getattr(contact, col) or getattr(existing, col)
-            if fields[col] == effective:
+        # The sheet shows the effective value (contact field, else enrichment). A cell equal to what we exported is
+        # not an edit, so leave the research record alone; a different cell is an edit and must reach the composer,
+        # which prefers the enrichment over the contact field. Compare against the value *before* this import.
+        for col in ("hook", "website"):
+            exported = (previous or {}).get(col) or getattr(existing, col)
+            if fields[col] == exported:
                 fields[col] = getattr(existing, col)
     if existing is None:
         store.add(
@@ -407,7 +508,7 @@ def _upsert_enrichment(store: Store, contact: Contact, row: dict, now: str) -> b
                 id=contact.id,
                 contact_id=contact.id,
                 source="sheet",
-                source_note="edited in practices.xlsx",
+                source_note=f"edited in {where or 'the practice sheet'}",
                 retrieved_at=now,
                 confidence="medium",
                 created_at=now,
@@ -420,17 +521,19 @@ def _upsert_enrichment(store: Store, contact: Contact, row: dict, now: str) -> b
         return True
     changes = {k: v for k, v in fields.items() if getattr(existing, k) != v}
     if changes:
-        changes.update({"source": "sheet", "source_note": "edited in practices.xlsx", "retrieved_at": now})
+        changes.update(
+            {"source": "sheet", "source_note": f"edited in {where or 'the practice sheet'}", "retrieved_at": now}
+        )
         store.update("enrichments", existing, "sheet_edit", changes, actor="sheet", contact_id=contact.id)
         return True
     return False
 
 
-def sync_sheet(store: Store, path: str | Path, clock: Clock, log=print) -> dict:
-    """Conflict rule: import first if the file changed since our last export, then export the merged state."""
-    path = Path(path)
-    result = {"imported": None, "rows": 0}
-    if changed_since_export(path):
-        result["imported"] = import_sheet(store, path, clock, log)
-    result["rows"] = export_sheet(store, path, clock)
+def sync_sheet(store: Store, target, clock: Clock, log=print) -> dict:
+    """Conflict rule: import first if the sheet changed since our last export, then export the merged state."""
+    backend = as_backend(target)
+    result = {"imported": None, "rows": 0, "backend": backend.name, "location": backend.describe()}
+    if changed_since_export(backend):
+        result["imported"] = import_sheet(store, backend, clock, log)
+    result["rows"] = export_sheet(store, backend, clock)
     return result

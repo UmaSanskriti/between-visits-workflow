@@ -76,6 +76,8 @@ class LiveState:
                 "last_export": "",
                 "last_result": None,
                 "watching": False,
+                "backend": "",
+                "url": "",
             },
         }
 
@@ -182,17 +184,35 @@ class LiveService:
         self._watcher: threading.Thread | None = None
         state.update(tunnel_url=tunnel_url, live_events=bool(tunnel_url))
 
-    # ---- practice sheet (two-way Excel sync) ----
-    def sheet_file(self) -> Path:
+    # ---- practice sheet (two-way sync: Google Sheet or the xlsx fallback) ----
+    def sheet_backend(self):
+        from . import sheet as sheetmod
+
+        env = load_dotenv(ROOT / ".env", dict(os.environ))
+        env.update(self.env_overrides)
+        cfg = type("Cfg", (), {"data_dir": self.dry_data_dir})()
+        return sheetmod.get_backend(cfg, env, log=self.state.log)
+
+    def sheet_file(self) -> Path:  # kept for older callers/tests: the xlsx location
         from . import sheet as sheetmod
 
         env = load_dotenv(ROOT / ".env", dict(os.environ))
         env.update(self.env_overrides)
         return sheetmod.sheet_path(type("Cfg", (), {"data_dir": self.dry_data_dir})(), env)
 
-    def _seed_path(self) -> Path:
-        path = self.sheet_file()
-        return path if path.exists() else self.seeds_dir / "test_doctors.csv"
+    def _seed_path(self):
+        try:
+            backend = self.sheet_backend()
+            if backend.exists():
+                return backend if backend.name != "xlsx" else backend.path
+        except Exception as exc:  # noqa: BLE001 - a sheet problem must not block the run; fall back to the CSV seeds
+            self.state.log(f"sheet: unavailable for this run ({exc}); using the CSV seeds")
+        return self.seeds_dir / "test_doctors.csv"
+
+    def _sheet_state(self, backend, **extra) -> None:
+        self.state.sheet_update(
+            path=backend.describe(), backend=backend.name, url=getattr(backend, "url", "") or "", **extra
+        )
 
     def sheet_export(self, log=None) -> dict:
         from . import sheet as sheetmod
@@ -200,10 +220,10 @@ class LiveService:
         log = log or self.state.log
         with self._sheet_lock:
             cfg, clock, store = self._agent_context()
-            path = self.sheet_file()
-            result = sheetmod.sync_sheet(store, path, clock, log)
-            self.state.sheet_update(
-                path=str(path), rows=result["rows"], last_export=iso(clock.now()), last_result=result.get("imported")
+            backend = self.sheet_backend()
+            result = sheetmod.sync_sheet(store, backend, clock, log)
+            self._sheet_state(
+                backend, rows=result["rows"], last_export=iso(clock.now()), last_result=result.get("imported")
             )
             return result
 
@@ -215,52 +235,56 @@ class LiveService:
         log = log or self.state.log
         with self._sheet_lock:
             cfg, clock, store = self._agent_context()
-            path = self.sheet_file()
-            counts = sheetmod.import_sheet(store, path, clock, log)
+            backend = self.sheet_backend()
+            counts = sheetmod.import_sheet(store, backend, clock, log)
             last = store.logs["runs"][-1] if store.logs["runs"] else {}
             export(store, cfg.export_dir, build_summary(store, last), last)
-            rows = sheetmod.export_sheet(store, path, clock)  # normalise the file (ids written back, widths)
-            self.state.sheet_update(
-                path=str(path),
-                rows=rows,
-                last_import=iso(clock.now()),
-                last_export=iso(clock.now()),
-                last_result=counts,
+            rows = sheetmod.export_sheet(store, backend, clock)  # normalise the sheet (ids written back)
+            self._sheet_state(
+                backend, rows=rows, last_import=iso(clock.now()), last_export=iso(clock.now()), last_result=counts
             )
             return counts
 
     def bootstrap_sheet(self) -> None:
         from . import sheet as sheetmod
 
-        path = self.sheet_file()
-        if path.exists():
-            if sheetmod.changed_since_export(path):
+        try:
+            backend = self.sheet_backend()
+        except Exception as exc:  # noqa: BLE001
+            self.state.log(f"sheet: not configured ({exc})")
+            self.state.sheet_update(last_result={"error": str(exc)}, watching=False)
+            return
+        if backend.exists():
+            if sheetmod.changed_since_export(backend):
                 self.sheet_import()
             else:
-                self.state.sheet_update(
-                    path=str(path),
-                    rows=sheetmod.read_sidecar(path).get("rows", 0),
-                    last_export=sheetmod.read_sidecar(path).get("last_export", ""),
-                    last_import=sheetmod.read_sidecar(path).get("last_import", ""),
+                side = sheetmod.read_sidecar(backend)
+                self._sheet_state(
+                    backend,
+                    rows=side.get("rows", 0),
+                    last_export=side.get("last_export", ""),
+                    last_import=side.get("last_import", ""),
                 )
             return
         result = self.sheet_export()
-        self.state.log(f"sheet: created {path} with {result['rows']} practices")
+        self.state.log(f"sheet: created {backend.describe()} with {result['rows']} practices")
 
-    def start_sheet_watcher(self, interval: float = 3.0) -> None:
+    def start_sheet_watcher(self, interval: float | None = None) -> None:
         from . import sheet as sheetmod
 
         def loop():
             while True:
+                wait = interval or 3.0
                 try:
-                    path = self.sheet_file()
-                    if path.exists() and sheetmod.changed_since_export(path) and not self.busy():
+                    backend = self.sheet_backend()
+                    wait = interval or sheetmod.watch_interval(backend)
+                    if backend.exists() and sheetmod.changed_since_export(backend) and not self.busy():
                         self.state.log("sheet: change detected, importing")
                         self.sheet_import()
                 except Exception as exc:  # noqa: BLE001 - keep watching
                     self.state.log(f"sheet: watcher error: {exc}")
                     self.state.sheet_update(last_result={"error": str(exc)})
-                time.sleep(interval)
+                time.sleep(wait)
 
         self._watcher = threading.Thread(target=loop, name="sheet-watcher", daemon=True)
         self._watcher.start()

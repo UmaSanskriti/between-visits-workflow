@@ -44,10 +44,13 @@ class CsvSeedAdapter:
 
     name = "csv_seed"
 
-    def __init__(self, path: str | Path):
-        self.path = Path(path)
+    def __init__(self, path):
+        self.backend = path if hasattr(path, "read_rows") else None  # a SheetBackend (Google Sheet) is a seed too
+        self.path = Path(path) if self.backend is None else Path(path.describe())
 
     def fetch(self) -> list[dict]:
+        if self.backend is not None:
+            return SheetSeedAdapter(self.backend).fetch()
         if self.path.suffix.lower() == ".xlsx":  # the practice sheet is a seed too (same row shape)
             return SheetSeedAdapter(self.path).fetch()
         with self.path.open(newline="") as fh:
@@ -69,14 +72,17 @@ class SheetSeedAdapter:
 
     name = "csv_seed"
 
-    def __init__(self, path: str | Path):
-        self.path = Path(path)
+    def __init__(self, target):
+        self.target = target  # a workbook path or a SheetBackend (Google Sheet)
+        self.path = Path(target) if not hasattr(target, "read_rows") else None
+        self.label = self.path.name if self.path else getattr(target, "name", "sheet")
+        self.location = str(self.path) if self.path else target.describe()
 
     def fetch(self) -> list[dict]:
         from .sheet import read_sheet_rows
 
         rows = []
-        for sheet_row in read_sheet_rows(self.path):
+        for sheet_row in read_sheet_rows(self.target):
             row = {
                 "external_id": sheet_row.get("external_id", ""),
                 "name": sheet_row.get("doctor_name", ""),
@@ -97,8 +103,8 @@ class SheetSeedAdapter:
                 "scenario": "",
                 "npi": sheet_row.get("npi", ""),
                 "source_tag": sheet_row.get("source_tag", ""),
-                "source": sheet_row.get("source", "") or f"sheet:{self.path.name}",
-                "source_url": sheet_row.get("source_url", "") or str(self.path),
+                "source": sheet_row.get("source", "") or f"sheet:{self.label}",
+                "source_url": sheet_row.get("source_url", "") or self.location,
                 "retrieved_at": sheet_row.get("retrieved_at", ""),
             }
             if not row["external_id"] and not (row["practice_name"] or row["name"]):

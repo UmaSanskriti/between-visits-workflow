@@ -196,7 +196,7 @@
     if (run.simulated_time) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "simulated clock ", el("b", { text: fmtTime(run.now_used) })]));
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
     const sh = (live && live.__sheet) || null;
-    if (sh && sh.path) chips.appendChild(el("span", { class: "chip", title: sh.path }, ["Sheet ", el("b", { text: String(sh.rows || 0) + " practices" }), sh.last_import || sh.last_export ? " · synced " + fmtTime(sh.last_import && sh.last_import > (sh.last_export || "") ? sh.last_import : sh.last_export) : ""]));
+    if (sh && sh.path) chips.appendChild(el(sh.url ? "a" : "span", Object.assign({ class: "chip", title: (sh.backend === "google" ? "Google Sheet: " : "Workbook: ") + sh.path }, sh.url ? { href: sh.url, target: "_blank", rel: "noopener" } : {}), [(sh.backend === "google" ? "Google Sheet " : "Sheet "), el("b", { text: String(sh.rows || 0) + " practices" }), sh.last_import || sh.last_export ? " · synced " + fmtTime(sh.last_import && sh.last_import > (sh.last_export || "") ? sh.last_import : sh.last_export) : ""]));
     else if (s.practices) chips.appendChild(el("span", { class: "chip" }, ["Practices ", el("b", { text: (s.practices.dummy || 0) + " dummy · " + (s.practices.real || 0) + " real" })]));
     if (run.paused) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "Calling paused"]));
     if (run.brain_down) chips.appendChild(el("span", { class: "chip serious" }, [el("span", { class: "dot" }), "Brain simulated down"]));

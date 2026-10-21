@@ -58,8 +58,10 @@ backoff_seconds = 0         # 0 in dry run so test runs finish instantly
 [features]
 voicemail_message = true    # CMP-008: on only because playbook section 6 ships an approved voicemail script (v1)
 
-[sheet]                     # two-way Excel sync of practice information (python -m infra sheet ...)
-path = "data/practices.xlsx"
+[sheet]                     # two-way sync of practice information (python -m infra sheet ...)
+backend = "auto"            # google | xlsx | auto (google when GOOGLE_SHEET_ID and GOOGLE_SERVICE_ACCOUNT_FILE are set)
+path = "data/practices.xlsx"   # the offline fallback workbook
+google_sheet_id = ""        # or GOOGLE_SHEET_ID in .env (the id in the spreadsheet URL)
 
 [paths]
 data_dir = "data"

@@ -71,7 +71,7 @@ def run_pipeline(
         "brain_down": cfg.brain_down,
         "trigger": trigger,
         "git_sha": git_sha(),
-        "seed": Path(seed).name,
+        "seed": seed.describe() if hasattr(seed, "describe") else Path(seed).name,
         "playbook": cfg.playbook,
         "callback_number_set": bool(cfg.callback_number),
         "channel": cfg.outreach_channel,

@@ -153,32 +153,53 @@ practice was picked, the gate verdict, the subject and body, "Queued for Gmail" 
 the thread, "Waiting for a reply", and the classified reply with the handoff. Practice cards carry an **Emails**
 section with the same history, including where the demo copy was delivered.
 
-## Practice sheet (two-way Excel sync)
+## Practice sheet (two-way Google Sheet sync)
 
-`data/practices.xlsx` is the practice database in spreadsheet form: one row per practice, dummy and real, with
-exactly the practice information the dashboard shows and nothing about outreach. Columns, in order:
+The practice database also lives in a spreadsheet: one row per practice, dummy and real, with exactly the practice
+information the dashboard shows and nothing about outreach. By default that spreadsheet is a **Google Sheet**; the
+workbook `data/practices.xlsx` is the offline fallback and behaves the same way. Columns, in order:
 `source_tag` (dummy|real), `external_id`, `npi`, `doctor_name`, `credentials`, `specialty`, `practice_name`,
 `practice_size`, `address`, `city`, `state`, `time_zone`, `phone`, `email`, `website`, `hook`, `summary`, `services`,
 `glp1_mentioned`, `weight_management_mentioned`, `doctor_bio`, `patient_focus`, `recent_note`, `languages`,
 `pronunciation_hint`, `source`, `source_url`, `retrieved_at`.
 
-- **Edit the sheet → database and UI update.** While `python -m infra serve` runs, a watcher checks the file every
-  3 seconds; on change it imports (the sheet wins for practice fields), re-exports the dashboard data, and the page
-  reloads. Without the service: `python -m infra sheet watch` or `python -m infra sheet import`.
+**Google Sheet setup (once, about ten minutes):**
+1. In [Google Cloud Console](https://console.cloud.google.com/), create a project (or pick one) and enable the
+   **Google Sheets API** (APIs & Services → Library).
+2. APIs & Services → Credentials → Create credentials → **Service account**. Open it, Keys → Add key → JSON. Save the
+   file outside the repo, e.g. `~/.config/between-visits/sheets-sa.json`.
+3. Create a blank Google Sheet. Share it with the service account's email (it looks like
+   `name@project.iam.gserviceaccount.com`, shown in the JSON as `client_email`) as **Editor**.
+4. In `.env`: `GOOGLE_SERVICE_ACCOUNT_FILE=/path/to/sheets-sa.json` and `GOOGLE_SHEET_ID=<the long id in the sheet URL>`.
+5. `python -m infra sheet bootstrap-google` creates the `practices` tab (frozen header) and writes the current
+   database. `python -m infra sheet path` prints the URL.
+
+**Backend selection:** `[sheet].backend` in `config.toml` or `BV_SHEET_BACKEND` in `.env`: `google`, `xlsx`, or `auto`
+(default). Auto uses Google when both `GOOGLE_SHEET_ID` and `GOOGLE_SERVICE_ACCOUNT_FILE` are set and the key file
+exists, otherwise the workbook at `[sheet].path` (`BV_SHEET` overrides). `--file <path>` on any `sheet` command forces
+the workbook.
+
+**How the sync behaves (either backend):**
+- **Edit the sheet → database and UI update.** While `python -m infra serve` runs, a watcher compares a fingerprint of
+  the sheet every 10 seconds (Google, quota friendly) or 3 seconds (workbook); on change it imports (the sheet wins
+  for practice fields, including the research hook and summary), re-exports the dashboard data, and the page reloads.
+  Without the service: `python -m infra sheet watch` or `python -m infra sheet import`.
 - **Database → sheet.** Every agent run, `python -m infra source npi` (new rows, tagged real), `python -m infra enrich`,
-  and `python -m infra sheet export` refresh the workbook. Before any export the conflict rule applies: if the file
+  and `python -m infra sheet export` refresh the sheet. Before any export the conflict rule applies: if the sheet
   changed since the last export, it is imported first, so an edit is never clobbered.
 - New rows with a blank `external_id` get one generated and written back. Rows removed from the sheet are reported,
   never deleted from the database. A new phone or email from the sheet is created unverified and uncleared, so the
   gate still decides whether it can be contacted.
+- Google calls retry on 429/5xx with backoff; a 403 tells you which service-account email to share the sheet with.
 - The workbook is gitignored (real practices are public business data we keep out of the public repo by default);
-  `data/practices.sheet.json` records the last import/export and a fingerprint.
+  `data/practices.sheet.json` / `data/practices.google.sheet.json` record the last import/export and a fingerprint.
 
 ## Repository layout
 
 ```
 infra/            the pipeline package (config, models, store, sourcing, verify, compliance, brain, scripts,
-                  voice, vapi, live, serve, orchestrator, delivery, booking, summary, export, pipeline, cli)
+                  voice, vapi, live, serve, sheet, gsheet, orchestrator, delivery, booking, summary, export,
+                  pipeline, cli)
 tests/            acceptance criteria AC-1..AC-10, connector test plan t_01..t_08 + edge cases, unit tests
 seeds/            fictional doctors, clearances, suppressions (inputs)
 data/             system of record for the dry run: one JSON file per table + audit_log.jsonl (committed)

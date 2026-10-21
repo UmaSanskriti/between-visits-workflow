@@ -3,7 +3,7 @@ name = "between-visits-infra"
 version = "0.0.1"
 description = "v0 dry-run infra pipeline for the Between Visits calling agent (sourcing, compliance gate, mock calling, transcript handoff)."
 requires-python = ">=3.11"
-dependencies = ["tzdata>=2024.1", "openpyxl>=3.1"]
+dependencies = ["tzdata>=2024.1", "openpyxl>=3.1", "google-auth>=2.23"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
