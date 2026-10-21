@@ -3,6 +3,8 @@
 Runs on the operator's machine (where the Vapi key lives). The public dashboard talks to it over localhost:
   GET  /api/state      what the agent is doing right now, the live transcript, the last result
   POST /api/call       start the staged live call (one at a time)
+  POST /api/run        run the DRY-RUN pipeline with stage-by-stage progress (one at a time)
+  GET  /data/...       the dry-run export (docs/data), so the page shows a fresh local run without a push
   POST /api/webhook    Vapi server messages (transcript, status-update, end-of-call-report), via a tunnel
   GET  /data-live/...  the masked live export, for the dashboard's ?source=live view
   GET  /               the dashboard itself, served from docs/, so it works without GitHub Pages too
@@ -23,14 +25,18 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from . import live
-from .clock import Clock, iso
+from .brain import MockBrain
+from .clock import Clock, FixedClock, iso
 from .config import ConfigError, load_config, load_dotenv
 from .export import mask_phone
+from .pipeline import run_pipeline
 from .store import Store
+from .voice import MockVoiceProvider
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_ORIGIN_PREFIXES = ("http://127.0.0.1:", "http://localhost:", "https://umasanskriti.github.io")
 MAX_LOG = 80
+IDLE_RUN = {"status": "idle", "stage": "", "stages": {}, "started_at": "", "finished_at": "", "run_id": "", "error": ""}
 
 
 class LiveState:
@@ -50,6 +56,7 @@ class LiveState:
             "result": None,
             "error": "",
             "log": [],
+            "run": dict(IDLE_RUN),
         }
 
     def update(self, **fields):
@@ -70,6 +77,28 @@ class LiveState:
     def reset_call(self):
         with self._lock:
             self.data.update({"call": {}, "transcript": [], "partial": None, "result": None, "error": ""})
+
+    def run_update(self, **fields):
+        with self._lock:
+            self.data["run"].update(fields)
+            self.data["updated_at"] = iso(Clock().now())
+
+    def run_stage(self, name: str, status: str, counts: dict):
+        with self._lock:
+            run = self.data["run"]
+            if name == "run":
+                run.update(
+                    {
+                        "status": "done",
+                        "stage": "",
+                        "run_id": counts.get("run_id", ""),
+                        "finished_at": counts.get("finished_at", "") or iso(Clock().now()),
+                    }
+                )
+            else:
+                run["stage"] = name if status == "start" else run.get("stage", "")
+                run["stages"][name] = {"status": status, "counts": counts}
+            self.data["updated_at"] = iso(Clock().now())
 
     def webhook(self, message: dict):
         kind = message.get("type")
@@ -119,14 +148,73 @@ class LiveService:
         self._thread: threading.Thread | None = None
         self.paths = live.LivePaths()
         self.export_dir = ROOT / "docs" / "data-live"
+        self.dry_data_dir = ROOT / "data"
+        self.dry_export_dir = ROOT / "docs" / "data"
+        self._run_thread: threading.Thread | None = None
         state.update(tunnel_url=tunnel_url, live_events=bool(tunnel_url))
 
     def running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
 
+    def run_in_progress(self) -> bool:
+        return self._run_thread is not None and self._run_thread.is_alive()
+
+    def busy(self) -> bool:
+        return self.running() or self.run_in_progress()
+
+    def start_run(self, now: str = "", reset: bool = False) -> tuple[bool, str]:
+        """Dry run of the pipeline (mock Voice, mock Brain) with stage progress published to the dashboard."""
+        if self.busy():
+            return False, "a run or a call is already in progress"
+        self.state.run_update(**{**IDLE_RUN, "stages": {}, "status": "running", "started_at": iso(Clock().now())})
+        self._run_thread = threading.Thread(target=self._run_dry, args=(now, reset), name="dry-run", daemon=True)
+        self._run_thread.start()
+        return True, "started"
+
+    def _run_dry(self, now: str, reset: bool):
+        log = self.state.log
+        try:
+            env = load_dotenv(ROOT / ".env", dict(os.environ))
+            for key in ("BV_MODE", "BV_ALLOW_LIVE_CALLS", "BV_LIVE_IGNORE_WINDOW", "BV_NOW"):
+                env.pop(key, None)
+            env["BV_DATA_DIR"] = str(self.dry_data_dir)
+            env["BV_EXPORT_DIR"] = str(self.dry_export_dir)
+            if now:
+                env["BV_NOW"] = now
+            cfg = load_config(ROOT / "config.toml", env=env)
+            clock = FixedClock(cfg.now_override) if cfg.now_override else Clock()
+            store = Store(cfg.data_dir, clock)
+            if reset:
+                store.reset()
+            else:
+                store.load()
+            log(f"run: dry run starting ({'simulated ' + now if now else 'real time'}{', reset' if reset else ''})")
+            seeds = ROOT / "seeds"
+            run, summary = run_pipeline(
+                store,
+                cfg,
+                clock,
+                MockBrain(store, clock, down=cfg.brain_down),
+                MockVoiceProvider(cfg.webhook_secret, clock),
+                seeds / "test_doctors.csv",
+                seeds / "clearances.csv",
+                seeds / "suppressions.csv",
+                trigger="dashboard",
+                on_stage=self.state.run_stage,
+            )
+            calls = run["stages"].get("calls", {})
+            booked = summary["calls"].get("booked", 0)
+            log(f"run: {run['run_id']} done, placed {calls.get('placed', 0)}, booked {booked}")
+        except (ConfigError, RuntimeError, OSError, ValueError) as exc:
+            log(f"run: error: {exc}")
+            self.state.run_update(status="error", error=str(exc), finished_at=iso(Clock().now()))
+        except Exception as exc:  # noqa: BLE001
+            log(f"run: unexpected error: {exc!r}")
+            self.state.run_update(status="error", error=repr(exc), finished_at=iso(Clock().now()))
+
     def start_call(self) -> tuple[bool, str]:
-        if self.running():
-            return False, "a call is already in progress"
+        if self.busy():
+            return False, "a call or a run is already in progress"
         self.state.reset_call()
         self.state.update(status="preparing")
         self._thread = threading.Thread(target=self._run, name="live-call", daemon=True)
@@ -258,6 +346,8 @@ def make_handler(service: LiveService):
                 return self._json(200, service.state.snapshot())
             if path.startswith("/data-live/"):
                 return self._file(service.export_dir / path[len("/data-live/") :], service.export_dir)
+            if path.startswith("/data/"):
+                return self._file(service.dry_export_dir / path[len("/data/") :], service.dry_export_dir)
             if path in ("/", "/index.html"):
                 return self._file(docs / "index.html", docs)
             return self._file(docs / path.lstrip("/"), docs)
@@ -283,6 +373,12 @@ def make_handler(service: LiveService):
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
                 ok, msg = service.start_call()
+                return self._json(200 if ok else 409, {"started": ok, "message": msg})
+            if path == "/api/run":
+                if not self._origin_ok():
+                    return self._json(403, {"error": "origin not allowed"})
+                body = self._body() or {}
+                ok, msg = service.start_run(now=str(body.get("now") or ""), reset=bool(body.get("reset")))
                 return self._json(200 if ok else 409, {"started": ok, "message": msg})
             if path == "/api/webhook":
                 if service.secret and self.headers.get("x-vapi-secret", "") != service.secret:

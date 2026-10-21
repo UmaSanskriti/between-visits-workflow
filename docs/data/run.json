@@ -1,9 +1,9 @@
 {
  "brain_down": false,
  "callback_number_set": true,
- "finished_at": "2026-10-21T01:08:25Z",
+ "finished_at": "2026-10-20T19:00:00Z",
  "gate_escapes": 0,
- "git_sha": "b6f55a3",
+ "git_sha": "3647ee7",
  "kill_switch": false,
  "limits": {
   "max_attempts": 2,
@@ -11,12 +11,12 @@
   "max_calls_per_run": 25
  },
  "mode": "dry_run",
- "now_used": "2026-10-21T01:08:25Z",
+ "now_used": "2026-10-20T19:00:00Z",
  "paused": false,
  "playbook": "clinic-outreach-brain.md",
- "run_id": "20261021T010825Z-005",
+ "run_id": "20261020T190000Z-005",
  "seed": "test_doctors.csv",
- "simulated_time": false,
+ "simulated_time": true,
  "stages": {
   "calls": {
    "allowed": 0,
@@ -59,6 +59,6 @@
    "unknown_call": 0
   }
  },
- "started_at": "2026-10-21T01:08:25Z",
- "trigger": "workflow_dispatch"
+ "started_at": "2026-10-20T19:00:00Z",
+ "trigger": "dashboard"
 }

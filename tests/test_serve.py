@@ -26,6 +26,13 @@ class StubService(LiveService):
         self.starts += 1
         return True, "started"
 
+    def start_run(self, now="", reset=False):
+        self.run_requests = getattr(self, "run_requests", []) + [(now, reset)]
+        if getattr(self, "busy_flag", False):
+            return False, "a run or a call is already in progress"
+        self.state.run_update(status="running", stage="ingest", started_at="2026-10-20T19:00:00Z")
+        return True, "started"
+
 
 @pytest.fixture
 def server():
@@ -175,3 +182,65 @@ def test_assistant_body_wires_server_url_and_messages():
     assert body["server"] == {"url": "https://x.trycloudflare.com/api/webhook", "timeoutSeconds": 20, "secret": "tok"}
     assert "transcript" in body["serverMessages"] and "end-of-call-report" in body["serverMessages"]
     assert "server" not in assistant_body(Config(), "+16175550199")
+
+
+def test_run_endpoint_origin_rule_body_and_busy(server):
+    base, service, state = server
+    code, _, _ = call(base + "/api/run", "POST", {}, headers={"Origin": "https://evil.example"})
+    assert code == 403 and not getattr(service, "run_requests", [])
+    code, body, _ = call(
+        base + "/api/run",
+        "POST",
+        {"now": "2026-10-20T19:00:00Z", "reset": True},
+        headers={"Origin": "https://umasanskriti.github.io"},
+    )
+    assert code == 200 and body["started"] and service.run_requests == [("2026-10-20T19:00:00Z", True)]
+    snap = state.snapshot()
+    assert snap["run"]["status"] == "running" and snap["run"]["stage"] == "ingest"
+    assert set(snap["run"]) >= {"status", "stage", "stages", "started_at", "finished_at", "run_id", "error"}
+    service.busy_flag = True
+    code, body, _ = call(base + "/api/run", "POST", {}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 409 and body["started"] is False
+
+
+def test_run_progress_state_from_stage_callbacks():
+    state = LiveState()
+    state.run_update(status="running")
+    state.run_stage("ingest", "start", {})
+    assert state.snapshot()["run"]["stage"] == "ingest"
+    state.run_stage("ingest", "done", {"rows": 21})
+    state.run_stage("call", "start", {})
+    snap = state.snapshot()["run"]
+    assert snap["stage"] == "call" and snap["stages"]["ingest"] == {"status": "done", "counts": {"rows": 21}}
+    state.run_stage("run", "done", {"run_id": "r1", "finished_at": "2026-10-20T19:00:05Z", "gate_escapes": 0})
+    snap = state.snapshot()["run"]
+    assert snap["status"] == "done" and snap["run_id"] == "r1" and snap["finished_at"] == "2026-10-20T19:00:05Z"
+
+
+def test_dry_run_data_route_is_served_and_confined(server):
+    base, _, _ = server
+    code, body, headers = call(base + "/data/summary.json")
+    assert code == 200 and headers["Content-Type"].startswith("application/json") and "calls" in body
+    code, _, _ = call(base + "/data/../../config.toml")
+    assert code == 404
+
+
+def test_real_dry_run_reports_every_stage(tmp_path):
+    import time
+
+    state = LiveState()
+    service = LiveService(state, port=0, tunnel_url="")
+    service.dry_data_dir = tmp_path / "data"
+    service.dry_export_dir = tmp_path / "export"
+    ok, _ = service.start_run(now="2026-10-20T19:00:00Z", reset=False)
+    assert ok
+    deadline = time.monotonic() + 60
+    while time.monotonic() < deadline and state.snapshot()["run"]["status"] == "running":
+        time.sleep(0.2)
+    run = state.snapshot()["run"]
+    assert run["status"] == "done", run
+    assert list(run["stages"]) == ["ingest", "verify", "call", "webhooks", "deliver"]
+    assert all(v["status"] == "done" for v in run["stages"].values())
+    assert run["stages"]["call"]["counts"]["placed"] > 0 and run["run_id"].startswith("20261020T190000Z")
+    assert (tmp_path / "export" / "run.json").exists()
+    assert not service.busy()

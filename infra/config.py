@@ -122,7 +122,7 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
             raise ConfigError(f"BV_NOW must be ISO 8601, got {env['BV_NOW']!r}") from exc
     if env.get("BV_CALLBACK_NUMBER") is not None:
         cfg.callback_number = env["BV_CALLBACK_NUMBER"].strip()
-    cfg.vapi_api_key = env.get("VAPI_API_KEY", "").strip()
+    cfg.vapi_api_key = (env.get("VAPI_PRIVATE_KEY") or env.get("VAPI_API_KEY") or "").strip()  # private key
     cfg.vapi_phone_number_id = env.get("VAPI_PHONE_NUMBER_ID", "").strip()
     cfg.live_ignore_window = _flag(env, "BV_LIVE_IGNORE_WINDOW", cfg.live_ignore_window)
     if env.get("BV_LIVE_ALLOWLIST"):

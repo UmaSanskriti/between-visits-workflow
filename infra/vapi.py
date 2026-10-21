@@ -20,6 +20,7 @@ from .voice import CallRequest
 
 API = "https://api.vapi.ai"
 POLL_SECONDS = 5
+USER_AGENT = "between-visits-infra/0.1 (+https://github.com/UmaSanskriti/between-visits-workflow)"
 
 # The agent's definition of success for this venture: the doctor's email, or an agreement that Anirudh may
 # contact the doctor (any channel: call, WhatsApp, iMessage, email), plus whatever is needed to set it up.
@@ -147,6 +148,7 @@ class VapiClient:
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
                 "Accept": "application/json",
+                "User-Agent": USER_AGENT,
             },
         )
         try:

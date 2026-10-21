@@ -81,6 +81,15 @@ def _parser() -> argparse.ArgumentParser:
         help="check: verify key, number, assistant; import-twilio: import TWILIO_PHONE_NUMBER from .env",
     )
     vp.add_argument("--create-number", action="store_true", help="create a free Vapi number if the account has none")
+    tw = sub.add_parser("twilio", help="Twilio account check with read-only API calls (TWILIO_* in .env)")
+    tw.add_argument("action", choices=["check"])
+    so = sub.add_parser("source", help="source real practices (brief step 1) into a CSV batch for approval")
+    so.add_argument("provider", choices=["npi"])
+    so.add_argument("--cities", default="", help="comma-separated; default Greater Boston list")
+    so.add_argument("--taxonomies", default="", help="comma-separated; default Family Medicine, Internal Medicine")
+    so.add_argument("--state", default="MA")
+    so.add_argument("--max", type=int, default=0, help="stop after this many practices (0 = all)")
+    so.add_argument("--out", default=str(ROOT / "seeds" / "sourced" / "npi_boston.csv"))
     ld = sub.add_parser("live-demo", help="staged live call to an allowlisted number (seeds/live/, data-live/)")
     ld.add_argument("--dial", action="store_true", help="actually place the call; without it, only print the payload")
     ld.add_argument("--create-number", action="store_true")
@@ -146,6 +155,25 @@ def main(argv=None) -> int:
 
     if args.command in ("vapi", "live-demo"):
         return _vapi_commands(args, cfg, clock, store)
+    if args.command == "twilio":
+        return _twilio_check()
+    if args.command == "source":
+        from .sourcing import NpiRegistryAdapter, write_sourced_csv
+
+        adapter = NpiRegistryAdapter(
+            cities=[c.strip() for c in args.cities.split(",") if c.strip()] or None,
+            taxonomies=[t.strip() for t in args.taxonomies.split(",") if t.strip()] or None,
+            state=args.state,
+            max_rows=args.max,
+        )
+        rows = adapter.fetch()
+        out = write_sourced_csv(rows, args.out)
+        print(f"source: {len(rows)} practices -> {out}")
+        print("source: skipped " + ", ".join(f"{k}={v}" for k, v in sorted(adapter.skipped.items())))
+        print(
+            "source: this batch is NOT callable until Anirudh approves it and the numbers are cleared (clearances.csv)"
+        )
+        return 0
     if args.command == "reset":
         store.reset()
         for path in Path(cfg.export_dir).glob("*.json"):
@@ -278,6 +306,40 @@ def main(argv=None) -> int:
         print(json.dumps(payload, indent=1))
         return 0
     return 1
+
+
+def _twilio_check() -> int:
+    import re as _re
+
+    from .twilio import TwilioClient, TwilioError
+
+    env = load_dotenv(ROOT / ".env", dict(os.environ))
+    mask = lambda n: _re.sub(r"\+1(\d{3})\d{3}(\d{4})", r"+1\1•••\2", n or "")  # noqa: E731
+    try:
+        client = TwilioClient(env.get("TWILIO_ACCOUNT_SID", ""), env.get("TWILIO_AUTH_TOKEN", ""))
+        acct = client.account()
+        print(f"twilio: account {acct.get('friendly_name')!r} status={acct.get('status')} type={acct.get('type')}")
+        numbers = client.incoming_numbers()
+        print("twilio: owned numbers:", [mask(n.get("phone_number")) for n in numbers] or "none")
+        print(
+            "twilio: verified caller ids:",
+            [mask(c.get("phone_number")) for c in client.verified_caller_ids()] or "none",
+        )
+    except TwilioError as exc:
+        print(f"twilio: {exc}", file=sys.stderr)
+        return 2
+    if acct.get("type") == "Trial":
+        print(
+            "twilio: TRIAL account. The shared trial number cannot be imported into Vapi, and trial TwiML blocks "
+            "<Dial><Sip>, <Dial><Number> and <Stream>, so a trial cannot hand a call to Vapi. Upgrade "
+            "(pay-as-you-go) and buy a number, then `vapi import-twilio`."
+        )
+        return 1
+    if not numbers:
+        print("twilio: no owned number yet; buy one in the console, then `vapi import-twilio`.")
+        return 1
+    print("twilio: ready to import")
+    return 0
 
 
 def _vapi_commands(args, cfg, clock, store: Store) -> int:

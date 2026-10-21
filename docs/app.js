@@ -19,6 +19,8 @@
     return fetch(url, opts);
   }
   const LOCAL_CONSOLE = LOCAL + "/?source=live";
+  const GH_ACTIONS = REPO + "/actions";
+  let ring_ctl = null; // set by render(); lets the local run poller drive the loop
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -103,10 +105,11 @@
   themeBtn.addEventListener("click", () => { theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length]; applyTheme(theme); });
 
   // ---------- load ----------
-  async function loadAll() {
+  async function loadAll(base) {
+    const src = base || SRC, useLocal = src.startsWith(LOCAL);
     const stamp = Date.now(), out = {};
     await Promise.all(FILES.map(async (name) => {
-      try { const res = await (LIVE_VIEW ? localFetch : fetch)(SRC + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
+      try { const res = await (useLocal ? localFetch : fetch)(src + name + ".json?t=" + stamp, { cache: "no-store" }); out[name] = res.ok ? await res.json() : null; }
       catch (e) { out[name] = null; }
     }));
     return out;
@@ -265,6 +268,12 @@
       let k = 0;
       timer = setInterval(() => { nodeEls.forEach((n, i) => n.classList.toggle("active", i === k)); k = (k + 1) % stages.length; }, 900);
     } else { replay(); }
+    ring_ctl = {
+      stop: () => { if (timer) { clearInterval(timer); timer = null; } nodeEls.forEach((n) => n.classList.remove("pulse")); },
+      highlight: (indexes) => nodeEls.forEach((n, i) => n.classList.toggle("active", indexes.includes(i))),
+      feedRow: (i, text) => { const li = feed.querySelectorAll("li")[i]; if (li) { li.querySelector(".x").textContent = text; feed.querySelectorAll("li").forEach((row, k) => row.classList.toggle("now", k === i)); } },
+      settle,
+    };
 
     // ---------- KPIs ----------
     const kp = clear($("kpis"));
@@ -473,8 +482,55 @@
     return timer;
   }
 
-  Promise.all([loadAll(), loadLiveRun(), localState()]).then(([d, live, local]) => {
+  // ---------- dry run from the page (local service) ----------
+  const STAGE_NODE = { ingest: [0], verify: [0], call: [1, 2], webhooks: [3], deliver: [3] };
+  function showRunProgress(run) {
+    if (!ring_ctl) return;
+    ring_ctl.stop();
+    $("ring").classList.add("running");
+    const stateEl = $("state"); clear(stateEl); stateEl.className = "state running";
+    stateEl.appendChild(el("span", { class: "live on", id: "live" })); stateEl.appendChild(document.createTextNode("Running"));
+    const stage = run.stage || "";
+    $("since").textContent = stage ? "stage: " + stage : "starting";
+    ring_ctl.highlight(STAGE_NODE[stage] || []);
+    const st = run.stages || {};
+    const c = (k) => (st[k] && st[k].counts) || null;
+    if (c("ingest")) ring_ctl.feedRow(0, "Loaded " + (c("ingest").rows ?? 0) + " practices" + (c("verify") ? ", " + (c("verify").verified ?? 0) + " verified this run" : "…"));
+    if (c("call")) { const x = c("call"); ring_ctl.feedRow(1, "Gate: " + (x.allowed ?? 0) + " allowed, " + (x.blocked ?? 0) + " blocked, " + (x.deferred ?? 0) + " deferred"); ring_ctl.feedRow(2, "Placed " + plural(x.placed ?? 0, "call")); }
+    if (c("webhooks")) ring_ctl.feedRow(3, "Logged " + (c("webhooks").applied ?? 0) + " outcomes" + (c("deliver") ? ", delivered " + (c("deliver").delivered ?? 0) + " transcripts" : "…"));
+  }
+  function wireRun(local) {
+    const btn = $("run-btn"), link = $("run-link");
+    if (!local) return;
+    link.hidden = true; btn.hidden = false;
+    let poll = null;
+    const finish = (run) => {
+      if (poll) { clearInterval(poll); poll = null; }
+      if (run.status === "error") { $("error").textContent = "Run failed: " + (run.error || "unknown error"); btn.disabled = false; btn.textContent = "Run the agent"; if (ring_ctl) ring_ctl.settle(); $("ring").classList.remove("running"); return; }
+      if (ring_ctl) { ring_ctl.highlight([4, 5]); ring_ctl.feedRow(4, "Run " + (run.run_id || "") + " finished, loading the new snapshot…"); }
+      setTimeout(() => location.reload(), 1200);
+    };
+    const tick = async () => {
+      const st = await localState(); if (!st || !st.run) return;
+      const run = st.run;
+      if (run.status === "running") showRunProgress(run); else if (run.status === "done" || run.status === "error") finish(run);
+    };
+    btn.addEventListener("click", async () => {
+      btn.disabled = true; btn.textContent = "Running…"; $("error").textContent = "";
+      try {
+        const res = await localFetch(LOCAL + "/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+        const body = await res.json();
+        if (!res.ok) { $("error").textContent = body.message || body.error || "could not start"; btn.disabled = false; btn.textContent = "Run the agent"; return; }
+      } catch (e) { $("error").textContent = "Could not reach the local service."; btn.disabled = false; btn.textContent = "Run the agent"; return; }
+      poll = setInterval(tick, 1000);
+      tick();
+    });
+    if (local.run && local.run.status === "running") { btn.disabled = true; btn.textContent = "Running…"; poll = setInterval(tick, 1000); }
+  }
+
+  localState().then((local) => Promise.all([loadAll(local && !LIVE_VIEW ? LOCAL + "/data/" : SRC), loadLiveRun()]).then(([d, live]) => [d, live, local])).then(([d, live, local]) => {
     wireLive(local);
+    wireRun(local);
     if (!d.summary) {
       const err = clear($("error"));
       if (LIVE_VIEW) {

@@ -44,7 +44,15 @@ def run_pipeline(
     suppressions: str | Path,
     stages=ALL_STAGES,
     trigger: str = "local",
+    on_stage=None,
 ) -> tuple[dict, dict]:
+    """`on_stage(name, status, counts)` is called with ("<stage>", "start", {}) and ("<stage>", "done", counts)
+    for ingest, verify, call, webhooks, deliver, then ("run", "done", {...}). Used by the dashboard service."""
+
+    def emit(name: str, status: str, counts: dict | None = None) -> None:
+        if on_stage:
+            on_stage(name, status, dict(counts or {}))
+
     started = clock.now()
     run_id = started.strftime("%Y%m%dT%H%M%SZ") + f"-{len(store.logs['runs']) + 1:03d}"
     run = {
@@ -71,16 +79,26 @@ def run_pipeline(
     store.audit("run", run_id, "start", {}, {"trigger": trigger, "now_used": run["now_used"]}, run_id=run_id)
 
     if "ingest" in stages:
+        emit("ingest", "start")
         run["stages"]["suppressions_seeded"] = load_suppressions(store, suppressions, clock)
         run["stages"]["ingest"] = ingest(store, CsvSeedAdapter(seed), clock, cfg.default_time_zone)
+        emit("ingest", "done", run["stages"]["ingest"])
     if "verify" in stages:
+        emit("verify", "start")
         hints = {ch.value: ch.line_type for ch in store.channels.values() if ch.type == "phone"}
         run["stages"]["verify"] = verify(store, MockLineTypeLookup(hints), clock, load_clearances(clearances))
+        emit("verify", "done", run["stages"]["verify"])
     if "call" in stages:
+        emit("call", "start")
         run["stages"]["calls"] = schedule_calls(store, cfg, clock, brain, voice, run_id)
+        emit("call", "done", run["stages"]["calls"])
+        emit("webhooks", "start")
         run["stages"]["webhooks"] = process_events(store, cfg, clock, voice, run_id)
+        emit("webhooks", "done", run["stages"]["webhooks"])
     if "deliver" in stages:
+        emit("deliver", "start")
         run["stages"]["delivery"] = deliver_transcripts(store, cfg, clock, brain, run_id)
+        emit("deliver", "done", run["stages"]["delivery"])
 
     run["finished_at"] = iso(clock.now())
     summary = build_summary(store, run)
@@ -93,4 +111,5 @@ def run_pipeline(
     store.audit("run", run_id, "finish", {}, {"gate_escapes": run["gate_escapes"]}, run_id=run_id)
     store.save()
     export(store, cfg.export_dir, summary, run)
+    emit("run", "done", {"run_id": run_id, "gate_escapes": run["gate_escapes"], "finished_at": run["finished_at"]})
     return run, summary

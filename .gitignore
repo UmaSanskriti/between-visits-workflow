@@ -12,3 +12,9 @@ build/
 seeds/live/
 data-live/
 docs/data-live/
+twilio-screenshot*.png
+
+# real sourced batches and their dry-run state stay local until approved
+seeds/sourced/
+data-sourced/
+docs/data-sourced/

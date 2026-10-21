@@ -22,8 +22,9 @@
       <div class="chips" id="run-chips"></div>
     </div>
     <div class="controls">
-      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml" target="_blank" rel="noopener">Runs</a>
-      <a class="btn primary" href="https://github.com/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml" target="_blank" rel="noopener">Run the agent</a>
+      <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/actions" target="_blank" rel="noopener" title="Past runs on GitHub Actions">Runs</a>
+      <a class="btn primary" id="run-link" href="https://github.com/UmaSanskriti/between-visits-workflow/actions" target="_blank" rel="noopener" title="Opens GitHub Actions. Pick 'Dry-run pipeline' on the left, then 'Run workflow'. Start `python -m infra serve` on this machine to run it from this page instead.">Run on GitHub</a>
+      <button type="button" class="btn primary" id="run-btn" hidden title="Runs the dry-run pipeline on this machine and shows each stage on the loop">Run the agent</button>
       <button id="theme" type="button" title="Toggle theme">Theme: system</button>
     </div>
   </header>
