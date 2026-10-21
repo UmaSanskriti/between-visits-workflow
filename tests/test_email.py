@@ -68,7 +68,7 @@ def test_compose_follows_playbook_8b(tmp_path):
     assert errors == [] and draft is not None
     assert draft.subject == "30 minutes with Dr. Patel? (HBS research, not sales)"
     assert draft.body.startswith("Hi Dr. Patel,")
-    assert "I saw the new GLP-1 program on your site and wanted to reach out." in draft.body
+    assert "I noticed the new GLP-1 program on your site and wanted to reach out." in draft.body
     assert "Patel Family Medicine" in draft.body and "We're not selling anything." in draft.body
     assert draft.variables_used["slot_1"] in draft.body and draft.variables_used["slot_2"] in draft.body
     assert draft.body.rstrip().endswith(OPT_OUT_LINE) and "Anirudh Bagla" in draft.body

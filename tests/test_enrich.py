@@ -111,7 +111,7 @@ def test_drafts_are_personalised_and_stay_under_the_cap(tmp_path):
     env.run()
     attempts = {env.store.contacts[a.contact_id].external_id: a for a in env.store.email_attempts.values()}
     patel = attempts["t_01"]
-    assert "I saw on your site that you launched a GLP-1 follow-up clinic" in patel.body
+    assert "I noticed you launched a GLP-1 follow-up clinic" in patel.body
     assert "already supports GLP-1 patients" in patel.body
     assert any(p.startswith("hook:") for p in patel.personalization) and "offers GLP-1 care" in patel.personalization
     lee = attempts["t_03"]
@@ -131,7 +131,7 @@ def test_compose_without_enrichment_is_unchanged():
 
     cfg = Config(email_from_name="Uma", callback_number="+16175550199")
     draft, errors = build_email(contact, channel, brain, cfg, clock)
-    assert not errors and "I saw your new program and wanted to reach out." in draft.body
+    assert not errors and "I noticed your new program and wanted to reach out." in draft.body
     assert (
         draft.personalization == ["hook: your new program"]
         and "core_paragraph_shortened" not in draft.fallbacks_applied

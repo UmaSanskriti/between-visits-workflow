@@ -69,15 +69,12 @@ def build_email(
         variables["practice_name"] = "your practice"
         fallbacks.append("practice_name")
 
-    # Personalisation: what we found about the practice (enrichment) beats the seed hook, which beats nothing.
-    if enrichment and enrichment.hook.strip():
-        variables["hook_sentence"] = (
-            f"I saw on your site that {enrichment.hook.strip().rstrip('.')} and wanted to reach out. "
-        )
-        personalization.append("hook: " + enrichment.hook.strip())
-    elif contact.hook.strip():
-        variables["hook_sentence"] = f"I saw {contact.hook.strip()} and wanted to reach out. "
-        personalization.append("hook: " + contact.hook.strip())
+    # Personalisation: the practice's own hook (editable in the practice sheet) beats the research hook, which
+    # beats nothing. Both read naturally after "I noticed".
+    hook = contact.hook.strip() or (enrichment.hook.strip() if enrichment else "")
+    if hook:
+        variables["hook_sentence"] = f"I noticed {hook.rstrip('.')} and wanted to reach out. "
+        personalization.append("hook: " + hook)
     else:
         variables["hook_sentence"] = ""
         fallbacks.append("hook")
