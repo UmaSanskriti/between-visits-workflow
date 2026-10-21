@@ -1,5 +1,5 @@
 {
- "alerts": 2,
+ "alerts": 3,
  "calls": {
   "attempts": 0,
   "booked": 0,
@@ -17,18 +17,18 @@
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 0,
-   "considered": 0,
-   "deferred": 0
+   "allowed": 1,
+   "blocked": 8,
+   "considered": 21,
+   "deferred": 12
   },
   "paused": false,
   "suppressions": 1
  },
  "contacts": {
   "by_status": {
-   "IN_OUTREACH": 2,
-   "READY": 12,
+   "IN_OUTREACH": 3,
+   "READY": 11,
    "SOURCED": 1,
    "SUPPRESSED": 1,
    "VERIFIED": 5
@@ -44,24 +44,33 @@
  "dlq": 0,
  "emails": {
   "agreed": 0,
-  "attempts": 2,
-  "awaiting_reply": 2,
+  "attempts": 3,
+  "awaiting_reply": 3,
   "bounced": 0,
   "by_outcome": {
-   "(awaiting reply)": 2
+   "(awaiting reply)": 3
   },
   "by_script_version": {
    "v1": {
-    "attempts": 2,
+    "attempts": 3,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 2
+     "(pending)": 3
     },
     "conversion": 0.0,
     "declined": 0
    }
   },
   "by_segment": {
+   "small_group_primary_care": {
+    "attempts": 1,
+    "booked": 0,
+    "by_outcome": {
+     "(pending)": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   },
    "solo_primary_care": {
     "attempts": 1,
     "booked": 0,
@@ -90,7 +99,7 @@
   "queued": 0,
   "replied": 0,
   "reply_rate": 0.0,
-  "sent": 2,
+  "sent": 3,
   "stop": 0
  },
  "enrichment": {
@@ -114,7 +123,7 @@
    "stage": "Cleared to email"
   },
   {
-   "count": 2,
+   "count": 3,
    "stage": "Emailed"
   },
   {
@@ -126,7 +135,7 @@
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T02:31:02Z",
+ "generated_at": "2026-10-21T02:33:55Z",
  "interviews": 0,
  "interviews_pending_approval": 0,
  "queue": [
@@ -237,19 +246,6 @@
   {
    "attempts": 0,
    "awaiting_reply": false,
-   "contact_id": "c_29816f6cb0",
-   "external_id": "t_07",
-   "last_outcome": "",
-   "name": "Rosa Martinez",
-   "next_attempt_at": "",
-   "practice": "Fenway Group Practice",
-   "queued_email": false,
-   "segment": "small_group_primary_care",
-   "status": "READY"
-  },
-  {
-   "attempts": 0,
-   "awaiting_reply": false,
    "contact_id": "c_f9eafcfce6",
    "external_id": "t_04",
    "last_outcome": "",
@@ -311,16 +307,29 @@
    "queued_email": false,
    "segment": "solo_specialist",
    "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_29816f6cb0",
+   "external_id": "t_07",
+   "last_outcome": "",
+   "name": "Rosa Martinez",
+   "next_attempt_at": "2026-10-24T02:34:39Z",
+   "practice": "Fenway Group Practice",
+   "queued_email": false,
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T023102Z-004",
+ "run_id": "20261021T023355Z-006",
  "transcripts": {
-  "brain_inbox": 12,
+  "brain_inbox": 13,
   "delivered": 2,
-  "delivery_rate": 1.0,
+  "delivery_rate": 0.667,
   "failed": 0,
   "held_pii_review": 0,
-  "pending": 0,
-  "total": 2
+  "pending": 1,
+  "total": 3
  }
 }

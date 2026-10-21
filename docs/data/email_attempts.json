@@ -1,50 +1,41 @@
 [
  {
-  "attempt_number": 2,
-  "body": "Hi Dr. Bhriain,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw on your site that you published a patient guide to managing GLP-1 side effects and wanted to reach out. Since Charles River Endocrinology already supports GLP-1 patients, your view of what happens between visits would be especially useful. Given your focus on obesity medicine and GLP-1 therapy, I'd value your perspective.\n\nMy co-founder and I are exploring shared nutritionist and coach support for GLP-1 patients at independent practices like Charles River Endocrinology, with the insurance billing handled. We want to know if it would work for you.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20220199\n\nReply \"stop\" and we won't contact you again.\n",
-  "channel_id": "ch_df4d7c2a74",
-  "contact_id": "c_f9eafcfce6",
-  "created_at": "2026-10-21T02:32:09Z",
-  "duplicate_events_ignored": 1,
-  "failure_category": "Reply needs review",
+  "attempt_number": 1,
+  "body": "Hi Dr. Martinez,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw on your site that you brought a dietitian in house this year and wanted to reach out. Your weight-management program is exactly the setting we are trying to learn from. Given your focus on diabetes prevention, I'd value your perspective.\n\nMy co-founder and I are exploring shared nutritionist and coach support for GLP-1 patients at independent practices like Fenway Group Practice, with the insurance billing handled. We want to know if it would work for you.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +1\u2022\u2022\u2022\u2022\u2022\u20224849\n\nReply \"stop\" and we won't contact you again.\n",
+  "channel_id": "ch_2ec822826d",
+  "contact_id": "c_29816f6cb0",
+  "created_at": "2026-10-21T02:33:55Z",
+  "duplicate_events_ignored": 0,
+  "failure_category": "",
   "fallbacks_applied": [
    "core_paragraph_shortened"
   ],
   "gate_result": "allowed",
-  "handoff": {
-   "availability": "",
-   "contact_email": "o\u2022\u2022\u2022@charlesriver-endo.example.test",
-   "contact_method": "email",
-   "contact_number": "",
-   "notes": "Can you send more details about what you're building and who is behind it?",
-   "person_spoken_to": "doctor"
-  },
-  "id": "em_3f31cb8771",
-  "outcome": "REPLIED_OTHER",
+  "handoff": {},
+  "id": "em_235dad69f6",
+  "outcome": "",
   "outcome_reason": "",
   "personalization": [
-   "hook: you published a patient guide to managing GLP-1 side effects",
-   "offers GLP-1 care",
-   "focus: obesity medicine and GLP-1 therapy",
-   "bio: Dr. Siobhan N\u00ed Bhriain is board-certified in endocrinology and obesity medicine "
+   "hook: you brought a dietitian in house this year",
+   "runs a weight-management program",
+   "focus: diabetes prevention",
+   "bio: Dr. Rosa Mart\u00ednez is the group's medical director and leads its diabetes-prevent"
   ],
-  "processed_event_ids": [
-   "<\u2022\u2022\u2022@between-visits.test>:reply"
-  ],
-  "provider": "mock",
-  "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-  "redirected_to": "",
-  "replied_at": "2026-10-21T02:32:09Z",
-  "reply_text": "Can you send more details about what you're building and who is behind it?",
-  "run_id": "20261021T023209Z-005",
+  "processed_event_ids": [],
+  "provider": "gmail-connector",
+  "provider_message_id": "1a15c4f1c002fa97",
+  "redirected_to": "s\u2022\u2022\u2022@gse.harvard.edu",
+  "replied_at": "",
+  "reply_text": "",
+  "run_id": "20261021T023355Z-006",
   "script_version": "v1",
-  "segment": "solo_specialist",
-  "sent_at": "2026-10-21T02:32:09Z",
+  "segment": "small_group_primary_care",
+  "sent_at": "2026-10-21T02:34:39Z",
   "status": "sent",
-  "subject": "30 minutes with Dr. Bhriain? (HBS research, not sales)",
-  "thread_id": "",
-  "transcript_id": "tr_f79a0b783a",
-  "updated_at": "2026-10-21T02:32:09Z"
+  "subject": "30 minutes with Dr. Martinez? (HBS research, not sales)",
+  "thread_id": "1a15c4f1c002fa97",
+  "transcript_id": "tr_df79bd95ef",
+  "updated_at": "2026-10-21T02:34:39Z"
  },
  {
   "attempt_number": 1,

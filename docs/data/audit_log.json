@@ -3,426 +3,6 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
-   "id": "ch_38dfb97cd2",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_38dfb97cd2",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_df4d7c2a74",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_df4d7c2a74",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_8a72860e91",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_8a72860e91",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_5dad0aa7b5",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_5dad0aa7b5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_5bfd0187e6",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_5bfd0187e6",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_7acca703d9",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_7acca703d9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_29816f6cb0",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_29816f6cb0",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_2b7bcb4ad3",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_2b7bcb4ad3",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_2ec822826d",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_2ec822826d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_070728f30d",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_070728f30d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_c85f152af5",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_c85f152af5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_48eaa6c438",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_48eaa6c438",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_fd81d176ec",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_fd81d176ec",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_c81ee09672",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_c81ee09672",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_01c54d811d",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_01c54d811d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_1a19dbc957",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_1a19dbc957",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_c09828fbcf",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_c09828fbcf",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_6edba34a63",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_6edba34a63",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_95ee0f7128",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_95ee0f7128",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_761872151b",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_761872151b",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_c8143f50ff",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_c8143f50ff",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_517863c95b",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_517863c95b",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_90853491d8",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_90853491d8",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_d7b9cfa027",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_d7b9cfa027",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_d51cba31b9",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_d51cba31b9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_6f5e721f2c",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_6f5e721f2c",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_a776b6dc5b",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_a776b6dc5b",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_909481b505",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_909481b505",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_0de2e04276",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_0de2e04276",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_54322660b9",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_54322660b9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_14b62de826",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_14b62de826",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_866bc1a7db",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_866bc1a7db",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_42ac4cfa29",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_42ac4cfa29",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_2c3a09fcb5",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_2c3a09fcb5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_0fdf5cb5aa",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_0fdf5cb5aa",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
    "id": "ch_27177384c8",
    "type": "email"
   },
@@ -6140,5 +5720,512 @@
   "entity_id": "20261021T023209Z-005",
   "run_id": "20261021T023209Z-005",
   "timestamp": "2026-10-21T02:32:09Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T02:33:55Z",
+   "trigger": "dashboard"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T023355Z-006",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you added evening telehealth hours this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_b3b24d17b8",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you expanded the walk-in clinic this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_da6677d004",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you published a patient guide to managing GLP-1 side effects"
+  },
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you started Saturday clinics this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_8a72860e91",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you run monthly group nutrition classes"
+  },
+  "entity": "contacts",
+  "entity_id": "c_5bfd0187e6",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you launched an adolescent healthy-weight program this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_070728f30d",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you introduced a concierge membership this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_48eaa6c438",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you added a GLP-1 titration clinic this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_01c54d811d",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you started a postpartum support group"
+  },
+  "entity": "contacts",
+  "entity_id": "c_c09828fbcf",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you launched a GLP-1 follow-up clinic this fall"
+  },
+  "entity": "contacts",
+  "entity_id": "c_761872151b",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you added same-day telehealth slots"
+  },
+  "entity": "contacts",
+  "entity_id": "c_517863c95b",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you opened a weight-management clinic this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_d7b9cfa027",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you launched a lifestyle-medicine program"
+  },
+  "entity": "contacts",
+  "entity_id": "c_a776b6dc5b",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you added travel-medicine visits"
+  },
+  "entity": "contacts",
+  "entity_id": "c_0de2e04276",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you expanded your diabetes education program"
+  },
+  "entity": "contacts",
+  "entity_id": "c_866bc1a7db",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you focus on cardiometabolic health"
+  },
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "re-sourced",
+  "actor": "csv_seed",
+  "after": {
+   "hook": ""
+  },
+  "before": {
+   "hook": "you extended evening hours this year"
+  },
+  "entity": "contacts",
+  "entity_id": "c_b62f5021ad",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_01c54d811d",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:05:33Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "email_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:02:53Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_251bab6d38",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_235dad69f6",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_29816f6cb0",
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "email_queued",
+  "actor": "system",
+  "after": {
+   "attempts": 1,
+   "last_outcome": "",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_235dad69f6",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_517863c95b",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_5bfd0187e6",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_a776b6dc5b",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T023355Z-006",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:33:55Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_df79bd95ef"
+  },
+  "before": {},
+  "call_attempt_id": "em_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "entity": "transcripts",
+  "entity_id": "tr_df79bd95ef",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:34:39Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "gmail-connector",
+   "provider_message_id": "1a15c4f1c002fa97",
+   "sent_at": "2026-10-21T02:34:39Z",
+   "status": "sent",
+   "transcript_id": "tr_df79bd95ef"
+  },
+  "before": {
+   "provider": "outbox",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_29816f6cb0",
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:34:39Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-24T02:34:39Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_235dad69f6",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261021T023355Z-006",
+  "timestamp": "2026-10-21T02:34:39Z"
+ },
+ {
+  "action": "thread",
+  "actor": "system",
+  "after": {
+   "thread_id": "1a15c4f1c002fa97"
+  },
+  "before": {
+   "thread_id": ""
+  },
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
+  "timestamp": "2026-10-21T02:34:39Z"
  }
 ]
