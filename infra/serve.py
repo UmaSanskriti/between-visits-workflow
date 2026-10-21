@@ -69,6 +69,14 @@ class LiveState:
             "error": "",
             "log": [],
             "run": dict(IDLE_RUN),
+            "sheet": {
+                "path": "",
+                "rows": 0,
+                "last_import": "",
+                "last_export": "",
+                "last_result": None,
+                "watching": False,
+            },
         }
 
     def update(self, **fields):
@@ -89,6 +97,11 @@ class LiveState:
     def reset_call(self):
         with self._lock:
             self.data.update({"call": {}, "transcript": [], "partial": None, "result": None, "error": ""})
+
+    def sheet_update(self, **fields):
+        with self._lock:
+            self.data["sheet"].update(fields)
+            self.data["updated_at"] = iso(Clock().now())
 
     def run_update(self, **fields):
         with self._lock:
@@ -165,7 +178,93 @@ class LiveService:
         self.seeds_dir = ROOT / "seeds"
         self.env_overrides: dict = {}  # tests inject the allowlist and transport here
         self._run_thread: threading.Thread | None = None
+        self._sheet_lock = threading.Lock()
+        self._watcher: threading.Thread | None = None
         state.update(tunnel_url=tunnel_url, live_events=bool(tunnel_url))
+
+    # ---- practice sheet (two-way Excel sync) ----
+    def sheet_file(self) -> Path:
+        from . import sheet as sheetmod
+
+        env = load_dotenv(ROOT / ".env", dict(os.environ))
+        env.update(self.env_overrides)
+        return sheetmod.sheet_path(type("Cfg", (), {"data_dir": self.dry_data_dir})(), env)
+
+    def _seed_path(self) -> Path:
+        path = self.sheet_file()
+        return path if path.exists() else self.seeds_dir / "test_doctors.csv"
+
+    def sheet_export(self, log=None) -> dict:
+        from . import sheet as sheetmod
+
+        log = log or self.state.log
+        with self._sheet_lock:
+            cfg, clock, store = self._agent_context()
+            path = self.sheet_file()
+            result = sheetmod.sync_sheet(store, path, clock, log)
+            self.state.sheet_update(
+                path=str(path), rows=result["rows"], last_export=iso(clock.now()), last_result=result.get("imported")
+            )
+            return result
+
+    def sheet_import(self, log=None) -> dict:
+        from . import sheet as sheetmod
+        from .export import export
+        from .summary import build_summary
+
+        log = log or self.state.log
+        with self._sheet_lock:
+            cfg, clock, store = self._agent_context()
+            path = self.sheet_file()
+            counts = sheetmod.import_sheet(store, path, clock, log)
+            last = store.logs["runs"][-1] if store.logs["runs"] else {}
+            export(store, cfg.export_dir, build_summary(store, last), last)
+            rows = sheetmod.export_sheet(store, path, clock)  # normalise the file (ids written back, widths)
+            self.state.sheet_update(
+                path=str(path),
+                rows=rows,
+                last_import=iso(clock.now()),
+                last_export=iso(clock.now()),
+                last_result=counts,
+            )
+            return counts
+
+    def bootstrap_sheet(self) -> None:
+        from . import sheet as sheetmod
+
+        path = self.sheet_file()
+        if path.exists():
+            if sheetmod.changed_since_export(path):
+                self.sheet_import()
+            else:
+                self.state.sheet_update(
+                    path=str(path),
+                    rows=sheetmod.read_sidecar(path).get("rows", 0),
+                    last_export=sheetmod.read_sidecar(path).get("last_export", ""),
+                    last_import=sheetmod.read_sidecar(path).get("last_import", ""),
+                )
+            return
+        result = self.sheet_export()
+        self.state.log(f"sheet: created {path} with {result['rows']} practices")
+
+    def start_sheet_watcher(self, interval: float = 3.0) -> None:
+        from . import sheet as sheetmod
+
+        def loop():
+            while True:
+                try:
+                    path = self.sheet_file()
+                    if path.exists() and sheetmod.changed_since_export(path) and not self.busy():
+                        self.state.log("sheet: change detected, importing")
+                        self.sheet_import()
+                except Exception as exc:  # noqa: BLE001 - keep watching
+                    self.state.log(f"sheet: watcher error: {exc}")
+                    self.state.sheet_update(last_result={"error": str(exc)})
+                time.sleep(interval)
+
+        self._watcher = threading.Thread(target=loop, name="sheet-watcher", daemon=True)
+        self._watcher.start()
+        self.state.sheet_update(watching=True)
 
     def running(self) -> bool:
         return self._thread is not None and self._thread.is_alive()
@@ -225,7 +324,7 @@ class LiveService:
                 clock,
                 MockBrain(store, clock, down=cfg.brain_down),
                 MockVoiceProvider(cfg.webhook_secret, clock),
-                self.seeds_dir / "test_doctors.csv",
+                self._seed_path(),
                 self.seeds_dir / "clearances.csv",
                 self.seeds_dir / "suppressions.csv",
                 trigger="dashboard",
@@ -276,6 +375,10 @@ class LiveService:
                 email = {"status": "error", "error": "the gate allowed no practice this run; see the service log"}
                 log("run: no email was composed; every practice was blocked or deferred")
             self.state.run_update(email=email)
+            try:
+                self.sheet_export(log)
+            except Exception as exc:  # noqa: BLE001
+                log(f"sheet: export after run failed: {exc}")
             done = {
                 "run_id": run["run_id"],
                 "finished_at": run.get("finished_at", ""),
@@ -489,6 +592,9 @@ def make_handler(service: LiveService):
             path = urlparse(self.path).path
             if path == "/api/state":
                 return self._json(200, service.state.snapshot())
+            if path == "/api/sheet":
+                snap = service.state.snapshot()
+                return self._json(200, {"sheet": snap["sheet"]})
             if path == "/api/outbox":
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
@@ -541,6 +647,16 @@ def make_handler(service: LiveService):
                 message_id, thread_id = str(body.get("message_id") or ""), str(body.get("thread_id") or "")
                 code, payload = service.mark_sent(m.group(1), message_id, thread_id)
                 return self._json(code, payload)
+            if path in ("/api/sheet/import", "/api/sheet/export"):
+                if not self._origin_ok():
+                    return self._json(403, {"error": "origin not allowed"})
+                if service.busy():
+                    return self._json(409, {"error": "a run is in progress"})
+                try:
+                    result = service.sheet_import() if path.endswith("import") else service.sheet_export()
+                except Exception as exc:  # noqa: BLE001
+                    return self._json(500, {"error": str(exc)})
+                return self._json(200, {"ok": True, "result": result, "sheet": service.state.snapshot()["sheet"]})
             if path == "/api/reply":
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
@@ -598,6 +714,11 @@ def main(port: int = 8787, no_tunnel: bool = False, any_time: bool = True) -> in
             "falling back to polling, the transcript appears when the call ends"
         )
     service = LiveService(state, port, tunnel_url, any_time=any_time)
+    try:
+        service.bootstrap_sheet()
+        service.start_sheet_watcher()
+    except Exception as exc:  # noqa: BLE001 - the sheet is a convenience; the service must still start
+        state.log(f"sheet: not available ({exc})")
     httpd = ThreadingHTTPServer(("127.0.0.1", port), make_handler(service))
     state.log(
         f"serve: listening on http://127.0.0.1:{port}  (dashboard: http://127.0.0.1:{port}/ "

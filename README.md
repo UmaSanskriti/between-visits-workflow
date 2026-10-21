@@ -153,6 +153,27 @@ practice was picked, the gate verdict, the subject and body, "Queued for Gmail" 
 the thread, "Waiting for a reply", and the classified reply with the handoff. Practice cards carry an **Emails**
 section with the same history, including where the demo copy was delivered.
 
+## Practice sheet (two-way Excel sync)
+
+`data/practices.xlsx` is the practice database in spreadsheet form: one row per practice, dummy and real, with
+exactly the practice information the dashboard shows and nothing about outreach. Columns, in order:
+`source_tag` (dummy|real), `external_id`, `npi`, `doctor_name`, `credentials`, `specialty`, `practice_name`,
+`practice_size`, `address`, `city`, `state`, `time_zone`, `phone`, `email`, `website`, `hook`, `summary`, `services`,
+`glp1_mentioned`, `weight_management_mentioned`, `doctor_bio`, `patient_focus`, `recent_note`, `languages`,
+`pronunciation_hint`, `source`, `source_url`, `retrieved_at`.
+
+- **Edit the sheet → database and UI update.** While `python -m infra serve` runs, a watcher checks the file every
+  3 seconds; on change it imports (the sheet wins for practice fields), re-exports the dashboard data, and the page
+  reloads. Without the service: `python -m infra sheet watch` or `python -m infra sheet import`.
+- **Database → sheet.** Every agent run, `python -m infra source npi` (new rows, tagged real), `python -m infra enrich`,
+  and `python -m infra sheet export` refresh the workbook. Before any export the conflict rule applies: if the file
+  changed since the last export, it is imported first, so an edit is never clobbered.
+- New rows with a blank `external_id` get one generated and written back. Rows removed from the sheet are reported,
+  never deleted from the database. A new phone or email from the sheet is created unverified and uncleared, so the
+  gate still decides whether it can be contacted.
+- The workbook is gitignored (real practices are public business data we keep out of the public repo by default);
+  `data/practices.sheet.json` records the last import/export and a fingerprint.
+
 ## Repository layout
 
 ```

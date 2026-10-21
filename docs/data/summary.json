@@ -27,8 +27,8 @@
  },
  "contacts": {
   "by_status": {
-   "IN_OUTREACH": 4,
-   "READY": 10,
+   "IN_OUTREACH": 5,
+   "READY": 9,
    "SOURCED": 1,
    "SUPPRESSED": 1,
    "VERIFIED": 5
@@ -44,18 +44,18 @@
  "dlq": 0,
  "emails": {
   "agreed": 0,
-  "attempts": 4,
-  "awaiting_reply": 4,
+  "attempts": 5,
+  "awaiting_reply": 5,
   "bounced": 0,
   "by_outcome": {
-   "(awaiting reply)": 4
+   "(awaiting reply)": 5
   },
   "by_script_version": {
    "v1": {
-    "attempts": 4,
+    "attempts": 5,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 4
+     "(pending)": 5
     },
     "conversion": 0.0,
     "declined": 0
@@ -63,10 +63,10 @@
   },
   "by_segment": {
    "small_group_primary_care": {
-    "attempts": 1,
+    "attempts": 2,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 1
+     "(pending)": 2
     },
     "conversion": 0.0,
     "declined": 0
@@ -99,7 +99,7 @@
   "queued": 0,
   "replied": 0,
   "reply_rate": 0.0,
-  "sent": 4,
+  "sent": 5,
   "stop": 0
  },
  "enrichment": {
@@ -123,7 +123,7 @@
    "stage": "Cleared to email"
   },
   {
-   "count": 4,
+   "count": 5,
    "stage": "Emailed"
   },
   {
@@ -138,6 +138,10 @@
  "generated_at": "2026-10-21T02:33:55Z",
  "interviews": 0,
  "interviews_pending_approval": 0,
+ "practices": {
+  "dummy": 21,
+  "real": 0
+ },
  "queue": [
   {
    "attempts": 0,
@@ -215,19 +219,6 @@
    "practice": "Shah Primary Care",
    "queued_email": false,
    "segment": "solo_primary_care",
-   "status": "READY"
-  },
-  {
-   "attempts": 0,
-   "awaiting_reply": false,
-   "contact_id": "c_41cc51441d",
-   "external_id": "t_19",
-   "last_outcome": "",
-   "name": "Priya Raman",
-   "next_attempt_at": "",
-   "practice": "Harborview Internal Medicine",
-   "queued_email": false,
-   "segment": "small_group_primary_care",
    "status": "READY"
   },
   {
@@ -320,16 +311,29 @@
    "queued_email": false,
    "segment": "solo_primary_care",
    "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_41cc51441d",
+   "external_id": "t_19",
+   "last_outcome": "",
+   "name": "Priya Raman",
+   "next_attempt_at": "2026-10-24T02:57:46Z",
+   "practice": "Harborview Internal Medicine",
+   "queued_email": false,
+   "segment": "small_group_primary_care",
+   "status": "IN_OUTREACH"
   }
  ],
  "run_id": "20261021T023355Z-006",
  "transcripts": {
   "brain_inbox": 13,
   "delivered": 2,
-  "delivery_rate": 0.5,
+  "delivery_rate": 0.4,
   "failed": 0,
   "held_pii_review": 0,
-  "pending": 2,
-  "total": 4
+  "pending": 3,
+  "total": 5
  }
 }

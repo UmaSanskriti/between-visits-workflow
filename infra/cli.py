@@ -77,6 +77,12 @@ def _parser() -> argparse.ArgumentParser:
     hist = sub.add_parser("history", help="full history for one contact (OPS-001)")
     hist.add_argument("contact", help="contact id, external id, or name substring")
     sub.add_parser("reset", help="wipe data/ and docs/data")
+    sh = sub.add_parser("sheet", help="two-way Excel sync of practice information (data/practices.xlsx)")
+    sh.add_argument("action", choices=["export", "import", "watch", "path"])
+    sh.add_argument(
+        "--file", default="", help="workbook path (default: BV_SHEET, [sheet].path, or data/practices.xlsx)"
+    )
+    sh.add_argument("--interval", type=float, default=3.0)
     vp = sub.add_parser("vapi", help="Vapi account checks with free API calls (needs VAPI_API_KEY in .env)")
     vp.add_argument(
         "action",
@@ -197,11 +203,16 @@ def main(argv=None) -> int:
         rows = adapter.fetch()
         out = write_sourced_csv(rows, args.out)
         print(f"source: {len(rows)} practices -> {out}")
+        appended = _append_rows_to_sheet(rows, cfg, store, clock)
+        if appended is not None:
+            print(f"source: {appended} new practices appended to the sheet (tag real)")
         print("source: skipped " + ", ".join(f"{k}={v}" for k, v in sorted(adapter.skipped.items())))
         print(
             "source: this batch is NOT callable until Anirudh approves it and the numbers are cleared (clearances.csv)"
         )
         return 0
+    if args.command == "sheet":
+        return _sheet_command(args, cfg, clock, store)
     if args.command == "reset":
         store.reset()
         for path in Path(cfg.export_dir).glob("*.json"):
@@ -232,6 +243,7 @@ def main(argv=None) -> int:
             refresh_enrichment=bool(getattr(args, "refresh", False)),
         )
         _print_report(run, summary)
+        _refresh_sheet_if_present(cfg, store, clock)
         return 3 if run["gate_escapes"] else 0
 
     if args.command == "summary":
@@ -482,6 +494,80 @@ def _vapi_commands(args, cfg, clock, store: Store) -> int:
             f"number={i['contact_number'] or '-'} availability={i['availability'] or '-'} notes={i['notes'] or '-'}"
         )
     return 3 if result["run"]["gate_escapes"] else 0
+
+
+def _sheet_command(args, cfg, clock, store: Store) -> int:
+    from . import sheet as sheetmod
+    from .export import export
+    from .summary import build_summary
+
+    store.load()  # this command is dispatched before the generic load
+    path = Path(args.file) if args.file else sheetmod.sheet_path(cfg)
+    if args.action == "path":
+        print(path)
+        return 0
+    if args.action == "export":
+        result = sheetmod.sync_sheet(store, path, clock)
+        print(
+            f"sheet: {result['rows']} practices -> {path}" + (" (imported edits first)" if result["imported"] else "")
+        )
+        return 0
+    if args.action == "import":
+        counts = sheetmod.import_sheet(store, path, clock)
+        last = store.logs["runs"][-1] if store.logs["runs"] else {}
+        export(store, cfg.export_dir, build_summary(store, last), last)
+        sheetmod.export_sheet(store, path, clock)
+        print(f"sheet: {counts}")
+        return 0
+    # watch: the same loop the service runs, without HTTP
+    import time as _time
+
+    print(f"sheet: watching {path} every {args.interval}s (Ctrl-C to stop)")
+    try:
+        while True:
+            if path.exists() and sheetmod.changed_since_export(path):
+                fresh = Store(cfg.data_dir, clock).load()
+                counts = sheetmod.import_sheet(fresh, path, clock)
+                last = fresh.logs["runs"][-1] if fresh.logs["runs"] else {}
+                export(fresh, cfg.export_dir, build_summary(fresh, last), last)
+                sheetmod.export_sheet(fresh, path, clock)
+                print(f"sheet: imported {counts['rows']} rows")
+            _time.sleep(args.interval)
+    except KeyboardInterrupt:
+        return 0
+
+
+def _refresh_sheet_if_present(cfg, store: Store, clock) -> None:
+    from . import sheet as sheetmod
+
+    path = sheetmod.sheet_path(cfg)
+    if path.exists():
+        try:
+            sheetmod.sync_sheet(store, path, clock, log=lambda *a: None)
+        except Exception as exc:  # noqa: BLE001
+            print(f"sheet: refresh skipped ({exc})", file=sys.stderr)
+
+
+def _append_rows_to_sheet(rows: list[dict], cfg, store: Store, clock) -> int | None:
+    """Sourced practices go into the sheet (tag real) so the workbook is the full database."""
+    from . import sheet as sheetmod
+    from .sourcing import CsvSeedAdapter, ingest
+
+    path = sheetmod.sheet_path(cfg)
+    if not path.exists() and not store.contacts:
+        return None
+    before = len(store.contacts)
+
+    class _Rows:
+        name = CsvSeedAdapter.name
+
+        def fetch(self):
+            return [{**r, "source_tag": "real"} for r in rows]
+
+    ingest(store, _Rows(), clock, cfg.default_time_zone)
+    store.save()
+    sheetmod.sync_sheet(store, path, clock, log=lambda *a: None)
+    return len(store.contacts) - before
 
 
 def _print_report(run: dict, summary: dict) -> None:

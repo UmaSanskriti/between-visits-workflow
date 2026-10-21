@@ -139,6 +139,7 @@ class Contact(Record):
     last_outcome: str = ""
     hook: str = ""  # playbook section 4: one specific line from the practice website
     website: str = ""  # practice website, when known (feeds the web enricher)
+    source_tag: str = ""  # dummy | real (practice sheet column)
     test_scenario: str = ""  # dry run only: drives the mock voice provider
     created_at: str = ""
     updated_at: str = ""

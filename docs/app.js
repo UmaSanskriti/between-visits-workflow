@@ -195,6 +195,9 @@
     chips.appendChild(el("span", { class: "chip" }, ["Snapshot ", el("b", { text: run.finished_at ? fmtTime(run.finished_at) : "never" })]));
     if (run.simulated_time) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "simulated clock ", el("b", { text: fmtTime(run.now_used) })]));
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
+    const sh = (live && live.__sheet) || null;
+    if (sh && sh.path) chips.appendChild(el("span", { class: "chip", title: sh.path }, ["Sheet ", el("b", { text: String(sh.rows || 0) + " practices" }), sh.last_import || sh.last_export ? " · synced " + fmtTime(sh.last_import && sh.last_import > (sh.last_export || "") ? sh.last_import : sh.last_export) : ""]));
+    else if (s.practices) chips.appendChild(el("span", { class: "chip" }, ["Practices ", el("b", { text: (s.practices.dummy || 0) + " dummy · " + (s.practices.real || 0) + " real" })]));
     if (run.paused) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "Calling paused"]));
     if (run.brain_down) chips.appendChild(el("span", { class: "chip serious" }, [el("span", { class: "dot" }), "Brain simulated down"]));
     if (run.callback_number_set === false) chips.appendChild(el("span", { class: "chip critical" }, [el("span", { class: "dot" }), "Callback number not set"]));
@@ -377,16 +380,17 @@
       const card = el("article", { class: "pcard", "data-tone": tone });
       card.appendChild(el("div", { class: "ph" }, [
         el("div", null, [el("h3", { text: c.full_name || "(name missing)" }), el("div", { class: "practice", text: c.practice_name || "(practice missing)" }), el("div", { class: "ext", text: (c.external_id ? c.external_id + " · " : "") + c.id })]),
-        pill(tone === "neutral" ? "" : tone, label)]));
+        el("div", { class: "pills" }, [el("span", { class: "tag " + ((c.source_tag || (c.external_id && c.external_id.startsWith("t_") ? "dummy" : "real")) === "dummy" ? "dummy" : "real"), text: c.source_tag || (c.external_id && c.external_id.startsWith("t_") ? "dummy" : "real") }), pill(tone === "neutral" ? "" : tone, label)])]));
       const [nk, ntext] = nextStep(c, v.interview, v.gate);
       card.appendChild(el("div", { class: "next " + (nk === "brand" || nk === "neutral" ? "" : nk) }, [el("b", { text: "Next: " }), ntext]));
       const en = enrichByContact[c.id];
       if (en) {
-        const about = el("div", { class: "about" }, [el("h4", null, ["About the practice", el("span", { text: en.source === "web" ? "from " + (en.website || "the website").replace(/^https?:\/\//, "") : "from seed fixture" })])]);
+        const about = el("div", { class: "about" }, [el("h4", null, ["About the practice", el("span", { text: en.source === "web" ? "from " + (en.website || "the website").replace(/^https?:\/\//, "") : en.source === "sheet" ? "from the practice sheet" : "from seed fixture" })])]);
         if (en.summary) about.appendChild(el("div", { class: "small", text: en.summary }));
         if (en.services && en.services.length) about.appendChild(el("div", { class: "chips-sm" }, en.services.slice(0, 6).map((sv) => el("span", { class: "m", text: sv }))));
         if (en.doctor_bio) about.appendChild(el("div", { class: "muted small", text: en.doctor_bio }));
         if (en.recent_note) about.appendChild(el("div", { class: "muted small", text: "Recent: " + en.recent_note }));
+        if (en.patient_focus || en.languages) about.appendChild(el("div", { class: "muted small", text: [en.patient_focus ? "Focus: " + en.patient_focus : "", en.languages ? "Languages: " + en.languages : ""].filter(Boolean).join(" · ") }));
         card.appendChild(about);
       }
 
@@ -640,8 +644,13 @@
       if (!local) err.appendChild(el("a", { href: LOCAL_CONSOLE, text: LOCAL_CONSOLE }));
       if (!local) return;
     }
+    if (local && local.sheet) live = Object.assign({}, live || {}, { __sheet: local.sheet });
     if (d.summary) render(d, live);
     wireRun(local);
+    if (local && local.sheet) {
+      let seenImport = local.sheet.last_import || "";
+      setInterval(async () => { const st = await localState(); if (!st || !st.sheet) return; if ((st.sheet.last_import || "") !== seenImport && !(st.run && st.run.status === "running")) { seenImport = st.sheet.last_import || ""; location.reload(); } }, 3000);
+    }
     setInterval(async () => { const live2 = await loadLiveRun(); const running = live2 && (live2.status === "in_progress" || live2.status === "queued"); const was = $("ring").classList.contains("running"); if (running !== was && !local) location.reload(); }, 60000);
   }).catch((e) => { $("error").textContent = "Failed to render: " + e.message; console.error(e); });
 })();

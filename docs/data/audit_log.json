@@ -1,655 +1,5 @@
 [
  {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_df4d7c2a74",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0105",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_5dad0aa7b5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220106",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "808-555-0106",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_7acca703d9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220107",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0107",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_2b7bcb4ad3",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_2ec822826d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_c85f152af5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220109",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0109",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_fd81d176ec",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_c81ee09672",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220110",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0110",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_1a19dbc957",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220111",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0111",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_6edba34a63",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_95ee0f7128",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "6175550101",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_c8143f50ff",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220113",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0113",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_90853491d8",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220114",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0114",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_d51cba31b9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_6f5e721f2c",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "voip",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220115",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "voip",
-   "value": "617-555-0115",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_909481b505",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220116",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0116",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_54322660b9",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_14b62de826",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220117",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0117",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_42ac4cfa29",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "mobile",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220118",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "mobile",
-   "value": "617-555-0118",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_0fdf5cb5aa",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_27177384c8",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220119",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0119",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_021549c001",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_7d785a7774",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220120",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0120",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_61bc1438e5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_e207f6adf5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220121",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0121",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_e4e3c37052",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_8a82185b3d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_5e1fdacffc",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_228d9a2f51"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_228d9a2f51",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_52806280cd",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_1f101ceb7f"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_1f101ceb7f",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_fb340917a5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_7fba5fca42"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_7fba5fca42",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_b401e0efc6",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_e03a98e6f4"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_e03a98e6f4",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_4da2cae231",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_0f446ce295"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_0f446ce295",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_09b9987882",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_4e8b68217c"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_4e8b68217c",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_38dfb97cd2",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "founders",
-  "after": {
-   "id": "cr_5459e49321"
-  },
-  "before": {},
-  "entity": "consent_records",
-  "entity_id": "cr_5459e49321",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "clearance_granted",
-  "actor": "founders",
-  "after": {
-   "call_clearance": "cleared"
-  },
-  "before": {
-   "call_clearance": "not_cleared"
-  },
-  "entity": "channels",
-  "entity_id": "ch_df4d7c2a74",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
   "action": "create",
   "actor": "founders",
   "after": {
@@ -6258,5 +5608,612 @@
   "entity": "email_attempt",
   "entity_id": "replay",
   "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T02:57:46Z",
+   "trigger": "dashboard"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T025746Z-007",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_01c54d811d",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:05:33Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "email_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:02:53Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_251bab6d38",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:34:39Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:55:22Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_2c3a09fcb5",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_d39fa0c7be",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_41cc51441d",
+  "entity": "email_attempts",
+  "entity_id": "em_d39fa0c7be",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_7bcf8e455a"
+  },
+  "before": {},
+  "call_attempt_id": "em_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "entity": "transcripts",
+  "entity_id": "tr_7bcf8e455a",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "smtp",
+   "provider_message_id": "<\u2022\u2022\u2022@gmail.com>",
+   "sent_at": "2026-10-21T02:57:46Z",
+   "status": "sent",
+   "transcript_id": "tr_7bcf8e455a"
+  },
+  "before": {
+   "provider": "smtp",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_41cc51441d",
+  "entity": "email_attempts",
+  "entity_id": "em_d39fa0c7be",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-24T02:57:46Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_d39fa0c7be",
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_d39fa0c7be",
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_517863c95b",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_5bfd0187e6",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_a776b6dc5b",
+  "run_id": "20261021T025746Z-007",
+  "timestamp": "2026-10-21T02:57:46Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_251bab6d38",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_b3b24d17b8",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_da6677d004",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_8a72860e91",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_5bfd0187e6",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_070728f30d",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_48eaa6c438",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_01c54d811d",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_c09828fbcf",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_761872151b",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_517863c95b",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_d7b9cfa027",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_a776b6dc5b",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_0de2e04276",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_866bc1a7db",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_2c3a09fcb5",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_b62f5021ad",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "sheet_edit",
+  "actor": "sheet",
+  "after": {
+   "source_tag": "dummy"
+  },
+  "before": {
+   "source_tag": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_fb34444215",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "import",
+  "actor": "sheet",
+  "after": {
+   "created": 0,
+   "missing_from_sheet": 0,
+   "rows": 21,
+   "unchanged": 0,
+   "updated": 21
+  },
+  "before": {},
+  "entity": "sheet",
+  "entity_id": "/tmp/bv-sheet-smoke.xlsx",
+  "timestamp": "2026-10-21T03:07:57Z"
+ },
+ {
+  "action": "import",
+  "actor": "sheet",
+  "after": {
+   "created": 0,
+   "missing_from_sheet": 0,
+   "rows": 21,
+   "unchanged": 21,
+   "updated": 0
+  },
+  "before": {},
+  "entity": "sheet",
+  "entity_id": "data/practices.xlsx",
+  "timestamp": "2026-10-21T03:08:20Z"
+ },
+ {
+  "action": "import",
+  "actor": "sheet",
+  "after": {
+   "created": 0,
+   "missing_from_sheet": 0,
+   "rows": 21,
+   "unchanged": 21,
+   "updated": 0
+  },
+  "before": {},
+  "entity": "sheet",
+  "entity_id": "data/practices.xlsx",
+  "timestamp": "2026-10-21T03:08:20Z"
  }
 ]

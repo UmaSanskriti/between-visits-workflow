@@ -274,6 +274,33 @@ def enrich_contacts(store: Store, clock: Clock, enrichers: list, refresh: bool =
             counts["skipped"] += 1
             continue
         existing = store.enrichments.get(contact.id)
+        if existing and existing.source == "sheet":  # edits made in practices.xlsx win; only fill blanks
+            changes = {
+                k: v
+                for k, v in found.to_dict().items()
+                if k not in ("id", "created_at", "source", "source_note", "retrieved_at", "confidence", "updated_at")
+                and not getattr(existing, k)
+                and v
+            }
+            if changes:
+                store.update(
+                    "enrichments",
+                    existing,
+                    "fill_from_" + found.source,
+                    changes,
+                    actor=enricher.name,
+                    contact_id=contact.id,
+                )
+            counts["unchanged"] += 1
+            if not contact.hook.strip() and (existing.hook or found.hook):
+                store.update(
+                    "contacts",
+                    contact,
+                    "hook_from_enrichment",
+                    {"hook": existing.hook or found.hook},
+                    actor=enricher.name,
+                )
+            continue
         if existing:
             changes = {
                 k: v for k, v in found.to_dict().items() if k not in ("id", "created_at") and getattr(existing, k) != v

@@ -148,6 +148,18 @@ def build_summary(store: Store, run: dict) -> dict:
         "run_id": run_id,
         "channel": channel,
         "emails": email_summary(store, run),
+        "practices": {
+            "dummy": sum(
+                1
+                for c in contacts
+                if (c.source_tag or ("dummy" if c.external_id.startswith("t_") else "real")) == "dummy"
+            ),
+            "real": sum(
+                1
+                for c in contacts
+                if (c.source_tag or ("dummy" if c.external_id.startswith("t_") else "real")) == "real"
+            ),
+        },
         "enrichment": {
             "total": len(store.enrichments),
             "seed": sum(1 for e in store.enrichments.values() if e.source == "seed"),

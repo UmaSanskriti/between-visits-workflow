@@ -48,6 +48,8 @@ class CsvSeedAdapter:
         self.path = Path(path)
 
     def fetch(self) -> list[dict]:
+        if self.path.suffix.lower() == ".xlsx":  # the practice sheet is a seed too (same row shape)
+            return SheetSeedAdapter(self.path).fetch()
         with self.path.open(newline="") as fh:
             rows = []
             for row in csv.DictReader(fh):
@@ -56,6 +58,53 @@ class CsvSeedAdapter:
                 row["source_url"] = row.get("source_url") or str(self.path)
                 rows.append(row)
             return rows
+
+
+class SheetSeedAdapter:
+    """SRC-001 from the practice workbook (data/practices.xlsx). Rows look exactly like CsvSeedAdapter's.
+
+    `name` stays "csv_seed" on purpose: contact ids derive from (adapter name, external_id), so a practice that
+    first arrived through a CSV keeps its id when the sheet becomes the source of truth.
+    """
+
+    name = "csv_seed"
+
+    def __init__(self, path: str | Path):
+        self.path = Path(path)
+
+    def fetch(self) -> list[dict]:
+        from .sheet import read_sheet_rows
+
+        rows = []
+        for sheet_row in read_sheet_rows(self.path):
+            row = {
+                "external_id": sheet_row.get("external_id", ""),
+                "name": sheet_row.get("doctor_name", ""),
+                "credentials": sheet_row.get("credentials", ""),
+                "specialty": sheet_row.get("specialty", ""),
+                "practice_name": sheet_row.get("practice_name", ""),
+                "practice_size": sheet_row.get("practice_size", ""),
+                "address": sheet_row.get("address", ""),
+                "city": sheet_row.get("city", ""),
+                "state": sheet_row.get("state", ""),
+                "phone": sheet_row.get("phone", ""),
+                "email": sheet_row.get("email", ""),
+                "time_zone": sheet_row.get("time_zone", "") or "America/New_York",
+                "line_type": "",
+                "pronunciation_hint": sheet_row.get("pronunciation_hint", ""),
+                "hook": sheet_row.get("hook", ""),
+                "website": sheet_row.get("website", ""),
+                "scenario": "",
+                "npi": sheet_row.get("npi", ""),
+                "source_tag": sheet_row.get("source_tag", ""),
+                "source": sheet_row.get("source", "") or f"sheet:{self.path.name}",
+                "source_url": sheet_row.get("source_url", "") or str(self.path),
+                "retrieved_at": sheet_row.get("retrieved_at", ""),
+            }
+            if not row["external_id"] and not (row["practice_name"] or row["name"]):
+                continue
+            rows.append(row)
+        return rows
 
 
 def contact_id_for(adapter_name: str, row: dict) -> str:
@@ -92,6 +141,7 @@ def ingest(store: Store, adapter: SourceAdapter, clock: Clock, default_tz: str) 
             "pronunciation_hint": row.get("pronunciation_hint", ""),
             "hook": row.get("hook", ""),
             "website": row.get("website", ""),
+            "source_tag": row.get("source_tag", "") or ("dummy" if row.get("external_id", "").startswith("t_") else ""),
             "test_scenario": row.get("scenario", ""),
         }
         contact = store.contacts.get(cid)

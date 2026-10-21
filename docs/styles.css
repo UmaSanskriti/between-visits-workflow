@@ -270,3 +270,8 @@ button:disabled { opacity: 0.5; cursor: default; }
 .chips-sm { display: flex; flex-wrap: wrap; gap: 4px; }
 .chips-sm .m { font-size: 11.5px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1px 7px; }
 .agent-steps .d.muted { color: var(--muted); }
+
+/* practice sheet */
+.pills { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--border); color: var(--ink-2); background: var(--surface-2); }
+.tag.real { color: var(--brand-ink); border-color: var(--brand-soft); background: var(--brand-soft); }

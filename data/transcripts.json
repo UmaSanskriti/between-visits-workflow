@@ -41,6 +41,27 @@
    }
   ]
  },
+ "tr_7bcf8e455a": {
+  "call_attempt_id": "em_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "created_at": "2026-10-21T02:57:46Z",
+  "delivered_at": "",
+  "delivery_attempts": 0,
+  "delivery_status": "pending",
+  "id": "tr_7bcf8e455a",
+  "idempotency_key": "em_d39fa0c7be:sent",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Raman,\n\nI'm Anirudh Bagla, a student at Harvard Business School. I saw on your site that you focus on cardiometabolic health and wanted to reach out. Given your focus on cardiometabolic health, I'd value your perspective.\n\nMy co-founder and I are exploring a way for independent practices like Harborview Internal Medicine to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nUma Sanskriti for Anirudh Bagla \u00b7 +16506984849\n\nReply \"stop\" and we won't contact you again.\n"
+   }
+  ]
+ },
  "tr_7e0e02e827": {
   "call_attempt_id": "em_7e13816d5d",
   "contact_id": "c_2c3a09fcb5",

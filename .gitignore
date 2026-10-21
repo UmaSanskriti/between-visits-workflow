@@ -21,3 +21,7 @@ docs/data-sourced/
 
 # queued messages hold the real recipient; never commit
 data/outbox/
+
+# practice workbook: real practices are public business data we keep out of the public repo by default
+data/practices.xlsx
+data-live/practices.xlsx
