@@ -106,7 +106,7 @@
   "seed": 0,
   "total": 21,
   "web": 0,
-  "with_glp1": 0
+  "with_glp1": 7
  },
  "errors": 6,
  "funnel": [
@@ -135,7 +135,7 @@
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T03:39:49Z",
+ "generated_at": "2026-10-21T03:40:46Z",
  "interviews": 0,
  "interviews_pending_approval": 0,
  "practices": {
@@ -326,7 +326,7 @@
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T033949Z-007",
+ "run_id": "20261021T034046Z-008",
  "transcripts": {
   "brain_inbox": 13,
   "delivered": 2,

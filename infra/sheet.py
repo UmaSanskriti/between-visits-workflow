@@ -519,7 +519,12 @@ def _upsert_enrichment(
             contact_id=contact.id,
         )
         return True
-    changes = {k: v for k, v in fields.items() if getattr(existing, k) != v}
+    # A blank cell means "no change": it never erases what research or the fixture already recorded.
+    changes = {
+        k: v
+        for k, v in fields.items()
+        if getattr(existing, k) != v and (v not in ("", [], False) or not getattr(existing, k))
+    }
     if changes:
         changes.update(
             {"source": "sheet", "source_note": f"edited in {where or 'the practice sheet'}", "retrieved_at": now}

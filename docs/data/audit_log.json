@@ -1,689 +1,5 @@
 [
  {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_b9ed93f342"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_48eaa6c438",
-  "entity": "email_attempts",
-  "entity_id": "em_e9f7fe12db",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_e9f7fe12db",
-  "entity": "contacts",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_e9f7fe12db",
-  "entity": "contacts",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "contact_not_verified:no_email_channel",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_517863c95b",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "contact_not_verified:no_email_channel",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_5bfd0187e6",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "contact_not_verified:no_email_channel",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "channel": "email",
-   "reasons": [
-    "contact_not_verified:no_email_channel",
-    "no_email_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_a776b6dc5b",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_1c90a154b7",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_b3b24d17b8",
-  "entity": "email_attempts",
-  "entity_id": "em_1c90a154b7",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_6cf3e3ffa7"
-  },
-  "before": {},
-  "call_attempt_id": "em_1c90a154b7",
-  "contact_id": "c_b3b24d17b8",
-  "entity": "transcripts",
-  "entity_id": "tr_6cf3e3ffa7",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_6cf3e3ffa7"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_b3b24d17b8",
-  "entity": "email_attempts",
-  "entity_id": "em_1c90a154b7",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_1c90a154b7",
-  "entity": "contacts",
-  "entity_id": "c_b3b24d17b8",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_1c90a154b7",
-  "entity": "contacts",
-  "entity_id": "c_b3b24d17b8",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_38db576121",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_b62f5021ad",
-  "entity": "email_attempts",
-  "entity_id": "em_38db576121",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_1f1c19b8df"
-  },
-  "before": {},
-  "call_attempt_id": "em_38db576121",
-  "contact_id": "c_b62f5021ad",
-  "entity": "transcripts",
-  "entity_id": "tr_1f1c19b8df",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_1f1c19b8df"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_b62f5021ad",
-  "entity": "email_attempts",
-  "entity_id": "em_38db576121",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_38db576121",
-  "entity": "contacts",
-  "entity_id": "c_b62f5021ad",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_38db576121",
-  "entity": "contacts",
-  "entity_id": "c_b62f5021ad",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_0454abe525",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_c09828fbcf",
-  "entity": "email_attempts",
-  "entity_id": "em_0454abe525",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_fe051d28df"
-  },
-  "before": {},
-  "call_attempt_id": "em_0454abe525",
-  "contact_id": "c_c09828fbcf",
-  "entity": "transcripts",
-  "entity_id": "tr_fe051d28df",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_fe051d28df"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_c09828fbcf",
-  "entity": "email_attempts",
-  "entity_id": "em_0454abe525",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_0454abe525",
-  "entity": "contacts",
-  "entity_id": "c_c09828fbcf",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_0454abe525",
-  "entity": "contacts",
-  "entity_id": "c_c09828fbcf",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_79dcaa34ba",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_d7b9cfa027",
-  "entity": "email_attempts",
-  "entity_id": "em_79dcaa34ba",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_b3c99276d4"
-  },
-  "before": {},
-  "call_attempt_id": "em_79dcaa34ba",
-  "contact_id": "c_d7b9cfa027",
-  "entity": "transcripts",
-  "entity_id": "tr_b3c99276d4",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_b3c99276d4"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_d7b9cfa027",
-  "entity": "email_attempts",
-  "entity_id": "em_79dcaa34ba",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_79dcaa34ba",
-  "entity": "contacts",
-  "entity_id": "c_d7b9cfa027",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_79dcaa34ba",
-  "entity": "contacts",
-  "entity_id": "c_d7b9cfa027",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_6e29b4cd45",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_da6677d004",
-  "entity": "email_attempts",
-  "entity_id": "em_6e29b4cd45",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_64bfe04e59"
-  },
-  "before": {},
-  "call_attempt_id": "em_6e29b4cd45",
-  "contact_id": "c_da6677d004",
-  "entity": "transcripts",
-  "entity_id": "tr_64bfe04e59",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_64bfe04e59"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_da6677d004",
-  "entity": "email_attempts",
-  "entity_id": "em_6e29b4cd45",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_6e29b4cd45",
-  "entity": "contacts",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_6e29b4cd45",
-  "entity": "contacts",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_6b6ea10721",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_f9eafcfce6",
-  "entity": "email_attempts",
-  "entity_id": "em_6b6ea10721",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_49a48e7d34"
-  },
-  "before": {},
-  "call_attempt_id": "em_6b6ea10721",
-  "contact_id": "c_f9eafcfce6",
-  "entity": "transcripts",
-  "entity_id": "tr_49a48e7d34",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "sent",
-  "actor": "system",
-  "after": {
-   "provider": "mock",
-   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
-   "sent_at": "2026-10-21T02:05:53Z",
-   "status": "sent",
-   "transcript_id": "tr_49a48e7d34"
-  },
-  "before": {
-   "provider": "mock",
-   "provider_message_id": "",
-   "sent_at": "",
-   "status": "queued",
-   "transcript_id": ""
-  },
-  "contact_id": "c_f9eafcfce6",
-  "entity": "email_attempts",
-  "entity_id": "em_6b6ea10721",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "next_attempt_at": "2026-10-24T02:05:53Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "email_attempt_id": "em_6b6ea10721",
-  "entity": "contacts",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "email_sent",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "last_outcome": "",
-   "status": "IN_OUTREACH"
-  },
-  "email_attempt_id": "em_6b6ea10721",
-  "entity": "contacts",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
   "action": "create",
   "actor": "system",
   "after": {
@@ -6339,5 +5655,868 @@
   "entity_id": "20261021T033949Z-007",
   "run_id": "20261021T033949Z-007",
   "timestamp": "2026-10-21T03:39:49Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T03:40:46Z",
+   "trigger": "local"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T034046Z-008",
+  "run_id": "20261021T034046Z-008",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Omar Haddad is a fellowship-trained endocrinologist who leads the group's metabolic clinic.",
+   "glp1_mentioned": true,
+   "languages": "English; Arabic",
+   "patient_focus": "diabetes and metabolic care",
+   "recent_note": "Added a GLP-1 titration clinic in 2026",
+   "services": [
+    "endocrinology",
+    "diabetes",
+    "GLP-1",
+    "obesity medicine"
+   ],
+   "summary": "Haddad Endocrine Associates is a small endocrinology group specialising in diabetes and metabolic care."
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_01c54d811d",
+  "entity": "enrichments",
+  "entity_id": "c_01c54d811d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you added a GLP-1 titration clinic this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_01c54d811d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Ken Watanabe trained at Children's Hospital Boston, has practised for 18 years, and co-authored guidance on adolescent nutrition.",
+   "languages": "English; Japanese",
+   "patient_focus": "adolescents and family nutrition",
+   "recent_note": "Launched an adolescent healthy-weight program in 2026",
+   "services": [
+    "pediatrics",
+    "adolescent medicine",
+    "weight management",
+    "nutrition"
+   ],
+   "summary": "Watanabe Pediatrics is a solo pediatric practice in Back Bay with an adolescent weight-management track.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_070728f30d",
+  "entity": "enrichments",
+  "entity_id": "c_070728f30d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you launched an adolescent healthy-weight program this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_070728f30d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Nina Shah completed residency at Cambridge Health Alliance and has practised for six years.",
+   "languages": "English; Hindi",
+   "patient_focus": "young adults",
+   "recent_note": "Added travel-medicine visits in 2026",
+   "services": [
+    "primary care",
+    "telehealth",
+    "travel medicine"
+   ],
+   "summary": "Shah Primary Care is a solo family practice near MIT serving graduate students and faculty."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_0de2e04276",
+  "entity": "enrichments",
+  "entity_id": "c_0de2e04276",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you added travel-medicine visits"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_0de2e04276",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Priya Patel trained at Boston Medical Center, has practised for 14 years, and leads the practice's GLP-1 follow-up clinic.",
+   "glp1_mentioned": true,
+   "languages": "English; Gujarati; Hindi",
+   "patient_focus": "GLP-1 patients and chronic-disease follow-up",
+   "recent_note": "Launched a GLP-1 follow-up clinic with monthly nutrition check-ins in September 2026",
+   "services": [
+    "primary care",
+    "weight management",
+    "GLP-1",
+    "nutrition counseling",
+    "telehealth"
+   ],
+   "summary": "Patel Family Medicine is a solo family practice on Beacon Hill offering same-day visits and a nurse-led weight-management program.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_251bab6d38",
+  "entity": "enrichments",
+  "entity_id": "c_251bab6d38",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Rosa Mart\u00ednez is the group's medical director and leads its diabetes-prevention program.",
+   "languages": "English; Spanish",
+   "patient_focus": "diabetes prevention",
+   "recent_note": "Hired an in-house dietitian in 2026",
+   "services": [
+    "primary care",
+    "dietitian",
+    "diabetes",
+    "weight management",
+    "telehealth"
+   ],
+   "summary": "Fenway Group Practice is a six-physician internal-medicine group with an in-house dietitian.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_29816f6cb0",
+  "entity": "enrichments",
+  "entity_id": "c_29816f6cb0",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Laura Bennett has practised family medicine for 15 years with an interest in nutrition.",
+   "languages": "English",
+   "patient_focus": "nutrition and weight management",
+   "recent_note": "Added on-site nutrition counseling in 2026",
+   "services": [
+    "primary care",
+    "nutrition counseling",
+    "weight management"
+   ],
+   "summary": "Bennett Family Practice is a solo family practice in Somerville with nutrition counseling on site.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "enrichments",
+  "entity_id": "c_2c3a09fcb5",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Priya Raman is an internist with a focus on cardiometabolic health.",
+   "languages": "English; Tamil",
+   "patient_focus": "cardiometabolic health",
+   "recent_note": "Joined a hospital system in 2026",
+   "services": [
+    "primary care",
+    "chronic care"
+   ],
+   "summary": "Harborview Internal Medicine is a small internal-medicine group near the waterfront."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_41cc51441d",
+  "entity": "enrichments",
+  "entity_id": "c_41cc51441d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you focus on cardiometabolic health"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Hannah Goldberg has practised family medicine in Brookline for 20 years.",
+   "languages": "English; Hebrew",
+   "patient_focus": "long-term patient relationships",
+   "recent_note": "Introduced a concierge membership in 2026",
+   "services": [
+    "primary care",
+    "concierge",
+    "telehealth"
+   ],
+   "summary": "Brookline Primary Care is a solo family practice with a concierge membership option."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_48eaa6c438",
+  "entity": "enrichments",
+  "entity_id": "c_48eaa6c438",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you introduced a concierge membership this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_48eaa6c438",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Luis Ortega is bilingual and has practised in Jamaica Plain for 11 years.",
+   "languages": "English; Spanish",
+   "patient_focus": "community primary care",
+   "recent_note": "Added same-day telehealth slots in 2026",
+   "services": [
+    "primary care",
+    "telehealth",
+    "chronic care"
+   ],
+   "summary": "Jamaica Plain Primary Care is a solo family practice serving a largely Spanish-speaking community."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_517863c95b",
+  "entity": "enrichments",
+  "entity_id": "c_517863c95b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you added same-day telehealth slots"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_517863c95b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Dana Okafor is board-certified in family and lifestyle medicine with a focus on nutrition.",
+   "languages": "English",
+   "patient_focus": "lifestyle and nutrition",
+   "recent_note": "Began monthly group nutrition classes in 2026",
+   "services": [
+    "primary care",
+    "nutrition",
+    "weight management",
+    "lifestyle medicine"
+   ],
+   "summary": "Okafor Family Health is a solo family practice offering lifestyle medicine and group nutrition classes.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_5bfd0187e6",
+  "entity": "enrichments",
+  "entity_id": "c_5bfd0187e6",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you run monthly group nutrition classes"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_5bfd0187e6",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Duplicate of t_01.",
+   "glp1_mentioned": true,
+   "languages": "English",
+   "patient_focus": "GLP-1 patients",
+   "recent_note": "Duplicate listing",
+   "services": [
+    "primary care",
+    "weight management",
+    "GLP-1"
+   ],
+   "summary": "Duplicate listing of Patel Family Medicine.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_761872151b",
+  "entity": "enrichments",
+  "entity_id": "c_761872151b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you launched a GLP-1 follow-up clinic this fall"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_761872151b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Victor Adeyemi leads the group's diabetes education program.",
+   "glp1_mentioned": true,
+   "languages": "English; Yoruba",
+   "patient_focus": "diabetes care",
+   "recent_note": "Expanded the diabetes education program in 2026",
+   "services": [
+    "primary care",
+    "diabetes",
+    "chronic care",
+    "GLP-1"
+   ],
+   "summary": "Dorchester Medical is a small internal-medicine group with a diabetes education program."
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_866bc1a7db",
+  "entity": "enrichments",
+  "entity_id": "c_866bc1a7db",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you expanded your diabetes education program"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_866bc1a7db",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Alan Chen is a DO with a sports-medicine fellowship and twelve years in practice.",
+   "languages": "English; Cantonese",
+   "patient_focus": "young adults and families",
+   "recent_note": "Started Saturday clinics in 2026",
+   "services": [
+    "primary care",
+    "sports medicine"
+   ],
+   "summary": "Chen Primary Care is a solo family practice in Allston serving students and young families."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_8a72860e91",
+  "entity": "enrichments",
+  "entity_id": "c_8a72860e91",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you started Saturday clinics this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_8a72860e91",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Sam Rivera is a family nurse practitioner with a background in community health.",
+   "languages": "English; Spanish",
+   "patient_focus": "preventive care",
+   "recent_note": "Launched a lifestyle-medicine program in 2026",
+   "services": [
+    "primary care",
+    "nutrition",
+    "lifestyle medicine"
+   ],
+   "summary": "Rivera Wellness is a nurse-practitioner-led solo practice focused on preventive and lifestyle care."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_a776b6dc5b",
+  "entity": "enrichments",
+  "entity_id": "c_a776b6dc5b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you launched a lifestyle-medicine program"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_a776b6dc5b",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "The practice website lists no physician biography.",
+   "languages": "English",
+   "patient_focus": "adult chronic care",
+   "recent_note": "Added evening telehealth hours in 2026",
+   "services": [
+    "primary care",
+    "diabetes",
+    "chronic care"
+   ],
+   "summary": "Beacon Hill Internal Medicine is a solo internal-medicine practice focused on adults with diabetes and hypertension."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_b3b24d17b8",
+  "entity": "enrichments",
+  "entity_id": "c_b3b24d17b8",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you added evening telehealth hours this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_b3b24d17b8",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Tom Nguyen has practised family medicine for nine years.",
+   "languages": "English; Vietnamese",
+   "patient_focus": "families",
+   "recent_note": "Extended evening hours in 2026",
+   "services": [
+    "primary care",
+    "telehealth"
+   ],
+   "summary": "Nguyen Family Health is a solo family practice in Medford offering extended-hours care."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_b62f5021ad",
+  "entity": "enrichments",
+  "entity_id": "c_b62f5021ad",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you extended evening hours this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_b62f5021ad",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Grace Kim trained at Boston University and has practised for eight years.",
+   "languages": "English; Korean",
+   "patient_focus": "women's health",
+   "recent_note": "Started a postpartum support group in 2026",
+   "services": [
+    "primary care",
+    "women's health",
+    "prenatal care"
+   ],
+   "summary": "Kim Family Medicine is a solo family practice in Jamaica Plain with a strong focus on women's health."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_c09828fbcf",
+  "entity": "enrichments",
+  "entity_id": "c_c09828fbcf",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you started a postpartum support group"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_c09828fbcf",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Emily Zhang is board-certified in internal medicine and obesity medicine.",
+   "glp1_mentioned": true,
+   "languages": "English",
+   "patient_focus": "obesity medicine",
+   "recent_note": "Opened a weight-management clinic in 2026",
+   "services": [
+    "primary care",
+    "weight management",
+    "GLP-1",
+    "nutrition"
+   ],
+   "summary": "South End Internal Medicine is a solo internal-medicine practice with a weight-management clinic.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_d7b9cfa027",
+  "entity": "enrichments",
+  "entity_id": "c_d7b9cfa027",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you opened a weight-management clinic this year"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_d7b9cfa027",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Marcus Lee completed residency at Tufts and has run the group for nine years, with an interest in preventive care.",
+   "languages": "English; Mandarin",
+   "patient_focus": "preventive care for working adults",
+   "recent_note": "Opened a second walk-in room in 2026",
+   "services": [
+    "primary care",
+    "walk-in",
+    "telehealth"
+   ],
+   "summary": "Lee Medical is a small group practice downtown with three clinicians and a walk-in clinic."
+  },
+  "before": {
+   "doctor_bio": "",
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": ""
+  },
+  "contact_id": "c_da6677d004",
+  "entity": "enrichments",
+  "entity_id": "c_da6677d004",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Siobhan N\u00ed Bhriain is board-certified in endocrinology and obesity medicine and prescribes GLP-1 therapy daily.",
+   "glp1_mentioned": true,
+   "languages": "English; Irish",
+   "patient_focus": "obesity medicine and GLP-1 therapy",
+   "recent_note": "Published a patient guide to managing GLP-1 side effects in 2026",
+   "services": [
+    "endocrinology",
+    "obesity medicine",
+    "GLP-1",
+    "semaglutide",
+    "tirzepatide"
+   ],
+   "summary": "Charles River Endocrinology is a solo endocrinology practice treating thyroid disease and obesity.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "enrichments",
+  "entity_id": "c_f9eafcfce6",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "hook_from_enrichment",
+  "actor": "seed",
+  "after": {
+   "hook": "you published a patient guide to managing GLP-1 side effects"
+  },
+  "before": {
+   "hook": ""
+  },
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "fill_from_seed",
+  "actor": "seed",
+  "after": {
+   "doctor_bio": "Dr. Wei Chen trained at Mass General, has practised for 12 years, and runs the weight-management clinic herself.",
+   "glp1_mentioned": true,
+   "languages": "English; Mandarin",
+   "patient_focus": "GLP-1 patients and weight management",
+   "recent_note": "Added GLP-1 nutrition follow-ups in 2026",
+   "services": [
+    "primary care",
+    "weight management",
+    "GLP-1",
+    "nutrition",
+    "telehealth"
+   ],
+   "summary": "Chen Family Practice is a solo family practice in Cambridge with a weight-management clinic and GLP-1 support.",
+   "weight_management_mentioned": true
+  },
+  "before": {
+   "doctor_bio": "",
+   "glp1_mentioned": false,
+   "languages": "",
+   "patient_focus": "",
+   "recent_note": "",
+   "services": [],
+   "summary": "",
+   "weight_management_mentioned": false
+  },
+  "contact_id": "c_fb34444215",
+  "entity": "enrichments",
+  "entity_id": "c_fb34444215",
+  "timestamp": "2026-10-21T03:40:46Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T034046Z-008",
+  "run_id": "20261021T034046Z-008",
+  "timestamp": "2026-10-21T03:40:46Z"
  }
 ]
