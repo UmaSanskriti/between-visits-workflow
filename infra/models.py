@@ -208,7 +208,9 @@ class EmailAttempt(Record):
     status: str = "queued"  # queued | sent | failed | bounced
     provider: str = "mock"
     provider_message_id: str = ""
+    thread_id: str = ""
     sent_at: str = ""
+    redirected_to: str = ""  # staged demo: masked inbox the message was actually delivered to
     script_version: str = ""
     segment: str = ""
     outcome: str = ""

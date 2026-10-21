@@ -12,6 +12,7 @@ from .config import Config
 from .email.classify import classify_reply
 from .email.compose import build_email
 from .email.provider import EmailMessage, EmailProvider, EmailSendError
+from .export import mask_email
 from .models import (
     FAILURE_CATEGORY,
     CallAttempt,
@@ -551,6 +552,11 @@ def send_emails(
                     run_id=run_id,
                 )
 
+        recipient = channel.value
+        redirected = ""
+        if cfg.mode == "live" and cfg.email_demo_recipient and cfg.email_demo_recipient != channel.value.lower():
+            recipient = cfg.email_demo_recipient  # staged demo: the practice's copy goes to the team inbox
+            redirected = mask_email(recipient)
         attempt = EmailAttempt(
             id=attempt_id,
             contact_id=contact.id,
@@ -561,6 +567,7 @@ def send_emails(
             subject=draft.subject,
             body=draft.body,
             status="queued",
+            redirected_to=redirected,
             provider=mailer.name,
             script_version=draft.script_version,
             segment=contact.segment or "default",
@@ -570,7 +577,7 @@ def send_emails(
         )
         store.add("email_attempts", attempt, run_id=run_id, contact_id=contact.id)
         message = EmailMessage(
-            to=channel.value,
+            to=recipient,
             from_name=cfg.email_from_name,
             from_address=cfg.email_from_address or "dry-run@between-visits.test",
             reply_to=cfg.email_reply_to,

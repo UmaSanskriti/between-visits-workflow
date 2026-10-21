@@ -107,12 +107,12 @@ reach the browser, so a small local service holds the key and does the dialing:
 python -m infra serve            # on the machine with .env; opens http://127.0.0.1:8787 and a Cloudflare quick tunnel
 ```
 
-Open the dashboard (locally at `http://127.0.0.1:8787/?source=live`, or the GitHub Pages site with `?source=live`).
-A "Live call" panel appears when the service is reachable. Pressing **Call my phone** runs the same preview and gate,
-then dials through Vapi. While the call is on, Vapi posts transcript events to the service through the tunnel and the
-panel shows them as they happen; when it ends, the outcome, the handoff, the cost, and the recording link appear,
-and the practice card is updated. Without `cloudflared` (`brew install cloudflared`) there is no tunnel, so the
-transcript appears only after the call ends.
+Open the dashboard (locally at `http://127.0.0.1:8787/`, or the GitHub Pages site; Chrome may ask once for
+local-network permission on the public site). When the service is reachable, **Run the agent** runs the whole
+outreach loop on this machine and shows every step in the "What the agent is doing" column: load the approved list,
+pick the first eligible practice, pass the gate, compose the playbook email, queue it for the linked Gmail account
+(or send via SMTP when `SMTP_PASSWORD` is set), wait for the reply, classify it, hand off to Anirudh.
+The staged live call through Vapi (`POST /api/call`) stays available for when a Twilio number exists.
 
 **Twilio number.** Free Vapi numbers cannot place outbound calls. With a Twilio account (trial is fine: it can only
 call numbers you verified by SMS, and it plays a short "press any key" message first), put `TWILIO_PHONE_NUMBER`,
@@ -135,37 +135,23 @@ approval-gated cold email (section 8b). The loop is the same, with email in plac
 2. **Compose.** The Brain supplies the playbook template; the connector fills the doctor, practice, hook, and two
    slots, keeps it plain text and under 150 words, one ask, real sender name, and an opt-out line. A missing required
    field blocks the send and lands in the error report.
-3. **Send.** Through SMTP (any provider; Gmail works with an app password). Every send is logged as an email attempt
-   with its subject, body, provider message id, and script version.
-4. **Replies.** Either IMAP polling (when `IMAP_*` is set) or **Record reply** on the dashboard, where you paste the
-   reply. The reply is classified: agreed (email, channel, availability captured as a handoff to Anirudh), declined,
-   stop (suppressed everywhere), bounce (address marked failed), or other. The thread goes to the Brain like a
-   transcript. No reply after `follow_up_days` schedules one follow-up, then the practice is marked no reply.
+3. **Send.** The service queues the message in an outbox (`data/outbox/`, gitignored) and the Claude session that
+   holds the Gmail connector sends it from the linked account, then reports back with
+   `POST /api/outbox/<attempt>/sent {message_id, thread_id}` (or `python -m infra email-sent`). With `SMTP_PASSWORD`
+   set the service sends directly. Every send is logged as an email attempt with subject, body, message id, thread
+   id, and script version. In `live` mode every outbound email is delivered to `EMAIL_DEMO_RECIPIENT` (default: the
+   first address on `BV_LIVE_ALLOWLIST`) instead of the practice, and the attempt records the redirect, so the demo
+   never emails a real practice.
+4. **Replies.** Read from the linked inbox (IMAP polling when `IMAP_*` is set, or the Gmail connector driver posting
+   `POST /api/reply {attempt, text, from, at}`), or pasted into **Record reply** on the dashboard. The reply is
+   classified: agreed (email, channel, availability captured as a handoff to Anirudh), declined, stop (suppressed
+   everywhere), bounce (address marked failed), or other. The thread goes to the Brain like a transcript. No reply
+   after `follow_up_days` schedules one follow-up, then the practice is marked no reply.
 
-**Dashboard.** With `python -m infra serve` running, the "Live outreach" panel has **Email me** (sends the demo email
-to the allowlisted address in `seeds/live/`), shows the subject and body that went out, and a **Record reply** box
-that closes the loop and shows the outcome and handoff. The ring relabels its stages for email (Approved list → Gate
-check → Compose + send → Delivery logged → Reply → handoff → Follow-up), practice cards gain an **Emails** section,
-and **Run the agent** still runs the dry run with mock email replies.
-
-**`.env` keys for email**
-
-```
-SMTP_HOST=smtp.gmail.com     # or your provider
-SMTP_PORT=587                # 587 STARTTLS, 465 SSL
-SMTP_USER=you@example.com
-SMTP_PASSWORD=...            # Gmail: a 16-character App Password (Google Account → Security → 2-Step Verification → App passwords)
-EMAIL_FROM=you@example.com
-EMAIL_FROM_NAME=Anirudh Bagla
-EMAIL_REPLY_TO=anirudh@example.com
-IMAP_HOST=imap.gmail.com     # optional: poll the inbox for replies instead of pasting them
-IMAP_USER=you@example.com
-IMAP_PASSWORD=...
-BV_LIVE_ALLOWLIST=+16506984849,you@example.com   # phones and emails that may be contacted in live mode
-```
-
-Gmail note: SMTP needs 2-Step Verification on the Google account and an App Password; a normal password is rejected.
-Some university Google Workspace tenants disable App Passwords; use a personal Gmail or another SMTP provider then.
+**Dashboard.** One button, **Run the agent**. The ring animates through the stages, the step list shows which
+practice was picked, the gate verdict, the subject and body, "Queued for Gmail" then "Sent via Gmail" with a link to
+the thread, "Waiting for a reply", and the classified reply with the handoff. Practice cards carry an **Emails**
+section with the same history, including where the demo copy was delivered.
 
 ## Repository layout
 

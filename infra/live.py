@@ -294,11 +294,13 @@ def email_outbox(store: Store) -> list[dict]:
             {
                 "attempt_id": a.id,
                 "contact_id": a.contact_id,
-                "to": channel.value if channel else "",
+                "to": message.get("to") or (channel.value if channel else ""),  # the demo inbox when redirected
                 "subject": a.subject,
                 "body": a.body,
                 "from_name": message.get("from_name", ""),
                 "from_address": message.get("from_address", ""),
+                "reply_to": message.get("reply_to", ""),
+                "redirected_to": a.redirected_to,
                 "queued_at": message.get("queued_at", a.created_at),
             }
         )
@@ -328,7 +330,7 @@ def mark_email_sent(
         run_id=_last_run(store).get("run_id", "manual"),
     )
     if thread_id:
-        store.update("email_attempts", attempt, "thread", {"outcome_reason": f"gmail_thread:{thread_id}"})
+        store.update("email_attempts", attempt, "thread", {"thread_id": thread_id})
     path = Path(store.dir) / "outbox" / f"{attempt.id}.json"
     if path.exists():
         payload = json.loads(path.read_text())
@@ -393,6 +395,8 @@ def record_reply(
         "outcome": attempt.outcome,
         "handoff": attempt.handoff,
         "contact_status": store.contacts[attempt.contact_id].status,
+        "text": text,
+        "at": event["at"],
     }
 
 

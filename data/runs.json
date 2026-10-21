@@ -5,7 +5,7 @@
   "channel": "email",
   "finished_at": "2026-10-20T19:00:00Z",
   "gate_escapes": 0,
-  "git_sha": "d987f72",
+  "git_sha": "5e00b65",
   "kill_switch": false,
   "limits": {
    "follow_up_days": 3,

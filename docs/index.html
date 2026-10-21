@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <div class="wrap">
@@ -24,40 +24,12 @@
     <div class="controls">
       <a class="btn" href="https://github.com/UmaSanskriti/between-visits-workflow/actions" target="_blank" rel="noopener" title="Past runs on GitHub Actions">Runs</a>
       <a class="btn primary" id="run-link" href="https://github.com/UmaSanskriti/between-visits-workflow/actions" target="_blank" rel="noopener" title="Opens GitHub Actions. Pick 'Dry-run pipeline' on the left, then 'Run workflow'. Start `python -m infra serve` on this machine to run it from this page instead.">Run on GitHub</a>
-      <button type="button" class="btn primary" id="run-btn" hidden title="Runs the dry-run pipeline on this machine and shows each stage on the loop">Run the agent</button>
+      <button type="button" class="btn primary" id="run-btn" hidden title="Picks the first eligible practice on the list, writes the playbook email, and sends it from the linked Gmail account; every step shows on the loop">Run the agent</button>
       <button id="theme" type="button" title="Toggle theme">Theme: system</button>
     </div>
   </header>
 
   <div id="error" class="err"></div>
-
-  <section class="card livecall" id="livecall" hidden>
-    <div class="head"><h2>Live outreach</h2><span class="count" id="live-meta"></span></div>
-    <div class="live-row">
-      <div class="live-status"><span class="live-dot" id="live-dot"></span><span id="live-status">connecting…</span></div>
-      <div class="live-actions">
-        <button type="button" class="btn primary" id="email-btn" title="Composes the playbook email for the allowlisted address and sends it through SMTP">Email me</button>
-        <button type="button" class="btn secondary" id="call-btn" title="Dials the allowlisted number through Vapi (needs an imported Twilio number)">Call my phone</button>
-      </div>
-    </div>
-    <div class="live-note" id="live-note"></div>
-    <div class="live-email" id="live-email" hidden>
-      <div class="email-head"><span class="live-dot" id="email-dot"></span><span id="email-status"></span><span class="count" id="email-meta"></span></div>
-      <div class="email-preview" id="email-preview" hidden>
-        <div class="email-subject" id="email-subject"></div>
-        <pre class="block email-body" id="email-body"></pre>
-      </div>
-      <div class="reply-form" id="reply-form" hidden>
-        <label for="reply-text" class="small muted">Reply from the practice (paste it here when inbox polling is off)</label>
-        <textarea id="reply-text" rows="3" placeholder="e.g. Sure, Tuesday afternoons work. Send the invite to office@example.test"></textarea>
-        <div class="live-actions"><button type="button" class="btn primary" id="reply-btn">Record reply</button><span class="count" id="reply-note"></span></div>
-      </div>
-      <div class="live-result" id="email-result" hidden></div>
-    </div>
-    <div class="transcript" id="live-transcript"></div>
-    <div class="live-result" id="live-result" hidden></div>
-    <details class="small"><summary>Service log</summary><pre class="block" id="live-log"></pre></details>
-  </section>
 
   <section class="loop" aria-label="The agent's loop">
     <div class="ring" id="ring">
@@ -75,6 +47,7 @@
     </div>
     <div class="side">
       <h2>What the agent is doing</h2>
+      <ol class="steps" id="agent-steps" hidden></ol>
       <div class="now" id="now"></div>
       <div class="nodes-list" id="nodes-list"></div>
       <ul class="feed" id="feed"></ul>

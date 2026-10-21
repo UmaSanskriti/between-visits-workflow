@@ -309,8 +309,23 @@ def test_pre_send_gate(tmp_path):
         },
     )
     c.next_attempt_at = ""
-    assert "not_in_live_allowlist" in pre_send_gate(store, c, channel(), live, clock).reasons
-    assert pre_send_gate(store, c, channel("me@example.test"), live, clock).allowed
+    # staged demo: with no EMAIL_DEMO_RECIPIENT the first allowlisted address receives every email (waiver logged)
+    redirected = pre_send_gate(store, c, channel(), live, clock)
+    assert redirected.allowed and redirected.waivers == ["delivery_redirected_to_demo_inbox"]
+    direct = pre_send_gate(store, c, channel("me@example.test"), live, clock)
+    assert direct.allowed and direct.waivers == []
+    strict = load_config(
+        ROOT / "config.toml",
+        env={
+            "BV_DATA_DIR": str(tmp_path),
+            "BV_OUTREACH_CHANNEL": "email",
+            "BV_MODE": "live",
+            "BV_ALLOW_LIVE_CALLS": "1",
+            "BV_LIVE_ALLOWLIST": "Me@Example.TEST",
+            "EMAIL_DEMO_RECIPIENT": "elsewhere@example.test",
+        },
+    )
+    assert "not_in_live_allowlist" in pre_send_gate(store, c, channel(), strict, clock).reasons
 
 
 # ---------------------------------------------------------------- full dry run, channel = email
@@ -457,3 +472,41 @@ def test_default_channel_is_email_and_env_overrides(tmp_path):
     )
     assert cfg.outreach_channel == "call" and cfg.imap_user == "u@x.test" and cfg.imap_password == "pw"
     assert datetime.now(UTC).year >= 2026
+
+
+# ---------------------------------------------------------------- staged demo: redirect to the team inbox
+def test_demo_recipient_redirect_and_gate(tmp_path):
+    from infra.email.provider import OutboxEmailProvider
+    from infra.orchestrator import send_emails
+
+    env = {
+        "BV_DATA_DIR": str(tmp_path / "data"),
+        "BV_EXPORT_DIR": str(tmp_path / "export"),
+        "BV_OUTREACH_CHANNEL": "email",
+        "BV_MODE": "live",
+        "BV_ALLOW_LIVE_CALLS": "1",
+        "BV_LIVE_ALLOWLIST": "Team@Example.TEST",
+    }
+    cfg = load_config(ROOT / "config.toml", env=env)
+    assert cfg.email_demo_recipient == "team@example.test"  # defaults to the first allowlisted address
+    clock = FixedClock(TUESDAY_10AM_ET)
+    store = Store(cfg.data_dir, clock)
+    c = contact(verification_status=VerificationStatus.VERIFIED, status=ContactStatus.READY)
+    gate = pre_send_gate(
+        store, c, channel(), cfg, clock
+    )  # the practice's address is not allowlisted, the demo inbox is
+    assert gate.allowed and gate.waivers == ["delivery_redirected_to_demo_inbox"]
+    strict = load_config(ROOT / "config.toml", env={**env, "EMAIL_DEMO_RECIPIENT": "other@example.test"})
+    assert "not_in_live_allowlist" in pre_send_gate(store, c, channel(), strict, clock).reasons
+
+    store.contacts[c.id] = c
+    ch = channel()
+    store.channels[ch.id] = ch
+    mailer = OutboxEmailProvider(tmp_path / "data" / "outbox", clock, log=lambda *a: None)
+    counts = send_emails(store, cfg, clock, MockBrain(store, clock), mailer, "r1")
+    assert counts["queued"] == 1 and mailer.queued[0].to == "team@example.test"
+    attempt = next(iter(store.email_attempts.values()))
+    assert attempt.redirected_to == "t\u2022\u2022\u2022@example.test" and attempt.status == "queued"
+    assert "Dr. Patel" in attempt.body  # the text still addresses the doctor
+    queued = json.loads((tmp_path / "data" / "outbox" / f"{attempt.id}.json").read_text())
+    assert queued["to"] == "team@example.test"

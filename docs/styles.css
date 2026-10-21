@@ -247,3 +247,18 @@ button:disabled { opacity: 0.5; cursor: default; }
 .mail .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; align-items: center; }
 .mail .tags .cat { font-size: 12px; background: var(--accent-soft); color: var(--ink); border-radius: 6px; padding: 1px 7px; }
 .reply-quote { margin: 6px 0 0; padding: 6px 10px; border-left: 3px solid var(--brand); background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 13px; white-space: pre-wrap; }
+
+/* agent run: step list for the current run */
+.steps { list-style: none; margin: 8px 0 12px; padding: 0; border-left: 2px solid var(--grid); }
+.steps li { position: relative; padding: 4px 0 8px 18px; font-size: 13.5px; }
+.steps li::before { content: ""; position: absolute; left: -7px; top: 10px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--axis); }
+.steps li.done::before { background: var(--brand); border-color: var(--brand); }
+.steps li.active::before { background: var(--accent); border-color: var(--accent); animation: pulse 1.4s ease-in-out infinite; }
+.steps li.err::before { background: var(--critical); border-color: var(--critical); }
+.steps li .t { font-weight: 600; }
+.steps li .d { color: var(--ink-2); font-size: 12.5px; margin-top: 2px; }
+.steps li .d.subject { color: var(--ink); font-style: italic; }
+.steps li details { margin-top: 4px; }
+.steps li textarea { width: 100%; font: inherit; font-size: 13px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); margin-top: 6px; }
+.steps li .row { display: flex; gap: 8px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
+.reply-quote { white-space: pre-wrap; border-left: 3px solid var(--accent); padding: 4px 10px; margin-top: 4px; color: var(--ink-2); font-size: 13px; }

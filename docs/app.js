@@ -10,15 +10,14 @@
   const ICON = { good: "✓", warning: "!", serious: "▲", critical: "✕", neutral: "·" };
   const TZ = "America/New_York";
   const LOCAL = "http://127.0.0.1:8787";
-  const LIVE_VIEW = new URLSearchParams(location.search).get("source") === "live";
-  const SRC = LIVE_VIEW ? LOCAL + "/data-live/" : "data/";
+  const SRC = "data/";
   // An https page may call the loopback service only when the fetch opts in (Chrome private network access).
   function localFetch(url, opts) {
     opts = Object.assign({ cache: "no-store", targetAddressSpace: "loopback" }, opts || {});
     if (!opts.signal) { const ctl = new AbortController(); setTimeout(() => ctl.abort(), 4000); opts.signal = ctl.signal; }
     return fetch(url, opts);
   }
-  const LOCAL_CONSOLE = LOCAL + "/?source=live";
+  const LOCAL_CONSOLE = LOCAL + "/";
   const GH_ACTIONS = REPO + "/actions";
   let ring_ctl = null; // set by render(); lets the local run poller drive the loop
   let CHANNEL = "call"; // "email" | "call", set by render() from the snapshot
@@ -192,7 +191,6 @@
     const chips = clear($("run-chips"));
     if (run.mode === "live") chips.appendChild(el("span", { class: "chip critical", title: "Real calls through Vapi to allowlisted team numbers only." }, [el("span", { class: "dot" }), el("b", { text: "LIVE" })]));
     else chips.appendChild(el("span", { class: "chip mode", title: "No real calls are placed; the voice provider and the Brain are stand-ins and every practice is fictional." }, [el("b", { text: "DRY RUN" })]));
-    chips.appendChild(el("a", { class: "chip", href: LIVE_VIEW ? "./" : "?source=live", text: LIVE_VIEW ? "← Dry-run data" : "Live demo data →" }));
     chips.appendChild(el("span", { class: "chip" }, ["Snapshot ", el("b", { text: run.finished_at ? fmtTime(run.finished_at) : "never" })]));
     if (run.simulated_time) chips.appendChild(el("span", { class: "chip warning" }, [el("span", { class: "dot" }), "simulated clock ", el("b", { text: fmtTime(run.now_used) })]));
     chips.appendChild(el("span", { class: "chip " + (run.kill_switch ? "critical" : "good") }, [el("span", { class: "dot" }), "Kill switch ", el("b", { text: run.kill_switch ? "ON" : "off" })]));
@@ -362,6 +360,7 @@
           el("div", { class: "tags" }, [m.failure_category ? el("span", { class: "cat", text: m.failure_category }) : null, sStatus, tStatus]),
         ]);
         if (m.outcome_reason) line.appendChild(el("div", { class: "muted small", text: m.outcome_reason }));
+        if (m.redirected_to) line.appendChild(el("div", { class: "muted small", text: "delivered to " + m.redirected_to + " for the demo" }));
         if (m.body) line.appendChild(el("details", null, [el("summary", { text: "Email sent" }), el("pre", { class: "block", text: m.body })]));
         if (m.reply_text) line.appendChild(el("details", { open: "" }, [el("summary", { text: "Reply" + (m.replied_at ? " · " + fmtTime(m.replied_at) : "") }), el("div", { class: "reply-quote", text: m.reply_text })]));
         if (hasHandoff(m.handoff)) line.appendChild(handoffBlock(m.handoff));
@@ -499,103 +498,14 @@
     $("footer").textContent = "Snapshot " + (s.generated_at ? fmtTime(s.generated_at) : "–") + " · run " + (run.run_id || "–") + (newer ? " · a newer run has finished, refresh shortly" : "");
   }
 
-  // ---------- live call panel (talks to the local control service) ----------
+  // ---------- local control service ----------
   async function localState() {
     const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 1500);
     try { const res = await localFetch(LOCAL + "/api/state", { signal: ctl.signal }); clearTimeout(t); return res.ok ? await res.json() : null; }
     catch (e) { clearTimeout(t); return null; }
   }
-  function renderLive(st) {
-    const panel = $("livecall"); panel.hidden = false;
-    const dot = $("live-dot"), btn = $("call-btn"), note = $("live-note"), tr = $("live-transcript"), res = $("live-result");
-    const labels = { idle: "Agent idle", preparing: "Preparing the call", dialing: "Dialing your phone", in_call: "On the call", ended: "Call ended", error: "Error" };
-    $("live-status").textContent = labels[st.status] || st.status;
-    dot.className = "live-dot" + (["preparing", "dialing", "in_call"].includes(st.status) ? " on" : st.status === "error" ? " err" : "");
-    const callBusy = ["preparing", "dialing", "in_call"].includes(st.status);
-    const em = st.email || {};
-    const emailBusy = ["preparing", "sending"].includes(em.status);
-    const runBusy = !!(st.run && st.run.status === "running");
-    const busy = callBusy || emailBusy || runBusy;
-    btn.disabled = busy;
-    btn.textContent = callBusy ? "Call in progress…" : (st.status === "ended" || st.status === "error" ? "Call again" : "Call my phone");
-    renderEmailPanel(em, busy);
-    const c = st.call || {};
-    $("live-meta").textContent = (st.live_events ? "live transcript on" : "transcript after the call") + (st.tunnel_url ? "" : " · no tunnel") + (st.updated_at ? " · " + fmtTime(st.updated_at) : "");
-    const bits = [];
-    if (c.to) bits.push("to " + c.to); if (c.from) bits.push("from " + c.from); if (c.vapi_status) bits.push("Vapi: " + c.vapi_status); if (c.ended_reason) bits.push(nice(c.ended_reason));
-    note.textContent = st.status === "error" ? st.error : (bits.join(" · ") || (st.status === "idle" ? "Service connected on this machine. Email me sends the playbook email to the allowlisted address; Call my phone dials the allowlisted number through Vapi." : ""));
-    clear(tr);
-    (st.transcript || []).forEach((u) => tr.appendChild(el("div", { class: "bubble " + u.role }, [el("span", { class: "who", text: u.role === "agent" ? "agent" : "you" }), u.text])));
-    if (st.partial) tr.appendChild(el("div", { class: "bubble partial " + st.partial.role }, [el("span", { class: "who", text: st.partial.role === "agent" ? "agent" : "you" }), st.partial.text]));
-    tr.scrollTop = tr.scrollHeight;
-    if (st.result) {
-      res.hidden = false; clear(res);
-      const r = st.result, h = r.handoff || {};
-      res.appendChild(el("div", null, [el("b", { text: "Outcome: " }), nice(r.outcome) + (r.failure_category ? " · " + r.failure_category : "") + (r.duration_sec ? " · " + r.duration_sec + "s" : "") + (r.cost_usd ? " · $" + Number(r.cost_usd).toFixed(2) : "")]));
-      if (h.contact_email || h.contact_method || h.availability || h.notes) res.appendChild(el("div", null, [el("b", { text: "Handoff: " }), [h.contact_email, h.contact_method && h.contact_method !== "unknown" ? nice(h.contact_method) + (h.contact_number ? " " + h.contact_number : "") : "", h.availability, h.notes].filter(Boolean).join(" · ")]));
-      if (r.recording_ref && r.recording_ref.startsWith("http")) res.appendChild(el("a", { href: r.recording_ref, text: "Recording", target: "_blank", rel: "noopener" }));
-      if (c.summary) res.appendChild(el("div", { class: "muted small", text: c.summary }));
-    } else { res.hidden = true; }
-    $("live-log").textContent = (st.log || []).slice(-25).join("\n");
-    return busy;
-  }
-  function renderEmailPanel(e, busy) {
-    const panel = $("live-email"), ebtn = $("email-btn");
-    ebtn.disabled = busy;
-    ebtn.textContent = ["preparing", "sending"].includes(e.status) ? "Sending…" : (["sent", "replied", "error"].includes(e.status) ? "Email again" : "Email me");
-    if (!e.status || e.status === "idle") { panel.hidden = true; return; }
-    panel.hidden = false;
-    const labels = { preparing: "Preparing the email", sending: "Sending", sent: "Email sent, waiting for a reply", replied: "Reply recorded", error: "Email error" };
-    $("email-status").textContent = labels[e.status] || e.status;
-    $("email-dot").className = "live-dot" + (["preparing", "sending"].includes(e.status) ? " on" : e.status === "error" ? " err" : "");
-    $("email-meta").textContent = e.status === "error" ? (e.error || "") : [e.to ? "to " + e.to : "", e.sent_at ? fmtTime(e.sent_at) : "", e.provider_message_id ? "id " + e.provider_message_id : ""].filter(Boolean).join(" · ");
-    const preview = $("email-preview");
-    if (e.subject || e.body) { preview.hidden = false; $("email-subject").textContent = e.subject || ""; $("email-body").textContent = e.body || ""; } else preview.hidden = true;
-    $("reply-form").hidden = !(e.status === "sent" || e.status === "replied");
-    const res = clear($("email-result"));
-    if (e.reply) {
-      res.hidden = false;
-      res.appendChild(el("div", null, [el("b", { text: "Outcome: " }), nice(e.reply.outcome) || "unclassified", e.reply.at ? el("span", { class: "muted small", text: " · " + fmtTime(e.reply.at) }) : null]));
-      if (e.reply.text) res.appendChild(el("div", { class: "reply-quote", text: e.reply.text }));
-      const h = e.reply.handoff || {};
-      if (h.contact_email || h.contact_method || h.availability || h.notes || h.contact_number) res.appendChild(el("div", null, [el("b", { text: "Handoff to Anirudh: " }), [h.contact_email, h.contact_method && h.contact_method !== "unknown" ? nice(h.contact_method) + (h.contact_number ? " " + h.contact_number : "") : "", h.availability, h.notes].filter(Boolean).join(" · ")]));
-    } else res.hidden = true;
-  }
-  function wireLive(initial) {
-    if (!initial) return;
-    let wasBusy = renderLive(initial), timer = null;
-    const tick = async () => { const st = await localState(); if (!st) return; const busy = renderLive(st); if (wasBusy && !busy && LIVE_VIEW) setTimeout(() => location.reload(), 1500); wasBusy = busy; };
-    timer = setInterval(tick, 2000);
-    $("email-btn").addEventListener("click", async () => {
-      $("email-btn").disabled = true; $("email-btn").textContent = "Sending…";
-      try { const res = await localFetch(LOCAL + "/api/email", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
-      catch (e) { $("live-note").textContent = "Could not reach the local service."; }
-      wasBusy = true;
-      tick();
-    });
-    $("reply-btn").addEventListener("click", async () => {
-      const text = $("reply-text").value.trim();
-      if (!text) { $("reply-note").textContent = "Paste the reply first."; return; }
-      $("reply-btn").disabled = true; $("reply-note").textContent = "Classifying…";
-      try {
-        const res = await localFetch(LOCAL + "/api/reply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
-        const body = await res.json();
-        if (res.ok) { $("reply-note").textContent = "Recorded: " + (nice(body.reply && body.reply.outcome) || "unclassified"); $("reply-text").value = ""; if (LIVE_VIEW) setTimeout(() => location.reload(), 1500); }
-        else $("reply-note").textContent = body.message || body.error || "could not record";
-      } catch (e) { $("reply-note").textContent = "Could not reach the local service."; }
-      $("reply-btn").disabled = false;
-      tick();
-    });
-    $("call-btn").addEventListener("click", async () => {
-      $("call-btn").disabled = true;
-      try { const res = await localFetch(LOCAL + "/api/call", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
-      catch (e) { $("live-note").textContent = "Could not reach the local service."; }
-      tick();
-    });
-    return timer;
-  }
 
-  // ---------- dry run from the page (local service) ----------
+  // ---------- the agent run from the page (local service) ----------
   const STAGE_NODE = { ingest: [0], verify: [0], call: [1, 2], email: [1, 2], webhooks: [3], replies: [3], deliver: [3] };
   function showRunProgress(run) {
     if (!ring_ctl) return;
@@ -606,24 +516,82 @@
     const stage = run.stage || "";
     $("since").textContent = stage ? "stage: " + stage : "starting";
     ring_ctl.highlight(STAGE_NODE[stage] || []);
-    const st = run.stages || {};
-    const c = (k) => (st[k] && st[k].counts) || null;
-    if (c("ingest")) ring_ctl.feedRow(0, "Loaded " + (c("ingest").rows ?? 0) + " practices" + (c("verify") ? ", " + (c("verify").verified ?? 0) + " verified this run" : "…"));
-    if (c("call")) { const x = c("call"); ring_ctl.feedRow(1, "Gate: " + (x.allowed ?? 0) + " allowed, " + (x.blocked ?? 0) + " blocked, " + (x.deferred ?? 0) + " deferred"); ring_ctl.feedRow(2, "Placed " + plural(x.placed ?? 0, "call")); }
-    if (c("webhooks")) ring_ctl.feedRow(3, "Logged " + (c("webhooks").applied ?? 0) + " outcomes" + (c("deliver") ? ", delivered " + (c("deliver").delivered ?? 0) + " transcripts" : "…"));
-    if (c("email")) { const x = c("email"); ring_ctl.feedRow(1, "Gate: " + (x.allowed ?? 0) + " allowed, " + (x.blocked ?? 0) + " blocked, " + (x.deferred ?? 0) + " deferred"); ring_ctl.feedRow(2, "Sent " + plural(x.sent ?? x.placed ?? 0, "email")); }
-    if (c("replies")) ring_ctl.feedRow(3, "Processed " + (c("replies").applied ?? c("replies").replies ?? 0) + " replies" + (c("deliver") ? ", delivered " + (c("deliver").delivered ?? 0) + " threads" : "…"));
+    renderAgentSteps(run);
+  }
+  function stageCounts(run, key) { const st = run.stages || {}; return (st[key] && st[key].counts) || null; }
+  function renderAgentSteps(run) {
+    const host = $("agent-steps");
+    if (!run || (run.status === "idle" && !run.email)) { host.hidden = true; return; }
+    host.hidden = false; clear(host);
+    const e = run.email || null;
+    const ing = stageCounts(run, "ingest"), ver = stageCounts(run, "verify"), em = stageCounts(run, "email") || stageCounts(run, "call");
+    const running = run.status === "running";
+    const step = (cls, title, detail) => { const li = el("li", { class: cls }, [el("div", { class: "t", text: title })]); (detail || []).forEach((d) => { if (d) li.appendChild(d); }); host.appendChild(li); return li; };
+    const stageDone = (k) => (run.stages || {})[k] && (run.stages || {})[k].status === "done";
+    // 1. list
+    step(stageDone("verify") ? "done" : (running ? "active" : ""), ing ? "Loaded the approved list: " + plural(ing.rows ?? 0, "practice") : "Loading the approved list", ver ? [el("div", { class: "d", text: (ver.verified ?? 0) + " verified" + (ver.suppressed ? ", " + ver.suppressed + " on the do-not-contact list" : "") })] : []);
+    // 2. pick + gate
+    const picked = e && e.contact_name ? "Picked " + (e.contact_name.startsWith("Dr") ? e.contact_name : "Dr. " + e.contact_name.split(" ").slice(-1)[0]) + ", " + (e.practice || "") : (em ? "Gate: " + (em.allowed ?? 0) + " allowed, " + (em.blocked ?? 0) + " blocked, " + (em.deferred ?? 0) + " deferred" : "Checking the gate");
+    step(e ? "done" : (stageDone("verify") && running ? "active" : ""), picked, em && e ? [el("div", { class: "d", text: "Gate: allowed (cleared address, not suppressed)" + (em.blocked ? " · " + em.blocked + " others blocked" : "") })] : []);
+    if (e && e.status === "error" && !e.subject) { step("err", "No email could be composed", [el("div", { class: "d", text: e.error || "" })]); return; }
+    // 3. compose
+    step(e && e.subject ? "done" : (running ? "active" : ""), e && e.subject ? "Composed the email" : "Composing the email", e && e.subject ? [el("div", { class: "d subject", text: "Subject: " + e.subject }), el("details", null, [el("summary", { text: "Read the email" }), el("pre", { class: "block", text: e.body || "" })])] : []);
+    // 4. send
+    if (e) {
+      const to = e.to ? " to " + e.to : "";
+      if (e.status === "queued") step("active", "Queued for Gmail", [el("div", { class: "d", text: "Claude sends it from your linked Gmail account" + to + (e.redirected_to ? " (the practice's copy is redirected to your inbox for the demo)" : "") })]);
+      else if (e.status === "error") step("err", "Send failed", [el("div", { class: "d", text: e.error || "" })]);
+      else {
+        const link = e.thread_id ? el("a", { href: "https://mail.google.com/mail/u/0/#all/" + encodeURIComponent(e.thread_id), text: "open in Gmail", target: "_blank", rel: "noopener" }) : null;
+        step("done", "Sent via " + (e.transport === "smtp" ? "SMTP" : "Gmail") + (e.sent_at ? " at " + fmtTime(e.sent_at) : ""), [el("div", { class: "d" }, ["Delivered" + to + (e.redirected_to ? " (redirected for the demo)" : "") + " ", link])]);
+      }
+      // 5. reply
+      if (e.status === "sent") {
+        const li = step("active", "Waiting for a reply…", [el("div", { class: "d", text: "Replies are read from the linked inbox. If you answered elsewhere, paste the reply here:" })]);
+        const ta = el("textarea", { rows: "2", placeholder: "e.g. Yes, Tuesday afternoons work. Send the invite to this address." });
+        const btn = el("button", { type: "button", class: "btn", text: "Record reply" });
+        const note = el("span", { class: "count" });
+        btn.addEventListener("click", async () => {
+          const text = ta.value.trim(); if (!text) { note.textContent = "Paste the reply first."; return; }
+          btn.disabled = true; note.textContent = "Classifying…";
+          try {
+            const res = await localFetch(LOCAL + "/api/reply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, attempt: e.attempt_id || "" }) });
+            const body = await res.json();
+            note.textContent = res.ok ? "Recorded" : (body.message || body.error || "could not record");
+          } catch (err) { note.textContent = "Could not reach the local service."; }
+          btn.disabled = false;
+        });
+        li.appendChild(ta); li.appendChild(el("div", { class: "row" }, [btn, note]));
+      } else if (e.status === "replied" && e.reply) {
+        const r = e.reply, h = r.handoff || {};
+        const first = (r.text || "").split("\n")[0];
+        const handoff = [h.contact_email, h.contact_method && h.contact_method !== "unknown" ? nice(h.contact_method) + (h.contact_number ? " " + h.contact_number : "") : "", h.availability].filter(Boolean).join(" · ");
+        step(r.outcome === "DO_NOT_CONTACT" || r.outcome === "DECLINED" ? "err" : "done", "Reply received" + (r.at ? " " + fmtTime(r.at) : ""), [el("div", { class: "reply-quote", text: first }), el("div", { class: "d" }, [el("b", { text: "Outcome: " }), nice(r.outcome) || "needs review", handoff ? " · handoff: " + handoff : ""])]);
+      }
+    }
   }
   function wireRun(local) {
     const btn = $("run-btn"), link = $("run-link");
     if (!local) return;
     link.hidden = true; btn.hidden = false;
-    let poll = null;
-    const finish = (run) => {
+    let poll = null, slow = null, lastEmailStatus = null;
+    const refreshData = async () => { const d2 = await loadAll(LOCAL + "/data/"); if (d2.summary) { render(d2, null); } };
+    const watchEmail = (run) => {
+      // keep polling while the email is queued or awaiting a reply, so the step list follows the inbox
+      const st = run.email ? run.email.status : "";
+      if (st !== lastEmailStatus) { lastEmailStatus = st; if (st) refreshData().then(() => renderAgentSteps(run)); }
+      if ((st === "queued" || st === "sent") && !slow) slow = setInterval(async () => { const s2 = await localState(); if (s2 && s2.run) watchEmail(s2.run); }, 2000);
+      if (st !== "queued" && st !== "sent" && slow) { clearInterval(slow); slow = null; }
+    };
+    const finish = async (run) => {
       if (poll) { clearInterval(poll); poll = null; }
-      if (run.status === "error") { $("error").textContent = "Run failed: " + (run.error || "unknown error"); btn.disabled = false; btn.textContent = "Run the agent"; if (ring_ctl) ring_ctl.settle(); $("ring").classList.remove("running"); return; }
-      if (ring_ctl) { ring_ctl.highlight([4, 5]); ring_ctl.feedRow(4, "Run " + (run.run_id || "") + " finished, loading the new snapshot…"); }
-      setTimeout(() => location.reload(), 1200);
+      btn.disabled = false; btn.textContent = "Run the agent again";
+      $("ring").classList.remove("running");
+      if (run.status === "error") { $("error").textContent = "Run failed: " + (run.error || "unknown error"); if (ring_ctl) ring_ctl.settle(); renderAgentSteps(run); return; }
+      await refreshData();
+      if (ring_ctl) ring_ctl.highlight([3]);
+      renderAgentSteps(run);
+      watchEmail(run);
     };
     const tick = async () => {
       const st = await localState(); if (!st || !st.run) return;
@@ -631,9 +599,9 @@
       if (run.status === "running") showRunProgress(run); else if (run.status === "done" || run.status === "error") finish(run);
     };
     btn.addEventListener("click", async () => {
-      btn.disabled = true; btn.textContent = "Running…"; $("error").textContent = "";
+      btn.disabled = true; btn.textContent = "Running…"; $("error").textContent = ""; lastEmailStatus = null;
       try {
-        const res = await localFetch(LOCAL + "/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+        const res = await localFetch(LOCAL + "/api/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reset: true }) });
         const body = await res.json();
         if (!res.ok) { $("error").textContent = body.message || body.error || "could not start"; btn.disabled = false; btn.textContent = "Run the agent"; return; }
       } catch (e) { $("error").textContent = "Could not reach the local service."; btn.disabled = false; btn.textContent = "Run the agent"; return; }
@@ -641,20 +609,18 @@
       tick();
     });
     if (local.run && local.run.status === "running") { btn.disabled = true; btn.textContent = "Running…"; poll = setInterval(tick, 1000); }
+    else if (local.run && (local.run.status === "done" || local.run.status === "error")) { renderAgentSteps(local.run); watchEmail(local.run); if (local.run.status === "done") btn.textContent = "Run the agent again"; }
   }
 
-  localState().then((local) => Promise.all([loadAll(local && !LIVE_VIEW ? LOCAL + "/data/" : SRC), loadLiveRun()]).then(([d, live]) => [d, live, local])).then(([d, live, local]) => {
-    wireLive(local);
-    wireRun(local);
+  localState().then((local) => Promise.all([loadAll(local ? LOCAL + "/data/" : SRC), loadLiveRun()]).then(([d, live]) => [d, live, local])).then(([d, live, local]) => {
     if (!d.summary) {
       const err = clear($("error"));
-      if (LIVE_VIEW) {
-        err.appendChild(document.createTextNode(local ? "The local service answered but has no live data yet. Press Call my phone to start." : "This page cannot reach the local service at 127.0.0.1:8787. Start it with `python -m infra serve`, allow the browser's local-network prompt if one appears, or open the same dashboard served locally: "));
-        if (!local) err.appendChild(el("a", { href: LOCAL_CONSOLE, text: LOCAL_CONSOLE }));
-      } else { err.textContent = "No pipeline data yet. Run the agent (Actions → Dry-run pipeline) or `python -m infra run` locally."; }
+      err.appendChild(document.createTextNode(local ? "The local service answered but has no data yet. Press Run the agent." : "No pipeline data yet. Start `python -m infra serve` on the machine with the Gmail link to run the agent from this page, or open the local console: "));
+      if (!local) err.appendChild(el("a", { href: LOCAL_CONSOLE, text: LOCAL_CONSOLE }));
       if (!local) return;
     }
-    render(d, live);
-    setInterval(async () => { const live2 = await loadLiveRun(); const running = live2 && (live2.status === "in_progress" || live2.status === "queued"); const was = $("ring").classList.contains("running"); if (running !== was) location.reload(); }, 60000);
+    if (d.summary) render(d, live);
+    wireRun(local);
+    setInterval(async () => { const live2 = await loadLiveRun(); const running = live2 && (live2.status === "in_progress" || live2.status === "queued"); const was = $("ring").classList.contains("running"); if (running !== was && !local) location.reload(); }, 60000);
   }).catch((e) => { $("error").textContent = "Failed to render: " + e.message; console.error(e); });
 })();

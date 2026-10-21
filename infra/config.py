@@ -61,6 +61,7 @@ class Config:
     email_max_messages: int = 2
     email_max_per_run: int = 25
     email_max_per_day: int = 50
+    email_demo_recipient: str = ""  # live mode: every outbound email is delivered here instead (staged demo)
     smtp_host: str = ""
     smtp_port: int = 587
     smtp_user: str = ""
@@ -182,6 +183,9 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
     if cfg.outreach_channel not in ("email", "call"):
         raise ConfigError(f"[outreach].channel must be 'email' or 'call', got {cfg.outreach_channel!r}")
     cfg.live_allowlist = [x.lower() if "@" in x else x for x in cfg.live_allowlist]
+    cfg.email_demo_recipient = (env.get("EMAIL_DEMO_RECIPIENT") or "").strip().lower() or next(
+        (x for x in cfg.live_allowlist if "@" in x), ""
+    )
     return cfg
 
 

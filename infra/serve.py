@@ -2,14 +2,15 @@
 
 Runs on the operator's machine (where the Vapi key lives). The public dashboard talks to it over localhost:
   GET  /api/state      what the agent is doing right now, the live transcript, the last result
-  POST /api/call       start the staged live call (one at a time)
-  POST /api/run        run the DRY-RUN pipeline with stage-by-stage progress (one at a time)
-  POST /api/email      send the staged live email to the allowlisted address (one at a time)
-  POST /api/reply      record a reply to that email (when IMAP polling is not configured)
-  GET  /data/...       the dry-run export (docs/data), so the page shows a fresh local run without a push
-  POST /api/webhook    Vapi server messages (transcript, status-update, end-of-call-report), via a tunnel
-  GET  /data-live/...  the masked live export, for the dashboard's ?source=live view
-  GET  /               the dashboard itself, served from docs/, so it works without GitHub Pages too
+  POST /api/run        run the agent once: ingest the dummy list, gate, compose the playbook email for the first
+                       eligible practice, queue it for the Gmail connector (or send via SMTP); stage progress
+  GET  /api/outbox     queued messages with their full text (the Gmail driver reads them)
+  POST /api/outbox/<attempt>/sent   {message_id, thread_id}: the message went out
+  POST /api/reply      {attempt?, text, from?, at?}: a reply arrived (pasted, or read from Gmail)
+  GET  /data/...       the export (docs/data), so the page shows the fresh run without a push
+  POST /api/call       staged live call through Vapi (kept for when a Twilio number exists)
+  POST /api/webhook    Vapi server messages via a tunnel
+  GET  /               the dashboard itself, served from docs/
 """
 
 from __future__ import annotations
@@ -28,7 +29,7 @@ from urllib.parse import urlparse
 
 from . import live
 from .brain import MockBrain
-from .clock import Clock, FixedClock, iso
+from .clock import Clock, iso
 from .config import ConfigError, load_config, load_dotenv
 from .export import mask_email, mask_phone
 from .pipeline import run_pipeline
@@ -38,18 +39,15 @@ from .voice import MockVoiceProvider
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_ORIGIN_PREFIXES = ("http://127.0.0.1:", "http://localhost:", "https://umasanskriti.github.io")
 MAX_LOG = 80
-IDLE_RUN = {"status": "idle", "stage": "", "stages": {}, "started_at": "", "finished_at": "", "run_id": "", "error": ""}
-IDLE_EMAIL = {
-    "status": "idle",  # idle | preparing | sending | sent | replied | error
-    "to": "",
-    "subject": "",
-    "body": "",
-    "provider_message_id": "",
-    "sent_at": "",
+IDLE_RUN = {
+    "status": "idle",
+    "stage": "",
+    "stages": {},
+    "started_at": "",
+    "finished_at": "",
+    "run_id": "",
     "error": "",
-    "reply": None,  # {outcome, handoff, text, at}
-    "attempt_id": "",
-    "contact_id": "",
+    "email": None,  # {attempt_id, contact_name, practice, to, subject, body, status, transport, ..., reply}
 }
 
 
@@ -71,7 +69,6 @@ class LiveState:
             "error": "",
             "log": [],
             "run": dict(IDLE_RUN),
-            "email": dict(IDLE_EMAIL),
         }
 
     def update(self, **fields):
@@ -96,16 +93,6 @@ class LiveState:
     def run_update(self, **fields):
         with self._lock:
             self.data["run"].update(fields)
-            self.data["updated_at"] = iso(Clock().now())
-
-    def email_update(self, **fields):
-        with self._lock:
-            self.data["email"].update(fields)
-            self.data["updated_at"] = iso(Clock().now())
-
-    def email_reset(self):
-        with self._lock:
-            self.data["email"] = dict(IDLE_EMAIL)
             self.data["updated_at"] = iso(Clock().now())
 
     def run_stage(self, name: str, status: str, counts: dict):
@@ -175,8 +162,9 @@ class LiveService:
         self.export_dir = ROOT / "docs" / "data-live"
         self.dry_data_dir = ROOT / "data"
         self.dry_export_dir = ROOT / "docs" / "data"
+        self.seeds_dir = ROOT / "seeds"
+        self.env_overrides: dict = {}  # tests inject the allowlist and transport here
         self._run_thread: threading.Thread | None = None
-        self._email_thread: threading.Thread | None = None
         state.update(tunnel_url=tunnel_url, live_events=bool(tunnel_url))
 
     def running(self) -> bool:
@@ -185,145 +173,176 @@ class LiveService:
     def run_in_progress(self) -> bool:
         return self._run_thread is not None and self._run_thread.is_alive()
 
-    def email_in_progress(self) -> bool:
-        return self._email_thread is not None and self._email_thread.is_alive()
-
     def busy(self) -> bool:
-        return self.running() or self.run_in_progress() or self.email_in_progress()
+        return self.running() or self.run_in_progress()
 
-    # ---- email outreach (the primary channel) ----
-    def start_email(self) -> tuple[bool, str]:
-        """Send the staged live email to the allowlisted address, one at a time."""
-        if self.busy():
-            return False, "a run, a call or an email is already in progress"
-        self.state.email_reset()
-        self.state.email_update(status="preparing")
-        self._email_thread = threading.Thread(target=self._send_email, name="live-email", daemon=True)
-        self._email_thread.start()
-        return True, "started"
-
-    def _email_context(self):
-        env = live.live_env(load_dotenv(ROOT / ".env", dict(os.environ)), any_time=self.any_time)
+    # ---- the agent run: pick the first eligible dummy doctor, compose, queue or send the email ----
+    def _agent_context(self):
+        """Live mode on the main data dir: the dashboard shows the real email flow, dummy practices only."""
+        env = load_dotenv(ROOT / ".env", dict(os.environ))
+        env.pop("BV_NOW", None)
+        env["BV_DATA_DIR"] = str(self.dry_data_dir)
+        env["BV_EXPORT_DIR"] = str(self.dry_export_dir)
+        env["BV_OUTREACH_CHANNEL"] = "email"
+        env.update(self.env_overrides)
+        env = live.live_env(env, any_time=self.any_time)
         cfg = load_config(ROOT / "config.toml", env=env)
+        cfg.live_max_calls_per_run = 1  # one practice per press of the button
         clock = Clock()
         store = Store(cfg.data_dir, clock).load()
         return cfg, clock, store
 
-    def _send_email(self):
-        log = self.state.log
-        try:
-            cfg, clock, store = self._email_context()
-            previews = live.preview_email(store, cfg, clock, self.paths, log)
-            if not previews:
-                raise RuntimeError("the gate allowed no email; see the log")
-            first = previews[0]
-            self.state.email_update(
-                status="sending",
-                to=mask_email(first.get("to", "")),
-                subject=first.get("subject", ""),
-                body=first.get("body", ""),
-                contact_id=first.get("contact_id", ""),
-            )
-            provider = live.connect_email(cfg, log)
-            result = live.send_demo_email(store, cfg, clock, provider, self.paths, log)
-            attempts = result.get("attempts") or []
-            first_attempt = attempts[0] if attempts else {}
-            self.state.email_update(
-                status="sent",
-                subject=first_attempt.get("subject") or first.get("subject", ""),
-                body=first_attempt.get("body") or first.get("body", ""),
-                provider_message_id=first_attempt.get("provider_message_id", ""),
-                sent_at=first_attempt.get("sent_at", "") or iso(clock.now()),
-                attempt_id=first_attempt.get("id", ""),
-                contact_id=first_attempt.get("contact_id") or first.get("contact_id", ""),
-            )
-            log(f"email: sent to {mask_email(result.get('to') or first.get('to', ''))}")
-        except (ConfigError, RuntimeError, OSError, AttributeError) as exc:
-            log(f"email: error: {exc}")
-            self.state.email_update(status="error", error=str(exc))
-        except Exception as exc:  # noqa: BLE001 - surface anything to the dashboard rather than dying silently
-            log(f"email: unexpected error: {exc!r}")
-            self.state.email_update(status="error", error=repr(exc))
-
-    def record_reply(self, text: str, contact: str = "") -> tuple[int, dict]:
-        """Classify a pasted reply through the pipeline (used when IMAP polling is not configured)."""
-        if self.busy():
-            return 409, {"ok": False, "message": "a run, a call or an email is already in progress"}
-        text = (text or "").strip()
-        if not text:
-            return 400, {"ok": False, "message": "reply text is empty"}
-        log = self.state.log
-        snap = self.state.snapshot()["email"]
-        needle = contact or snap.get("attempt_id") or snap.get("contact_id") or ""
-        try:
-            cfg, clock, store = self._email_context()
-            result = live.record_reply(store, cfg, clock, needle, text, log)
-        except (ConfigError, RuntimeError, OSError, AttributeError, ValueError) as exc:
-            log(f"email: reply error: {exc}")
-            return 400, {"ok": False, "message": str(exc)}
-        except Exception as exc:  # noqa: BLE001
-            log(f"email: reply unexpected error: {exc!r}")
-            return 500, {"ok": False, "message": repr(exc)}
-        reply = {
-            "outcome": result.get("outcome", ""),
-            "handoff": result.get("handoff") or None,
-            "text": text,
-            "at": iso(clock.now()),
-        }
-        self.state.email_update(status="replied", reply=reply, attempt_id=result.get("attempt_id") or needle)
-        log(f"email: reply recorded, outcome {reply['outcome']}")
-        return 200, {"ok": True, "reply": reply}
-
-    def start_run(self, now: str = "", reset: bool = False) -> tuple[bool, str]:
-        """Dry run of the pipeline (mock Voice, mock Brain) with stage progress published to the dashboard."""
+    def start_run(self, reset: bool = True, now: str = "") -> tuple[bool, str]:
+        """Run the agent once: ingest the dummy list, gate, compose, queue (Gmail connector) or send (SMTP)."""
         if self.busy():
             return False, "a run or a call is already in progress"
-        self.state.run_update(**{**IDLE_RUN, "stages": {}, "status": "running", "started_at": iso(Clock().now())})
-        self._run_thread = threading.Thread(target=self._run_dry, args=(now, reset), name="dry-run", daemon=True)
+        self.state.run_update(
+            **{**IDLE_RUN, "stages": {}, "status": "running", "started_at": iso(Clock().now()), "email": None}
+        )
+        self._run_thread = threading.Thread(target=self._run_agent, args=(reset,), name="agent-run", daemon=True)
         self._run_thread.start()
         return True, "started"
 
-    def _run_dry(self, now: str, reset: bool):
+    def _run_agent(self, reset: bool):
         log = self.state.log
         try:
-            env = load_dotenv(ROOT / ".env", dict(os.environ))
-            for key in ("BV_MODE", "BV_ALLOW_LIVE_CALLS", "BV_LIVE_IGNORE_WINDOW", "BV_NOW"):
-                env.pop(key, None)
-            env["BV_DATA_DIR"] = str(self.dry_data_dir)
-            env["BV_EXPORT_DIR"] = str(self.dry_export_dir)
-            if now:
-                env["BV_NOW"] = now
-            cfg = load_config(ROOT / "config.toml", env=env)
-            clock = FixedClock(cfg.now_override) if cfg.now_override else Clock()
-            store = Store(cfg.data_dir, clock)
+            cfg, clock, store = self._agent_context()
             if reset:
                 store.reset()
-            else:
-                store.load()
-            log(f"run: dry run starting ({'simulated ' + now if now else 'real time'}{', reset' if reset else ''})")
-            seeds = ROOT / "seeds"
+            log(
+                f"run: agent starting ({'fresh list' if reset else 'continuing'}; transport "
+                f"{'smtp' if cfg.smtp_password else 'outbox'}; demo inbox {mask_email(cfg.email_demo_recipient)})"
+            )
+            provider = live.connect_email(cfg, clock, log)
+
+            def on_stage(name, status, counts):
+                if name != "run":  # the run is reported done only once the email summary below is in place
+                    self.state.run_stage(name, status, counts)
+
             run, summary = run_pipeline(
                 store,
                 cfg,
                 clock,
                 MockBrain(store, clock, down=cfg.brain_down),
                 MockVoiceProvider(cfg.webhook_secret, clock),
-                seeds / "test_doctors.csv",
-                seeds / "clearances.csv",
-                seeds / "suppressions.csv",
+                self.seeds_dir / "test_doctors.csv",
+                self.seeds_dir / "clearances.csv",
+                self.seeds_dir / "suppressions.csv",
                 trigger="dashboard",
-                on_stage=self.state.run_stage,
+                on_stage=on_stage,
+                mailer=provider,
             )
-            calls = run["stages"].get("calls", {})
-            booked = summary["calls"].get("booked", 0)
-            log(f"run: {run['run_id']} done, placed {calls.get('placed', 0)}, booked {booked}")
-        except (ConfigError, RuntimeError, OSError, ValueError) as exc:
+            attempts = [a for a in store.email_attempts.values() if a.run_id == run["run_id"]]
+            email: dict
+            if attempts:
+                a = attempts[0]
+                contact = store.contacts.get(a.contact_id)
+                outbox = {m["attempt_id"]: m for m in live.email_outbox(store)}
+                ch = store.channels.get(a.channel_id)
+                to = outbox.get(a.id, {}).get("to") or (ch.value if ch else "")
+                email = {
+                    "attempt_id": a.id,
+                    "contact_id": a.contact_id,
+                    "contact_name": contact.full_name if contact else "",
+                    "practice": contact.practice_name if contact else "",
+                    "to": mask_email(to),
+                    "redirected_to": a.redirected_to,
+                    "subject": a.subject,
+                    "body": a.body,
+                    "status": "sent" if a.status == "sent" else ("error" if a.status == "failed" else "queued"),
+                    "transport": getattr(provider, "name", ""),
+                    "provider_message_id": a.provider_message_id,
+                    "thread_id": a.thread_id,
+                    "sent_at": a.sent_at,
+                    "error": a.outcome_reason if a.status == "failed" else "",
+                    "reply": None,
+                }
+                log(f"run: {a.id} {email['status']} for {email['contact_name']} -> {email['to']}")
+            else:
+                email = {"status": "error", "error": "the gate allowed no practice this run; see the service log"}
+                log("run: no email was composed; every practice was blocked or deferred")
+            self.state.run_update(email=email)
+            done = {
+                "run_id": run["run_id"],
+                "finished_at": run.get("finished_at", ""),
+                "gate_escapes": run.get("gate_escapes", 0),
+            }
+            self.state.run_stage("run", "done", done)
+        except (ConfigError, RuntimeError, OSError, ValueError, live.EmailSendError) as exc:
             log(f"run: error: {exc}")
             self.state.run_update(status="error", error=str(exc), finished_at=iso(Clock().now()))
         except Exception as exc:  # noqa: BLE001
             log(f"run: unexpected error: {exc!r}")
             self.state.run_update(status="error", error=repr(exc), finished_at=iso(Clock().now()))
 
+    def outbox(self) -> list[dict]:
+        cfg, clock, store = self._agent_context()
+        return live.email_outbox(store)
+
+    def mark_sent(self, attempt_id: str, message_id: str, thread_id: str = "") -> tuple[int, dict]:
+        """The operator (or the Gmail connector driver) reports that a queued message went out."""
+        if self.busy():
+            return 409, {"ok": False, "message": "a run is in progress"}
+        log = self.state.log
+        try:
+            cfg, clock, store = self._agent_context()
+            attempt = live.mark_email_sent(store, cfg, clock, attempt_id, message_id, thread_id, log)
+        except KeyError:
+            return 404, {"ok": False, "message": f"no queued email {attempt_id}"}
+        except (ConfigError, RuntimeError, OSError, ValueError) as exc:
+            log(f"run: mark-sent error: {exc}")
+            return 400, {"ok": False, "message": str(exc)}
+        snap = self.state.snapshot()["run"]
+        email = dict(snap.get("email") or {})
+        if email.get("attempt_id") in ("", attempt_id):
+            email.update(
+                {
+                    "attempt_id": attempt_id,
+                    "status": "sent",
+                    "provider_message_id": message_id,
+                    "thread_id": thread_id,
+                    "sent_at": attempt.get("sent_at", ""),
+                }
+            )
+            self.state.run_update(email=email)
+        return 200, {"ok": True, "attempt": attempt}
+
+    def record_reply(self, text: str, attempt: str = "", sender: str = "", at: str = "") -> tuple[int, dict]:
+        """Classify a reply through the pipeline (pasted on the dashboard, or read from Gmail by the driver)."""
+        if self.busy():
+            return 409, {"ok": False, "message": "a run is in progress"}
+        text = (text or "").strip()
+        if not text:
+            return 400, {"ok": False, "message": "reply text is empty"}
+        log = self.state.log
+        snap = self.state.snapshot()["run"]
+        current = snap.get("email") or {}
+        needle = attempt or current.get("attempt_id") or current.get("contact_id") or ""
+        if not needle:
+            return 400, {"ok": False, "message": "no email to attach this reply to; run the agent first"}
+        try:
+            cfg, clock, store = self._agent_context()
+            result = live.record_reply(store, cfg, clock, needle, text, log, sender=sender, at=at)
+        except KeyError:
+            return 404, {"ok": False, "message": f"no email attempt for {needle}"}
+        except (ConfigError, RuntimeError, OSError, ValueError) as exc:
+            log(f"run: reply error: {exc}")
+            return 400, {"ok": False, "message": str(exc)}
+        reply = {
+            "outcome": result.get("outcome", ""),
+            "handoff": result.get("handoff") or None,
+            "text": text,
+            "at": result.get("at") or iso(clock.now()),
+            "from": sender,
+        }
+        if current.get("attempt_id") in ("", result.get("attempt_id")):
+            email = dict(current)
+            email.update({"attempt_id": result.get("attempt_id", needle), "status": "replied", "reply": reply})
+            self.state.run_update(email=email)
+        log(f"run: reply recorded, outcome {reply['outcome']}")
+        return 200, {"ok": True, "reply": reply, "attempt_id": result.get("attempt_id", needle)}
+
+    # ---- staged live call through Vapi (kept for when a Twilio number exists) ----
     def start_call(self) -> tuple[bool, str]:
         if self.busy():
             return False, "a call or a run is already in progress"
@@ -456,6 +475,13 @@ def make_handler(service: LiveService):
             path = urlparse(self.path).path
             if path == "/api/state":
                 return self._json(200, service.state.snapshot())
+            if path == "/api/outbox":
+                if not self._origin_ok():
+                    return self._json(403, {"error": "origin not allowed"})
+                try:
+                    return self._json(200, {"outbox": service.outbox()})
+                except (ConfigError, OSError, ValueError) as exc:
+                    return self._json(400, {"error": str(exc)})
             if path.startswith("/data-live/"):
                 return self._file(service.export_dir / path[len("/data-live/") :], service.export_dir)
             if path.startswith("/data/"):
@@ -490,18 +516,27 @@ def make_handler(service: LiveService):
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
                 body = self._body() or {}
-                ok, msg = service.start_run(now=str(body.get("now") or ""), reset=bool(body.get("reset")))
+                reset = body.get("reset", True)
+                ok, msg = service.start_run(reset=bool(reset), now=str(body.get("now") or ""))
                 return self._json(200 if ok else 409, {"started": ok, "message": msg})
-            if path == "/api/email":
+            m = re.fullmatch(r"/api/outbox/([A-Za-z0-9_.-]+)/sent", path)
+            if m:
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
-                ok, msg = service.start_email()
-                return self._json(200 if ok else 409, {"started": ok, "message": msg})
+                body = self._body() or {}
+                message_id, thread_id = str(body.get("message_id") or ""), str(body.get("thread_id") or "")
+                code, payload = service.mark_sent(m.group(1), message_id, thread_id)
+                return self._json(code, payload)
             if path == "/api/reply":
                 if not self._origin_ok():
                     return self._json(403, {"error": "origin not allowed"})
                 body = self._body() or {}
-                code, payload = service.record_reply(str(body.get("text") or ""), str(body.get("contact") or ""))
+                code, payload = service.record_reply(
+                    str(body.get("text") or ""),
+                    str(body.get("attempt") or body.get("contact") or ""),
+                    str(body.get("from") or ""),
+                    str(body.get("at") or ""),
+                )
                 return self._json(code, payload)
             if path == "/api/webhook":
                 if service.secret and self.headers.get("x-vapi-secret", "") != service.secret:
@@ -551,8 +586,8 @@ def main(port: int = 8787, no_tunnel: bool = False, any_time: bool = True) -> in
     service = LiveService(state, port, tunnel_url, any_time=any_time)
     httpd = ThreadingHTTPServer(("127.0.0.1", port), make_handler(service))
     state.log(
-        f"serve: listening on http://127.0.0.1:{port}  (dashboard: http://127.0.0.1:{port}/?source=live, "
-        f"or https://umasanskriti.github.io/between-visits-workflow/?source=live)"
+        f"serve: listening on http://127.0.0.1:{port}  (dashboard: http://127.0.0.1:{port}/ "
+        f"or https://umasanskriti.github.io/between-visits-workflow/)"
     )
     if tunnel_url:
         state.log(f"serve: live events via {tunnel_url}/api/webhook")
