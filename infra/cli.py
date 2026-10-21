@@ -222,6 +222,8 @@ def main(argv=None) -> int:
         appended = _append_rows_to_sheet(rows, cfg, store, clock)
         if appended is not None:
             print(f"source: {appended} new practices appended to the sheet (tag real)")
+            last = store.logs["runs"][-1] if store.logs["runs"] else {}
+            export(store, cfg.export_dir, build_summary(store, last), last)  # the dashboard sees the new rows
         print("source: skipped " + ", ".join(f"{k}={v}" for k, v in sorted(adapter.skipped.items())))
         print(
             "source: this batch is NOT callable until Anirudh approves it and the numbers are cleared (clearances.csv)"

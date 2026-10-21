@@ -29,16 +29,16 @@
   "by_status": {
    "IN_OUTREACH": 5,
    "READY": 9,
-   "SOURCED": 1,
+   "SOURCED": 51,
    "SUPPRESSED": 1,
    "VERIFIED": 5
   },
   "by_verification": {
    "failed": 6,
-   "unverified": 1,
+   "unverified": 51,
    "verified": 14
   },
-  "total": 21,
+  "total": 71,
   "verified": 14
  },
  "dlq": 0,
@@ -111,7 +111,7 @@
  "errors": 6,
  "funnel": [
   {
-   "count": 21,
+   "count": 71,
    "stage": "Sourced"
   },
   {
@@ -140,7 +140,7 @@
  "interviews_pending_approval": 0,
  "practices": {
   "dummy": 21,
-  "real": 0
+  "real": 50
  },
  "queue": [
   {
