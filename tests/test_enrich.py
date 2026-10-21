@@ -111,7 +111,7 @@ def test_drafts_are_personalised_and_stay_under_the_cap(tmp_path):
     env.run()
     attempts = {env.store.contacts[a.contact_id].external_id: a for a in env.store.email_attempts.values()}
     patel = attempts["t_01"]
-    assert "I noticed you launched a GLP-1 follow-up clinic" in patel.body
+    assert "I noticed the new GLP-1 weight-management program on your site" in patel.body  # seed hook wins
     assert "already supports GLP-1 patients" in patel.body
     assert any(p.startswith("hook:") for p in patel.personalization) and "offers GLP-1 care" in patel.personalization
     lee = attempts["t_03"]
