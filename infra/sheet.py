@@ -395,11 +395,8 @@ def _upsert_enrichment(store: Store, contact: Contact, row: dict, now: str) -> b
         "hook": row.get("hook", ""),
     }
     existing = store.enrichments.get(contact.id)
-    if existing is not None:
-        for col in ("hook", "website"):  # exported as the effective value: unchanged when it still matches
-            effective = getattr(contact, col) or getattr(existing, col)
-            if fields[col] == effective:
-                fields[col] = getattr(existing, col)
+    # The sheet cell is authoritative for the research record too: an edited hook or website must reach the
+    # composer, which prefers the enrichment over the contact field.
     if existing is None:
         store.add(
             "enrichments",
