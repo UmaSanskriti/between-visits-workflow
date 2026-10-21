@@ -17,10 +17,10 @@
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 1,
-   "blocked": 8,
-   "considered": 21,
-   "deferred": 12
+   "allowed": 0,
+   "blocked": 0,
+   "considered": 0,
+   "deferred": 0
   },
   "paused": false,
   "suppressions": 1
@@ -135,7 +135,7 @@
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T02:33:55Z",
+ "generated_at": "2026-10-21T03:39:49Z",
  "interviews": 0,
  "interviews_pending_approval": 0,
  "practices": {
@@ -326,7 +326,7 @@
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T023355Z-006",
+ "run_id": "20261021T033949Z-007",
  "transcripts": {
   "brain_inbox": 13,
   "delivered": 2,

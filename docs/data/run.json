@@ -2,9 +2,9 @@
  "brain_down": false,
  "callback_number_set": true,
  "channel": "email",
- "finished_at": "2026-10-21T02:33:55Z",
+ "finished_at": "2026-10-21T03:39:49Z",
  "gate_escapes": 0,
- "git_sha": "80e5429",
+ "git_sha": "16c0b30",
  "kill_switch": false,
  "limits": {
   "follow_up_days": 3,
@@ -14,64 +14,21 @@
   "max_emails_per_day": 50,
   "max_messages": 2
  },
- "mode": "live",
- "now_used": "2026-10-21T02:33:55Z",
+ "mode": "dry_run",
+ "now_used": "2026-10-21T03:39:49Z",
  "paused": false,
  "playbook": "clinic-outreach-brain.md",
- "run_id": "20261021T023355Z-006",
+ "run_id": "20261021T033949Z-007",
  "seed": "test_doctors.csv",
  "simulated_time": false,
  "stages": {
-  "delivery": {
-   "attempted": 0,
-   "delivered": 0,
-   "duplicates": 0,
-   "failed": 0,
-   "held": 0
-  },
-  "email": {
-   "allowed": 1,
-   "blocked": 8,
-   "brain_unavailable": 0,
-   "capped": 10,
-   "compose_errors": 0,
-   "considered": 21,
-   "deferred": 2,
-   "failed": 0,
-   "placed": 1,
-   "queued": 1,
-   "sent": 0
-  },
   "enrich": {
    "enriched_seed": 0,
    "enriched_web": 0,
-   "skipped": 0,
+   "skipped": 50,
    "unchanged": 21
-  },
-  "ingest": {
-   "channels_created": 0,
-   "contacts_created": 0,
-   "contacts_updated": 17,
-   "rows": 21
-  },
-  "replies": {
-   "applied": 0,
-   "duplicates_ignored": 0,
-   "events": 0,
-   "expired_no_reply": 0,
-   "unknown_message": 0
-  },
-  "suppressions_seeded": 0,
-  "verify": {
-   "channels_failed": 0,
-   "channels_verified": 34,
-   "cleared": 0,
-   "duplicates": 1,
-   "failed": 5,
-   "suppressed": 0,
-   "verified": 14
   }
  },
- "started_at": "2026-10-21T02:33:55Z",
- "trigger": "dashboard"
+ "started_at": "2026-10-21T03:39:49Z",
+ "trigger": "local"
 }

@@ -399,5 +399,39 @@
   },
   "started_at": "2026-10-21T02:33:55Z",
   "trigger": "dashboard"
+ },
+ {
+  "brain_down": false,
+  "callback_number_set": true,
+  "channel": "email",
+  "finished_at": "2026-10-21T03:39:49Z",
+  "gate_escapes": 0,
+  "git_sha": "16c0b30",
+  "kill_switch": false,
+  "limits": {
+   "follow_up_days": 3,
+   "max_attempts": 2,
+   "max_calls_per_day": 50,
+   "max_calls_per_run": 25,
+   "max_emails_per_day": 50,
+   "max_messages": 2
+  },
+  "mode": "dry_run",
+  "now_used": "2026-10-21T03:39:49Z",
+  "paused": false,
+  "playbook": "clinic-outreach-brain.md",
+  "run_id": "20261021T033949Z-007",
+  "seed": "test_doctors.csv",
+  "simulated_time": false,
+  "stages": {
+   "enrich": {
+    "enriched_seed": 0,
+    "enriched_web": 0,
+    "skipped": 50,
+    "unchanged": 21
+   }
+  },
+  "started_at": "2026-10-21T03:39:49Z",
+  "trigger": "local"
  }
 ]

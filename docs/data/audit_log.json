@@ -1,34 +1,5 @@
 [
  {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "em_e9f7fe12db",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_48eaa6c438",
-  "entity": "email_attempts",
-  "entity_id": "em_e9f7fe12db",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_b9ed93f342"
-  },
-  "before": {},
-  "call_attempt_id": "em_e9f7fe12db",
-  "contact_id": "c_48eaa6c438",
-  "entity": "transcripts",
-  "entity_id": "tr_b9ed93f342",
-  "run_id": "20261021T020553Z-003",
-  "timestamp": "2026-10-21T02:05:53Z"
- },
- {
   "action": "sent",
   "actor": "system",
   "after": {
@@ -6343,5 +6314,30 @@
   "entity": "channels",
   "entity_id": "ch_96d4c5f08b",
   "timestamp": "2026-10-21T03:37:13Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T03:39:49Z",
+   "trigger": "local"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T033949Z-007",
+  "run_id": "20261021T033949Z-007",
+  "timestamp": "2026-10-21T03:39:49Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T033949Z-007",
+  "run_id": "20261021T033949Z-007",
+  "timestamp": "2026-10-21T03:39:49Z"
  }
 ]

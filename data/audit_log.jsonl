@@ -627,3 +627,5 @@
 {"action": "create", "actor": "csv_seed", "after": {"id": "ch_99a4cc0177", "type": "phone"}, "before": {}, "entity": "channels", "entity_id": "ch_99a4cc0177", "timestamp": "2026-10-21T03:37:13Z"}
 {"action": "create", "actor": "csv_seed", "after": {"id": "c_8f627c7a4e", "status": "SOURCED"}, "before": {}, "entity": "contacts", "entity_id": "c_8f627c7a4e", "timestamp": "2026-10-21T03:37:13Z"}
 {"action": "create", "actor": "csv_seed", "after": {"id": "ch_96d4c5f08b", "type": "phone"}, "before": {}, "entity": "channels", "entity_id": "ch_96d4c5f08b", "timestamp": "2026-10-21T03:37:13Z"}
+{"action": "start", "actor": "system", "after": {"now_used": "2026-10-21T03:39:49Z", "trigger": "local"}, "before": {}, "entity": "run", "entity_id": "20261021T033949Z-007", "run_id": "20261021T033949Z-007", "timestamp": "2026-10-21T03:39:49Z"}
+{"action": "finish", "actor": "system", "after": {"gate_escapes": 0}, "before": {}, "entity": "run", "entity_id": "20261021T033949Z-007", "run_id": "20261021T033949Z-007", "timestamp": "2026-10-21T03:39:49Z"}
