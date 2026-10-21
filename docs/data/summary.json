@@ -1,5 +1,5 @@
 {
- "alerts": 2,
+ "alerts": 3,
  "calls": {
   "attempts": 0,
   "booked": 0,
@@ -17,10 +17,10 @@
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 0,
-   "considered": 0,
-   "deferred": 0
+   "allowed": 1,
+   "blocked": 9,
+   "considered": 14,
+   "deferred": 4
   },
   "paused": false,
   "suppressions": 3
@@ -47,7 +47,7 @@
  "dlq": 0,
  "emails": {
   "agreed": 4,
-  "attempts": 13,
+  "attempts": 14,
   "awaiting_reply": 4,
   "bounced": 1,
   "by_outcome": {
@@ -56,11 +56,11 @@
    "BOUNCED": 1,
    "DECLINED": 2,
    "DO_NOT_CONTACT": 1,
-   "REPLIED_OTHER": 1
+   "REPLIED_OTHER": 2
   },
   "by_script_version": {
    "v1": {
-    "attempts": 13,
+    "attempts": 14,
     "booked": 4,
     "by_outcome": {
      "(pending)": 4,
@@ -68,9 +68,9 @@
      "BOUNCED": 1,
      "DECLINED": 2,
      "DO_NOT_CONTACT": 1,
-     "REPLIED_OTHER": 1
+     "REPLIED_OTHER": 2
     },
-    "conversion": 0.308,
+    "conversion": 0.286,
     "declined": 2
    }
   },
@@ -108,26 +108,26 @@
     "declined": 1
    },
    "solo_specialist": {
-    "attempts": 2,
+    "attempts": 3,
     "booked": 0,
     "by_outcome": {
      "(pending)": 1,
-     "REPLIED_OTHER": 1
+     "REPLIED_OTHER": 2
     },
     "conversion": 0.0,
     "declined": 0
    }
   },
   "declined": 2,
-  "duplicate_events_ignored": 9,
+  "duplicate_events_ignored": 10,
   "failed": 0,
   "follow_ups_due": 0,
-  "needs_review": 1,
+  "needs_review": 2,
   "no_reply": 0,
   "queued": 0,
-  "replied": 8,
-  "reply_rate": 0.615,
-  "sent": 13,
+  "replied": 9,
+  "reply_rate": 0.643,
+  "sent": 14,
   "stop": 1
  },
  "enrichment": {
@@ -163,7 +163,7 @@
    "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T02:31:02Z",
+ "generated_at": "2026-10-21T02:32:09Z",
  "interviews": 4,
  "interviews_pending_approval": 4,
  "queue": [
@@ -181,7 +181,7 @@
    "status": "READY"
   },
   {
-   "attempts": 1,
+   "attempts": 2,
    "awaiting_reply": false,
    "contact_id": "c_f9eafcfce6",
    "external_id": "t_04",
@@ -246,14 +246,14 @@
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T023102Z-004",
+ "run_id": "20261021T023209Z-005",
  "transcripts": {
-  "brain_inbox": 12,
-  "delivered": 12,
+  "brain_inbox": 13,
+  "delivered": 13,
   "delivery_rate": 1.0,
   "failed": 0,
   "held_pii_review": 1,
   "pending": 0,
-  "total": 13
+  "total": 14
  }
 }

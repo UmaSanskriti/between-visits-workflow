@@ -12,5 +12,12 @@
   "run_id": "20261021T020553Z-003",
   "timestamp": "2026-10-21T02:05:53Z",
   "type": "reply_needs_review"
+ },
+ {
+  "contact_id": "c_f9eafcfce6",
+  "detail": "Siobhan Ni Bhriain: Can you send more details about what you're building and who is behind it?",
+  "run_id": "20261021T023209Z-005",
+  "timestamp": "2026-10-21T02:32:09Z",
+  "type": "reply_needs_review"
  }
 ]
