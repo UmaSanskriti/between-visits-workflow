@@ -103,10 +103,10 @@
   "stop": 0
  },
  "enrichment": {
-  "seed": 21,
+  "seed": 0,
   "total": 21,
   "web": 0,
-  "with_glp1": 7
+  "with_glp1": 0
  },
  "errors": 6,
  "funnel": [

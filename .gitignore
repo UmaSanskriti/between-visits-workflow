@@ -25,3 +25,6 @@ data/outbox/
 # practice workbook: real practices are public business data we keep out of the public repo by default
 data/practices.xlsx
 data-live/practices.xlsx
+
+# Excel lock files
+~$*

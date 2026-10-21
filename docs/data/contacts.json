@@ -988,7 +988,7 @@
   "duplicate_of": "",
   "external_id": "t_03",
   "full_name": "Marcus Lee",
-  "hook": "",
+  "hook": "you opened a Saturday clinic for working adults",
   "id": "c_da6677d004",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
@@ -1003,7 +1003,7 @@
   "status": "READY",
   "test_scenario": "no_answer|email_no_reply",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T03:07:57Z",
+  "updated_at": "2026-10-21T03:10:17Z",
   "verification_reason": "",
   "verification_status": "verified",
   "website": ""
