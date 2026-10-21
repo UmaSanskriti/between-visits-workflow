@@ -194,7 +194,9 @@ class ImapReplyPoller:
 
     def __init__(self, host: str, user: str, password: str, folder: str = "INBOX", imap_factory=None, log=print):
         self.host, self.user, self.password, self.folder = host, user, password, folder
-        self.imap_factory = imap_factory or (lambda: imaplib.IMAP4_SSL(host))
+        self.imap_factory = imap_factory or (lambda: imaplib.IMAP4_SSL(host, timeout=20))
+        self.recent_limit = 40  # newest messages to inspect for untagged replies
+        self.max_messages = 60  # hard cap on full-message fetches per poll
         self.log = log
         self.seen: set[str] = set()
 
@@ -207,11 +209,20 @@ class ImapReplyPoller:
         try:
             conn.login(self.user, self.password)
             conn.select(self.folder)
+            # Only messages that reference one of OUR Message-IDs, plus a bounded scan of the newest mail for
+            # clients that drop threading headers. Never the whole inbox.
+            candidates: list[bytes] = []
+            for mid in sent:
+                for header in ("In-Reply-To", "References"):
+                    status, data = conn.search(None, f'(HEADER {header} "{mid}")')
+                    if status == "OK" and data and data[0]:
+                        candidates.extend(data[0].split())
             criteria = f"(SINCE {since_date})" if since_date else "ALL"
             status, data = conn.search(None, criteria)
-            if status != "OK" or not data or not data[0]:
-                return []
-            for num in data[0].split():
+            recent = data[0].split()[-self.recent_limit :] if status == "OK" and data and data[0] else []
+            seen_nums: set[bytes] = set()
+            ordered = [n for n in candidates + recent if not (n in seen_nums or seen_nums.add(n))]
+            for num in ordered[: self.max_messages]:
                 status, fetched = conn.fetch(num, "(BODY.PEEK[])")
                 if status != "OK" or not fetched:
                     continue
