@@ -113,9 +113,14 @@ def run_pipeline(
         # progress names stay "call"/"webhooks" so the dashboard's stage mapping works for both channels
         emit("call", "start", {"channel": "email"})
         run["stages"]["email"] = send_emails(store, cfg, clock, brain, mailer, run_id)
+        store.save()  # a real send is never lost to a later stage failing
         emit("call", "done", {**run["stages"]["email"], "channel": "email"})
         emit("webhooks", "start", {"channel": "email"})
-        run["stages"]["replies"] = process_email_events(store, cfg, clock, mailer, run_id)
+        try:
+            run["stages"]["replies"] = process_email_events(store, cfg, clock, mailer, run_id)
+        except Exception as exc:  # noqa: BLE001 - reply polling must not abort a run that already sent
+            store.alert("reply_polling_failed", f"{type(exc).__name__}: {exc}", run_id=run_id)
+            run["stages"]["replies"] = {"error": f"{type(exc).__name__}: {exc}"}
         emit("webhooks", "done", {**run["stages"]["replies"], "channel": "email"})
     elif "call" in stages:
         emit("call", "start")

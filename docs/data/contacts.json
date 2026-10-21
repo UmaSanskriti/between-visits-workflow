@@ -263,7 +263,7 @@
  },
  {
   "address": "22 Elm St",
-  "attempts": 0,
+  "attempts": 1,
   "channels": [
    {
     "call_clearance": "cleared",
@@ -304,17 +304,17 @@
   "id": "c_2c3a09fcb5",
   "last_outcome": "",
   "lead_source": "csv:test_doctors.csv",
-  "next_attempt_at": "",
+  "next_attempt_at": "2026-10-24T02:55:22Z",
   "practice_name": "Bennett Family Practice",
   "practice_size": "solo",
   "pronunciation_hint": "",
   "segment": "solo_primary_care",
   "specialty": "family medicine",
   "state": "MA",
-  "status": "READY",
+  "status": "IN_OUTREACH",
   "test_scenario": "booked|email_agreed",
   "time_zone": "America/New_York",
-  "updated_at": "2026-10-21T02:05:53Z",
+  "updated_at": "2026-10-21T02:55:22Z",
   "verification_reason": "",
   "verification_status": "verified",
   "website": ""

@@ -510,3 +510,67 @@ def test_demo_recipient_redirect_and_gate(tmp_path):
     assert "Dr. Patel" in attempt.body  # the text still addresses the doctor
     queued = json.loads((tmp_path / "data" / "outbox" / f"{attempt.id}.json").read_text())
     assert queued["to"] == "team@example.test"
+
+
+def test_imap_message_parsing_handles_multipart_modern_policy():
+    import email.policy as policy
+    from email.message import EmailMessage
+
+    from infra.email import provider as prov
+
+    msg = EmailMessage(policy=policy.default)
+    msg["From"] = "office@example.test"
+    msg["Subject"] = "Re: 30 minutes?"
+    msg["In-Reply-To"] = "<abc@between-visits.test>"
+    msg.set_content("Yes, Tuesday afternoons work.")
+    msg.add_alternative("<p>Yes, Tuesday afternoons work.</p>", subtype="html")
+    raw = msg.as_bytes()
+    parsed = prov._email.message_from_bytes(raw, policy=prov._email_policy.default)
+    text = (
+        prov._plain_text(parsed)
+        if hasattr(prov, "_plain_text")
+        else parsed.get_body(preferencelist=("plain",)).get_content()
+    )
+    assert "Tuesday afternoons" in text
+
+
+def test_reply_polling_failure_does_not_abort_a_run(tmp_path):
+    from datetime import datetime
+
+    from conftest import CLEARANCES, SEED, SUPPRESSIONS
+
+    from infra.brain import MockBrain
+    from infra.clock import FixedClock
+    from infra.config import load_config
+    from infra.email.provider import MockEmailProvider
+    from infra.pipeline import run_pipeline
+    from infra.store import Store
+
+    cfg = load_config(
+        ROOT / "config.toml",
+        env={"BV_OUTREACH_CHANNEL": "email", "BV_DATA_DIR": str(tmp_path / "d"), "BV_EXPORT_DIR": str(tmp_path / "e")},
+    )
+    clock = FixedClock(datetime(2026, 10, 20, 14, tzinfo=UTC))
+    store = Store(cfg.data_dir, clock).load()
+
+    class Flaky(MockEmailProvider):
+        def drain_events(self):
+            raise RuntimeError("imap down")
+
+    mailer = Flaky(clock) if "clock" in MockEmailProvider.__init__.__code__.co_varnames else Flaky()
+    run, summary = run_pipeline(
+        store,
+        cfg,
+        clock,
+        MockBrain(store, clock),
+        mailer,
+        SEED,
+        CLEARANCES,
+        SUPPRESSIONS,
+        trigger="test",
+        mailer=mailer,
+    )
+    assert run["stages"]["email"].get("sent", 0) + run["stages"]["email"].get("placed", 0) > 0
+    assert "error" in run["stages"]["replies"]
+    assert any(a["type"] == "reply_polling_failed" for a in store.logs["alerts"])
+    assert store.email_attempts  # sends persisted despite the failure

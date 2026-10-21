@@ -1,246 +1,5 @@
 [
  {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_27177384c8",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_27177384c8",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_41cc51441d",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_41cc51441d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_021549c001",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_021549c001",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_7d785a7774",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_7d785a7774",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_b62f5021ad",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_b62f5021ad",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_61bc1438e5",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_61bc1438e5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_e207f6adf5",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_e207f6adf5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "c_fb34444215",
-   "status": "SOURCED"
-  },
-  "before": {},
-  "entity": "contacts",
-  "entity_id": "c_fb34444215",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_e4e3c37052",
-   "type": "phone"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_e4e3c37052",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "create",
-  "actor": "csv_seed",
-  "after": {
-   "id": "ch_8a82185b3d",
-   "type": "email"
-  },
-  "before": {},
-  "entity": "channels",
-  "entity_id": "ch_8a82185b3d",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220101",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617-555-0101",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_5e1fdacffc",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_52806280cd",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220102",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "(617) 555-0102",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_fb340917a5",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_b401e0efc6",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220103",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "+1 617 555 0103",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_4da2cae231",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_09b9987882",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220104",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "617.555.0104",
-   "verification_reason": "",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_38dfb97cd2",
-  "timestamp": "2026-10-21T01:57:54Z"
- },
- {
   "action": "verify",
   "actor": "system",
   "after": {
@@ -6227,5 +5986,277 @@
   "entity": "email_attempts",
   "entity_id": "em_235dad69f6",
   "timestamp": "2026-10-21T02:34:39Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_01c54d811d",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:05:33Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "email_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:02:53Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_251bab6d38",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-24T02:34:39Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_7e13816d5d",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "email_attempts",
+  "entity_id": "em_7e13816d5d",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_7e0e02e827"
+  },
+  "before": {},
+  "call_attempt_id": "em_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "transcripts",
+  "entity_id": "tr_7e0e02e827",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "smtp",
+   "provider_message_id": "<\u2022\u2022\u2022@gmail.com>",
+   "sent_at": "2026-10-21T02:55:22Z",
+   "status": "sent",
+   "transcript_id": "tr_7e0e02e827"
+  },
+  "before": {
+   "provider": "smtp",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "email_attempts",
+  "entity_id": "em_7e13816d5d",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-24T02:55:22Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_7e13816d5d",
+  "entity": "contacts",
+  "entity_id": "c_2c3a09fcb5",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_7e13816d5d",
+  "entity": "contacts",
+  "entity_id": "c_2c3a09fcb5",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_517863c95b",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_5bfd0187e6",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_a776b6dc5b",
+  "run_id": "replay-smtp-bennett",
+  "timestamp": "2026-10-21T02:55:22Z"
+ },
+ {
+  "action": "reconstructed_from_gmail_sent_mail",
+  "actor": "operator",
+  "after": {
+   "message_id": "<\u2022\u2022\u2022@gmail.com>"
+  },
+  "before": {},
+  "entity": "email_attempt",
+  "entity_id": "replay",
+  "timestamp": "2026-10-21T02:55:22Z"
  }
 ]

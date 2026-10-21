@@ -27,8 +27,8 @@
  },
  "contacts": {
   "by_status": {
-   "IN_OUTREACH": 3,
-   "READY": 11,
+   "IN_OUTREACH": 4,
+   "READY": 10,
    "SOURCED": 1,
    "SUPPRESSED": 1,
    "VERIFIED": 5
@@ -44,18 +44,18 @@
  "dlq": 0,
  "emails": {
   "agreed": 0,
-  "attempts": 3,
-  "awaiting_reply": 3,
+  "attempts": 4,
+  "awaiting_reply": 4,
   "bounced": 0,
   "by_outcome": {
-   "(awaiting reply)": 3
+   "(awaiting reply)": 4
   },
   "by_script_version": {
    "v1": {
-    "attempts": 3,
+    "attempts": 4,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 3
+     "(pending)": 4
     },
     "conversion": 0.0,
     "declined": 0
@@ -72,10 +72,10 @@
     "declined": 0
    },
    "solo_primary_care": {
-    "attempts": 1,
+    "attempts": 2,
     "booked": 0,
     "by_outcome": {
-     "(pending)": 1
+     "(pending)": 2
     },
     "conversion": 0.0,
     "declined": 0
@@ -99,7 +99,7 @@
   "queued": 0,
   "replied": 0,
   "reply_rate": 0.0,
-  "sent": 3,
+  "sent": 4,
   "stop": 0
  },
  "enrichment": {
@@ -123,7 +123,7 @@
    "stage": "Cleared to email"
   },
   {
-   "count": 3,
+   "count": 4,
    "stage": "Emailed"
   },
   {
@@ -187,19 +187,6 @@
    "name": "Hannah Goldberg",
    "next_attempt_at": "",
    "practice": "Brookline Primary Care",
-   "queued_email": false,
-   "segment": "solo_primary_care",
-   "status": "READY"
-  },
-  {
-   "attempts": 0,
-   "awaiting_reply": false,
-   "contact_id": "c_2c3a09fcb5",
-   "external_id": "t_18",
-   "last_outcome": "",
-   "name": "Laura Bennett",
-   "next_attempt_at": "",
-   "practice": "Bennett Family Practice",
    "queued_email": false,
    "segment": "solo_primary_care",
    "status": "READY"
@@ -320,16 +307,29 @@
    "queued_email": false,
    "segment": "small_group_primary_care",
    "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_2c3a09fcb5",
+   "external_id": "t_18",
+   "last_outcome": "",
+   "name": "Laura Bennett",
+   "next_attempt_at": "2026-10-24T02:55:22Z",
+   "practice": "Bennett Family Practice",
+   "queued_email": false,
+   "segment": "solo_primary_care",
+   "status": "IN_OUTREACH"
   }
  ],
  "run_id": "20261021T023355Z-006",
  "transcripts": {
   "brain_inbox": 13,
   "delivered": 2,
-  "delivery_rate": 0.667,
+  "delivery_rate": 0.5,
   "failed": 0,
   "held_pii_review": 0,
-  "pending": 1,
-  "total": 3
+  "pending": 2,
+  "total": 4
  }
 }

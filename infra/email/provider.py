@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import email as _email
+import email.policy as _email_policy
 import imaplib
 import re
 import smtplib
@@ -215,7 +216,7 @@ class ImapReplyPoller:
                 if status != "OK" or not fetched:
                     continue
                 raw = next((part[1] for part in fetched if isinstance(part, tuple)), b"")
-                msg = _email.message_from_bytes(raw)
+                msg = _email.message_from_bytes(raw, policy=_email_policy.default)
                 refs = " ".join(x for x in (msg.get("In-Reply-To", ""), msg.get("References", "")) if x)
                 body = _plain_text(msg)
                 parent = next((mid for mid in sent if mid and (mid in refs or mid in body)), "")
