@@ -1,4 +1,104 @@
 {
+ "em_0454abe525:sent": {
+  "call_attempt_id": "em_0454abe525",
+  "contact_id": "c_c09828fbcf",
+  "failure_category": "Wrong address (list data)",
+  "outcome": "BOUNCED",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 1
+ },
+ "em_1c90a154b7:reply": {
+  "call_attempt_id": "em_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "failure_category": "Pitch did not land",
+  "outcome": "DECLINED",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 2
+ },
+ "em_1dd7b77892:sent": {
+  "call_attempt_id": "em_1dd7b77892",
+  "contact_id": "c_070728f30d",
+  "failure_category": "",
+  "outcome": "",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_specialist",
+  "utterance_count": 1
+ },
+ "em_235dad69f6:reply": {
+  "call_attempt_id": "em_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "failure_category": "",
+  "outcome": "AGREED_TO_TALK",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "small_group_primary_care",
+  "utterance_count": 2
+ },
+ "em_26b6ee67d1:reply": {
+  "call_attempt_id": "em_26b6ee67d1",
+  "contact_id": "c_fb34444215",
+  "failure_category": "",
+  "outcome": "AGREED_TO_TALK",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 2
+ },
+ "em_38db576121:sent": {
+  "call_attempt_id": "em_38db576121",
+  "contact_id": "c_b62f5021ad",
+  "failure_category": "",
+  "outcome": "",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 1
+ },
+ "em_6b6ea10721:reply": {
+  "call_attempt_id": "em_6b6ea10721",
+  "contact_id": "c_f9eafcfce6",
+  "failure_category": "Reply needs review",
+  "outcome": "REPLIED_OTHER",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_specialist",
+  "utterance_count": 2
+ },
+ "em_6e29b4cd45:sent": {
+  "call_attempt_id": "em_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "failure_category": "",
+  "outcome": "",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "default",
+  "utterance_count": 1
+ },
+ "em_7e13816d5d:reply": {
+  "call_attempt_id": "em_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "failure_category": "",
+  "outcome": "AGREED_TO_TALK",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 2
+ },
+ "em_d39fa0c7be:reply": {
+  "call_attempt_id": "em_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "failure_category": "Pitch did not land",
+  "outcome": "DECLINED",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "small_group_primary_care",
+  "utterance_count": 2
+ },
  "em_e0d96f14bc:sent": {
   "call_attempt_id": "em_e0d96f14bc",
   "contact_id": "c_251bab6d38",
@@ -8,5 +108,15 @@
   "script_version": "v1",
   "segment": "solo_primary_care",
   "utterance_count": 1
+ },
+ "em_e9f7fe12db:reply": {
+  "call_attempt_id": "em_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "failure_category": "Do not contact",
+  "outcome": "DO_NOT_CONTACT",
+  "received_at": "2026-10-21T02:05:53Z",
+  "script_version": "v1",
+  "segment": "solo_primary_care",
+  "utterance_count": 2
  }
 }

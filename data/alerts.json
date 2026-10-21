@@ -1,1 +1,16 @@
-[]
+[
+ {
+  "call_attempt_id": "em_79dcaa34ba",
+  "detail": "tr_b3c99276d4 held: date of birth (CMP-009)",
+  "timestamp": "2026-10-21T02:05:53Z",
+  "transcript_id": "tr_b3c99276d4",
+  "type": "transcript_held_pii_review"
+ },
+ {
+  "contact_id": "c_f9eafcfce6",
+  "detail": "Siobhan Ni Bhriain: Can you send more details about what you're building and who is behind it?",
+  "run_id": "20261021T020553Z-003",
+  "timestamp": "2026-10-21T02:05:53Z",
+  "type": "reply_needs_review"
+ }
+]

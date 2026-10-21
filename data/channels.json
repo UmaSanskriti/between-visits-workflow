@@ -332,8 +332,8 @@
   "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
   "type": "email",
   "value": "gkim@kimfamilymed.example.test",
-  "verification_reason": "",
-  "verified": true
+  "verification_reason": "bounced",
+  "verified": false
  },
  "ch_b401e0efc6": {
   "call_clearance": "cleared",
