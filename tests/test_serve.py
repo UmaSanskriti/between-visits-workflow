@@ -33,6 +33,45 @@ class StubService(LiveService):
         self.state.run_update(status="running", stage="ingest", started_at="2026-10-20T19:00:00Z")
         return True, "started"
 
+    def start_email(self):
+        self.email_starts = getattr(self, "email_starts", 0) + 1
+        if getattr(self, "busy_flag", False):
+            return False, "a run, a call or an email is already in progress"
+        self.state.email_reset()
+        self.state.email_update(
+            status="sent",
+            to="u\u2022\u2022\u2022@example.test",
+            subject="30 minutes with Dr. Demo? (HBS research, not sales)",
+            body="Hi Dr. Demo, ...",
+            provider_message_id="<msg-1@example.test>",
+            sent_at="2026-10-20T22:00:00Z",
+            attempt_id="em_1",
+            contact_id="c_demo",
+        )
+        return True, "started"
+
+    def record_reply(self, text, contact=""):
+        self.replies = getattr(self, "replies", []) + [(text, contact)]
+        if getattr(self, "busy_flag", False):
+            return 409, {"ok": False, "message": "busy"}
+        if not text.strip():
+            return 400, {"ok": False, "message": "reply text is empty"}
+        reply = {
+            "outcome": "AGREED_TO_TALK",
+            "handoff": {
+                "contact_email": "d\u2022\u2022\u2022@example.test",
+                "contact_method": "email",
+                "contact_number": "",
+                "availability": "Tue afternoons",
+                "person_spoken_to": "doctor",
+                "notes": "",
+            },
+            "text": text,
+            "at": "2026-10-20T22:05:00Z",
+        }
+        self.state.email_update(status="replied", reply=reply)
+        return 200, {"ok": True, "reply": reply}
+
 
 @pytest.fixture
 def server():
@@ -243,4 +282,79 @@ def test_real_dry_run_reports_every_stage(tmp_path):
     assert all(v["status"] == "done" for v in run["stages"].values())
     assert run["stages"]["call"]["counts"]["placed"] > 0 and run["run_id"].startswith("20261020T190000Z")
     assert (tmp_path / "export" / "run.json").exists()
+    assert not service.busy()
+
+
+def test_email_endpoint_origin_rule_busy_and_state_shape(server):
+    base, service, state = server
+    code, _, _ = call(base + "/api/email", "POST", {}, headers={"Origin": "https://evil.example"})
+    assert code == 403 and getattr(service, "email_starts", 0) == 0
+    assert set(state.snapshot()["email"]) >= {
+        "status",
+        "to",
+        "subject",
+        "body",
+        "provider_message_id",
+        "sent_at",
+        "error",
+        "reply",
+        "attempt_id",
+        "contact_id",
+    }
+    assert state.snapshot()["email"]["status"] == "idle" and state.snapshot()["email"]["reply"] is None
+    code, body, _ = call(base + "/api/email", "POST", {}, headers={"Origin": "https://umasanskriti.github.io"})
+    assert code == 200 and body["started"] and service.email_starts == 1
+    em = state.snapshot()["email"]
+    assert em["status"] == "sent" and em["subject"].startswith("30 minutes") and em["provider_message_id"]
+    assert "@" in em["to"] and "\u2022" in em["to"]  # masked, never the raw address
+    service.busy_flag = True
+    code, body, _ = call(base + "/api/email", "POST", {}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 409 and body["started"] is False
+
+
+def test_reply_endpoint_records_and_classifies(server):
+    base, service, state = server
+    code, _, _ = call(base + "/api/reply", "POST", {"text": "yes"}, headers={"Origin": "https://evil.example"})
+    assert code == 403 and not getattr(service, "replies", [])
+    code, body, _ = call(base + "/api/reply", "POST", {"text": "   "}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 400 and body["ok"] is False
+    code, body, _ = call(
+        base + "/api/reply",
+        "POST",
+        {"text": "Sure, Tuesday afternoons work. Email me."},
+        headers={"Origin": "http://localhost:8787"},
+    )
+    assert code == 200 and body["ok"] and body["reply"]["outcome"] == "AGREED_TO_TALK"
+    em = state.snapshot()["email"]
+    assert em["status"] == "replied" and em["reply"]["handoff"]["availability"] == "Tue afternoons"
+    assert em["reply"]["text"].startswith("Sure")
+    service.busy_flag = True
+    code, _, _ = call(base + "/api/reply", "POST", {"text": "yes"}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 409
+
+
+def test_email_state_reset_and_update():
+    state = LiveState()
+    state.email_update(status="sent", subject="x", reply={"outcome": "DECLINED"})
+    assert state.snapshot()["email"]["reply"]["outcome"] == "DECLINED"
+    state.email_reset()
+    em = state.snapshot()["email"]
+    assert em["status"] == "idle" and em["subject"] == "" and em["reply"] is None
+
+
+def test_real_service_email_without_credentials_reports_a_clear_error(tmp_path):
+    """No SMTP key and no backend connection: the state must land in error, never hang or crash."""
+    import time
+
+    state = LiveState()
+    service = LiveService(state, port=0, tunnel_url="")
+    ok, _ = service.start_email()
+    assert ok
+    deadline = time.monotonic() + 30
+    while time.monotonic() < deadline and state.snapshot()["email"]["status"] in ("preparing", "sending"):
+        time.sleep(0.2)
+    em = state.snapshot()["email"]
+    assert em["status"] in ("error", "sent"), em
+    if em["status"] == "error":
+        assert em["error"]
     assert not service.busy()

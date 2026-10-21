@@ -6,7 +6,7 @@
 
   const REPO = "https://github.com/UmaSanskriti/between-visits-workflow";
   const API_RUNS = "https://api.github.com/repos/UmaSanskriti/between-visits-workflow/actions/workflows/pipeline.yml/runs?per_page=1";
-  const FILES = ["run", "summary", "contacts", "call_attempts", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
+  const FILES = ["run", "summary", "contacts", "call_attempts", "email_attempts", "scripts", "transcripts", "interviews", "gate_decisions", "errors", "dlq", "alerts", "runs", "audit_log"];
   const ICON = { good: "✓", warning: "!", serious: "▲", critical: "✕", neutral: "·" };
   const TZ = "America/New_York";
   const LOCAL = "http://127.0.0.1:8787";
@@ -21,6 +21,7 @@
   const LOCAL_CONSOLE = LOCAL + "/?source=live";
   const GH_ACTIONS = REPO + "/actions";
   let ring_ctl = null; // set by render(); lets the local run poller drive the loop
+  let CHANNEL = "call"; // "email" | "call", set by render() from the snapshot
 
   // ---------- helpers ----------
   function el(tag, attrs, children) {
@@ -141,13 +142,16 @@
       const lead = interview.scheduled_for ? when + ", " : "Agreed to talk; Anirudh reaches out" + (interview.contact_method && interview.contact_method !== "unknown" ? " via " + nice(interview.contact_method) : "") + ", ";
       return interview.status === "approved" ? ["good", lead + "approved by " + interview.approved_by] : ["warning", lead + "waiting for approval"];
     }
-    if (c.status === "IN_OUTREACH") return ["brand", c.next_attempt_at ? "Retry " + fmtTime(c.next_attempt_at) + (c.last_outcome === "CALLBACK_REQUESTED" ? " (asked for a call back)" : "") : "Call in progress"];
-    if (c.status === "READY") return ["neutral", gate && !gate.allowed ? (gate.deferred ? "Waiting: " + gate.reasons.map(nice).join(", ") : "Blocked: " + gate.reasons.map(nice).join(", ")) : "Call when the window opens"];
+    if (c.status === "IN_OUTREACH") {
+      if (CHANNEL === "email") return ["brand", "Awaiting reply" + (c.next_attempt_at ? "; follow-up " + fmtTime(c.next_attempt_at) : "")];
+      return ["brand", c.next_attempt_at ? "Retry " + fmtTime(c.next_attempt_at) + (c.last_outcome === "CALLBACK_REQUESTED" ? " (asked for a call back)" : "") : "Call in progress"];
+    }
+    if (c.status === "READY") return ["neutral", gate && !gate.allowed ? (gate.deferred ? "Waiting: " + gate.reasons.map(nice).join(", ") : "Blocked: " + gate.reasons.map(nice).join(", ")) : (CHANNEL === "email" ? "Email on the next run" : "Call when the window opens")];
     if (c.status === "SUPPRESSED") return ["critical", "Never contact again"];
-    if (c.status === "UNREACHABLE") return ["warning", "No more attempts (cap reached)"];
+    if (c.status === "UNREACHABLE") return ["warning", c.last_outcome === "NO_REPLY" ? "No reply after the follow-up" : "No more attempts (cap reached)"];
     if (c.status === "DECLINED") return ["neutral", c.last_outcome === "NOT_A_FIT" ? "Closed: not a fit" : "Closed"];
     if (c.duplicate_of) return ["warning", "Possible duplicate, review and merge"];
-    if (c.verification_reason) return ["warning", "Cannot call: " + nice(c.verification_reason)];
+    if (c.verification_reason) return ["warning", "Cannot reach: " + nice(c.verification_reason)];
     return ["neutral", "Awaiting verification"];
   }
 
@@ -157,8 +161,13 @@
     const contacts = d.contacts || [], attempts = d.call_attempts || [], transcripts = d.transcripts || [];
     const interviews = d.interviews || [], errors = d.errors || [], alerts = d.alerts || [], dlq = d.dlq || [];
     const decisions = d.gate_decisions || [], scripts = d.scripts || [];
+    const emailAttempts = d.email_attempts || [], em = s.emails || {};
+    const channel = run.channel || s.channel || "email";  // email is the primary channel; old snapshots lack the field
+    const isEmail = channel === "email"; CHANNEL = channel;
     const byId = Object.fromEntries(contacts.map((c) => [c.id, c]));
     const attemptById = Object.fromEntries(attempts.map((a) => [a.id, a]));
+    const emailById = Object.fromEntries(emailAttempts.map((a) => [a.id, a]));
+    const anyAttempt = (id) => attemptById[id] || emailById[id];
     const transcriptById = Object.fromEntries(transcripts.map((t) => [t.id, t]));
     const name = (cid) => { const c = byId[cid]; return c ? (c.full_name || "(no name)") + (c.external_id ? " · " + c.external_id : "") : cid; };
     const calls = s.calls || {}, tr = s.transcripts || {}, comp = s.compliance || {};
@@ -172,6 +181,12 @@
     const pendingApproval = interviews.filter((i) => i.status === "draft_pending_approval").length;
     const retries = contacts.filter((c) => c.status === "IN_OUTREACH" && c.next_attempt_at).length;
     const pendingDelivery = transcripts.filter((t) => t.delivery_status === "pending").length;
+    const stE = st.email || {}, rp = st.replies || {};
+    const emailsQueued = emailAttempts.filter((a) => a.status === "queued").length;
+    const awaitingReply = em.awaiting_reply ?? emailAttempts.filter((a) => a.status === "sent" && !a.outcome).length;
+    const agreedTotal = em.agreed ?? contacts.filter((c) => c.status === "BOOKED").length;
+    const followUpsDue = em.follow_ups_due ?? queue.filter((q) => q.next_attempt_at && new Date(q.next_attempt_at) <= Date.now()).length;
+    const runAgreed = emailAttempts.filter((a) => a.run_id === lastRun && a.outcome === "AGREED_TO_TALK").length;
 
     // header chips
     const chips = clear($("run-chips"));
@@ -187,7 +202,14 @@
     if (run.git_sha) chips.appendChild(el("span", { class: "chip" }, [el("a", { href: REPO + "/commit/" + run.git_sha, text: run.git_sha, target: "_blank", rel: "noopener" })]));
 
     // ---------- the loop ----------
-    const stages = [
+    const stages = isEmail ? [
+      { key: "list", title: "Approved list", now: contacts.length, nowLabel: "practices", last: "Loaded " + (ing.rows ?? contacts.length) + " practices, " + ((s.contacts || {}).verified ?? 0) + " verified" },
+      { key: "gate", title: "Gate check", now: queue.length, nowLabel: "waiting", last: "Gate: " + (stE.allowed ?? 0) + " allowed, " + (stE.blocked ?? 0) + " blocked, " + (stE.deferred ?? 0) + " deferred" },
+      { key: "send", title: "Compose + send", now: emailsQueued, nowLabel: "sending", last: "Sent " + plural(stE.sent ?? stE.placed ?? 0, "email") + (stE.script_errors ? ", " + stE.script_errors + " blocked by content checks" : "") },
+      { key: "log", title: "Delivery logged", now: pendingDelivery, nowLabel: "to deliver", last: "Processed " + (rp.applied ?? rp.replies ?? 0) + " replies, delivered " + (dv.delivered ?? 0) + " threads" + (dv.held ? ", " + dv.held + " held" : "") + (dv.failed ? ", " + dv.failed + " failed" : "") },
+      { key: "reply", title: "Reply → handoff", now: pendingApproval, nowLabel: "to approve", last: runAgreed + " agreed, handoffs drafted for approval", cls: "decision" },
+      { key: "follow", title: "Follow-up", now: awaitingReply, nowLabel: "awaiting reply", last: followUpsDue + " follow-ups due (one per practice, after " + (run.limits && run.limits.follow_up_days ? run.limits.follow_up_days + " days" : "a few days") + ")" },
+    ] : [
       { key: "list", title: "Approved list", now: contacts.length, nowLabel: "practices", last: "Loaded " + (ing.rows ?? contacts.length) + " practices, " + ((s.contacts || {}).verified ?? 0) + " verified" },
       { key: "gate", title: "Gate check", now: queue.length, nowLabel: "waiting", last: "Gate: " + (cl.allowed ?? 0) + " allowed, " + (cl.blocked ?? 0) + " blocked, " + (cl.deferred ?? 0) + " deferred" },
       { key: "call", title: "Script + call", now: inProgress, nowLabel: "in progress", last: "Placed " + plural(cl.placed ?? 0, "call") + (cl.script_errors ? ", " + cl.script_errors + " blocked by script checks" : "") },
@@ -235,16 +257,17 @@
     } else {
       const due = queue.filter((q) => q.next_attempt_at).sort((a, b) => a.next_attempt_at.localeCompare(b.next_attempt_at))[0];
       const windowWait = queue.filter((q) => !q.next_attempt_at).length;
-      if (due) nowEl.appendChild(el("div", null, [el("b", { text: "Next call: " }), due.name + " " + fmtTime(due.next_attempt_at) + (new Date(due.next_attempt_at) < Date.now() ? " (due, waits for the next run)" : "")]));
-      else if (windowWait) nowEl.appendChild(el("div", null, [el("b", { text: "Next: " }), plural(windowWait, "practice") + " waiting for the calling window (Mon–Fri 9–5 ET)"]));
-      else nowEl.appendChild(el("div", null, [el("b", { text: "Nothing queued. " }), "Approve a new batch to continue."]));
-      if (pendingApproval) nowEl.appendChild(el("div", null, [el("b", { text: "Waiting on you: " }), plural(pendingApproval, "invite") + " to approve"]));
+      if (due) nowEl.appendChild(el("div", null, [el("b", { text: isEmail ? "Next follow-up: " : "Next call: " }), due.name + " " + fmtTime(due.next_attempt_at) + (new Date(due.next_attempt_at) < Date.now() ? " (due, waits for the next run)" : "")]));
+      else if (windowWait) nowEl.appendChild(el("div", null, [el("b", { text: "Next: " }), plural(windowWait, "practice") + (isEmail ? " ready to email on the next run" : " waiting for the calling window (Mon–Fri 9–5 ET)")]));
+      else if (!(isEmail && awaitingReply)) nowEl.appendChild(el("div", null, [el("b", { text: "Nothing queued. " }), "Approve a new batch to continue."]));
+      if (isEmail && awaitingReply) nowEl.appendChild(el("div", null, [el("b", { text: "Awaiting reply: " }), plural(awaitingReply, "practice") + " emailed, no reply yet"]));
+      if (pendingApproval) nowEl.appendChild(el("div", null, [el("b", { text: "Waiting on you: " }), plural(pendingApproval, "handoff", "handoffs") + " to approve"]));
       if (dlq.length) nowEl.appendChild(el("div", null, [el("b", { text: "Needs a redrive: " }), plural(dlq.length, "transcript") + " dead-lettered"]));
     }
 
     // last-run feed + replay
     const feed = clear($("feed"));
-    const labels = ["load", "gate", "call", "log", "book", "review"];
+    const labels = isEmail ? ["load", "gate", "send", "log", "reply", "follow"] : ["load", "gate", "call", "log", "book", "review"];
     stages.forEach((sg, i) => feed.appendChild(el("li", { "data-i": String(i) }, [el("span", { class: "w", text: labels[i] }), el("span", { class: "x", text: sg.last })])));
     $("feed-note").textContent = "Last run " + fmtTime(run.started_at) + (run.trigger ? " · " + nice(run.trigger) : "");
     let timer = null;
@@ -281,31 +304,71 @@
     const today = dayKey(run.now_used || run.finished_at);
     const todayCalls = attempts.filter((a) => dayKey(a.started_at) === today).length;
     const cap = (run.limits && run.limits.max_calls_per_day) || 10;
-    tile("Booked", contacts.filter((c) => c.status === "BOOKED").length, pendingApproval ? "warning" : "good", pendingApproval ? pendingApproval + " awaiting approval" : "all approved");
-    tile("In queue", queue.length, "plain", retries + " retries scheduled");
-    tile("Calls " + (run.simulated_time ? "that day" : "today"), todayCalls + " / " + cap, todayCalls >= cap ? "warning" : "plain", todayCalls >= cap ? "daily cap reached" : "daily cap");
+    if (isEmail) {
+      const todayEmails = emailAttempts.filter((a) => a.sent_at && dayKey(a.sent_at) === today).length;
+      const ecap = (run.limits && (run.limits.max_emails_per_day || run.limits.max_calls_per_day)) || 10;
+      tile("Agreed", agreedTotal, pendingApproval ? "warning" : "good", pendingApproval ? pendingApproval + " awaiting approval" : "handoffs to Anirudh");
+      tile("Awaiting reply", awaitingReply, followUpsDue ? "warning" : "plain", followUpsDue ? followUpsDue + " follow-ups due" : "emailed, no reply yet");
+      tile("Emails " + (run.simulated_time ? "that day" : "today"), todayEmails + " / " + ecap, todayEmails >= ecap ? "warning" : "plain", todayEmails >= ecap ? "daily cap reached" : "daily cap");
+    } else {
+      tile("Booked", contacts.filter((c) => c.status === "BOOKED").length, pendingApproval ? "warning" : "good", pendingApproval ? pendingApproval + " awaiting approval" : "all approved");
+      tile("In queue", queue.length, "plain", retries + " retries scheduled");
+      tile("Calls " + (run.simulated_time ? "that day" : "today"), todayCalls + " / " + cap, todayCalls >= cap ? "warning" : "plain", todayCalls >= cap ? "daily cap reached" : "daily cap");
+    }
     tile("Transcripts to Brain", tr.delivery_rate == null ? "–" : pct(tr.delivery_rate), tr.held_pii_review ? "warning" : "plain", (tr.delivered || 0) + "/" + ((tr.total || 0) - (tr.held_pii_review || 0)) + (tr.held_pii_review ? ", " + tr.held_pii_review + " held" : ""));
-    tile("Gate escapes", comp.gate_escapes || 0, (comp.gate_escapes || 0) === 0 ? "good" : "critical", (comp.gate_escapes || 0) === 0 ? "none" : "calls past a failed gate");
+    tile("Gate escapes", comp.gate_escapes || 0, (comp.gate_escapes || 0) === 0 ? "good" : "critical", (comp.gate_escapes || 0) === 0 ? "none" : (isEmail ? "emails past a failed gate" : "calls past a failed gate"));
     tile("Dead letters", dlq.length, dlq.length === 0 ? "good" : "serious", dlq.length === 0 ? "queue empty" : "run redrive");
     tile("Errors / alerts", (s.errors || 0) + " / " + (s.alerts || 0), (s.alerts || 0) ? "warning" : "plain", "see the cards");
 
     // ---------- practice cards ----------
     const latestGate = {};
     decisions.forEach((g) => { if (!latestGate[g.contact_id] || g.run_id >= latestGate[g.contact_id].run_id) latestGate[g.contact_id] = g; });
-    const errorsFor = (c) => errors.filter((e) => e.contact_id === c.id || (e.call_id && attemptById[e.call_id] && attemptById[e.call_id].contact_id === c.id));
-    const alertsFor = (c) => alerts.filter((a) => a.contact_id === c.id || (a.call_attempt_id && attemptById[a.call_attempt_id] && attemptById[a.call_attempt_id].contact_id === c.id) || (a.transcript_id && transcriptById[a.transcript_id] && transcriptById[a.transcript_id].contact_id === c.id));
+    const errorsFor = (c) => errors.filter((e) => e.contact_id === c.id || (e.call_id && anyAttempt(e.call_id) && anyAttempt(e.call_id).contact_id === c.id));
+    const alertsFor = (c) => alerts.filter((a) => a.contact_id === c.id || (a.call_attempt_id && anyAttempt(a.call_attempt_id) && anyAttempt(a.call_attempt_id).contact_id === c.id) || (a.transcript_id && transcriptById[a.transcript_id] && transcriptById[a.transcript_id].contact_id === c.id));
     const dlqFor = (c) => dlq.filter((x) => transcriptById[x.transcript_id] && transcriptById[x.transcript_id].contact_id === c.id);
     const order = { BOOKED: 0, IN_OUTREACH: 1, READY: 2, VERIFIED: 3, SOURCED: 3, NEW: 3, UNREACHABLE: 4, DECLINED: 5, SUPPRESSED: 6 };
     const sorted = contacts.slice().sort((a, b) => (order[a.status] ?? 9) - (order[b.status] ?? 9) || (a.full_name || "zz").localeCompare(b.full_name || "zz"));
     const views = sorted.map((c) => {
       const mine = attempts.filter((a) => a.contact_id === c.id).sort((a, b) => a.attempt_number - b.attempt_number);
       const interview = interviews.find((i) => i.contact_id === c.id);
+      const mails = emailAttempts.filter((a) => a.contact_id === c.id).sort((a, b) => (a.attempt_number || 0) - (b.attempt_number || 0) || (a.sent_at || "").localeCompare(b.sent_at || ""));
       const errs = errorsFor(c), als = alertsFor(c), dl = dlqFor(c);
-      const held = mine.some((a) => { const t = transcriptById[a.transcript_id]; return t && (t.delivery_status === "held_pii_review" || t.delivery_status === "failed"); });
-      const attention = errs.length > 0 || als.length > 0 || dl.length > 0 || held || (interview && interview.status === "draft_pending_approval") || ["VERIFIED", "SOURCED", "NEW"].includes(c.status);
-      return { c, mine, interview, errs, als, dl, attention, gate: latestGate[c.id] };
+      const held = mine.concat(mails).some((a) => { const t = transcriptById[a.transcript_id]; return t && (t.delivery_status === "held_pii_review" || t.delivery_status === "failed"); });
+      const mailTrouble = mails.some((a) => a.status === "failed" || a.status === "bounced" || a.outcome === "BOUNCED");
+      const attention = errs.length > 0 || als.length > 0 || dl.length > 0 || held || mailTrouble || (interview && interview.status === "draft_pending_approval") || ["VERIFIED", "SOURCED", "NEW"].includes(c.status);
+      return { c, mine, mails, interview, errs, als, dl, attention, gate: latestGate[c.id] };
     });
 
+    const hasHandoff = (h) => !!(h && (h.contact_email || (h.contact_method && h.contact_method !== "unknown") || h.contact_number || h.availability || h.notes));
+    function handoffBlock(h) {
+      return el("div", { class: "handoff" }, [
+        el("h4", { text: "Handoff to Anirudh" }),
+        h.contact_email ? el("div", { class: "issue" }, [el("span", { class: "k", text: "email" }), el("span", { text: h.contact_email })]) : null,
+        (h.contact_method && h.contact_method !== "unknown") ? el("div", { class: "issue" }, [el("span", { class: "k", text: "reach via" }), el("span", { text: nice(h.contact_method) + (h.contact_number ? " · " + h.contact_number : "") })]) : null,
+        h.availability ? el("div", { class: "issue" }, [el("span", { class: "k", text: "available" }), el("span", { text: h.availability })]) : null,
+        h.person_spoken_to ? el("div", { class: "issue" }, [el("span", { class: "k", text: "spoke to" }), el("span", { text: nice(h.person_spoken_to) })]) : null,
+        h.notes ? el("div", { class: "issue" }, [el("span", { class: "k", text: "notes" }), el("span", { text: h.notes })]) : null,
+      ]);
+    }
+    function emailSection(v) {
+      const msec = el("div", { class: "sec" }, [el("h4", null, ["Emails", el("span", { text: plural(v.mails.length, "email") })])]);
+      v.mails.forEach((m, idx) => {
+        const t = transcriptById[m.transcript_id];
+        const sStatus = m.status === "sent" ? status("good", "sent") : m.status === "bounced" ? status("critical", "bounced") : m.status === "failed" ? status("critical", "send failed") : status("neutral", nice(m.status || "queued"));
+        const tStatus = t ? (t.delivery_status === "delivered" ? status("good", "thread delivered to Brain") : t.delivery_status === "held_pii_review" ? status("warning", "thread held for review") : t.delivery_status === "failed" ? status("critical", "thread delivery failed") : status("neutral", "thread " + nice(t.delivery_status))) : null;
+        const line = el("div", { class: "line" }, [
+          el("div", null, [el("b", { text: m.outcome ? nice(m.outcome) : (m.status === "sent" ? "awaiting reply" : nice(m.status || "queued")) }), " ", el("span", { class: "when", text: (m.sent_at ? fmtTime(m.sent_at) : "not sent") + (m.script_version ? " · script " + m.script_version : "") })]),
+          el("div", { class: "muted small", text: m.subject || "" }),
+          el("div", { class: "tags" }, [m.failure_category ? el("span", { class: "cat", text: m.failure_category }) : null, sStatus, tStatus]),
+        ]);
+        if (m.outcome_reason) line.appendChild(el("div", { class: "muted small", text: m.outcome_reason }));
+        if (m.body) line.appendChild(el("details", null, [el("summary", { text: "Email sent" }), el("pre", { class: "block", text: m.body })]));
+        if (m.reply_text) line.appendChild(el("details", { open: "" }, [el("summary", { text: "Reply" + (m.replied_at ? " · " + fmtTime(m.replied_at) : "") }), el("div", { class: "reply-quote", text: m.reply_text })]));
+        if (hasHandoff(m.handoff)) line.appendChild(handoffBlock(m.handoff));
+        msec.appendChild(el("div", { class: "mail" }, [el("div", { class: "num", text: String(m.attempt_number || idx + 1) }), line]));
+      });
+      return msec;
+    }
     function cardFor(v) {
       const c = v.c, [tone, label] = contactTone(c);
       const card = el("article", { class: "pcard", "data-tone": tone });
@@ -315,6 +378,11 @@
       const [nk, ntext] = nextStep(c, v.interview, v.gate);
       card.appendChild(el("div", { class: "next " + (nk === "brand" || nk === "neutral" ? "" : nk) }, [el("b", { text: "Next: " }), ntext]));
 
+      if (isEmail) {
+        if (v.mails.length) card.appendChild(emailSection(v));
+        else card.appendChild(el("div", { class: "sec" }, [el("h4", null, ["Emails", el("span", { text: "none yet" })]), el("div", { class: "muted small", text: v.gate && !v.gate.allowed ? "Gate: " + v.gate.reasons.map(nice).join("; ") : "No email sent yet." })]));
+      } else if (v.mails.length) card.appendChild(emailSection(v));
+      if (v.mine.length || !isEmail) {
       const sec = el("div", { class: "sec" }, [el("h4", null, ["Call attempts", el("span", { text: v.mine.length ? plural(v.mine.length, "attempt") : "none yet" })])]);
       if (!v.mine.length) sec.appendChild(el("div", { class: "muted small", text: v.gate && !v.gate.allowed ? "Gate: " + v.gate.reasons.map(nice).join("; ") : "No call placed yet." }));
       v.mine.forEach((a) => {
@@ -333,19 +401,13 @@
         sec.appendChild(el("div", { class: "attempt" }, [el("div", { class: "num", text: String(a.attempt_number) }), line]));
       });
       card.appendChild(sec);
+      }
 
       if (v.interview) {
         const i = v.interview;
         card.appendChild(el("div", { class: "sec" }, [el("h4", null, ["Conversation", el("span", { text: i.status === "approved" ? "approved" : "awaiting approval" })]),
           el("div", { class: "small" }, [i.scheduled_for ? fmtTime(i.scheduled_for) + " · 30 min · " : "No time fixed yet · ", nice(i.confirmation_email) + " ", i.calendar_event_ref ? el("a", { href: REPO + "/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: "draft .ics", target: "_blank", rel: "noopener" }) : null]),
-          (i.contact_email || i.contact_method || i.contact_number || i.availability || i.notes) ? el("div", { class: "handoff" }, [
-            el("h4", { text: "Handoff to Anirudh" }),
-            i.contact_email ? el("div", { class: "issue" }, [el("span", { class: "k", text: "email" }), el("span", { text: i.contact_email })]) : null,
-            (i.contact_method && i.contact_method !== "unknown") ? el("div", { class: "issue" }, [el("span", { class: "k", text: "reach via" }), el("span", { text: nice(i.contact_method) + (i.contact_number ? " · " + i.contact_number : "") })]) : null,
-            i.availability ? el("div", { class: "issue" }, [el("span", { class: "k", text: "available" }), el("span", { text: i.availability })]) : null,
-            i.person_spoken_to ? el("div", { class: "issue" }, [el("span", { class: "k", text: "spoke to" }), el("span", { text: nice(i.person_spoken_to) })]) : null,
-            i.notes ? el("div", { class: "issue" }, [el("span", { class: "k", text: "notes" }), el("span", { text: i.notes })]) : null,
-          ]) : null]));
+          hasHandoff(i) ? handoffBlock(i) : null]));
       }
       const n = v.errs.length + v.als.length + v.dl.length;
       const issues = el("div", { class: "sec" }, [el("h4", null, ["Errors and alerts", el("span", { text: n ? plural(v.errs.length, "error") + ", " + plural(v.als.length, "alert") + (v.dl.length ? ", " + v.dl.length + " dead-lettered" : "") : "none" })])]);
@@ -387,18 +449,22 @@
     clear($("gate")).appendChild(table(["Practice", "Decision", "Why"], held.map((g) => { const k = kind(g); return [name(g.contact_id), status(k === "deferred" ? "warning" : "critical", k), el("div", { class: "reasons" }, (g.reasons || []).map((r) => el("span", { class: "reason", text: r })))]; }), { empty: "Nothing was held back in the last run.", nowrap: [1] }));
 
     // ---------- collapsed detail ----------
-    const outcomes = Object.entries(calls.by_outcome || {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: nice(k), count: v }));
-    bars($("outcomes"), outcomes, "outcomes, all attempts");
-    const cats = Object.entries(calls.by_failure_category || {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: k, count: v }));
+    const merged = Object.assign({}, calls.by_outcome || {});
+    Object.entries(em.by_outcome || {}).forEach(([k, v]) => { merged[k] = (merged[k] || 0) + v; });
+    const outcomes = Object.entries(merged).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: nice(k), count: v }));
+    bars($("outcomes"), outcomes, "outcomes, calls and emails");
+    const catCounts = Object.assign({}, calls.by_failure_category || {});
+    emailAttempts.forEach((a) => { if (a.failure_category) catCounts[a.failure_category] = (catCounts[a.failure_category] || 0) + 1; });
+    const cats = Object.entries(catCounts).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: k, count: v }));
     bars($("fail-bars"), cats, "failure categories");
-    $("outcomes-count").textContent = plural(calls.attempts || 0, "attempt");
+    $("outcomes-count").textContent = plural((calls.attempts || 0) + (em.attempts ?? emailAttempts.length), "attempt");
     $("queue-count").textContent = plural(queue.length, "practice");
     clear($("queue")).appendChild(table(["Practice", "Attempts", "Last outcome", "Next attempt"], queue.map((q) => [q.name + (q.external_id ? " · " + q.external_id : ""), q.attempts, nice(q.last_outcome) || "–", q.next_attempt_at ? fmtTime(q.next_attempt_at) : "when the window opens"]), { num: [1], empty: "Queue is empty.", nowrap: [3] }));
     $("interviews-count").textContent = plural(interviews.length, "booked");
     clear($("interviews")).appendChild(table(["Practice", "Scheduled for", "Status", "Draft"], interviews.map((i) => [name(i.contact_id), fmtTime(i.scheduled_for), i.status === "approved" ? status("good", "approved by " + i.approved_by) : status("warning", "awaiting approval"), i.calendar_event_ref ? el("a", { href: REPO + "/blob/main/" + i.calendar_event_ref.replace(/^file:/, ""), text: ".ics", target: "_blank", rel: "noopener" }) : "–"]), { nowrap: [1] }));
     const dStatus = (t) => t.delivery_status === "delivered" ? status("good", "delivered") : t.delivery_status === "held_pii_review" ? status("warning", "held (PII)") : t.delivery_status === "failed" ? status("critical", "failed") : status("neutral", t.delivery_status);
     $("transcripts-count").textContent = (tr.delivered || 0) + " delivered · " + (tr.held_pii_review || 0) + " held · " + (tr.failed || 0) + " failed";
-    clear($("transcripts")).appendChild(table(["Practice", "Outcome", "Delivery", "Tries"], transcripts.map((t) => { const a = attemptById[t.call_attempt_id] || {}; return [name(t.contact_id), nice(a.outcome), dStatus(t), t.delivery_attempts]; }), { num: [3] }));
+    clear($("transcripts")).appendChild(table(["Practice", "Outcome", "Delivery", "Tries"], transcripts.map((t) => { const a = anyAttempt(t.call_attempt_id) || {}; return [name(t.contact_id), nice(a.outcome), dStatus(t), t.delivery_attempts]; }), { num: [3] }));
     const errRows = errors.slice().reverse().map((e) => [fmtTime(e.timestamp), status("warning", nice(e.error_type)), e.contact_id ? name(e.contact_id) : e.call_id, (e.field ? e.field + ": " : "") + e.detail]);
     const alertRows = alerts.slice().reverse().map((a) => [fmtTime(a.timestamp), status(a.type === "kill_switch_on" || a.type === "gate_escape" ? "critical" : (a.type.includes("failed") ? "serious" : "warning"), nice(a.type)), a.contact_id ? name(a.contact_id) : (a.transcript_id || a.run_id || ""), a.detail]);
     $("errors-count").textContent = plural(errors.length, "error") + " · " + plural(alerts.length, "alert") + " · " + dlq.length + " dead-lettered";
@@ -445,14 +511,19 @@
     const labels = { idle: "Agent idle", preparing: "Preparing the call", dialing: "Dialing your phone", in_call: "On the call", ended: "Call ended", error: "Error" };
     $("live-status").textContent = labels[st.status] || st.status;
     dot.className = "live-dot" + (["preparing", "dialing", "in_call"].includes(st.status) ? " on" : st.status === "error" ? " err" : "");
-    const busy = ["preparing", "dialing", "in_call"].includes(st.status);
+    const callBusy = ["preparing", "dialing", "in_call"].includes(st.status);
+    const em = st.email || {};
+    const emailBusy = ["preparing", "sending"].includes(em.status);
+    const runBusy = !!(st.run && st.run.status === "running");
+    const busy = callBusy || emailBusy || runBusy;
     btn.disabled = busy;
-    btn.textContent = busy ? "Call in progress…" : (st.status === "ended" || st.status === "error" ? "Call again" : "Call my phone");
+    btn.textContent = callBusy ? "Call in progress…" : (st.status === "ended" || st.status === "error" ? "Call again" : "Call my phone");
+    renderEmailPanel(em, busy);
     const c = st.call || {};
     $("live-meta").textContent = (st.live_events ? "live transcript on" : "transcript after the call") + (st.tunnel_url ? "" : " · no tunnel") + (st.updated_at ? " · " + fmtTime(st.updated_at) : "");
     const bits = [];
     if (c.to) bits.push("to " + c.to); if (c.from) bits.push("from " + c.from); if (c.vapi_status) bits.push("Vapi: " + c.vapi_status); if (c.ended_reason) bits.push(nice(c.ended_reason));
-    note.textContent = st.status === "error" ? st.error : (bits.join(" · ") || (st.status === "idle" ? "Service connected on this machine. Pressing the button dials the allowlisted number through Vapi." : ""));
+    note.textContent = st.status === "error" ? st.error : (bits.join(" · ") || (st.status === "idle" ? "Service connected on this machine. Email me sends the playbook email to the allowlisted address; Call my phone dials the allowlisted number through Vapi." : ""));
     clear(tr);
     (st.transcript || []).forEach((u) => tr.appendChild(el("div", { class: "bubble " + u.role }, [el("span", { class: "who", text: u.role === "agent" ? "agent" : "you" }), u.text])));
     if (st.partial) tr.appendChild(el("div", { class: "bubble partial " + st.partial.role }, [el("span", { class: "who", text: st.partial.role === "agent" ? "agent" : "you" }), st.partial.text]));
@@ -468,11 +539,53 @@
     $("live-log").textContent = (st.log || []).slice(-25).join("\n");
     return busy;
   }
+  function renderEmailPanel(e, busy) {
+    const panel = $("live-email"), ebtn = $("email-btn");
+    ebtn.disabled = busy;
+    ebtn.textContent = ["preparing", "sending"].includes(e.status) ? "Sending…" : (["sent", "replied", "error"].includes(e.status) ? "Email again" : "Email me");
+    if (!e.status || e.status === "idle") { panel.hidden = true; return; }
+    panel.hidden = false;
+    const labels = { preparing: "Preparing the email", sending: "Sending", sent: "Email sent, waiting for a reply", replied: "Reply recorded", error: "Email error" };
+    $("email-status").textContent = labels[e.status] || e.status;
+    $("email-dot").className = "live-dot" + (["preparing", "sending"].includes(e.status) ? " on" : e.status === "error" ? " err" : "");
+    $("email-meta").textContent = e.status === "error" ? (e.error || "") : [e.to ? "to " + e.to : "", e.sent_at ? fmtTime(e.sent_at) : "", e.provider_message_id ? "id " + e.provider_message_id : ""].filter(Boolean).join(" · ");
+    const preview = $("email-preview");
+    if (e.subject || e.body) { preview.hidden = false; $("email-subject").textContent = e.subject || ""; $("email-body").textContent = e.body || ""; } else preview.hidden = true;
+    $("reply-form").hidden = !(e.status === "sent" || e.status === "replied");
+    const res = clear($("email-result"));
+    if (e.reply) {
+      res.hidden = false;
+      res.appendChild(el("div", null, [el("b", { text: "Outcome: " }), nice(e.reply.outcome) || "unclassified", e.reply.at ? el("span", { class: "muted small", text: " · " + fmtTime(e.reply.at) }) : null]));
+      if (e.reply.text) res.appendChild(el("div", { class: "reply-quote", text: e.reply.text }));
+      const h = e.reply.handoff || {};
+      if (h.contact_email || h.contact_method || h.availability || h.notes || h.contact_number) res.appendChild(el("div", null, [el("b", { text: "Handoff to Anirudh: " }), [h.contact_email, h.contact_method && h.contact_method !== "unknown" ? nice(h.contact_method) + (h.contact_number ? " " + h.contact_number : "") : "", h.availability, h.notes].filter(Boolean).join(" · ")]));
+    } else res.hidden = true;
+  }
   function wireLive(initial) {
     if (!initial) return;
     let wasBusy = renderLive(initial), timer = null;
     const tick = async () => { const st = await localState(); if (!st) return; const busy = renderLive(st); if (wasBusy && !busy && LIVE_VIEW) setTimeout(() => location.reload(), 1500); wasBusy = busy; };
     timer = setInterval(tick, 2000);
+    $("email-btn").addEventListener("click", async () => {
+      $("email-btn").disabled = true; $("email-btn").textContent = "Sending…";
+      try { const res = await localFetch(LOCAL + "/api/email", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
+      catch (e) { $("live-note").textContent = "Could not reach the local service."; }
+      wasBusy = true;
+      tick();
+    });
+    $("reply-btn").addEventListener("click", async () => {
+      const text = $("reply-text").value.trim();
+      if (!text) { $("reply-note").textContent = "Paste the reply first."; return; }
+      $("reply-btn").disabled = true; $("reply-note").textContent = "Classifying…";
+      try {
+        const res = await localFetch(LOCAL + "/api/reply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
+        const body = await res.json();
+        if (res.ok) { $("reply-note").textContent = "Recorded: " + (nice(body.reply && body.reply.outcome) || "unclassified"); $("reply-text").value = ""; if (LIVE_VIEW) setTimeout(() => location.reload(), 1500); }
+        else $("reply-note").textContent = body.message || body.error || "could not record";
+      } catch (e) { $("reply-note").textContent = "Could not reach the local service."; }
+      $("reply-btn").disabled = false;
+      tick();
+    });
     $("call-btn").addEventListener("click", async () => {
       $("call-btn").disabled = true;
       try { const res = await localFetch(LOCAL + "/api/call", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" }); const body = await res.json(); if (!res.ok) $("live-note").textContent = body.message || body.error || "could not start"; }
@@ -483,7 +596,7 @@
   }
 
   // ---------- dry run from the page (local service) ----------
-  const STAGE_NODE = { ingest: [0], verify: [0], call: [1, 2], webhooks: [3], deliver: [3] };
+  const STAGE_NODE = { ingest: [0], verify: [0], call: [1, 2], email: [1, 2], webhooks: [3], replies: [3], deliver: [3] };
   function showRunProgress(run) {
     if (!ring_ctl) return;
     ring_ctl.stop();
@@ -498,6 +611,8 @@
     if (c("ingest")) ring_ctl.feedRow(0, "Loaded " + (c("ingest").rows ?? 0) + " practices" + (c("verify") ? ", " + (c("verify").verified ?? 0) + " verified this run" : "…"));
     if (c("call")) { const x = c("call"); ring_ctl.feedRow(1, "Gate: " + (x.allowed ?? 0) + " allowed, " + (x.blocked ?? 0) + " blocked, " + (x.deferred ?? 0) + " deferred"); ring_ctl.feedRow(2, "Placed " + plural(x.placed ?? 0, "call")); }
     if (c("webhooks")) ring_ctl.feedRow(3, "Logged " + (c("webhooks").applied ?? 0) + " outcomes" + (c("deliver") ? ", delivered " + (c("deliver").delivered ?? 0) + " transcripts" : "…"));
+    if (c("email")) { const x = c("email"); ring_ctl.feedRow(1, "Gate: " + (x.allowed ?? 0) + " allowed, " + (x.blocked ?? 0) + " blocked, " + (x.deferred ?? 0) + " deferred"); ring_ctl.feedRow(2, "Sent " + plural(x.sent ?? x.placed ?? 0, "email")); }
+    if (c("replies")) ring_ctl.feedRow(3, "Processed " + (c("replies").applied ?? c("replies").replies ?? 0) + " replies" + (c("deliver") ? ", delivered " + (c("deliver").delivered ?? 0) + " threads" : "…"));
   }
   function wireRun(local) {
     const btn = $("run-btn"), link = $("run-link");

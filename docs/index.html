@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <div class="wrap">
@@ -32,12 +32,28 @@
   <div id="error" class="err"></div>
 
   <section class="card livecall" id="livecall" hidden>
-    <div class="head"><h2>Live call</h2><span class="count" id="live-meta"></span></div>
+    <div class="head"><h2>Live outreach</h2><span class="count" id="live-meta"></span></div>
     <div class="live-row">
       <div class="live-status"><span class="live-dot" id="live-dot"></span><span id="live-status">connecting…</span></div>
-      <button type="button" class="btn primary" id="call-btn">Call my phone</button>
+      <div class="live-actions">
+        <button type="button" class="btn primary" id="email-btn" title="Composes the playbook email for the allowlisted address and sends it through SMTP">Email me</button>
+        <button type="button" class="btn secondary" id="call-btn" title="Dials the allowlisted number through Vapi (needs an imported Twilio number)">Call my phone</button>
+      </div>
     </div>
     <div class="live-note" id="live-note"></div>
+    <div class="live-email" id="live-email" hidden>
+      <div class="email-head"><span class="live-dot" id="email-dot"></span><span id="email-status"></span><span class="count" id="email-meta"></span></div>
+      <div class="email-preview" id="email-preview" hidden>
+        <div class="email-subject" id="email-subject"></div>
+        <pre class="block email-body" id="email-body"></pre>
+      </div>
+      <div class="reply-form" id="reply-form" hidden>
+        <label for="reply-text" class="small muted">Reply from the practice (paste it here when inbox polling is off)</label>
+        <textarea id="reply-text" rows="3" placeholder="e.g. Sure, Tuesday afternoons work. Send the invite to office@example.test"></textarea>
+        <div class="live-actions"><button type="button" class="btn primary" id="reply-btn">Record reply</button><span class="count" id="reply-note"></span></div>
+      </div>
+      <div class="live-result" id="email-result" hidden></div>
+    </div>
     <div class="transcript" id="live-transcript"></div>
     <div class="live-result" id="live-result" hidden></div>
     <details class="small"><summary>Service log</summary><pre class="block" id="live-log"></pre></details>
@@ -88,7 +104,7 @@
   </section>
 
   <details class="ops"><summary>Outcomes and failure categories <span class="count" id="outcomes-count"></span></summary><div class="inner grid"><div class="bars" id="outcomes"></div><div class="bars" id="fail-bars"></div></div></details>
-  <details class="ops"><summary>Call queue <span class="count" id="queue-count"></span></summary><div class="inner table-wrap" id="queue"></div></details>
+  <details class="ops"><summary>Outreach queue <span class="count" id="queue-count"></span></summary><div class="inner table-wrap" id="queue"></div></details>
   <details class="ops"><summary>Booked conversations <span class="count" id="interviews-count"></span></summary><div class="inner table-wrap" id="interviews"></div></details>
   <details class="ops"><summary>Transcripts → Brain <span class="count" id="transcripts-count"></span></summary><div class="inner table-wrap" id="transcripts"></div></details>
   <details class="ops"><summary>Errors and alerts <span class="count" id="errors-count"></span></summary><div class="inner table-wrap" id="errors"></div></details>

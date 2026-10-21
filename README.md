@@ -124,6 +124,49 @@ number in the Vapi dashboard. Imported numbers are preferred automatically.
 text. A fixed slot is a bonus (`BOOKED`); agreement without a slot is `AGREED_TO_TALK`. Both land on the practice card
 as "Handoff to Anirudh".
 
+## Email outreach
+
+Email is now the primary channel: the Twilio trial cannot hand a call to Vapi, and the playbook already carries an
+approval-gated cold email (section 8b). The loop is the same, with email in place of the call:
+
+1. **Gate.** Same hard checks as for calls, on the email channel: not suppressed (a "stop" reply suppresses every
+   channel), address verified, address cleared (it must come from the practice's own website and be approved),
+   on the live allowlist when in `live` mode, under the message cap (initial email plus one follow-up).
+2. **Compose.** The Brain supplies the playbook template; the connector fills the doctor, practice, hook, and two
+   slots, keeps it plain text and under 150 words, one ask, real sender name, and an opt-out line. A missing required
+   field blocks the send and lands in the error report.
+3. **Send.** Through SMTP (any provider; Gmail works with an app password). Every send is logged as an email attempt
+   with its subject, body, provider message id, and script version.
+4. **Replies.** Either IMAP polling (when `IMAP_*` is set) or **Record reply** on the dashboard, where you paste the
+   reply. The reply is classified: agreed (email, channel, availability captured as a handoff to Anirudh), declined,
+   stop (suppressed everywhere), bounce (address marked failed), or other. The thread goes to the Brain like a
+   transcript. No reply after `follow_up_days` schedules one follow-up, then the practice is marked no reply.
+
+**Dashboard.** With `python -m infra serve` running, the "Live outreach" panel has **Email me** (sends the demo email
+to the allowlisted address in `seeds/live/`), shows the subject and body that went out, and a **Record reply** box
+that closes the loop and shows the outcome and handoff. The ring relabels its stages for email (Approved list → Gate
+check → Compose + send → Delivery logged → Reply → handoff → Follow-up), practice cards gain an **Emails** section,
+and **Run the agent** still runs the dry run with mock email replies.
+
+**`.env` keys for email**
+
+```
+SMTP_HOST=smtp.gmail.com     # or your provider
+SMTP_PORT=587                # 587 STARTTLS, 465 SSL
+SMTP_USER=you@example.com
+SMTP_PASSWORD=...            # Gmail: a 16-character App Password (Google Account → Security → 2-Step Verification → App passwords)
+EMAIL_FROM=you@example.com
+EMAIL_FROM_NAME=Anirudh Bagla
+EMAIL_REPLY_TO=anirudh@example.com
+IMAP_HOST=imap.gmail.com     # optional: poll the inbox for replies instead of pasting them
+IMAP_USER=you@example.com
+IMAP_PASSWORD=...
+BV_LIVE_ALLOWLIST=+16506984849,you@example.com   # phones and emails that may be contacted in live mode
+```
+
+Gmail note: SMTP needs 2-Step Verification on the Google account and an App Password; a normal password is rejected.
+Some university Google Workspace tenants disable App Passwords; use a personal Gmail or another SMTP provider then.
+
 ## Repository layout
 
 ```

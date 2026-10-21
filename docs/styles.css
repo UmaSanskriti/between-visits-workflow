@@ -227,3 +227,23 @@ footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
 .live-result { margin-top: 12px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); font-size: 13px; }
 .live-result b { font-weight: 600; }
 button:disabled { opacity: 0.5; cursor: default; }
+
+/* email outreach */
+.btn.secondary { background: var(--surface); color: var(--ink-2); }
+.live-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.live-email { margin-top: 12px; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--surface-2); display: flex; flex-direction: column; gap: 10px; }
+.email-head { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.email-head .count { margin-left: auto; }
+.email-subject { font-weight: 600; margin-bottom: 4px; }
+.email-body { margin: 0; max-height: 260px; overflow-y: auto; background: var(--surface); }
+.reply-form { display: flex; flex-direction: column; gap: 6px; }
+.reply-form textarea { font: inherit; font-size: 13px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); resize: vertical; min-height: 64px; }
+.mail { display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--grid); }
+.mail:last-child { border-bottom: 0; }
+.mail .num { width: 26px; height: 26px; border-radius: 50%; background: var(--surface-2); color: var(--ink-2); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.mail .line { font-size: 13px; }
+.mail .line b { font-weight: 600; }
+.mail .line .when { color: var(--muted); }
+.mail .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; align-items: center; }
+.mail .tags .cat { font-size: 12px; background: var(--accent-soft); color: var(--ink); border-radius: 6px; padding: 1px 7px; }
+.reply-quote { margin: 6px 0 0; padding: 6px 10px; border-left: 3px solid var(--brand); background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 13px; white-space: pre-wrap; }
