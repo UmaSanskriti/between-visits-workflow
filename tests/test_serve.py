@@ -246,9 +246,9 @@ def test_run_endpoint_origin_rule_body_and_busy(server):
     code, _, _ = call(base + "/api/run", "POST", {}, headers={"Origin": "https://evil.example"})
     assert code == 403 and service.run_requests == []
     code, body, _ = call(base + "/api/run", "POST", {}, headers={"Origin": "https://umasanskriti.github.io"})
-    assert code == 200 and body["started"] and service.run_requests == [(True, "")]  # a fresh list by default
-    code, body, _ = call(base + "/api/run", "POST", {"reset": False}, headers={"Origin": "http://127.0.0.1:8787"})
-    assert code == 200 and service.run_requests[-1] == (False, "")
+    assert code == 200 and body["started"] and service.run_requests == [(False, "")]  # state persists by default
+    code, body, _ = call(base + "/api/run", "POST", {"reset": True}, headers={"Origin": "http://127.0.0.1:8787"})
+    assert code == 200 and service.run_requests[-1] == (True, "")
     snap = state.snapshot()
     assert snap["run"]["status"] == "running" and snap["run"]["stage"] == "ingest" and snap["run"]["email"] is None
     assert set(snap["run"]) >= {"status", "stage", "stages", "started_at", "finished_at", "run_id", "error", "email"}
