@@ -30,6 +30,7 @@ COMMON_OPTIONS = (
     ("--now", {"help": "ISO 8601 instant to run 'as if' (also BV_NOW)"}),
     ("--data-dir", {"help": "override [paths].data_dir"}),
     ("--export-dir", {"help": "override [paths].export_dir"}),
+    ("--channel", {"choices": ["email", "call"], "help": "outreach channel for this run (also BV_OUTREACH_CHANNEL)"}),
 )
 
 
@@ -97,6 +98,25 @@ def _parser() -> argparse.ArgumentParser:
     ld.add_argument(
         "--any-time", action="store_true", help="waive the business-hours window for allowlisted team numbers"
     )
+    ed = sub.add_parser(
+        "email-demo", help="email the allowlisted address (seeds/live/, data-live/); preview without --send"
+    )
+    ed.add_argument("--send", action="store_true", help="actually send or queue; without it, only print the email")
+    ed.add_argument("--reset", action="store_true", help="wipe data-live/ first")
+    ed.add_argument(
+        "--transport", choices=["outbox", "smtp"], default="", help="default: outbox unless SMTP_PASSWORD is set"
+    )
+    es = sub.add_parser("email-sent", help="report a hand send through the Gmail connector for a queued email")
+    es.add_argument("attempt", help="email attempt id (em_...)")
+    es.add_argument("--message-id", required=True, help="Gmail message id")
+    es.add_argument("--thread-id", default="")
+    es.add_argument("--live", action="store_true", help="use the live store (data-live/)")
+    rp = sub.add_parser("reply", help="record a reply you read in the inbox (classified like an inbound event)")
+    rp.add_argument("needle", help="email attempt id, contact id, external id, or name")
+    rp.add_argument("--text", required=True)
+    rp.add_argument("--from", dest="sender", default="", help="reply sender address")
+    rp.add_argument("--at", default="", help="ISO 8601 time of the reply")
+    rp.add_argument("--live", action="store_true", help="use the live store (data-live/)")
     sv = sub.add_parser("serve", help="local control service: dashboard button, live transcript, webhook intake")
     sv.add_argument("--port", type=int, default=8787)
     sv.add_argument("--no-tunnel", action="store_true", help="skip the Cloudflare quick tunnel (no live transcript)")
@@ -118,10 +138,14 @@ def _find_contact(store: Store, needle: str):
 def main(argv=None) -> int:
     args = _parser().parse_args(argv)
     env = load_dotenv(ROOT / ".env", dict(os.environ))
-    if args.command == "live-demo":
+    if getattr(args, "channel", None):
+        env["BV_OUTREACH_CHANNEL"] = args.channel
+    if args.command in ("live-demo", "email-demo") or (args.command in ("reply", "email-sent") and args.live):
         env.update({"BV_MODE": "live", "BV_ALLOW_LIVE_CALLS": "1"})
-        if args.any_time:
+        if getattr(args, "any_time", False):
             env["BV_LIVE_IGNORE_WINDOW"] = "1"
+        if args.command == "email-demo":
+            env["BV_OUTREACH_CHANNEL"] = "email"
         env.setdefault("BV_DATA_DIR", "data-live")
         env.setdefault("BV_EXPORT_DIR", "docs/data-live")
         for attr, default in (
@@ -155,6 +179,8 @@ def main(argv=None) -> int:
 
     if args.command in ("vapi", "live-demo"):
         return _vapi_commands(args, cfg, clock, store)
+    if args.command in ("email-demo", "email-sent", "reply"):
+        return _email_commands(args, cfg, clock, store)
     if args.command == "twilio":
         return _twilio_check()
     if args.command == "source":
@@ -297,6 +323,7 @@ def main(argv=None) -> int:
             "contact": contact.to_dict(),
             "channels": [ch.to_dict() for ch in store.channels_for(contact.id)],
             "call_attempts": [a.to_dict() for a in store.attempts_for(contact.id)],
+            "email_attempts": [a.to_dict() for a in store.email_attempts.values() if a.contact_id == contact.id],
             "interviews": [i.to_dict() for i in store.interviews.values() if i.contact_id == contact.id],
             "gate_decisions": [d for d in store.logs["gate_decisions"] if d["contact_id"] == contact.id],
             "audit": [
@@ -306,6 +333,58 @@ def main(argv=None) -> int:
         print(json.dumps(payload, indent=1))
         return 0
     return 1
+
+
+def _email_commands(args, cfg, clock, store: Store) -> int:
+    from . import live
+    from .email.provider import EmailSendError
+
+    log = print
+    if args.command == "email-sent":
+        try:
+            out = live.mark_email_sent(store, cfg, clock, args.attempt, args.message_id, args.thread_id, log)
+        except KeyError as exc:
+            print(f"email: no queued attempt {exc}", file=sys.stderr)
+            return 1
+        print(f"email: {out['id']} status={out['status']} sent_at={out['sent_at']}")
+        return 0
+    if args.command == "reply":
+        try:
+            out = live.record_reply(store, cfg, clock, args.needle, args.text, log, sender=args.sender, at=args.at)
+        except KeyError as exc:
+            print(f"email: {exc}", file=sys.stderr)
+            return 1
+        print(json.dumps(out, indent=1))
+        return 0
+    # email-demo
+    if args.reset:
+        store.reset()
+    paths = live.LivePaths(seed=Path(args.seed), clearances=Path(args.clearances), suppressions=Path(args.suppressions))
+    print(f"email: allowlist {cfg.live_allowlist}; seeds {paths.seed}; data {cfg.data_dir}")
+    allowed = live.preview_email(store, cfg, clock, paths, log)
+    for item in allowed:
+        print(f"email: to {item['to']}  ({item['word_count']} words)\nSubject: {item['subject']}\n\n{item['body']}")
+    if not args.send:
+        print(f"email: preview only ({len(allowed)} message(s) would be sent). Re-run with --send.")
+        return 0
+    if not allowed:
+        print("email: nothing to send", file=sys.stderr)
+        return 1
+    try:
+        provider = live.connect_email(cfg, clock, log, transport=args.transport)
+    except EmailSendError as exc:
+        print(f"{exc}. Values go in {ROOT / '.env'} (gitignored).", file=sys.stderr)
+        return 2
+    result = live.send_demo_email(store, cfg, clock, provider, paths, log)
+    _print_report(result["run"], result["summary"])
+    for a in result["attempts"]:
+        print(f"email: {a['id']} status={a['status']} provider={a['provider']} to channel {a['channel_id']}")
+    if result["queued"]:
+        print(
+            "email: queued for the Gmail connector; after sending run: "
+            f"python -m infra email-sent {result['queued'][0]['id']} --message-id <gmail id> --live"
+        )
+    return 0
 
 
 def _twilio_check() -> int:

@@ -87,6 +87,7 @@ def live_cfg(tmp_path, allow="+16175550101"):
         ROOT / "config.toml",
         env={
             "BV_MODE": "live",
+            "BV_OUTREACH_CHANNEL": "call",
             "BV_ALLOW_LIVE_CALLS": "1",
             "BV_LIVE_ALLOWLIST": allow,
             "BV_DATA_DIR": str(tmp_path / "data"),

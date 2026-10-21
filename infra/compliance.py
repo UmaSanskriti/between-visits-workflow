@@ -97,6 +97,36 @@ def pre_call_gate(store: Store, contact: Contact, channel: Channel | None, cfg: 
     return GateResult(allowed=not reasons, reasons=reasons, deferred=deferred, waivers=waivers)
 
 
+def pre_send_gate(store: Store, contact: Contact, channel: Channel | None, cfg: Config, clock: Clock) -> GateResult:
+    """Email counterpart of pre_call_gate (playbook section 8: published addresses only, honor stop, approved batch)."""
+    now = clock.now()
+    reasons: list[str] = []
+    if cfg.kill_switch:
+        reasons.append("kill_switch_on")
+    if store.state.get("paused"):
+        reasons.append("outreach_paused")
+    suppressed, why = store.is_suppressed(contact)
+    if suppressed:
+        reasons.append(f"suppressed:{why}")
+    if contact.verification_status != VerificationStatus.VERIFIED:
+        reasons.append(f"contact_not_verified:{contact.verification_reason or contact.verification_status}")
+    if channel is None:
+        reasons.append("no_email_channel")
+    else:
+        if not channel.verified:
+            reasons.append("channel_not_verified")
+        if channel.call_clearance != Clearance.CLEARED:
+            reasons.append("email_clearance_not_cleared")  # the address must come from the practice's own site
+        if cfg.mode == "live" and channel.value.lower() not in cfg.live_allowlist:
+            reasons.append("not_in_live_allowlist")
+    if contact.attempts >= cfg.email_max_messages:
+        reasons.append("max_messages_reached")
+    if contact.next_attempt_at and parse_iso(contact.next_attempt_at) > now:
+        reasons.append(f"retry_not_due_until:{contact.next_attempt_at}")
+    deferred = bool(reasons) and all(r.startswith(DEFERRAL_PREFIXES) for r in reasons)
+    return GateResult(allowed=not reasons, reasons=reasons, deferred=deferred)
+
+
 def contains_opt_out(text: str) -> bool:
     lowered = (text or "").lower()
     return any(re.search(p, lowered) for p in OPT_OUT_PATTERNS)

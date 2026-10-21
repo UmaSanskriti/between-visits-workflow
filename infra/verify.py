@@ -49,7 +49,9 @@ def _norm(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip()
 
 
-def verify(store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[str, dict]) -> dict:
+def verify(
+    store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[str, dict], channel: str = "call"
+) -> dict:
     now = iso(clock.now())
     counts = {
         "channels_verified": 0,
@@ -87,17 +89,18 @@ def verify(store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[
                     )
                 counts["channels_failed"] += 1
         elif ch.type == "email":
+            ch.value = (ch.value or "").strip().lower()
             ok = bool(EMAIL_RE.match(ch.value))
             store.update(
                 "channels", ch, "verify", {"verified": ok, "verification_reason": "" if ok else "invalid_email_format"}
             )
             counts["channels_verified" if ok else "channels_failed"] += 1
 
-    # 2. Clearance (CMP-003): the clearances file is the only thing that can set `cleared`.
+    # 2. Clearance (CMP-003): the clearances file is the only thing that can set `cleared`, for phones and emails.
     for ch in store.channels.values():
-        if ch.type != "phone":
+        if ch.type not in ("phone", "email"):
             continue
-        entry = clearances.get(ch.value)
+        entry = clearances.get(ch.value.lower() if ch.type == "email" else ch.value)
         if entry and ch.call_clearance != Clearance.CLEARED:
             store.update(
                 "channels",
@@ -139,7 +142,7 @@ def verify(store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[
         key = f"{_norm(contact.full_name)}|{_norm(contact.practice_name)}" if _norm(contact.full_name) else ""
         if key:
             owners_by_key.setdefault(key, contact.id)
-        for ch in store.channels_for(contact.id, "phone"):
+        for ch in store.channels_for(contact.id, "phone") + store.channels_for(contact.id, "email"):
             if ch.verified:
                 owners_by_phone.setdefault(ch.value, contact.id)
     for contact in store.contacts.values():
@@ -160,7 +163,7 @@ def verify(store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[
         key = f"{_norm(contact.full_name)}|{_norm(contact.practice_name)}" if _norm(contact.full_name) else ""
         if not dup_of and key and owners_by_key.get(key, contact.id) != contact.id:
             dup_of = owners_by_key[key]
-        for ch in phones:
+        for ch in phones + emails:
             if not dup_of and ch.verified and owners_by_phone.get(ch.value, contact.id) != contact.id:
                 dup_of = owners_by_phone[ch.value]
         if dup_of:
@@ -185,11 +188,26 @@ def verify(store: Store, lookup: LineTypeLookup, clock: Clock, clearances: dict[
             counts["duplicates"] += 1
             continue
 
-        if any(ch.verified for ch in phones):
+        primary = emails if channel == "email" else phones
+        secondary = phones if channel == "email" else emails
+        if any(ch.verified for ch in primary):
             changes.update({"verification_status": VerificationStatus.VERIFIED, "verification_reason": ""})
             if contact.status in (ContactStatus.NEW, ContactStatus.SOURCED, ContactStatus.VERIFIED):
                 changes["status"] = ContactStatus.READY
             counts["verified"] += 1
+        elif any(ch.verified for ch in secondary) and channel == "email":
+            changes.update(
+                {
+                    "verification_status": VerificationStatus.FAILED,
+                    "verification_reason": "no_email_channel",
+                    "status": ContactStatus.VERIFIED,
+                }
+            )
+            if not any(e["contact_id"] == contact.id and e["field"] == "email" for e in store.logs["errors"]):
+                store.error(
+                    "missing_field", "no email channel; phone only (not emailed)", contact_id=contact.id, field="email"
+                )
+            counts["failed"] += 1
         elif any(ch.verified for ch in emails):
             changes.update(
                 {

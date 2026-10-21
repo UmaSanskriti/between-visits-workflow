@@ -160,16 +160,19 @@ def load_suppressions(store: Store, path: str | Path, clock: Clock) -> int:
 
 
 def load_clearances(path: str | Path) -> dict[str, dict]:
-    """CMP-003: the authorized clearance list. Keyed by E.164 phone."""
+    """CMP-003: the authorized clearance list. Keyed by E.164 phone or lowercased email (`identifier` or `phone`)."""
     path = Path(path)
     if not path.exists():
         return {}
     out = {}
     with path.open(newline="") as fh:
         for row in csv.DictReader(fh):
-            phone = normalize_e164((row.get("phone") or "").strip())
-            if phone:
-                out[phone] = {k: (v or "").strip() for k, v in row.items()}
+            raw = (row.get("identifier") or row.get("phone") or "").strip()
+            if not raw:
+                continue
+            key = raw.lower() if "@" in raw else normalize_e164(raw)
+            if key:
+                out[key] = {k: (v or "").strip() for k, v in row.items()}
     return out
 
 

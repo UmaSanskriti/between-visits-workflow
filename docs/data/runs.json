@@ -2,14 +2,18 @@
  {
   "brain_down": false,
   "callback_number_set": true,
+  "channel": "email",
   "finished_at": "2026-10-20T19:00:00Z",
   "gate_escapes": 0,
-  "git_sha": "9614a8f",
+  "git_sha": "d987f72",
   "kill_switch": false,
   "limits": {
+   "follow_up_days": 3,
    "max_attempts": 2,
    "max_calls_per_day": 50,
-   "max_calls_per_run": 25
+   "max_calls_per_run": 25,
+   "max_emails_per_day": 50,
+   "max_messages": 2
   },
   "mode": "dry_run",
   "now_used": "2026-10-20T19:00:00Z",
@@ -19,432 +23,51 @@
   "seed": "test_doctors.csv",
   "simulated_time": true,
   "stages": {
-   "calls": {
-    "allowed": 17,
-    "blocked": 4,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 21,
-    "deferred": 0,
-    "placed": 17,
-    "script_errors": 0
-   },
    "delivery": {
-    "attempted": 14,
-    "delivered": 13,
+    "attempted": 12,
+    "delivered": 12,
     "duplicates": 0,
-    "failed": 1,
+    "failed": 0,
     "held": 1
    },
+   "email": {
+    "allowed": 13,
+    "blocked": 8,
+    "brain_unavailable": 0,
+    "capped": 0,
+    "compose_errors": 0,
+    "considered": 21,
+    "deferred": 0,
+    "failed": 0,
+    "placed": 13,
+    "queued": 0,
+    "sent": 13
+   },
    "ingest": {
-    "channels_created": 23,
+    "channels_created": 34,
     "contacts_created": 21,
     "contacts_updated": 0,
     "rows": 21
    },
+   "replies": {
+    "applied": 10,
+    "duplicates_ignored": 10,
+    "events": 20,
+    "expired_no_reply": 0,
+    "unknown_message": 0
+   },
    "suppressions_seeded": 1,
    "verify": {
     "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 19,
+    "channels_verified": 34,
+    "cleared": 32,
     "duplicates": 1,
-    "failed": 1,
+    "failed": 5,
     "suppressed": 1,
-    "verified": 18
-   },
-   "webhooks": {
-    "applied": 17,
-    "bad_signature": 0,
-    "duplicates_ignored": 17,
-    "events": 34,
-    "unknown_call": 0
+    "verified": 14
    }
   },
   "started_at": "2026-10-20T19:00:00Z",
   "trigger": "local"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-20T21:26:39Z",
-  "gate_escapes": 0,
-  "git_sha": "3582e2f",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-20T21:26:39Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261020T212639Z-002",
-  "seed": "test_doctors.csv",
-  "simulated_time": false,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-20T21:26:39Z",
-  "trigger": "push"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-20T21:48:42Z",
-  "gate_escapes": 0,
-  "git_sha": "7a9e2af",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-20T21:48:42Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261020T214842Z-003",
-  "seed": "test_doctors.csv",
-  "simulated_time": false,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-20T21:48:42Z",
-  "trigger": "push"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-20T21:50:30Z",
-  "gate_escapes": 0,
-  "git_sha": "550a871",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-20T21:50:30Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261020T215030Z-004",
-  "seed": "test_doctors.csv",
-  "simulated_time": false,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-20T21:50:30Z",
-  "trigger": "push"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-20T19:00:00Z",
-  "gate_escapes": 0,
-  "git_sha": "3647ee7",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-20T19:00:00Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261020T190000Z-005",
-  "seed": "test_doctors.csv",
-  "simulated_time": true,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-20T19:00:00Z",
-  "trigger": "dashboard"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-21T01:19:45Z",
-  "gate_escapes": 0,
-  "git_sha": "5fc2970",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-21T01:19:45Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261021T011945Z-006",
-  "seed": "test_doctors.csv",
-  "simulated_time": false,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-21T01:19:45Z",
-  "trigger": "push"
- },
- {
-  "brain_down": false,
-  "callback_number_set": true,
-  "finished_at": "2026-10-21T01:31:52Z",
-  "gate_escapes": 0,
-  "git_sha": "22147d7",
-  "kill_switch": false,
-  "limits": {
-   "max_attempts": 2,
-   "max_calls_per_day": 50,
-   "max_calls_per_run": 25
-  },
-  "mode": "dry_run",
-  "now_used": "2026-10-21T01:31:52Z",
-  "paused": false,
-  "playbook": "clinic-outreach-brain.md",
-  "run_id": "20261021T013152Z-007",
-  "seed": "test_doctors.csv",
-  "simulated_time": false,
-  "stages": {
-   "calls": {
-    "allowed": 0,
-    "blocked": 5,
-    "brain_unavailable": 0,
-    "capped": 0,
-    "considered": 10,
-    "deferred": 5,
-    "placed": 0,
-    "script_errors": 0
-   },
-   "delivery": {
-    "attempted": 0,
-    "delivered": 0,
-    "duplicates": 0,
-    "failed": 0,
-    "held": 1
-   },
-   "ingest": {
-    "channels_created": 0,
-    "contacts_created": 0,
-    "contacts_updated": 0,
-    "rows": 21
-   },
-   "suppressions_seeded": 0,
-   "verify": {
-    "channels_failed": 0,
-    "channels_verified": 23,
-    "cleared": 0,
-    "duplicates": 1,
-    "failed": 1,
-    "suppressed": 0,
-    "verified": 6
-   },
-   "webhooks": {
-    "applied": 0,
-    "bad_signature": 0,
-    "duplicates_ignored": 0,
-    "events": 0,
-    "unknown_call": 0
-   }
-  },
-  "started_at": "2026-10-21T01:31:52Z",
-  "trigger": "push"
  }
 ]

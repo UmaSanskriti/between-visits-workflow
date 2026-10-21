@@ -1,10 +1,18 @@
 [
  {
   "call_id": "",
-  "contact_id": "c_070728f30d",
-  "detail": "no phone channel; email only (not queued)",
+  "contact_id": "c_5bfd0187e6",
+  "detail": "no email channel; phone only (not emailed)",
   "error_type": "missing_field",
-  "field": "phone",
+  "field": "email",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_01c54d811d",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -16,19 +24,27 @@
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "call_id": "ca_f531e662ea",
+  "call_id": "",
   "contact_id": "c_517863c95b",
-  "detail": "provider transcript is not a list of utterances: ##garbled## (provider returned a non-list transcript)",
-  "error_type": "malformed_transcript",
-  "field": "transcript",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "call_id": "ca_831582c51e",
+  "call_id": "",
   "contact_id": "c_a776b6dc5b",
-  "detail": "mock Brain returned 500 (scenario delivery_fails)",
-  "error_type": "delivery_failed",
-  "field": "transcript",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "call_id": "",
+  "contact_id": "c_866bc1a7db",
+  "detail": "no email channel; phone only (not emailed)",
+  "error_type": "missing_field",
+  "field": "email",
   "timestamp": "2026-10-20T19:00:00Z"
  }
 ]

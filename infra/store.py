@@ -41,6 +41,10 @@ class Store:
         return self.tables["call_attempts"]
 
     @property
+    def email_attempts(self):
+        return self.tables["email_attempts"]
+
+    @property
     def transcripts(self):
         return self.tables["transcripts"]
 

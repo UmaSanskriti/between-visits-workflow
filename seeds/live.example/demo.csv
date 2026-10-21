@@ -1,2 +1,2 @@
 external_id,name,credentials,specialty,practice_name,practice_size,address,city,state,phone,email,time_zone,line_type,pronunciation_hint,hook,scenario
-demo_01,Your Name,MD,family medicine,Your Demo Practice,solo,,Cambridge,MA,+15555550100,,America/New_York,mobile,,one specific line from the practice website,
+demo_01,Your Name,MD,family medicine,Your Demo Practice,solo,,Cambridge,MA,+15555550100,you@example.com,America/New_York,mobile,,one specific line from the practice website,

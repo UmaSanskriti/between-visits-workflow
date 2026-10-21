@@ -9,6 +9,18 @@ playbook = "clinic-outreach-brain.md"   # the Brain playbook the mock Brain mirr
 default_time_zone = "America/New_York"
 webhook_secret = "dry-run-shared-secret"   # mock provider only; a real secret goes in the secrets manager (NFR-003)
 
+[outreach]
+channel = "email"           # email (default): playbook section 8b cold email; "call" keeps the voice-agent flow
+
+[email]                     # playbook section 8: plain text, under 150 words, one ask, opt-out line, real sender name
+from_name = "Anirudh Bagla"
+from_address = ""           # set EMAIL_FROM in .env (gitignored); the dry run uses a placeholder sender
+reply_to = ""
+follow_up_days = 3          # one follow-up after this many days without a reply
+max_messages = 2            # initial email + one follow-up, then NO_REPLY
+max_per_run = 25
+max_per_day = 50
+
 [calling_window]            # CMP-002, evaluated in the recipient's local time zone
 days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 start = "09:00"

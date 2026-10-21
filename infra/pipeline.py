@@ -10,8 +10,9 @@ from .brain import BrainClient
 from .clock import Clock, iso
 from .config import Config
 from .delivery import deliver_transcripts
+from .email.provider import MockEmailProvider
 from .export import export
-from .orchestrator import process_events, schedule_calls
+from .orchestrator import process_email_events, process_events, schedule_calls, send_emails
 from .sourcing import CsvSeedAdapter, ingest, load_clearances, load_suppressions
 from .store import Store
 from .summary import build_summary
@@ -45,6 +46,7 @@ def run_pipeline(
     stages=ALL_STAGES,
     trigger: str = "local",
     on_stage=None,
+    mailer=None,
 ) -> tuple[dict, dict]:
     """`on_stage(name, status, counts)` is called with ("<stage>", "start", {}) and ("<stage>", "done", counts)
     for ingest, verify, call, webhooks, deliver, then ("run", "done", {...}). Used by the dashboard service."""
@@ -69,10 +71,14 @@ def run_pipeline(
         "seed": Path(seed).name,
         "playbook": cfg.playbook,
         "callback_number_set": bool(cfg.callback_number),
+        "channel": cfg.outreach_channel,
         "limits": {
             "max_calls_per_day": cfg.max_calls_per_day,
             "max_calls_per_run": cfg.max_calls_per_run,
             "max_attempts": cfg.retry_max_attempts,
+            "max_messages": cfg.email_max_messages,
+            "follow_up_days": cfg.email_follow_up_days,
+            "max_emails_per_day": cfg.email_max_per_day,
         },
         "stages": {},
     }
@@ -86,9 +92,23 @@ def run_pipeline(
     if "verify" in stages:
         emit("verify", "start")
         hints = {ch.value: ch.line_type for ch in store.channels.values() if ch.type == "phone"}
-        run["stages"]["verify"] = verify(store, MockLineTypeLookup(hints), clock, load_clearances(clearances))
+        run["stages"]["verify"] = verify(
+            store, MockLineTypeLookup(hints), clock, load_clearances(clearances), channel=cfg.outreach_channel
+        )
         emit("verify", "done", run["stages"]["verify"])
-    if "call" in stages:
+    if "call" in stages and cfg.outreach_channel == "email":
+        if mailer is None:
+            if cfg.mode == "live":
+                raise ValueError("live email needs a mailer (SmtpEmailProvider or OutboxEmailProvider)")
+            mailer = MockEmailProvider(clock)
+        # progress names stay "call"/"webhooks" so the dashboard's stage mapping works for both channels
+        emit("call", "start", {"channel": "email"})
+        run["stages"]["email"] = send_emails(store, cfg, clock, brain, mailer, run_id)
+        emit("call", "done", {**run["stages"]["email"], "channel": "email"})
+        emit("webhooks", "start", {"channel": "email"})
+        run["stages"]["replies"] = process_email_events(store, cfg, clock, mailer, run_id)
+        emit("webhooks", "done", {**run["stages"]["replies"], "channel": "email"})
+    elif "call" in stages:
         emit("call", "start")
         run["stages"]["calls"] = schedule_calls(store, cfg, clock, brain, voice, run_id)
         emit("call", "done", run["stages"]["calls"])
@@ -105,7 +125,7 @@ def run_pipeline(
     run["gate_escapes"] = summary["compliance"]["gate_escapes"]
     if run["gate_escapes"]:
         store.alert(
-            "gate_escape", f"{run['gate_escapes']} call attempt(s) exist without an allowed gate result", run_id=run_id
+            "gate_escape", f"{run['gate_escapes']} attempt(s) exist without an allowed gate result", run_id=run_id
         )
     store.logs["runs"].append(run)
     store.audit("run", run_id, "finish", {}, {"gate_escapes": run["gate_escapes"]}, run_id=run_id)

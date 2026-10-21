@@ -88,6 +88,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_b401e0efc6",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_b401e0efc6",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_da6677d004",
    "status": "SOURCED"
   },
@@ -142,6 +154,18 @@
   "before": {},
   "entity": "channels",
   "entity_id": "ch_38dfb97cd2",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
+   "id": "ch_df4d7c2a74",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_df4d7c2a74",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -220,6 +244,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_2ec822826d",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_2ec822826d",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_070728f30d",
    "status": "SOURCED"
   },
@@ -268,6 +304,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_c81ee09672",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_c81ee09672",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_01c54d811d",
    "status": "SOURCED"
   },
@@ -310,6 +358,18 @@
   "before": {},
   "entity": "channels",
   "entity_id": "ch_6edba34a63",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
+   "id": "ch_95ee0f7128",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_95ee0f7128",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -388,6 +448,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_6f5e721f2c",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_6f5e721f2c",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_a776b6dc5b",
    "status": "SOURCED"
   },
@@ -430,6 +502,18 @@
   "before": {},
   "entity": "channels",
   "entity_id": "ch_54322660b9",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
+   "id": "ch_14b62de826",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_14b62de826",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -484,6 +568,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_27177384c8",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_27177384c8",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_41cc51441d",
    "status": "SOURCED"
   },
@@ -502,6 +598,18 @@
   "before": {},
   "entity": "channels",
   "entity_id": "ch_021549c001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
+   "id": "ch_7d785a7774",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_7d785a7774",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -532,6 +640,18 @@
   "action": "create",
   "actor": "csv_seed",
   "after": {
+   "id": "ch_e207f6adf5",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_e207f6adf5",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
    "id": "c_fb34444215",
    "status": "SOURCED"
   },
@@ -550,6 +670,18 @@
   "before": {},
   "entity": "channels",
   "entity_id": "ch_e4e3c37052",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "csv_seed",
+  "after": {
+   "id": "ch_8a82185b3d",
+   "type": "email"
+  },
+  "before": {},
+  "entity": "channels",
+  "entity_id": "ch_8a82185b3d",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -609,6 +741,21 @@
   "action": "verify",
   "actor": "system",
   "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_b401e0efc6",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
    "line_type": "landline",
    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220103",
    "verification_reason": "",
@@ -656,6 +803,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_38dfb97cd2",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_df4d7c2a74",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -727,6 +889,21 @@
    "verified": false
   },
   "entity": "channels",
+  "entity_id": "ch_2ec822826d",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
   "entity_id": "ch_c85f152af5",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -747,6 +924,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_fd81d176ec",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_c81ee09672",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -785,6 +977,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_6edba34a63",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_95ee0f7128",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -848,6 +1055,21 @@
   "action": "verify",
   "actor": "system",
   "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_6f5e721f2c",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
    "line_type": "voip",
    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220115",
    "verification_reason": "",
@@ -880,6 +1102,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_54322660b9",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_14b62de826",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -924,6 +1161,21 @@
   "action": "verify",
   "actor": "system",
   "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_27177384c8",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
    "line_type": "landline",
    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220119",
    "verification_reason": "",
@@ -937,6 +1189,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_021549c001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_7d785a7774",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -962,6 +1229,21 @@
   "action": "verify",
   "actor": "system",
   "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_e207f6adf5",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
    "line_type": "landline",
    "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220121",
    "verification_reason": "",
@@ -975,6 +1257,21 @@
   },
   "entity": "channels",
   "entity_id": "ch_e4e3c37052",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_8a82185b3d",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1011,6 +1308,30 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_52806280cd",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_1f101ceb7f"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_1f101ceb7f",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_fb340917a5",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1023,6 +1344,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_7fba5fca42",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_b401e0efc6",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_e03a98e6f4"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_e03a98e6f4",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1059,6 +1404,30 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_09b9987882",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_4e8b68217c"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_4e8b68217c",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_38dfb97cd2",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1071,6 +1440,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_5459e49321",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_df4d7c2a74",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_ee66c5d84d"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_ee66c5d84d",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1155,6 +1548,54 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_2ec822826d",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_4f1b633baa"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_4f1b633baa",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_c85f152af5",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_5caefc9102"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_5caefc9102",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_fd81d176ec",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1167,6 +1608,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_4a5956ff9a",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_c81ee09672",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_cb548f1135"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_cb548f1135",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1215,6 +1680,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_be8b244711",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_95ee0f7128",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_1201017b20"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_1201017b20",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1299,6 +1788,30 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_6f5e721f2c",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_69072e0c74"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_69072e0c74",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_909481b505",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1371,6 +1884,30 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_27177384c8",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_974d88eabf"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_974d88eabf",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_021549c001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1383,6 +1920,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_b9dec5c665",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_7d785a7774",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_c2dc0f6db2"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_c2dc0f6db2",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1419,6 +1980,30 @@
    "call_clearance": "not_cleared"
   },
   "entity": "channels",
+  "entity_id": "ch_e207f6adf5",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_1d5e131231"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_1d5e131231",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
   "entity_id": "ch_e4e3c37052",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1431,6 +2016,30 @@
   "before": {},
   "entity": "consent_records",
   "entity_id": "cr_099fbd3cc4",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "clearance_granted",
+  "actor": "founders",
+  "after": {
+   "call_clearance": "cleared"
+  },
+  "before": {
+   "call_clearance": "not_cleared"
+  },
+  "entity": "channels",
+  "entity_id": "ch_8a82185b3d",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "founders",
+  "after": {
+   "id": "cr_ed134de9a8"
+  },
+  "before": {},
+  "entity": "consent_records",
+  "entity_id": "cr_ed134de9a8",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -1531,9 +2140,9 @@
   "actor": "system",
   "after": {
    "segment": "solo_primary_care",
-   "status": "READY",
-   "verification_reason": "",
-   "verification_status": "verified"
+   "status": "VERIFIED",
+   "verification_reason": "no_email_channel",
+   "verification_status": "failed"
   },
   "before": {
    "segment": "",
@@ -1569,9 +2178,9 @@
   "actor": "system",
   "after": {
    "segment": "solo_specialist",
-   "status": "VERIFIED",
-   "verification_reason": "no_callable_channel",
-   "verification_status": "failed"
+   "status": "READY",
+   "verification_reason": "",
+   "verification_status": "verified"
   },
   "before": {
    "segment": "",
@@ -1607,9 +2216,9 @@
   "actor": "system",
   "after": {
    "segment": "small_group_specialist",
-   "status": "READY",
-   "verification_reason": "",
-   "verification_status": "verified"
+   "status": "VERIFIED",
+   "verification_reason": "no_email_channel",
+   "verification_status": "failed"
   },
   "before": {
    "segment": "",
@@ -1666,9 +2275,9 @@
   "actor": "system",
   "after": {
    "segment": "solo_primary_care",
-   "status": "READY",
-   "verification_reason": "",
-   "verification_status": "verified"
+   "status": "VERIFIED",
+   "verification_reason": "no_email_channel",
+   "verification_status": "failed"
   },
   "before": {
    "segment": "",
@@ -1704,9 +2313,9 @@
   "actor": "system",
   "after": {
    "segment": "solo_primary_care",
-   "status": "READY",
-   "verification_reason": "",
-   "verification_status": "verified"
+   "status": "VERIFIED",
+   "verification_reason": "no_email_channel",
+   "verification_status": "failed"
   },
   "before": {
    "segment": "",
@@ -1742,9 +2351,9 @@
   "actor": "system",
   "after": {
    "segment": "small_group_primary_care",
-   "status": "READY",
-   "verification_reason": "",
-   "verification_status": "verified"
+   "status": "VERIFIED",
+   "verification_reason": "no_email_channel",
+   "verification_status": "failed"
   },
   "before": {
    "segment": "",
@@ -1833,19 +2442,17 @@
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "create",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "id": "em_e0d96f14bc",
+   "outcome": "",
+   "status": "queued"
   },
   "before": {},
   "contact_id": "c_251bab6d38",
-  "entity": "script",
-  "entity_id": "ca_e0d96f14bc",
+  "entity": "email_attempts",
+  "entity_id": "em_e0d96f14bc",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1853,70 +2460,72 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_e0d96f14bc",
-   "outcome": "",
-   "status": "queued"
+   "id": "tr_72814132e4"
   },
   "before": {},
+  "call_attempt_id": "em_e0d96f14bc",
   "contact_id": "c_251bab6d38",
-  "entity": "call_attempts",
-  "entity_id": "ca_e0d96f14bc",
+  "entity": "transcripts",
+  "entity_id": "tr_72814132e4",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "sent",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_e0d96f14bc",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_72814132e4"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_e0d96f14bc",
+  "contact_id": "c_251bab6d38",
+  "entity": "email_attempts",
+  "entity_id": "em_e0d96f14bc",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_e0d96f14bc",
+  "email_attempt_id": "em_e0d96f14bc",
   "entity": "contacts",
   "entity_id": "c_251bab6d38",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "doctor_name",
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_b3b24d17b8",
-  "entity": "script",
-  "entity_id": "ca_1c90a154b7",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_e0d96f14bc",
+  "entity": "contacts",
+  "entity_id": "c_251bab6d38",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1924,70 +2533,87 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_1c90a154b7",
+   "id": "em_1c90a154b7",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_b3b24d17b8",
-  "entity": "call_attempts",
-  "entity_id": "ca_1c90a154b7",
+  "entity": "email_attempts",
+  "entity_id": "em_1c90a154b7",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_1c90a154b7",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_6cf3e3ffa7"
+  },
+  "before": {},
+  "call_attempt_id": "em_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "entity": "transcripts",
+  "entity_id": "tr_6cf3e3ffa7",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_6cf3e3ffa7"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_1c90a154b7",
+  "contact_id": "c_b3b24d17b8",
+  "entity": "email_attempts",
+  "entity_id": "em_1c90a154b7",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_1c90a154b7",
+  "email_attempt_id": "em_1c90a154b7",
   "entity": "contacts",
   "entity_id": "c_b3b24d17b8",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "specialty",
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "default"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_da6677d004",
-  "entity": "script",
-  "entity_id": "ca_6e29b4cd45",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_1c90a154b7",
+  "entity": "contacts",
+  "entity_id": "c_b3b24d17b8",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -1995,69 +2621,87 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_6e29b4cd45",
+   "id": "em_6e29b4cd45",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_da6677d004",
-  "entity": "call_attempts",
-  "entity_id": "ca_6e29b4cd45",
+  "entity": "email_attempts",
+  "entity_id": "em_6e29b4cd45",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_6e29b4cd45",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_64bfe04e59"
+  },
+  "before": {},
+  "call_attempt_id": "em_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "entity": "transcripts",
+  "entity_id": "tr_64bfe04e59",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_64bfe04e59"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_6e29b4cd45",
+  "contact_id": "c_da6677d004",
+  "entity": "email_attempts",
+  "entity_id": "em_6e29b4cd45",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_6e29b4cd45",
+  "email_attempt_id": "em_6e29b4cd45",
   "entity": "contacts",
   "entity_id": "c_da6677d004",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_specialist"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_f9eafcfce6",
-  "entity": "script",
-  "entity_id": "ca_6b6ea10721",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_6e29b4cd45",
+  "entity": "contacts",
+  "entity_id": "c_da6677d004",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2065,49 +2709,85 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_6b6ea10721",
+   "id": "em_6b6ea10721",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_f9eafcfce6",
-  "entity": "call_attempts",
-  "entity_id": "ca_6b6ea10721",
+  "entity": "email_attempts",
+  "entity_id": "em_6b6ea10721",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_6b6ea10721",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_49a48e7d34"
   },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_6b6ea10721",
+  "before": {},
+  "call_attempt_id": "em_6b6ea10721",
+  "contact_id": "c_f9eafcfce6",
+  "entity": "transcripts",
+  "entity_id": "tr_49a48e7d34",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_49a48e7d34"
+  },
+  "before": {
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "email_attempts",
+  "entity_id": "em_6b6ea10721",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_6b6ea10721",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
   "actor": "system",
   "after": {
    "attempts": 1,
-   "next_attempt_at": "",
+   "last_outcome": "",
    "status": "IN_OUTREACH"
   },
   "before": {
    "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_6b6ea10721",
+  "email_attempt_id": "em_6b6ea10721",
   "entity": "contacts",
   "entity_id": "c_f9eafcfce6",
   "run_id": "20261020T190000Z-001",
@@ -2117,9 +2797,11 @@
   "action": "gate_blocked",
   "actor": "system",
   "after": {
+   "channel": "email",
    "reasons": [
     "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "no_email_channel"
    ]
   },
   "before": {},
@@ -2129,89 +2811,33 @@
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "gate_blocked",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
   },
   "before": {},
-  "contact_id": "c_5bfd0187e6",
-  "entity": "script",
-  "entity_id": "ca_32994a1b75",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_32994a1b75",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_5bfd0187e6",
-  "entity": "call_attempts",
-  "entity_id": "ca_32994a1b75",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_32994a1b75",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_32994a1b75",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "call_attempt_id": "ca_32994a1b75",
-  "entity": "contacts",
+  "entity": "contact",
   "entity_id": "c_5bfd0187e6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "create",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr"
-   ],
-   "script_version": "v1",
-   "segment": "small_group_primary_care"
+   "id": "em_235dad69f6",
+   "outcome": "",
+   "status": "queued"
   },
   "before": {},
   "contact_id": "c_29816f6cb0",
-  "entity": "script",
-  "entity_id": "ca_235dad69f6",
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2219,51 +2845,248 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_235dad69f6",
-   "outcome": "",
-   "status": "queued"
+   "id": "tr_df79bd95ef"
   },
   "before": {},
+  "call_attempt_id": "em_235dad69f6",
   "contact_id": "c_29816f6cb0",
-  "entity": "call_attempts",
-  "entity_id": "ca_235dad69f6",
+  "entity": "transcripts",
+  "entity_id": "tr_df79bd95ef",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "sent",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_235dad69f6",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_df79bd95ef"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_235dad69f6",
+  "contact_id": "c_29816f6cb0",
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_235dad69f6",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
   "actor": "system",
   "after": {
    "attempts": 1,
-   "next_attempt_at": "",
+   "last_outcome": "",
    "status": "IN_OUTREACH"
   },
   "before": {
    "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_235dad69f6",
+  "entity": "contacts",
+  "entity_id": "c_29816f6cb0",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_1dd7b77892",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_070728f30d",
+  "entity": "email_attempts",
+  "entity_id": "em_1dd7b77892",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_5f981d4531"
+  },
+  "before": {},
+  "call_attempt_id": "em_1dd7b77892",
+  "contact_id": "c_070728f30d",
+  "entity": "transcripts",
+  "entity_id": "tr_5f981d4531",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_5f981d4531"
+  },
+  "before": {
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_070728f30d",
+  "entity": "email_attempts",
+  "entity_id": "em_1dd7b77892",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_235dad69f6",
+  "email_attempt_id": "em_1dd7b77892",
   "entity": "contacts",
-  "entity_id": "c_29816f6cb0",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_1dd7b77892",
+  "entity": "contacts",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_e9f7fe12db",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_48eaa6c438",
+  "entity": "email_attempts",
+  "entity_id": "em_e9f7fe12db",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_b9ed93f342"
+  },
+  "before": {},
+  "call_attempt_id": "em_e9f7fe12db",
+  "contact_id": "c_48eaa6c438",
+  "entity": "transcripts",
+  "entity_id": "tr_b9ed93f342",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_b9ed93f342"
+  },
+  "before": {
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_48eaa6c438",
+  "entity": "email_attempts",
+  "entity_id": "em_e9f7fe12db",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_e9f7fe12db",
+  "entity": "contacts",
+  "entity_id": "c_48eaa6c438",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_e9f7fe12db",
+  "entity": "contacts",
+  "entity_id": "c_48eaa6c438",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2271,172 +3094,30 @@
   "action": "gate_blocked",
   "actor": "system",
   "after": {
+   "channel": "email",
    "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel"
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
    ]
   },
   "before": {},
   "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "generated",
-  "actor": "system",
-  "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
-  },
-  "before": {},
-  "contact_id": "c_48eaa6c438",
-  "entity": "script",
-  "entity_id": "ca_e9f7fe12db",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_e9f7fe12db",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_48eaa6c438",
-  "entity": "call_attempts",
-  "entity_id": "ca_e9f7fe12db",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_e9f7fe12db",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_e9f7fe12db",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "call_attempt_id": "ca_e9f7fe12db",
-  "entity": "contacts",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "generated",
-  "actor": "system",
-  "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "small_group_specialist"
-  },
-  "before": {},
-  "contact_id": "c_01c54d811d",
-  "entity": "script",
-  "entity_id": "ca_d6149fd0d8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_d6149fd0d8",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_01c54d811d",
-  "entity": "call_attempts",
-  "entity_id": "ca_d6149fd0d8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_d6149fd0d8",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_d6149fd0d8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "call_attempt_id": "ca_d6149fd0d8",
-  "entity": "contacts",
   "entity_id": "c_01c54d811d",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "create",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "id": "em_0454abe525",
+   "outcome": "",
+   "status": "queued"
   },
   "before": {},
   "contact_id": "c_c09828fbcf",
-  "entity": "script",
-  "entity_id": "ca_0454abe525",
+  "entity": "email_attempts",
+  "entity_id": "em_0454abe525",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2444,49 +3125,70 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_0454abe525",
-   "outcome": "",
-   "status": "queued"
+   "id": "tr_fe051d28df"
   },
   "before": {},
+  "call_attempt_id": "em_0454abe525",
   "contact_id": "c_c09828fbcf",
-  "entity": "call_attempts",
-  "entity_id": "ca_0454abe525",
+  "entity": "transcripts",
+  "entity_id": "tr_fe051d28df",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "sent",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_0454abe525",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_fe051d28df"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_0454abe525",
+  "contact_id": "c_c09828fbcf",
+  "entity": "email_attempts",
+  "entity_id": "em_0454abe525",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "READY"
+  },
+  "email_attempt_id": "em_0454abe525",
+  "entity": "contacts",
+  "entity_id": "c_c09828fbcf",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "email_sent",
   "actor": "system",
   "after": {
    "attempts": 1,
-   "next_attempt_at": "",
+   "last_outcome": "",
    "status": "IN_OUTREACH"
   },
   "before": {
    "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_0454abe525",
+  "email_attempt_id": "em_0454abe525",
   "entity": "contacts",
   "entity_id": "c_c09828fbcf",
   "run_id": "20261020T190000Z-001",
@@ -2496,8 +3198,10 @@
   "action": "gate_blocked",
   "actor": "system",
   "after": {
+   "channel": "email",
    "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38"
+    "contact_not_verified:duplicate_of:c_251bab6d38",
+    "no_email_channel"
    ]
   },
   "before": {},
@@ -2507,90 +3211,33 @@
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "gate_blocked",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
   },
   "before": {},
-  "contact_id": "c_517863c95b",
-  "entity": "script",
-  "entity_id": "ca_f531e662ea",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_f531e662ea",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_517863c95b",
-  "entity": "call_attempts",
-  "entity_id": "ca_f531e662ea",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_f531e662ea",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_f531e662ea",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "call_attempt_id": "ca_f531e662ea",
-  "entity": "contacts",
+  "entity": "contact",
   "entity_id": "c_517863c95b",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "create",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "id": "em_79dcaa34ba",
+   "outcome": "",
+   "status": "queued"
   },
   "before": {},
   "contact_id": "c_d7b9cfa027",
-  "entity": "script",
-  "entity_id": "ca_79dcaa34ba",
+  "entity": "email_attempts",
+  "entity_id": "em_79dcaa34ba",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2598,120 +3245,87 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_79dcaa34ba",
-   "outcome": "",
-   "status": "queued"
+   "id": "tr_b3c99276d4"
   },
   "before": {},
+  "call_attempt_id": "em_79dcaa34ba",
   "contact_id": "c_d7b9cfa027",
-  "entity": "call_attempts",
-  "entity_id": "ca_79dcaa34ba",
+  "entity": "transcripts",
+  "entity_id": "tr_b3c99276d4",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "sent",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_79dcaa34ba",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_b3c99276d4"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_79dcaa34ba",
+  "contact_id": "c_d7b9cfa027",
+  "entity": "email_attempts",
+  "entity_id": "em_79dcaa34ba",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_79dcaa34ba",
+  "email_attempt_id": "em_79dcaa34ba",
   "entity": "contacts",
   "entity_id": "c_d7b9cfa027",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
-  "actor": "system",
-  "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
-  },
-  "before": {},
-  "contact_id": "c_a776b6dc5b",
-  "entity": "script",
-  "entity_id": "ca_831582c51e",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_831582c51e",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_a776b6dc5b",
-  "entity": "call_attempts",
-  "entity_id": "ca_831582c51e",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_831582c51e",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_831582c51e",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
    "attempts": 1,
-   "next_attempt_at": "",
+   "last_outcome": "",
    "status": "IN_OUTREACH"
   },
   "before": {
    "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_831582c51e",
+  "email_attempt_id": "em_79dcaa34ba",
   "entity": "contacts",
+  "entity_id": "c_d7b9cfa027",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
   "entity_id": "c_a776b6dc5b",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
@@ -2720,8 +3334,9 @@
   "action": "gate_blocked",
   "actor": "system",
   "after": {
+   "channel": "email",
    "reasons": [
-    "call_clearance_not_cleared"
+    "email_clearance_not_cleared"
    ]
   },
   "before": {},
@@ -2731,89 +3346,33 @@
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "gate_blocked",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "small_group_primary_care"
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
   },
   "before": {},
-  "contact_id": "c_866bc1a7db",
-  "entity": "script",
-  "entity_id": "ca_cf9b5882df",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "ca_cf9b5882df",
-   "outcome": "",
-   "status": "queued"
-  },
-  "before": {},
-  "contact_id": "c_866bc1a7db",
-  "entity": "call_attempts",
-  "entity_id": "ca_cf9b5882df",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "placed",
-  "actor": "system",
-  "after": {
-   "provider_call_id": "mock_ca_cf9b5882df",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
-  },
-  "entity": "call_attempts",
-  "entity_id": "ca_cf9b5882df",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "call_placed",
-  "actor": "system",
-  "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "attempts": 0,
-   "next_attempt_at": "",
-   "status": "READY"
-  },
-  "call_attempt_id": "ca_cf9b5882df",
-  "entity": "contacts",
+  "entity": "contact",
   "entity_id": "c_866bc1a7db",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "create",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "id": "em_7e13816d5d",
+   "outcome": "",
+   "status": "queued"
   },
   "before": {},
   "contact_id": "c_2c3a09fcb5",
-  "entity": "script",
-  "entity_id": "ca_7e13816d5d",
+  "entity": "email_attempts",
+  "entity_id": "em_7e13816d5d",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2821,69 +3380,72 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_7e13816d5d",
-   "outcome": "",
-   "status": "queued"
+   "id": "tr_7e0e02e827"
   },
   "before": {},
+  "call_attempt_id": "em_7e13816d5d",
   "contact_id": "c_2c3a09fcb5",
-  "entity": "call_attempts",
-  "entity_id": "ca_7e13816d5d",
+  "entity": "transcripts",
+  "entity_id": "tr_7e0e02e827",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "sent",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_7e13816d5d",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_7e0e02e827"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "email_attempts",
+  "entity_id": "em_7e13816d5d",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_7e13816d5d",
+  "email_attempt_id": "em_7e13816d5d",
   "entity": "contacts",
   "entity_id": "c_2c3a09fcb5",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "small_group_primary_care"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_41cc51441d",
-  "entity": "script",
-  "entity_id": "ca_d39fa0c7be",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_7e13816d5d",
+  "entity": "contacts",
+  "entity_id": "c_2c3a09fcb5",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2891,69 +3453,87 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_d39fa0c7be",
+   "id": "em_d39fa0c7be",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_41cc51441d",
-  "entity": "call_attempts",
-  "entity_id": "ca_d39fa0c7be",
+  "entity": "email_attempts",
+  "entity_id": "em_d39fa0c7be",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_d39fa0c7be",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_7bcf8e455a"
+  },
+  "before": {},
+  "call_attempt_id": "em_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "entity": "transcripts",
+  "entity_id": "tr_7bcf8e455a",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_7bcf8e455a"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_d39fa0c7be",
+  "contact_id": "c_41cc51441d",
+  "entity": "email_attempts",
+  "entity_id": "em_d39fa0c7be",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_d39fa0c7be",
+  "email_attempt_id": "em_d39fa0c7be",
   "entity": "contacts",
   "entity_id": "c_41cc51441d",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr",
-    "hook"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_b62f5021ad",
-  "entity": "script",
-  "entity_id": "ca_38db576121",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_d39fa0c7be",
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -2961,68 +3541,87 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_38db576121",
+   "id": "em_38db576121",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_b62f5021ad",
-  "entity": "call_attempts",
-  "entity_id": "ca_38db576121",
+  "entity": "email_attempts",
+  "entity_id": "em_38db576121",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_38db576121",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_1f1c19b8df"
+  },
+  "before": {},
+  "call_attempt_id": "em_38db576121",
+  "contact_id": "c_b62f5021ad",
+  "entity": "transcripts",
+  "entity_id": "tr_1f1c19b8df",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_1f1c19b8df"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_38db576121",
+  "contact_id": "c_b62f5021ad",
+  "entity": "email_attempts",
+  "entity_id": "em_38db576121",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_38db576121",
+  "email_attempt_id": "em_38db576121",
   "entity": "contacts",
   "entity_id": "c_b62f5021ad",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "generated",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "fallbacks_applied": [
-    "ehr"
-   ],
-   "script_version": "v1",
-   "segment": "solo_primary_care"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
-  "before": {},
-  "contact_id": "c_fb34444215",
-  "entity": "script",
-  "entity_id": "ca_26b6ee67d1",
+  "before": {
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_38db576121",
+  "entity": "contacts",
+  "entity_id": "c_b62f5021ad",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -3030,102 +3629,141 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "ca_26b6ee67d1",
+   "id": "em_26b6ee67d1",
    "outcome": "",
    "status": "queued"
   },
   "before": {},
   "contact_id": "c_fb34444215",
-  "entity": "call_attempts",
-  "entity_id": "ca_26b6ee67d1",
+  "entity": "email_attempts",
+  "entity_id": "em_26b6ee67d1",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "placed",
+  "action": "create",
   "actor": "system",
   "after": {
-   "provider_call_id": "mock_ca_26b6ee67d1",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "id": "tr_45de111de9"
+  },
+  "before": {},
+  "call_attempt_id": "em_26b6ee67d1",
+  "contact_id": "c_fb34444215",
+  "entity": "transcripts",
+  "entity_id": "tr_45de111de9",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-20T19:00:00Z",
+   "status": "sent",
+   "transcript_id": "tr_45de111de9"
   },
   "before": {
-   "provider_call_id": "",
-   "started_at": "",
-   "status": "queued"
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
   },
-  "entity": "call_attempts",
-  "entity_id": "ca_26b6ee67d1",
+  "contact_id": "c_fb34444215",
+  "entity": "email_attempts",
+  "entity_id": "em_26b6ee67d1",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "call_placed",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "attempts": 1,
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
   "before": {
-   "attempts": 0,
    "next_attempt_at": "",
    "status": "READY"
   },
-  "call_attempt_id": "ca_26b6ee67d1",
+  "email_attempt_id": "em_26b6ee67d1",
   "entity": "contacts",
   "entity_id": "c_fb34444215",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "email_sent",
   "actor": "system",
   "after": {
-   "id": "tr_d3d58c0594"
-  },
-  "before": {},
-  "call_attempt_id": "ca_e0d96f14bc",
-  "contact_id": "c_251bab6d38",
-  "entity": "transcripts",
-  "entity_id": "tr_d3d58c0594",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 142,
-   "ended_at": "2026-10-20T19:02:22Z",
-   "failure_category": "",
-   "outcome": "BOOKED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:booked",
-   "recording_ref": "mock://recordings/mock_ca_e0d96f14bc",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_d3d58c0594"
+   "attempts": 1,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
+   "attempts": 0,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_26b6ee67d1",
+  "entity": "contacts",
+  "entity_id": "c_fb34444215",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "reply_added",
+  "actor": "system",
+  "after": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_e0d96f14bc:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "before": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_e0d96f14bc:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_72814132e4",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
    "failure_category": "",
+   "handoff": {
+    "availability": "Tuesday or Thursday afternoons work best for me.",
+    "contact_email": "p\u2022\u2022\u2022@example.test",
+    "contact_method": "whatsapp",
+    "contact_number": "",
+    "notes": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "AGREED_TO_TALK",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+   "transcript_id": "tr_72814132e4"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
    "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_72814132e4"
   },
   "contact_id": "c_251bab6d38",
-  "entity": "call_attempts",
-  "entity_id": "ca_e0d96f14bc",
+  "entity": "email_attempts",
+  "entity_id": "em_e0d96f14bc",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -3133,108 +3771,91 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "int_d3d58c0594",
+   "id": "int_72814132e4",
    "status": "draft_pending_approval"
   },
   "before": {},
-  "call_attempt_id": "ca_e0d96f14bc",
+  "call_attempt_id": "em_e0d96f14bc",
   "contact_id": "c_251bab6d38",
   "entity": "interviews",
-  "entity_id": "int_d3d58c0594",
+  "entity_id": "int_72814132e4",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "draft_invite",
+  "action": "outcome_agreed_to_talk",
   "actor": "system",
   "after": {
-   "calendar_event_ref": "file:data/handoff/int_d3d58c0594.ics"
-  },
-  "before": {
-   "calendar_event_ref": ""
-  },
-  "entity": "interviews",
-  "entity_id": "int_d3d58c0594",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_booked",
-  "actor": "system",
-  "after": {
-   "last_outcome": "BOOKED",
+   "last_outcome": "AGREED_TO_TALK",
    "next_attempt_at": "",
    "status": "BOOKED"
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_e0d96f14bc",
+  "email_attempt_id": "em_e0d96f14bc",
   "entity": "contacts",
   "entity_id": "c_251bab6d38",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_e0d96f14bc:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_e0d96f14bc",
+  "entity": "email_attempt",
+  "entity_id": "em_e0d96f14bc",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "reply_added",
   "actor": "system",
   "after": {
-   "id": "tr_a4b4369a69"
-  },
-  "before": {},
-  "call_attempt_id": "ca_1c90a154b7",
-  "contact_id": "c_b3b24d17b8",
-  "entity": "transcripts",
-  "entity_id": "tr_a4b4369a69",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 48,
-   "ended_at": "2026-10-20T19:00:48Z",
-   "failure_category": "Pitch did not land",
-   "outcome": "DECLINED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:declined",
-   "recording_ref": "mock://recordings/mock_ca_1c90a154b7",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_a4b4369a69"
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_1c90a154b7:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_1c90a154b7:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_6cf3e3ffa7",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "Pitch did not land",
+   "handoff": {},
+   "outcome": "DECLINED",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Thanks for reaching out, but we're not able to take this on right now.",
+   "transcript_id": "tr_6cf3e3ffa7"
+  },
+  "before": {
    "failure_category": "",
+   "handoff": {},
    "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_6cf3e3ffa7"
   },
   "contact_id": "c_b3b24d17b8",
-  "entity": "call_attempts",
-  "entity_id": "ca_1c90a154b7",
+  "entity": "email_attempts",
+  "entity_id": "em_1c90a154b7",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -3248,239 +3869,163 @@
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_1c90a154b7",
+  "email_attempt_id": "em_1c90a154b7",
   "entity": "contacts",
   "entity_id": "c_b3b24d17b8",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_1c90a154b7:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_1c90a154b7",
+  "entity": "email_attempt",
+  "entity_id": "em_1c90a154b7",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "reply_added",
   "actor": "system",
   "after": {
-   "id": "tr_5adff537fa"
-  },
-  "before": {},
-  "call_attempt_id": "ca_6e29b4cd45",
-  "contact_id": "c_da6677d004",
-  "entity": "transcripts",
-  "entity_id": "tr_5adff537fa",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "2026-10-20T19:00:00Z",
-   "failure_category": "No answer / voicemail",
-   "outcome": "NO_ANSWER",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:no_answer",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_5adff537fa"
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_6b6ea10721:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_6b6ea10721:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
-  "contact_id": "c_da6677d004",
-  "entity": "call_attempts",
-  "entity_id": "ca_6e29b4cd45",
+  "entity": "transcripts",
+  "entity_id": "tr_49a48e7d34",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "outcome_no_answer",
+  "action": "replied",
   "actor": "system",
   "after": {
-   "last_outcome": "NO_ANSWER",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "failure_category": "Reply needs review",
+   "handoff": {
+    "availability": "",
+    "contact_email": "o\u2022\u2022\u2022@charlesriver-endo.example.test",
+    "contact_method": "email",
+    "contact_number": "",
+    "notes": "Can you send more details about what you're building and who is behind it?",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "REPLIED_OTHER",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Can you send more details about what you're building and who is behind it?",
+   "transcript_id": "tr_49a48e7d34"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_49a48e7d34"
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "email_attempts",
+  "entity_id": "em_6b6ea10721",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "outcome_replied_other",
+  "actor": "system",
+  "after": {
+   "last_outcome": "REPLIED_OTHER",
+   "next_attempt_at": "",
    "status": "IN_OUTREACH"
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_6e29b4cd45",
-  "entity": "contacts",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_6e29b4cd45:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_6e29b4cd45",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_591f3fdaca"
-  },
-  "before": {},
-  "call_attempt_id": "ca_6b6ea10721",
-  "contact_id": "c_f9eafcfce6",
-  "entity": "transcripts",
-  "entity_id": "tr_591f3fdaca",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 20,
-   "ended_at": "2026-10-20T19:00:20Z",
-   "failure_category": "No answer / voicemail",
-   "outcome": "VOICEMAIL",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:voicemail",
-   "recording_ref": "mock://recordings/mock_ca_6b6ea10721",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_591f3fdaca"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_f9eafcfce6",
-  "entity": "call_attempts",
-  "entity_id": "ca_6b6ea10721",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_voicemail",
-  "actor": "system",
-  "after": {
-   "last_outcome": "VOICEMAIL",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_6b6ea10721",
+  "email_attempt_id": "em_6b6ea10721",
   "entity": "contacts",
   "entity_id": "c_f9eafcfce6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_6b6ea10721:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_6b6ea10721",
+  "entity": "email_attempt",
+  "entity_id": "em_6b6ea10721",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "reply_added",
   "actor": "system",
   "after": {
-   "id": "tr_0fab65b196"
-  },
-  "before": {},
-  "call_attempt_id": "ca_32994a1b75",
-  "contact_id": "c_5bfd0187e6",
-  "entity": "transcripts",
-  "entity_id": "tr_0fab65b196",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 142,
-   "ended_at": "2026-10-20T19:02:22Z",
-   "failure_category": "",
-   "outcome": "BOOKED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:booked",
-   "recording_ref": "mock://recordings/mock_ca_32994a1b75",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_0fab65b196"
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_235dad69f6:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_235dad69f6:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
-  "contact_id": "c_5bfd0187e6",
-  "entity": "call_attempts",
-  "entity_id": "ca_32994a1b75",
+  "entity": "transcripts",
+  "entity_id": "tr_df79bd95ef",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "",
+   "handoff": {
+    "availability": "Tuesday or Thursday afternoons work best for me.",
+    "contact_email": "s\u2022\u2022\u2022@fenwaygroup.example.test",
+    "contact_method": "whatsapp",
+    "contact_number": "",
+    "notes": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "AGREED_TO_TALK",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+   "transcript_id": "tr_df79bd95ef"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_df79bd95ef"
+  },
+  "contact_id": "c_29816f6cb0",
+  "entity": "email_attempts",
+  "entity_id": "em_235dad69f6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -3488,190 +4033,91 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "int_0fab65b196",
+   "id": "int_df79bd95ef",
    "status": "draft_pending_approval"
   },
   "before": {},
-  "call_attempt_id": "ca_32994a1b75",
-  "contact_id": "c_5bfd0187e6",
+  "call_attempt_id": "em_235dad69f6",
+  "contact_id": "c_29816f6cb0",
   "entity": "interviews",
-  "entity_id": "int_0fab65b196",
+  "entity_id": "int_df79bd95ef",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "draft_invite",
+  "action": "outcome_agreed_to_talk",
   "actor": "system",
   "after": {
-   "calendar_event_ref": "file:data/handoff/int_0fab65b196.ics"
-  },
-  "before": {
-   "calendar_event_ref": ""
-  },
-  "entity": "interviews",
-  "entity_id": "int_0fab65b196",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_booked",
-  "actor": "system",
-  "after": {
-   "last_outcome": "BOOKED",
+   "last_outcome": "AGREED_TO_TALK",
    "next_attempt_at": "",
    "status": "BOOKED"
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_32994a1b75",
-  "entity": "contacts",
-  "entity_id": "c_5bfd0187e6",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_32994a1b75:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_32994a1b75",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_02d4caf21b"
-  },
-  "before": {},
-  "call_attempt_id": "ca_235dad69f6",
-  "contact_id": "c_29816f6cb0",
-  "entity": "transcripts",
-  "entity_id": "tr_02d4caf21b",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "2026-10-21T18:00:00Z",
-   "cost_usd": 0.0,
-   "duration_sec": 61,
-   "ended_at": "2026-10-20T19:01:01Z",
-   "failure_category": "Call back later",
-   "outcome": "CALLBACK_REQUESTED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:callback",
-   "recording_ref": "mock://recordings/mock_ca_235dad69f6",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_02d4caf21b"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_29816f6cb0",
-  "entity": "call_attempts",
-  "entity_id": "ca_235dad69f6",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_callback_requested",
-  "actor": "system",
-  "after": {
-   "last_outcome": "CALLBACK_REQUESTED",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_235dad69f6",
+  "email_attempt_id": "em_235dad69f6",
   "entity": "contacts",
   "entity_id": "c_29816f6cb0",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_235dad69f6:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_235dad69f6",
+  "entity": "email_attempt",
+  "entity_id": "em_235dad69f6",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "reply_added",
   "actor": "system",
   "after": {
-   "id": "tr_4ffd464341"
-  },
-  "before": {},
-  "call_attempt_id": "ca_e9f7fe12db",
-  "contact_id": "c_48eaa6c438",
-  "entity": "transcripts",
-  "entity_id": "tr_4ffd464341",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 27,
-   "ended_at": "2026-10-20T19:00:27Z",
-   "failure_category": "Do not contact",
-   "outcome": "DO_NOT_CONTACT",
-   "outcome_reason": "opt_out_detected_in_transcript (provider classified DECLINED)",
-   "provider_ended_reason": "mock:stop_calling",
-   "recording_ref": "mock://recordings/mock_ca_e9f7fe12db",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_4ffd464341"
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_e9f7fe12db:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_e9f7fe12db:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_b9ed93f342",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "Do not contact",
+   "handoff": {},
+   "outcome": "DO_NOT_CONTACT",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Please stop emailing us. Remove this address from your list.",
+   "transcript_id": "tr_b9ed93f342"
+  },
+  "before": {
    "failure_category": "",
+   "handoff": {},
    "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_b9ed93f342"
   },
   "contact_id": "c_48eaa6c438",
-  "entity": "call_attempts",
-  "entity_id": "ca_e9f7fe12db",
+  "entity": "email_attempts",
+  "entity_id": "em_e9f7fe12db",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -3692,13 +4138,13 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "sup_eebb2568c7",
-   "identifier_type": "phone"
+   "id": "sup_7582114517",
+   "identifier_type": "email"
   },
   "before": {},
   "contact_id": "c_48eaa6c438",
   "entity": "suppressions",
-  "entity_id": "sup_eebb2568c7",
+  "entity_id": "sup_7582114517",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -3711,851 +4157,148 @@
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_e9f7fe12db",
+  "email_attempt_id": "em_e9f7fe12db",
   "entity": "contacts",
   "entity_id": "c_48eaa6c438",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_e9f7fe12db:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_e9f7fe12db",
+  "entity": "email_attempt",
+  "entity_id": "em_e9f7fe12db",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "create",
+  "action": "bounced",
   "actor": "system",
   "after": {
-   "id": "tr_9491a6cd06"
-  },
-  "before": {},
-  "call_attempt_id": "ca_d6149fd0d8",
-  "contact_id": "c_01c54d811d",
-  "entity": "transcripts",
-  "entity_id": "tr_9491a6cd06",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 33,
-   "ended_at": "2026-10-20T19:00:33Z",
-   "failure_category": "Screened out by front desk",
-   "outcome": "GATEKEEPER_BLOCKED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:gatekeeper",
-   "recording_ref": "mock://recordings/mock_ca_d6149fd0d8",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_9491a6cd06"
+   "failure_category": "Wrong address (list data)",
+   "outcome": "BOUNCED",
+   "outcome_reason": "550 5.1.1 The email account that you tried to reach does not exist.",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "status": "bounced"
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
    "failure_category": "",
    "outcome": "",
    "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_01c54d811d",
-  "entity": "call_attempts",
-  "entity_id": "ca_d6149fd0d8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_gatekeeper_blocked",
-  "actor": "system",
-  "after": {
-   "last_outcome": "GATEKEEPER_BLOCKED",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_d6149fd0d8",
-  "entity": "contacts",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_d6149fd0d8:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_d6149fd0d8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_1c2ec351e8"
-  },
-  "before": {},
-  "call_attempt_id": "ca_0454abe525",
-  "contact_id": "c_c09828fbcf",
-  "entity": "transcripts",
-  "entity_id": "tr_1c2ec351e8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 18,
-   "ended_at": "2026-10-20T19:00:18Z",
-   "failure_category": "Wrong number (list data)",
-   "outcome": "WRONG_NUMBER",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:wrong_number",
-   "recording_ref": "mock://recordings/mock_ca_0454abe525",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_1c2ec351e8"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "replied_at": "",
+   "status": "sent"
   },
   "contact_id": "c_c09828fbcf",
-  "entity": "call_attempts",
-  "entity_id": "ca_0454abe525",
+  "entity": "email_attempts",
+  "entity_id": "em_0454abe525",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "wrong_number",
+  "action": "bounced",
   "actor": "system",
   "after": {
-   "verification_reason": "wrong_number",
+   "verification_reason": "bounced",
    "verified": false
   },
   "before": {
    "verification_reason": "",
    "verified": true
   },
-  "call_attempt_id": "ca_0454abe525",
+  "email_attempt_id": "em_0454abe525",
   "entity": "channels",
-  "entity_id": "ch_6edba34a63",
+  "entity_id": "ch_95ee0f7128",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "outcome_wrong_number",
+  "action": "outcome_bounced",
   "actor": "system",
   "after": {
-   "last_outcome": "WRONG_NUMBER",
+   "last_outcome": "BOUNCED",
    "next_attempt_at": "",
    "status": "UNREACHABLE"
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_0454abe525",
+  "email_attempt_id": "em_0454abe525",
   "entity": "contacts",
   "entity_id": "c_c09828fbcf",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_0454abe525:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:bounce"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_0454abe525",
+  "entity": "email_attempt",
+  "entity_id": "em_0454abe525",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "completed",
+  "action": "reply_added",
   "actor": "system",
   "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 40,
-   "ended_at": "2026-10-20T19:00:40Z",
-   "failure_category": "Pitch did not land",
-   "outcome": "DECLINED",
-   "outcome_reason": "transcript_malformed",
-   "provider_ended_reason": "mock:malformed_transcript",
-   "recording_ref": "mock://recordings/mock_ca_f531e662ea",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed"
+   "delivery_attempts": 0,
+   "delivery_status": "held_pii_review",
+   "idempotency_key": "em_79dcaa34ba:reply",
+   "pii_flagged": true,
+   "pii_reason": "date of birth"
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_79dcaa34ba:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
   },
-  "contact_id": "c_517863c95b",
-  "entity": "call_attempts",
-  "entity_id": "ca_f531e662ea",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_declined",
-  "actor": "system",
-  "after": {
-   "last_outcome": "DECLINED",
-   "next_attempt_at": "",
-   "status": "DECLINED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_f531e662ea",
-  "entity": "contacts",
-  "entity_id": "c_517863c95b",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_f531e662ea:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_f531e662ea",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_1fa555f306"
-  },
-  "before": {},
-  "call_attempt_id": "ca_79dcaa34ba",
-  "contact_id": "c_d7b9cfa027",
   "entity": "transcripts",
-  "entity_id": "tr_1fa555f306",
+  "entity_id": "tr_b3c99276d4",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "completed",
+  "action": "replied",
   "actor": "system",
   "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 75,
-   "ended_at": "2026-10-20T19:01:15Z",
-   "failure_category": "Pitch did not land",
-   "outcome": "DECLINED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:patient_data",
-   "recording_ref": "mock://recordings/mock_ca_79dcaa34ba",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_1fa555f306"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
    "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_d7b9cfa027",
-  "entity": "call_attempts",
-  "entity_id": "ca_79dcaa34ba",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_declined",
-  "actor": "system",
-  "after": {
-   "last_outcome": "DECLINED",
-   "next_attempt_at": "",
-   "status": "DECLINED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_79dcaa34ba",
-  "entity": "contacts",
-  "entity_id": "c_d7b9cfa027",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_79dcaa34ba:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_79dcaa34ba",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_7726b3d263"
-  },
-  "before": {},
-  "call_attempt_id": "ca_831582c51e",
-  "contact_id": "c_a776b6dc5b",
-  "entity": "transcripts",
-  "entity_id": "tr_7726b3d263",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 120,
-   "ended_at": "2026-10-20T19:02:00Z",
-   "failure_category": "",
-   "outcome": "BOOKED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:delivery_fails",
-   "recording_ref": "mock://recordings/mock_ca_831582c51e",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_7726b3d263"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_a776b6dc5b",
-  "entity": "call_attempts",
-  "entity_id": "ca_831582c51e",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "int_7726b3d263",
-   "status": "draft_pending_approval"
-  },
-  "before": {},
-  "call_attempt_id": "ca_831582c51e",
-  "contact_id": "c_a776b6dc5b",
-  "entity": "interviews",
-  "entity_id": "int_7726b3d263",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "draft_invite",
-  "actor": "system",
-  "after": {
-   "calendar_event_ref": "file:data/handoff/int_7726b3d263.ics"
-  },
-  "before": {
-   "calendar_event_ref": ""
-  },
-  "entity": "interviews",
-  "entity_id": "int_7726b3d263",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_booked",
-  "actor": "system",
-  "after": {
-   "last_outcome": "BOOKED",
-   "next_attempt_at": "",
-   "status": "BOOKED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_831582c51e",
-  "entity": "contacts",
-  "entity_id": "c_a776b6dc5b",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_831582c51e:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_831582c51e",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "2026-10-20T19:00:00Z",
-   "failure_category": "Technical failure",
-   "outcome": "FAILED_TECHNICAL",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:technical",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "failed"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress"
-  },
-  "contact_id": "c_866bc1a7db",
-  "entity": "call_attempts",
-  "entity_id": "ca_cf9b5882df",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_failed_technical",
-  "actor": "system",
-  "after": {
-   "last_outcome": "FAILED_TECHNICAL",
-   "next_attempt_at": "2026-10-20T20:00:00Z",
-   "status": "IN_OUTREACH"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_cf9b5882df",
-  "entity": "contacts",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_cf9b5882df:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_cf9b5882df",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_8762bd62f2"
-  },
-  "before": {},
-  "call_attempt_id": "ca_7e13816d5d",
-  "contact_id": "c_2c3a09fcb5",
-  "entity": "transcripts",
-  "entity_id": "tr_8762bd62f2",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 142,
-   "ended_at": "2026-10-20T19:02:22Z",
-   "failure_category": "",
-   "outcome": "BOOKED",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:booked",
-   "recording_ref": "mock://recordings/mock_ca_7e13816d5d",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_8762bd62f2"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_2c3a09fcb5",
-  "entity": "call_attempts",
-  "entity_id": "ca_7e13816d5d",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "int_8762bd62f2",
-   "status": "draft_pending_approval"
-  },
-  "before": {},
-  "call_attempt_id": "ca_7e13816d5d",
-  "contact_id": "c_2c3a09fcb5",
-  "entity": "interviews",
-  "entity_id": "int_8762bd62f2",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "draft_invite",
-  "actor": "system",
-  "after": {
-   "calendar_event_ref": "file:data/handoff/int_8762bd62f2.ics"
-  },
-  "before": {
-   "calendar_event_ref": ""
-  },
-  "entity": "interviews",
-  "entity_id": "int_8762bd62f2",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_booked",
-  "actor": "system",
-  "after": {
-   "last_outcome": "BOOKED",
-   "next_attempt_at": "",
-   "status": "BOOKED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_7e13816d5d",
-  "entity": "contacts",
-  "entity_id": "c_2c3a09fcb5",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_7e13816d5d:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_7e13816d5d",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_a53e649b44"
-  },
-  "before": {},
-  "call_attempt_id": "ca_d39fa0c7be",
-  "contact_id": "c_41cc51441d",
-  "entity": "transcripts",
-  "entity_id": "tr_a53e649b44",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 41,
-   "ended_at": "2026-10-20T19:00:41Z",
-   "failure_category": "Not a fit",
-   "outcome": "NOT_A_FIT",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:not_a_fit",
-   "recording_ref": "mock://recordings/mock_ca_d39fa0c7be",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_a53e649b44"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_41cc51441d",
-  "entity": "call_attempts",
-  "entity_id": "ca_d39fa0c7be",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_not_a_fit",
-  "actor": "system",
-  "after": {
-   "last_outcome": "NOT_A_FIT",
-   "next_attempt_at": "",
-   "status": "DECLINED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_d39fa0c7be",
-  "entity": "contacts",
-  "entity_id": "c_41cc51441d",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_d39fa0c7be:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_d39fa0c7be",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_e770475762"
-  },
-  "before": {},
-  "call_attempt_id": "ca_38db576121",
-  "contact_id": "c_b62f5021ad",
-  "entity": "transcripts",
-  "entity_id": "tr_e770475762",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 8,
-   "ended_at": "2026-10-20T19:00:08Z",
-   "failure_category": "Hung up at AI disclosure",
-   "outcome": "DECLINED_RECORDING",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:declined_recording",
-   "recording_ref": "mock://recordings/mock_ca_38db576121",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_e770475762"
-  },
-  "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
-   "failure_category": "",
-   "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
-  },
-  "contact_id": "c_b62f5021ad",
-  "entity": "call_attempts",
-  "entity_id": "ca_38db576121",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "outcome_declined_recording",
-  "actor": "system",
-  "after": {
-   "last_outcome": "DECLINED_RECORDING",
-   "next_attempt_at": "",
-   "status": "DECLINED"
-  },
-  "before": {
-   "last_outcome": "",
-   "next_attempt_at": "",
-   "status": "IN_OUTREACH"
-  },
-  "call_attempt_id": "ca_38db576121",
-  "entity": "contacts",
-  "entity_id": "c_b62f5021ad",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "webhook_duplicate_ignored",
-  "actor": "system",
-  "after": {
-   "event_id": "mock_ca_38db576121:completed"
-  },
-  "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_38db576121",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "create",
-  "actor": "system",
-  "after": {
-   "id": "tr_1ef9b00473"
-  },
-  "before": {},
-  "call_attempt_id": "ca_26b6ee67d1",
-  "contact_id": "c_fb34444215",
-  "entity": "transcripts",
-  "entity_id": "tr_1ef9b00473",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "completed",
-  "actor": "system",
-  "after": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 96,
-   "ended_at": "2026-10-20T19:01:36Z",
-   "failure_category": "",
+   "handoff": {
+    "availability": "",
+    "contact_email": "e\u2022\u2022\u2022@southend-im.example.test",
+    "contact_method": "email",
+    "contact_number": "",
+    "notes": "Sure. One of my patients, date of birth 03/04/1980, asked about this last week, so it's timely.",
+    "person_spoken_to": "doctor"
+   },
    "outcome": "AGREED_TO_TALK",
-   "outcome_reason": "",
-   "provider_ended_reason": "mock:agreed",
-   "recording_ref": "mock://recordings/mock_ca_26b6ee67d1",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "completed",
-   "transcript_id": "tr_1ef9b00473"
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Sure. One of my patients, date of birth 03/04/1980, asked about this last week, so it's timely.",
+   "transcript_id": "tr_b3c99276d4"
   },
   "before": {
-   "callback_requested_at": "",
-   "cost_usd": 0.0,
-   "duration_sec": 0,
-   "ended_at": "",
    "failure_category": "",
+   "handoff": {},
    "outcome": "",
-   "outcome_reason": "",
-   "provider_ended_reason": "",
-   "recording_ref": "",
-   "started_at": "2026-10-20T19:00:00Z",
-   "status": "in_progress",
-   "transcript_id": ""
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_b3c99276d4"
   },
-  "contact_id": "c_fb34444215",
-  "entity": "call_attempts",
-  "entity_id": "ca_26b6ee67d1",
+  "contact_id": "c_d7b9cfa027",
+  "entity": "email_attempts",
+  "entity_id": "em_79dcaa34ba",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4563,14 +4306,14 @@
   "action": "create",
   "actor": "system",
   "after": {
-   "id": "int_1ef9b00473",
+   "id": "int_b3c99276d4",
    "status": "draft_pending_approval"
   },
   "before": {},
-  "call_attempt_id": "ca_26b6ee67d1",
-  "contact_id": "c_fb34444215",
+  "call_attempt_id": "em_79dcaa34ba",
+  "contact_id": "c_d7b9cfa027",
   "entity": "interviews",
-  "entity_id": "int_1ef9b00473",
+  "entity_id": "int_b3c99276d4",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
@@ -4583,24 +4326,300 @@
   },
   "before": {
    "last_outcome": "",
-   "next_attempt_at": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "status": "IN_OUTREACH"
   },
-  "call_attempt_id": "ca_26b6ee67d1",
+  "email_attempt_id": "em_79dcaa34ba",
+  "entity": "contacts",
+  "entity_id": "c_d7b9cfa027",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "event_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
+  },
+  "before": {},
+  "entity": "email_attempt",
+  "entity_id": "em_79dcaa34ba",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "reply_added",
+  "actor": "system",
+  "after": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_7e13816d5d:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "before": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_7e13816d5d:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_7e0e02e827",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "",
+   "handoff": {
+    "availability": "Tuesday or Thursday afternoons work best for me.",
+    "contact_email": "l\u2022\u2022\u2022@bennettfp.example.test",
+    "contact_method": "whatsapp",
+    "contact_number": "",
+    "notes": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "AGREED_TO_TALK",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+   "transcript_id": "tr_7e0e02e827"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_7e0e02e827"
+  },
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "email_attempts",
+  "entity_id": "em_7e13816d5d",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "int_7e0e02e827",
+   "status": "draft_pending_approval"
+  },
+  "before": {},
+  "call_attempt_id": "em_7e13816d5d",
+  "contact_id": "c_2c3a09fcb5",
+  "entity": "interviews",
+  "entity_id": "int_7e0e02e827",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "outcome_agreed_to_talk",
+  "actor": "system",
+  "after": {
+   "last_outcome": "AGREED_TO_TALK",
+   "next_attempt_at": "",
+   "status": "BOOKED"
+  },
+  "before": {
+   "last_outcome": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_7e13816d5d",
+  "entity": "contacts",
+  "entity_id": "c_2c3a09fcb5",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "event_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
+  },
+  "before": {},
+  "entity": "email_attempt",
+  "entity_id": "em_7e13816d5d",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "reply_added",
+  "actor": "system",
+  "after": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_d39fa0c7be:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "before": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_d39fa0c7be:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_7bcf8e455a",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "Pitch did not land",
+   "handoff": {},
+   "outcome": "DECLINED",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Thanks for reaching out, but we're not able to take this on right now.",
+   "transcript_id": "tr_7bcf8e455a"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_7bcf8e455a"
+  },
+  "contact_id": "c_41cc51441d",
+  "entity": "email_attempts",
+  "entity_id": "em_d39fa0c7be",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "outcome_declined",
+  "actor": "system",
+  "after": {
+   "last_outcome": "DECLINED",
+   "next_attempt_at": "",
+   "status": "DECLINED"
+  },
+  "before": {
+   "last_outcome": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_d39fa0c7be",
+  "entity": "contacts",
+  "entity_id": "c_41cc51441d",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "event_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
+  },
+  "before": {},
+  "entity": "email_attempt",
+  "entity_id": "em_d39fa0c7be",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "reply_added",
+  "actor": "system",
+  "after": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_26b6ee67d1:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "before": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_26b6ee67d1:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_45de111de9",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "",
+   "handoff": {
+    "availability": "Tuesday or Thursday afternoons work best for me.",
+    "contact_email": "w\u2022\u2022\u2022@chenfp.example.test",
+    "contact_method": "whatsapp",
+    "contact_number": "",
+    "notes": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "AGREED_TO_TALK",
+   "replied_at": "2026-10-20T19:00:00Z",
+   "reply_text": "Yes, happy to talk. Tuesday or Thursday afternoons work best for me. Best email is this one, or you can text me on WhatsApp at this number. Looking forward to it.",
+   "transcript_id": "tr_45de111de9"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_45de111de9"
+  },
+  "contact_id": "c_fb34444215",
+  "entity": "email_attempts",
+  "entity_id": "em_26b6ee67d1",
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "int_45de111de9",
+   "status": "draft_pending_approval"
+  },
+  "before": {},
+  "call_attempt_id": "em_26b6ee67d1",
+  "contact_id": "c_fb34444215",
+  "entity": "interviews",
+  "entity_id": "int_45de111de9",
+  "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "outcome_agreed_to_talk",
+  "actor": "system",
+  "after": {
+   "last_outcome": "AGREED_TO_TALK",
+   "next_attempt_at": "",
+   "status": "BOOKED"
+  },
+  "before": {
+   "last_outcome": "",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_26b6ee67d1",
   "entity": "contacts",
   "entity_id": "c_fb34444215",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
  {
-  "action": "webhook_duplicate_ignored",
+  "action": "event_duplicate_ignored",
   "actor": "system",
   "after": {
-   "event_id": "mock_ca_26b6ee67d1:completed"
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
   },
   "before": {},
-  "entity": "call_attempt",
-  "entity_id": "ca_26b6ee67d1",
+  "entity": "email_attempt",
+  "entity_id": "em_26b6ee67d1",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4618,7 +4637,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_d3d58c0594",
+  "entity_id": "tr_72814132e4",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4636,7 +4655,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_a4b4369a69",
+  "entity_id": "tr_6cf3e3ffa7",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4654,7 +4673,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_5adff537fa",
+  "entity_id": "tr_64bfe04e59",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4672,7 +4691,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_591f3fdaca",
+  "entity_id": "tr_49a48e7d34",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4690,7 +4709,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_0fab65b196",
+  "entity_id": "tr_df79bd95ef",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4708,7 +4727,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_02d4caf21b",
+  "entity_id": "tr_5f981d4531",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4726,7 +4745,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_4ffd464341",
+  "entity_id": "tr_b9ed93f342",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4744,7 +4763,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_9491a6cd06",
+  "entity_id": "tr_fe051d28df",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4762,23 +4781,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_1c2ec351e8",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "delivery_failed",
-  "actor": "system",
-  "after": {
-   "delivery_status": "failed",
-   "last_delivery_error": "mock Brain returned 500 (scenario delivery_fails)"
-  },
-  "before": {
-   "delivery_status": "pending",
-   "last_delivery_error": ""
-  },
-  "entity": "transcripts",
-  "entity_id": "tr_7726b3d263",
+  "entity_id": "tr_7e0e02e827",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4796,7 +4799,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_8762bd62f2",
+  "entity_id": "tr_7bcf8e455a",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4814,7 +4817,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_a53e649b44",
+  "entity_id": "tr_1f1c19b8df",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4832,25 +4835,7 @@
    "last_delivery_error": ""
   },
   "entity": "transcripts",
-  "entity_id": "tr_e770475762",
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "delivered",
-  "actor": "system",
-  "after": {
-   "delivered_at": "2026-10-20T19:00:00Z",
-   "delivery_status": "delivered",
-   "last_delivery_error": ""
-  },
-  "before": {
-   "delivered_at": "",
-   "delivery_status": "pending",
-   "last_delivery_error": ""
-  },
-  "entity": "transcripts",
-  "entity_id": "tr_1ef9b00473",
+  "entity_id": "tr_45de111de9",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
  },
@@ -4865,1071 +4850,5 @@
   "entity_id": "20261020T190000Z-001",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-20T21:26:39Z",
-   "trigger": "push"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T212639Z-002",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "verify",
-  "actor": "system",
-  "after": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220111",
-   "verification_reason": "",
-   "verified": true
-  },
-  "before": {
-   "line_type": "landline",
-   "value": "+1\u2022\u2022\u2022\u2022\u2022\u20220111",
-   "verification_reason": "wrong_number",
-   "verified": false
-  },
-  "entity": "channels",
-  "entity_id": "ch_6edba34a63",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:26 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel",
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared",
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:26 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438",
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "outside_calling_window:Tue 17:26 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:26 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:26 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T212639Z-002",
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-20T21:48:42Z",
-   "trigger": "push"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T214842Z-003",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:48 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel",
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared",
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:48 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438",
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "outside_calling_window:Tue 17:48 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:48 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:48 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T214842Z-003",
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-20T21:50:30Z",
-   "trigger": "push"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T215030Z-004",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:50 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel",
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared",
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:50 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438",
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "outside_calling_window:Tue 17:50 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:50 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 17:50 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T215030Z-004",
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-20T19:00:00Z",
-   "trigger": "dashboard"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T190000Z-005",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "retry_not_due_until:2026-10-20T20:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261020T190000Z-005",
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-21T01:19:45Z",
-   "trigger": "push"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261021T011945Z-006",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:19 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel",
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared",
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:19 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438",
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "outside_calling_window:Tue 21:19 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:19 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:19 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261021T011945Z-006",
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z"
- },
- {
-  "action": "start",
-  "actor": "system",
-  "after": {
-   "now_used": "2026-10-21T01:31:52Z",
-   "trigger": "push"
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261021T013152Z-007",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:31 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_01c54d811d",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:no_callable_channel",
-    "no_phone_channel",
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_070728f30d",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "call_clearance_not_cleared",
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_0de2e04276",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:31 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_29816f6cb0",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:contact:c_48eaa6c438",
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_48eaa6c438",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "contact_not_verified:duplicate_of:c_251bab6d38",
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_761872151b",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_866bc1a7db",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_blocked",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-    "outside_calling_window:Tue 21:31 America/New_York"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_8a72860e91",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:31 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_da6677d004",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "gate_deferred",
-  "actor": "system",
-  "after": {
-   "reasons": [
-    "outside_calling_window:Tue 21:31 America/New_York",
-    "retry_not_due_until:2026-10-21T18:00:00Z"
-   ]
-  },
-  "before": {},
-  "entity": "contact",
-  "entity_id": "c_f9eafcfce6",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
- },
- {
-  "action": "finish",
-  "actor": "system",
-  "after": {
-   "gate_escapes": 0
-  },
-  "before": {},
-  "entity": "run",
-  "entity_id": "20261021T013152Z-007",
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z"
  }
 ]

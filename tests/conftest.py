@@ -8,6 +8,7 @@ import pytest
 from infra.brain import MockBrain
 from infra.clock import FixedClock
 from infra.config import load_config
+from infra.email.provider import MockEmailProvider
 from infra.pipeline import run_pipeline
 from infra.store import Store
 from infra.voice import MockVoiceProvider
@@ -22,8 +23,16 @@ SATURDAY_10AM_ET = datetime(2026, 10, 24, 14, 0, tzinfo=UTC)
 
 
 class Env:
-    def __init__(self, tmp_path: Path, now: datetime = TUESDAY_10AM_ET, kill: bool = False, brain_down: bool = False):
+    def __init__(
+        self,
+        tmp_path: Path,
+        now: datetime = TUESDAY_10AM_ET,
+        kill: bool = False,
+        brain_down: bool = False,
+        channel: str = "call",
+    ):
         env = {
+            "BV_OUTREACH_CHANNEL": channel,
             "BV_DATA_DIR": str(tmp_path / "data"),
             "BV_EXPORT_DIR": str(tmp_path / "export"),
             "BV_KILL_SWITCH": "1" if kill else "0",
@@ -34,8 +43,10 @@ class Env:
         self.store = Store(self.cfg.data_dir, self.clock).load()
         self.brain = MockBrain(self.store, self.clock, down=brain_down)
         self.voice = MockVoiceProvider(self.cfg.webhook_secret, self.clock)
+        self.mailer = MockEmailProvider(self.clock)
 
     def run(self, **kwargs):
+        kwargs.setdefault("mailer", self.mailer)
         return run_pipeline(
             self.store,
             self.cfg,
@@ -54,6 +65,7 @@ class Env:
         self.store = Store(self.cfg.data_dir, self.clock).load()
         self.brain = MockBrain(self.store, self.clock, down=self.brain.down)
         self.voice = MockVoiceProvider(self.cfg.webhook_secret, self.clock)
+        self.mailer = MockEmailProvider(self.clock)
 
     def contact(self, external_id: str):
         return next(c for c in self.store.contacts.values() if c.external_id == external_id)

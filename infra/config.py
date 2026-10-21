@@ -53,6 +53,21 @@ class Config:
     vapi_api_key: str = ""
     vapi_phone_number_id: str = ""
     vapi_area_code: str = "617"
+    outreach_channel: str = "email"  # email (default) | call
+    email_from_name: str = "Anirudh Bagla"
+    email_from_address: str = ""
+    email_reply_to: str = ""
+    email_follow_up_days: int = 3
+    email_max_messages: int = 2
+    email_max_per_run: int = 25
+    email_max_per_day: int = 50
+    smtp_host: str = ""
+    smtp_port: int = 587
+    smtp_user: str = ""
+    smtp_password: str = ""
+    imap_host: str = ""
+    imap_user: str = ""
+    imap_password: str = ""
     now_override: datetime | None = None
     data_dir: Path = Path("data")
     export_dir: Path = Path("docs/data")
@@ -108,6 +123,16 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
         cfg.live_voice_id = live.get("voice_id", cfg.live_voice_id)
         cfg.live_model = live.get("model", cfg.live_model)
         cfg.vapi_area_code = str(live.get("area_code", cfg.vapi_area_code))
+        outreach = raw.get("outreach", {})
+        cfg.outreach_channel = str(outreach.get("channel", cfg.outreach_channel))
+        em = raw.get("email", {})
+        cfg.email_from_name = str(em.get("from_name", cfg.email_from_name))
+        cfg.email_from_address = str(em.get("from_address", cfg.email_from_address))
+        cfg.email_reply_to = str(em.get("reply_to", cfg.email_reply_to))
+        cfg.email_follow_up_days = int(em.get("follow_up_days", cfg.email_follow_up_days))
+        cfg.email_max_messages = int(em.get("max_messages", cfg.email_max_messages))
+        cfg.email_max_per_run = int(em.get("max_per_run", cfg.email_max_per_run))
+        cfg.email_max_per_day = int(em.get("max_per_day", cfg.email_max_per_day))
         paths = raw.get("paths", {})
         cfg.data_dir = Path(paths.get("data_dir", cfg.data_dir))
         cfg.export_dir = Path(paths.get("export_dir", cfg.export_dir))
@@ -125,6 +150,18 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
     cfg.vapi_api_key = (env.get("VAPI_PRIVATE_KEY") or env.get("VAPI_API_KEY") or "").strip()  # private key
     cfg.vapi_phone_number_id = env.get("VAPI_PHONE_NUMBER_ID", "").strip()
     cfg.live_ignore_window = _flag(env, "BV_LIVE_IGNORE_WINDOW", cfg.live_ignore_window)
+    if env.get("BV_OUTREACH_CHANNEL"):
+        cfg.outreach_channel = env["BV_OUTREACH_CHANNEL"].strip().lower()
+    cfg.email_from_address = (env.get("EMAIL_FROM") or cfg.email_from_address).strip()
+    cfg.email_from_name = (env.get("EMAIL_FROM_NAME") or cfg.email_from_name).strip()
+    cfg.email_reply_to = (env.get("EMAIL_REPLY_TO") or cfg.email_reply_to).strip()
+    cfg.smtp_host = env.get("SMTP_HOST", "").strip()
+    cfg.smtp_port = int(env.get("SMTP_PORT") or cfg.smtp_port)
+    cfg.smtp_user = env.get("SMTP_USER", "").strip()
+    cfg.smtp_password = env.get("SMTP_PASSWORD", "")
+    cfg.imap_host = env.get("IMAP_HOST", "").strip()
+    cfg.imap_user = (env.get("IMAP_USER") or cfg.smtp_user).strip()
+    cfg.imap_password = env.get("IMAP_PASSWORD") or cfg.smtp_password
     if env.get("BV_LIVE_ALLOWLIST"):
         cfg.live_allowlist = [x.strip() for x in env["BV_LIVE_ALLOWLIST"].split(",") if x.strip()]
     if env.get("BV_DATA_DIR"):
@@ -138,10 +175,13 @@ def load_config(path: str | Path = "config.toml", env: dict | None = None) -> Co
         if not cfg.live_allowlist:
             raise ConfigError(
                 "mode=live needs a non-empty [live].allowlist (or BV_LIVE_ALLOWLIST): only listed "
-                "numbers may be dialed in the staged live test."
+                "numbers or email addresses may be contacted in the staged live test."
             )
     elif cfg.mode != "dry_run":
         raise ConfigError(f"mode={cfg.mode!r} is not supported. Use dry_run or live.")
+    if cfg.outreach_channel not in ("email", "call"):
+        raise ConfigError(f"[outreach].channel must be 'email' or 'call', got {cfg.outreach_channel!r}")
+    cfg.live_allowlist = [x.lower() if "@" in x else x for x in cfg.live_allowlist]
     return cfg
 
 

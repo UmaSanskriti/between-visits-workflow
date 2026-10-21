@@ -26,11 +26,56 @@ def _breakdown(attempts, key):
     return out
 
 
+REPLIED_OUTCOMES = {Outcome.AGREED_TO_TALK, Outcome.DECLINED, Outcome.DO_NOT_CONTACT, Outcome.REPLIED_OTHER}
+
+
+def email_summary(store: Store, run: dict) -> dict:
+    emails = sorted(store.email_attempts.values(), key=lambda a: a.sent_at or a.created_at)
+    limits = run.get("limits") or {}
+    max_messages = int(limits.get("max_messages", 2))
+    now_iso = run.get("finished_at") or run.get("started_at") or ""
+    sent = [a for a in emails if a.status in ("sent", "bounced")]
+    replied = [a for a in emails if a.outcome in REPLIED_OUTCOMES]
+    contacts = store.contacts
+    follow_ups_due = sum(
+        1
+        for c in contacts.values()
+        if c.status == ContactStatus.IN_OUTREACH
+        and c.attempts < max_messages
+        and c.next_attempt_at
+        and now_iso
+        and c.next_attempt_at <= now_iso
+        and any(a.contact_id == c.id for a in emails)
+    )
+    return {
+        "attempts": len(emails),
+        "sent": len(sent),
+        "queued": sum(1 for a in emails if a.status == "queued"),
+        "failed": sum(1 for a in emails if a.status == "failed"),
+        "by_outcome": dict(Counter(str(a.outcome) if a.outcome else "(awaiting reply)" for a in emails)),
+        "replied": len(replied),
+        "agreed": sum(1 for a in emails if a.outcome in (Outcome.AGREED_TO_TALK, Outcome.BOOKED)),
+        "declined": sum(1 for a in emails if a.outcome == Outcome.DECLINED),
+        "stop": sum(1 for a in emails if a.outcome == Outcome.DO_NOT_CONTACT),
+        "bounced": sum(1 for a in emails if a.outcome == Outcome.BOUNCED),
+        "needs_review": sum(1 for a in emails if a.outcome == Outcome.REPLIED_OTHER),
+        "no_reply": sum(1 for a in emails if a.outcome == Outcome.NO_REPLY),
+        "awaiting_reply": sum(1 for a in emails if a.status == "sent" and not a.outcome),
+        "follow_ups_due": follow_ups_due,
+        "reply_rate": round(len(replied) / len(sent), 3) if sent else None,
+        "by_script_version": _breakdown(emails, "script_version"),
+        "by_segment": _breakdown(emails, "segment"),
+        "duplicate_events_ignored": sum(a.duplicate_events_ignored for a in emails),
+    }
+
+
 def build_summary(store: Store, run: dict) -> dict:
     contacts = list(store.contacts.values())
     attempts = sorted(store.call_attempts.values(), key=lambda a: a.started_at)
+    emails = list(store.email_attempts.values())
     transcripts = list(store.transcripts.values())
     run_id = run.get("run_id", "")
+    channel = run.get("channel") or "call"
     decisions = [d for d in store.logs["gate_decisions"] if d["run_id"] == run_id]
 
     by_status = Counter(str(c.status) for c in contacts)
@@ -40,7 +85,10 @@ def build_summary(store: Store, run: dict) -> dict:
     booked = sum(1 for a in completed if a.outcome in (Outcome.BOOKED, Outcome.AGREED_TO_TALK))
     deliverable = [t for t in transcripts if t.delivery_status != DeliveryStatus.HELD]
     delivered = sum(1 for t in deliverable if t.delivery_status == DeliveryStatus.DELIVERED)
-    gate_escapes = sum(1 for a in attempts if a.gate_result != "allowed")
+    gate_escapes = sum(1 for a in attempts if a.gate_result != "allowed") + sum(
+        1 for a in emails if a.gate_result != "allowed"
+    )
+    open_email = {a.contact_id for a in emails if a.status == "sent" and not a.outcome}
 
     queue = []
     for c in contacts:
@@ -56,20 +104,29 @@ def build_summary(store: Store, run: dict) -> dict:
                     "next_attempt_at": c.next_attempt_at,
                     "last_outcome": c.last_outcome,
                     "status": c.status,
+                    "awaiting_reply": c.id in open_email,
+                    "queued_email": any(a.contact_id == c.id and a.status == "queued" for a in emails),
                 }
             )
     queue.sort(key=lambda q: (q["next_attempt_at"] or "", q["name"]))
 
-    return {
-        "generated_at": run.get("finished_at") or run.get("started_at", ""),
-        "run_id": run_id,
-        "contacts": {
-            "total": len(contacts),
-            "verified": verified,
-            "by_status": dict(by_status),
-            "by_verification": dict(Counter(str(c.verification_status) for c in contacts)),
-        },
-        "funnel": [
+    if channel == "email":
+        cleared = sum(
+            1
+            for c in contacts
+            if c.verification_status == "verified"
+            and any(ch.call_clearance == "cleared" for ch in store.channels_for(c.id, "email"))
+        )
+        funnel = [
+            {"stage": "Sourced", "count": len(contacts)},
+            {"stage": "Verified", "count": verified},
+            {"stage": "Cleared to email", "count": cleared},
+            {"stage": "Emailed", "count": len({a.contact_id for a in emails if a.status in ("sent", "bounced")})},
+            {"stage": "Replied", "count": len({a.contact_id for a in emails if a.outcome in REPLIED_OUTCOMES})},
+            {"stage": "Agreed", "count": by_status.get(ContactStatus.BOOKED, 0)},
+        ]
+    else:
+        funnel = [
             {"stage": "Sourced", "count": len(contacts)},
             {"stage": "Verified", "count": verified},
             {
@@ -84,7 +141,20 @@ def build_summary(store: Store, run: dict) -> dict:
             {"stage": "Called", "count": len({a.contact_id for a in attempts})},
             {"stage": "Connected", "count": len({a.contact_id for a in completed if a.outcome in CONNECTED_OUTCOMES})},
             {"stage": "Booked", "count": by_status.get(ContactStatus.BOOKED, 0)},
-        ],
+        ]
+
+    return {
+        "generated_at": run.get("finished_at") or run.get("started_at", ""),
+        "run_id": run_id,
+        "channel": channel,
+        "emails": email_summary(store, run),
+        "contacts": {
+            "total": len(contacts),
+            "verified": verified,
+            "by_status": dict(by_status),
+            "by_verification": dict(Counter(str(c.verification_status) for c in contacts)),
+        },
+        "funnel": funnel,
         "calls": {
             "attempts": len(attempts),
             "completed": len(completed),

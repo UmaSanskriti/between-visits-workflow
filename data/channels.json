@@ -14,7 +14,7 @@
   "verified": true
  },
  "ch_09b9987882": {
-  "call_clearance": "not_cleared",
+  "call_clearance": "cleared",
   "contact_id": "c_da6677d004",
   "id": "ch_09b9987882",
   "line_type": "landline",
@@ -41,6 +41,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_14b62de826": {
+  "call_clearance": "not_cleared",
+  "contact_id": "c_0de2e04276",
+  "id": "ch_14b62de826",
+  "line_type": "landline",
+  "raw_value": "nshah@shahpc.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "nshah@shahpc.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_1a19dbc957": {
   "call_clearance": "cleared",
   "contact_id": "c_01c54d811d",
@@ -55,6 +69,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_27177384c8": {
+  "call_clearance": "cleared",
+  "contact_id": "c_2c3a09fcb5",
+  "id": "ch_27177384c8",
+  "line_type": "mobile",
+  "raw_value": "lbennett@bennettfp.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "lbennett@bennettfp.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_2b7bcb4ad3": {
   "call_clearance": "cleared",
   "contact_id": "c_29816f6cb0",
@@ -66,6 +94,20 @@
   "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
   "type": "phone",
   "value": "+16175550107",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_2ec822826d": {
+  "call_clearance": "cleared",
+  "contact_id": "c_29816f6cb0",
+  "id": "ch_2ec822826d",
+  "line_type": "landline",
+  "raw_value": "scheduling@fenwaygroup.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "scheduling@fenwaygroup.example.test",
   "verification_reason": "",
   "verified": true
  },
@@ -112,7 +154,7 @@
   "verified": true
  },
  "ch_52806280cd": {
-  "call_clearance": "not_cleared",
+  "call_clearance": "cleared",
   "contact_id": "c_251bab6d38",
   "id": "ch_52806280cd",
   "line_type": "landline",
@@ -195,6 +237,20 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_6f5e721f2c": {
+  "call_clearance": "cleared",
+  "contact_id": "c_d7b9cfa027",
+  "id": "ch_6f5e721f2c",
+  "line_type": "landline",
+  "raw_value": "ezhang@southend-im.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "ezhang@southend-im.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_7acca703d9": {
   "call_clearance": "cleared",
   "contact_id": "c_5bfd0187e6",
@@ -206,6 +262,34 @@
   "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
   "type": "phone",
   "value": "+18085550106",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_7d785a7774": {
+  "call_clearance": "cleared",
+  "contact_id": "c_41cc51441d",
+  "id": "ch_7d785a7774",
+  "line_type": "landline",
+  "raw_value": "info@harborview-im.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "info@harborview-im.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_8a82185b3d": {
+  "call_clearance": "cleared",
+  "contact_id": "c_fb34444215",
+  "id": "ch_8a82185b3d",
+  "line_type": "landline",
+  "raw_value": "wchen@chenfp.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "wchen@chenfp.example.test",
   "verification_reason": "",
   "verified": true
  },
@@ -237,6 +321,34 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_95ee0f7128": {
+  "call_clearance": "cleared",
+  "contact_id": "c_c09828fbcf",
+  "id": "ch_95ee0f7128",
+  "line_type": "landline",
+  "raw_value": "gkim@kimfamilymed.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "gkim@kimfamilymed.example.test",
+  "verification_reason": "bounced",
+  "verified": false
+ },
+ "ch_b401e0efc6": {
+  "call_clearance": "cleared",
+  "contact_id": "c_b3b24d17b8",
+  "id": "ch_b401e0efc6",
+  "line_type": "landline",
+  "raw_value": "frontdesk@beaconhill-im.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "frontdesk@beaconhill-im.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_c8143f50ff": {
   "call_clearance": "cleared",
   "contact_id": "c_761872151b",
@@ -251,8 +363,22 @@
   "verification_reason": "",
   "verified": true
  },
+ "ch_c81ee09672": {
+  "call_clearance": "cleared",
+  "contact_id": "c_48eaa6c438",
+  "id": "ch_c81ee09672",
+  "line_type": "landline",
+  "raw_value": "hgoldberg@brooklinepc.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "hgoldberg@brooklinepc.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
  "ch_c85f152af5": {
-  "call_clearance": "not_cleared",
+  "call_clearance": "cleared",
   "contact_id": "c_070728f30d",
   "id": "ch_c85f152af5",
   "line_type": "unknown",
@@ -276,6 +402,34 @@
   "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
   "type": "phone",
   "value": "+16175550114",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_df4d7c2a74": {
+  "call_clearance": "cleared",
+  "contact_id": "c_f9eafcfce6",
+  "id": "ch_df4d7c2a74",
+  "line_type": "landline",
+  "raw_value": "office@charlesriver-endo.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "office@charlesriver-endo.example.test",
+  "verification_reason": "",
+  "verified": true
+ },
+ "ch_e207f6adf5": {
+  "call_clearance": "cleared",
+  "contact_id": "c_b62f5021ad",
+  "id": "ch_e207f6adf5",
+  "line_type": "landline",
+  "raw_value": "tnguyen@nguyenfh.example.test",
+  "retrieved_at": "2026-10-20T19:00:00Z",
+  "source": "csv:test_doctors.csv",
+  "source_url": "/Users/sanskritiuma/between-visits-workflow/seeds/test_doctors.csv",
+  "type": "email",
+  "value": "tnguyen@nguyenfh.example.test",
   "verification_reason": "",
   "verified": true
  },

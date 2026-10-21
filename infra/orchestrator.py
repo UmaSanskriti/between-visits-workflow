@@ -6,9 +6,12 @@ from datetime import timedelta
 
 from .booking import FileBookingHandoff, ensure_interview
 from .brain import BrainClient, BrainUnavailable, with_retries
-from .clock import Clock, add_business_days, iso, to_local
-from .compliance import contains_opt_out, detect_patient_data, pre_call_gate
+from .clock import Clock, add_business_days, iso, parse_iso, to_local
+from .compliance import contains_opt_out, detect_patient_data, pre_call_gate, pre_send_gate
 from .config import Config
+from .email.classify import classify_reply
+from .email.compose import build_email
+from .email.provider import EmailMessage, EmailProvider, EmailSendError
 from .models import (
     FAILURE_CATEGORY,
     CallAttempt,
@@ -17,6 +20,7 @@ from .models import (
     Contact,
     ContactStatus,
     DeliveryStatus,
+    EmailAttempt,
     Outcome,
     Suppression,
     Transcript,
@@ -404,7 +408,7 @@ def add_suppression(
 ) -> list[Suppression]:
     """Written in the same save as the call outcome (CMP-006)."""
     created = []
-    pairs = [("contact", contact.id)] + ([("phone", channel.value)] if channel else [])
+    pairs = [("contact", contact.id)] + ([(channel.type, channel.value)] if channel else [])
     for kind, identifier in pairs:
         sid = "sup_" + short_hash(kind, identifier)
         if sid in store.suppressions:
@@ -420,3 +424,453 @@ def add_suppression(
         store.add("suppressions", row, contact_id=contact.id)
         created.append(row)
     return created
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# Email channel (playbook section 8). Same lifecycle, same gate shape, same transcript handoff to the Brain.
+# ---------------------------------------------------------------------------------------------------------------
+def _pick_email_channel(store: Store, contact: Contact) -> Channel | None:
+    emails = store.channels_for(contact.id, "email")
+    verified = [ch for ch in emails if ch.verified]
+    return (verified or emails or [None])[0]
+
+
+def send_emails(
+    store: Store, cfg: Config, clock: Clock, brain: BrainClient, mailer: EmailProvider, run_id: str
+) -> dict:
+    """Gate every open contact, compose the playbook email, send (or queue for the Gmail connector)."""
+    counts = {
+        "considered": 0,
+        "allowed": 0,
+        "blocked": 0,
+        "deferred": 0,
+        "sent": 0,
+        "queued": 0,
+        "failed": 0,
+        "brain_unavailable": 0,
+        "compose_errors": 0,
+        "capped": 0,
+    }
+    now = clock.now()
+    today = iso(now)[:10]
+    sent_today = sum(1 for a in store.email_attempts.values() if (a.sent_at or a.created_at)[:10] == today)
+    if cfg.kill_switch:
+        store.alert("kill_switch_on", "kill switch is on; no emails will be sent", run_id=run_id)
+
+    for contact in list(store.contacts.values()):
+        if contact.status in CLOSED:
+            continue
+        counts["considered"] += 1
+        channel = _pick_email_channel(store, contact)
+        gate = pre_send_gate(store, contact, channel, cfg, clock)
+        decision = {
+            "run_id": run_id,
+            "timestamp": iso(now),
+            "contact_id": contact.id,
+            "channel_id": channel.id if channel else "",
+            "channel": "email",
+            "allowed": gate.allowed,
+            "deferred": gate.deferred,
+            "reasons": gate.reasons,
+            "waivers": gate.waivers,
+        }
+        if not gate.allowed:
+            store.logs["gate_decisions"].append(decision)
+            store.audit(
+                "contact",
+                contact.id,
+                "gate_deferred" if gate.deferred else "gate_blocked",
+                {},
+                {"reasons": gate.reasons, "channel": "email"},
+                run_id=run_id,
+            )
+            counts["deferred" if gate.deferred else "blocked"] += 1
+            continue
+        per_run = cfg.live_max_calls_per_run if cfg.mode == "live" else cfg.email_max_per_run
+        placed = counts["sent"] + counts["queued"]
+        if placed >= per_run or sent_today + placed >= cfg.email_max_per_day:
+            decision.update({"allowed": False, "deferred": True, "reasons": ["email_cap_reached"]})
+            store.logs["gate_decisions"].append(decision)
+            counts["capped"] += 1
+            continue
+        counts["allowed"] += 1
+        store.logs["gate_decisions"].append(decision)
+        assert channel is not None
+
+        attempt_number = contact.attempts + 1
+        attempt_id = "em_" + short_hash(contact.id, str(attempt_number))
+        request = {
+            "campaign_id": cfg.campaign_id,
+            "contact": {
+                "contact_id": contact.id,
+                "specialty": contact.specialty,
+                "practice_name": contact.practice_name,
+                "segment": contact.segment,
+            },
+            "attempt_number": attempt_number,
+        }
+        try:
+            brain_email = with_retries(
+                lambda req=request: brain.resolve_email(req),
+                attempts=3,
+                backoff_seconds=0,
+                retry_on=(BrainUnavailable,),
+            )
+        except BrainUnavailable as exc:
+            store.error("brain_unavailable", str(exc), call_id=attempt_id, contact_id=contact.id, field="email")
+            store.update(
+                "contacts",
+                contact,
+                "brain_unavailable_backoff",
+                {"next_attempt_at": iso(now + timedelta(minutes=cfg.brain_retry_minutes))},
+                run_id=run_id,
+            )
+            counts["brain_unavailable"] += 1
+            continue
+
+        draft, errors = build_email(contact, channel, brain_email, cfg, clock)
+        if errors or draft is None:
+            for err in errors:
+                kind = "missing_field" if err.startswith("missing_required") else "email_rule"
+                store.error(kind, err, call_id=attempt_id, contact_id=contact.id, field=err.split(":")[-1])
+            counts["compose_errors"] += 1
+            continue
+
+        # a follow-up closes the previous unanswered email
+        for prev in store.email_attempts.values():
+            if prev.contact_id == contact.id and prev.status == "sent" and not prev.outcome:
+                store.update(
+                    "email_attempts",
+                    prev,
+                    "no_reply_followed_up",
+                    {
+                        "outcome": Outcome.NO_REPLY,
+                        "failure_category": FAILURE_CATEGORY[Outcome.NO_REPLY],
+                        "outcome_reason": "no reply before the follow-up",
+                    },
+                    run_id=run_id,
+                )
+
+        attempt = EmailAttempt(
+            id=attempt_id,
+            contact_id=contact.id,
+            channel_id=channel.id,
+            attempt_number=attempt_number,
+            run_id=run_id,
+            gate_result="allowed",
+            subject=draft.subject,
+            body=draft.body,
+            status="queued",
+            provider=mailer.name,
+            script_version=draft.script_version,
+            segment=contact.segment or "default",
+            fallbacks_applied=draft.fallbacks_applied,
+            created_at=iso(now),
+            updated_at=iso(now),
+        )
+        store.add("email_attempts", attempt, run_id=run_id, contact_id=contact.id)
+        message = EmailMessage(
+            to=channel.value,
+            from_name=cfg.email_from_name,
+            from_address=cfg.email_from_address or "dry-run@between-visits.test",
+            reply_to=cfg.email_reply_to,
+            subject=draft.subject,
+            body_text=draft.body,
+            headers={"X-BV-Attempt": attempt_id, "X-BV-Script": draft.script_version},
+            attempt_id=attempt_id,
+            contact_id=contact.id,
+            metadata={"scenario": contact.test_scenario, "dry_run": cfg.mode != "live"},
+        )
+        try:
+            message_id = mailer.send(message)
+        except EmailSendError as exc:
+            store.update(
+                "email_attempts",
+                attempt,
+                "send_failed",
+                {"status": "failed", "outcome_reason": str(exc)},
+                run_id=run_id,
+            )
+            store.error("delivery_failed", str(exc), call_id=attempt_id, contact_id=contact.id, field="email")
+            store.alert("email_send_failed", f"{attempt_id}: {exc}", contact_id=contact.id, run_id=run_id)
+            counts["failed"] += 1
+            continue
+        contact_changes = {"status": ContactStatus.IN_OUTREACH, "attempts": attempt_number, "last_outcome": ""}
+        if message_id:
+            mark_sent(store, cfg, clock, attempt, contact, message_id, mailer.name, run_id)
+            counts["sent"] += 1
+        else:  # queued in an outbox; the operator sends it and reports back with `email-sent`
+            contact_changes["next_attempt_at"] = ""
+            counts["queued"] += 1
+        store.update(
+            "contacts",
+            contact,
+            "email_sent" if message_id else "email_queued",
+            contact_changes,
+            run_id=run_id,
+            email_attempt_id=attempt_id,
+        )
+    counts["placed"] = counts["sent"] + counts["queued"]  # alias so progress views treat both channels alike
+    return counts
+
+
+def mark_sent(
+    store: Store,
+    cfg: Config,
+    clock: Clock,
+    attempt: EmailAttempt,
+    contact: Contact,
+    message_id: str,
+    provider: str,
+    run_id: str,
+    sent_at: str = "",
+) -> None:
+    """The email left: record it, open the thread transcript (BRN-004), and start the follow-up clock."""
+    now = sent_at or iso(clock.now())
+    transcript_id = "tr_" + short_hash(attempt.id)
+    if transcript_id not in store.transcripts:
+        store.add(
+            "transcripts",
+            Transcript(
+                id=transcript_id,
+                call_attempt_id=attempt.id,
+                contact_id=contact.id,
+                utterances=[{"speaker": "agent", "start_ms": 0, "text": attempt.body}],
+                idempotency_key=f"{attempt.id}:sent",
+                created_at=now,
+            ),
+            call_attempt_id=attempt.id,
+            contact_id=contact.id,
+            run_id=run_id,
+        )
+    store.update(
+        "email_attempts",
+        attempt,
+        "sent",
+        {
+            "status": "sent",
+            "provider": provider,
+            "provider_message_id": message_id,
+            "sent_at": now,
+            "transcript_id": transcript_id,
+        },
+        run_id=run_id,
+        contact_id=contact.id,
+    )
+    follow_up = iso(parse_iso(now) + timedelta(days=cfg.email_follow_up_days))
+    store.update(
+        "contacts",
+        contact,
+        "email_sent",
+        {"status": ContactStatus.IN_OUTREACH, "next_attempt_at": follow_up},
+        run_id=run_id,
+        email_attempt_id=attempt.id,
+    )
+
+
+def process_email_events(store: Store, cfg: Config, clock: Clock, mailer: EmailProvider, run_id: str) -> dict:
+    """Replies and bounces (from the mock, IMAP, or the operator), idempotent per event id."""
+    counts = {"events": 0, "applied": 0, "duplicates_ignored": 0, "unknown_message": 0, "expired_no_reply": 0}
+    by_mid = {a.provider_message_id: a for a in store.email_attempts.values() if a.provider_message_id}
+    for event in mailer.drain_events():
+        counts["events"] += 1
+        attempt = store.email_attempts.get(event.get("email_attempt_id", "")) or by_mid.get(
+            event.get("provider_message_id", "")
+        )
+        if attempt is None:
+            counts["unknown_message"] += 1
+            store.alert(
+                "email_unknown_message", f"no email attempt for {event.get('provider_message_id')}", run_id=run_id
+            )
+            continue
+        if event["event_id"] in attempt.processed_event_ids:
+            attempt.duplicate_events_ignored += 1
+            counts["duplicates_ignored"] += 1
+            store.audit(
+                "email_attempt",
+                attempt.id,
+                "event_duplicate_ignored",
+                {},
+                {"event_id": event["event_id"]},
+                run_id=run_id,
+            )
+            continue
+        contact = store.contacts[attempt.contact_id]
+        channel = store.channels[attempt.channel_id]
+        apply_email_outcome(store, cfg, clock, attempt, contact, channel, event, run_id)
+        attempt.processed_event_ids.append(event["event_id"])
+        counts["applied"] += 1
+    counts["expired_no_reply"] = expire_no_replies(store, cfg, clock, run_id)
+    return counts
+
+
+def expire_no_replies(store: Store, cfg: Config, clock: Clock, run_id: str) -> int:
+    """After the last allowed message's follow-up window, close the contact as NO_REPLY."""
+    now = clock.now()
+    closed = 0
+    for contact in list(store.contacts.values()):
+        if contact.status != ContactStatus.IN_OUTREACH or contact.attempts < cfg.email_max_messages:
+            continue
+        if not contact.next_attempt_at or parse_iso(contact.next_attempt_at) > now:
+            continue
+        open_attempts = [
+            a
+            for a in store.email_attempts.values()
+            if a.contact_id == contact.id and a.status == "sent" and not a.outcome
+        ]
+        if not open_attempts:
+            continue
+        for a in open_attempts:
+            store.update(
+                "email_attempts",
+                a,
+                "no_reply",
+                {
+                    "outcome": Outcome.NO_REPLY,
+                    "failure_category": FAILURE_CATEGORY[Outcome.NO_REPLY],
+                    "outcome_reason": "no reply after the follow-up window",
+                },
+                run_id=run_id,
+            )
+        store.update(
+            "contacts",
+            contact,
+            "outcome_no_reply",
+            {"status": ContactStatus.UNREACHABLE, "next_attempt_at": "", "last_outcome": Outcome.NO_REPLY},
+            run_id=run_id,
+        )
+        closed += 1
+    return closed
+
+
+def apply_email_outcome(
+    store: Store,
+    cfg: Config,
+    clock: Clock,
+    attempt: EmailAttempt,
+    contact: Contact,
+    channel: Channel,
+    event: dict,
+    run_id: str,
+) -> None:
+    now = clock.now()
+    if event.get("type") == "bounce":
+        store.update(
+            "email_attempts",
+            attempt,
+            "bounced",
+            {
+                "status": "bounced",
+                "outcome": Outcome.BOUNCED,
+                "failure_category": FAILURE_CATEGORY[Outcome.BOUNCED],
+                "outcome_reason": (event.get("text") or "")[:160],
+                "replied_at": event.get("at") or iso(now),
+            },
+            run_id=run_id,
+            contact_id=contact.id,
+        )
+        store.update(
+            "channels",
+            channel,
+            "bounced",
+            {"verified": False, "verification_reason": "bounced"},
+            email_attempt_id=attempt.id,
+        )
+        others = [ch for ch in store.channels_for(contact.id, "email") if ch.verified and ch.id != channel.id]
+        store.update(
+            "contacts",
+            contact,
+            "outcome_bounced",
+            {
+                "status": ContactStatus.IN_OUTREACH if others else ContactStatus.UNREACHABLE,
+                "next_attempt_at": "",
+                "last_outcome": Outcome.BOUNCED,
+            },
+            run_id=run_id,
+            email_attempt_id=attempt.id,
+        )
+        return
+
+    text = event.get("text") or ""
+    outcome, handoff = classify_reply(text)
+    if handoff:
+        handoff["contact_email"] = handoff.get("contact_email") or channel.value
+    replied_at = event.get("at") or iso(now)
+    transcript = store.transcripts.get(attempt.transcript_id) if attempt.transcript_id else None
+    if transcript is None:
+        transcript_id = "tr_" + short_hash(attempt.id)
+        transcript = store.transcripts.get(transcript_id)
+        if transcript is None:
+            transcript = Transcript(
+                id=transcript_id,
+                call_attempt_id=attempt.id,
+                contact_id=contact.id,
+                utterances=[{"speaker": "agent", "start_ms": 0, "text": attempt.body}],
+                idempotency_key=f"{attempt.id}:sent",
+                created_at=iso(now),
+            )
+            store.add("transcripts", transcript, call_attempt_id=attempt.id, contact_id=contact.id, run_id=run_id)
+        attempt.transcript_id = transcript_id
+    pii = detect_patient_data(text)
+    transcript.utterances.append({"speaker": "doctor", "start_ms": 0, "text": text})
+    store.update(
+        "transcripts",
+        transcript,
+        "reply_added",
+        {
+            "idempotency_key": f"{attempt.id}:reply",
+            "delivery_status": DeliveryStatus.HELD if pii else DeliveryStatus.PENDING,
+            "delivery_attempts": 0,
+            "pii_flagged": bool(pii),
+            "pii_reason": pii,
+        },
+        run_id=run_id,
+    )
+    if pii:
+        store.alert(
+            "transcript_held_pii_review",
+            f"{transcript.id} held: {pii} (CMP-009)",
+            transcript_id=transcript.id,
+            call_attempt_id=attempt.id,
+        )
+    store.update(
+        "email_attempts",
+        attempt,
+        "replied",
+        {
+            "outcome": outcome,
+            "reply_text": text,
+            "replied_at": replied_at,
+            "handoff": handoff,
+            "transcript_id": transcript.id,
+            "failure_category": "" if outcome == Outcome.AGREED_TO_TALK else FAILURE_CATEGORY.get(outcome, ""),
+        },
+        run_id=run_id,
+        contact_id=contact.id,
+    )
+
+    contact_changes: dict = {"last_outcome": outcome}
+    if outcome == Outcome.AGREED_TO_TALK:
+        ensure_interview(store, contact, attempt, "", clock, handoff)
+        contact_changes.update(status=ContactStatus.BOOKED, next_attempt_at="")
+    elif outcome == Outcome.DO_NOT_CONTACT:
+        add_suppression(store, contact, channel, clock, source=f"email:{attempt.id}", reason="stop request by email")
+        contact_changes.update(status=ContactStatus.SUPPRESSED, next_attempt_at="")
+    elif outcome == Outcome.DECLINED:
+        contact_changes.update(status=ContactStatus.DECLINED, next_attempt_at="")
+    else:  # REPLIED_OTHER: a human reads it; no automatic follow-up
+        contact_changes.update(status=ContactStatus.IN_OUTREACH, next_attempt_at="")
+        store.alert(
+            "reply_needs_review",
+            f"{contact.full_name or contact.id}: {text[:120]}",
+            contact_id=contact.id,
+            run_id=run_id,
+        )
+    store.update(
+        "contacts",
+        contact,
+        f"outcome_{str(outcome).lower()}",
+        contact_changes,
+        run_id=run_id,
+        email_attempt_id=attempt.id,
+    )

@@ -42,6 +42,9 @@ class Outcome(StrEnum):
     NOT_A_FIT = "NOT_A_FIT"  # playbook: hospital-owned or no GLP-1 patients
     DECLINED_RECORDING = "DECLINED_RECORDING"  # playbook: objected to recording; call ended politely
     AGREED_TO_TALK = "AGREED_TO_TALK"  # agreed to talk to Anirudh; email/channel captured, no slot fixed yet
+    REPLIED_OTHER = "REPLIED_OTHER"  # email: a reply that needs a human to read it
+    BOUNCED = "BOUNCED"  # email: address rejected
+    NO_REPLY = "NO_REPLY"  # email: no reply after the follow-up window
 
 
 NO_RETRY_OUTCOMES = {
@@ -52,6 +55,8 @@ NO_RETRY_OUTCOMES = {
     Outcome.NOT_A_FIT,
     Outcome.DECLINED_RECORDING,
     Outcome.AGREED_TO_TALK,
+    Outcome.BOUNCED,
+    Outcome.NO_REPLY,
 }
 CONNECTED_OUTCOMES = {
     Outcome.BOOKED,
@@ -63,6 +68,7 @@ CONNECTED_OUTCOMES = {
     Outcome.NOT_A_FIT,
     Outcome.DECLINED_RECORDING,
     Outcome.AGREED_TO_TALK,
+    Outcome.REPLIED_OTHER,
 }
 
 # Playbook section 10: provisional failure category derived from the outcome; the reviewer loop may override it.
@@ -77,6 +83,9 @@ FAILURE_CATEGORY = {
     Outcome.DO_NOT_CONTACT: "Do not contact",
     Outcome.WRONG_NUMBER: "Wrong number (list data)",
     Outcome.FAILED_TECHNICAL: "Technical failure",
+    Outcome.BOUNCED: "Wrong address (list data)",
+    Outcome.NO_REPLY: "No reply",
+    Outcome.REPLIED_OTHER: "Reply needs review",
 }
 
 
@@ -185,6 +194,38 @@ class CallAttempt(Record):
 
 
 @dataclass
+class EmailAttempt(Record):
+    """One email sent to a practice (playbook section 8b). Replies and bounces land on the same record."""
+
+    id: str
+    contact_id: str
+    channel_id: str
+    attempt_number: int = 1
+    run_id: str = ""
+    gate_result: str = "allowed"
+    subject: str = ""
+    body: str = ""
+    status: str = "queued"  # queued | sent | failed | bounced
+    provider: str = "mock"
+    provider_message_id: str = ""
+    sent_at: str = ""
+    script_version: str = ""
+    segment: str = ""
+    outcome: str = ""
+    outcome_reason: str = ""
+    failure_category: str = ""
+    reply_text: str = ""
+    replied_at: str = ""
+    handoff: dict = field(default_factory=dict)
+    transcript_id: str = ""
+    fallbacks_applied: list[str] = field(default_factory=list)
+    processed_event_ids: list[str] = field(default_factory=list)
+    duplicate_events_ignored: int = 0
+    created_at: str = ""
+    updated_at: str = ""
+
+
+@dataclass
 class Transcript(Record):
     id: str
     call_attempt_id: str
@@ -264,6 +305,7 @@ TABLES: dict[str, type[Record]] = {
     "contacts": Contact,
     "channels": Channel,
     "call_attempts": CallAttempt,
+    "email_attempts": EmailAttempt,
     "transcripts": Transcript,
     "interviews": Interview,
     "suppressions": Suppression,

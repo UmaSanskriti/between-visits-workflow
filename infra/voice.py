@@ -177,9 +177,14 @@ class MockVoiceProvider:
         self.calls_placed += 1
         provider_call_id = "mock_" + request.call_attempt_id
         meta = request.metadata
-        scenario = meta.get("scenario") or self._default_scenario(request.contact_id)
-        if scenario not in SCENARIOS:
-            scenario = "no_answer"
+        tokens = [t.strip() for t in (meta.get("scenario") or "").split("|") if t.strip()]
+        scenario = next((t for t in tokens if t in SCENARIOS), "")
+        if not scenario:
+            scenario = (
+                "no_answer"
+                if any(t.startswith("email_") for t in tokens)
+                else self._default_scenario(request.contact_id)
+            )
         outcome, duration, pitched, lines = SCENARIOS[scenario]
         close = meta.get("close", "")
         started = self.clock.now()

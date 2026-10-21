@@ -1,122 +1,26 @@
 {
  "alerts": 2,
  "calls": {
-  "attempts": 17,
-  "booked": 5,
-  "by_failure_category": {
-   "Call back later": 1,
-   "Do not contact": 1,
-   "Hung up at AI disclosure": 1,
-   "No answer / voicemail": 2,
-   "Not a fit": 1,
-   "Pitch did not land": 3,
-   "Screened out by front desk": 1,
-   "Technical failure": 1,
-   "Wrong number (list data)": 1
-  },
-  "by_outcome": {
-   "AGREED_TO_TALK": 1,
-   "BOOKED": 4,
-   "CALLBACK_REQUESTED": 1,
-   "DECLINED": 3,
-   "DECLINED_RECORDING": 1,
-   "DO_NOT_CONTACT": 1,
-   "FAILED_TECHNICAL": 1,
-   "GATEKEEPER_BLOCKED": 1,
-   "NOT_A_FIT": 1,
-   "NO_ANSWER": 1,
-   "VOICEMAIL": 1,
-   "WRONG_NUMBER": 1
-  },
-  "by_script_version": {
-   "v1": {
-    "attempts": 17,
-    "booked": 5,
-    "by_outcome": {
-     "AGREED_TO_TALK": 1,
-     "BOOKED": 4,
-     "CALLBACK_REQUESTED": 1,
-     "DECLINED": 3,
-     "DECLINED_RECORDING": 1,
-     "DO_NOT_CONTACT": 1,
-     "FAILED_TECHNICAL": 1,
-     "GATEKEEPER_BLOCKED": 1,
-     "NOT_A_FIT": 1,
-     "NO_ANSWER": 1,
-     "VOICEMAIL": 1,
-     "WRONG_NUMBER": 1
-    },
-    "conversion": 0.294,
-    "declined": 3
-   }
-  },
-  "by_segment": {
-   "default": {
-    "attempts": 1,
-    "booked": 0,
-    "by_outcome": {
-     "NO_ANSWER": 1
-    },
-    "conversion": 0.0,
-    "declined": 0
-   },
-   "small_group_primary_care": {
-    "attempts": 3,
-    "booked": 0,
-    "by_outcome": {
-     "CALLBACK_REQUESTED": 1,
-     "FAILED_TECHNICAL": 1,
-     "NOT_A_FIT": 1
-    },
-    "conversion": 0.0,
-    "declined": 0
-   },
-   "small_group_specialist": {
-    "attempts": 1,
-    "booked": 0,
-    "by_outcome": {
-     "GATEKEEPER_BLOCKED": 1
-    },
-    "conversion": 0.0,
-    "declined": 0
-   },
-   "solo_primary_care": {
-    "attempts": 11,
-    "booked": 5,
-    "by_outcome": {
-     "AGREED_TO_TALK": 1,
-     "BOOKED": 4,
-     "DECLINED": 3,
-     "DECLINED_RECORDING": 1,
-     "DO_NOT_CONTACT": 1,
-     "WRONG_NUMBER": 1
-    },
-    "conversion": 0.455,
-    "declined": 3
-   },
-   "solo_specialist": {
-    "attempts": 1,
-    "booked": 0,
-    "by_outcome": {
-     "VOICEMAIL": 1
-    },
-    "conversion": 0.0,
-    "declined": 0
-   }
-  },
-  "completed": 17,
-  "connect_rate": 0.824,
-  "duplicate_webhooks_ignored": 17
+  "attempts": 0,
+  "booked": 0,
+  "by_failure_category": {},
+  "by_outcome": {},
+  "by_script_version": {},
+  "by_segment": {},
+  "completed": 0,
+  "connect_rate": 0.0,
+  "duplicate_webhooks_ignored": 0
  },
+ "channel": "email",
  "compliance": {
-  "consent_records": 19,
+  "consent_records": 32,
   "gate_escapes": 0,
   "kill_switch": false,
   "last_run": {
-   "allowed": 0,
-   "blocked": 5,
-   "considered": 10,
-   "deferred": 5
+   "allowed": 13,
+   "blocked": 8,
+   "considered": 21,
+   "deferred": 0
   },
   "paused": false,
   "suppressions": 3
@@ -124,129 +28,213 @@
  "contacts": {
   "by_status": {
    "BOOKED": 5,
-   "DECLINED": 5,
-   "IN_OUTREACH": 5,
+   "DECLINED": 2,
+   "IN_OUTREACH": 4,
    "READY": 1,
    "SOURCED": 1,
    "SUPPRESSED": 2,
    "UNREACHABLE": 1,
-   "VERIFIED": 1
+   "VERIFIED": 5
   },
   "by_verification": {
-   "failed": 2,
+   "failed": 6,
    "unverified": 1,
-   "verified": 18
+   "verified": 14
   },
   "total": 21,
-  "verified": 18
+  "verified": 14
  },
- "dlq": 1,
- "errors": 4,
+ "dlq": 0,
+ "emails": {
+  "agreed": 5,
+  "attempts": 13,
+  "awaiting_reply": 3,
+  "bounced": 1,
+  "by_outcome": {
+   "(awaiting reply)": 3,
+   "AGREED_TO_TALK": 5,
+   "BOUNCED": 1,
+   "DECLINED": 2,
+   "DO_NOT_CONTACT": 1,
+   "REPLIED_OTHER": 1
+  },
+  "by_script_version": {
+   "v1": {
+    "attempts": 13,
+    "booked": 5,
+    "by_outcome": {
+     "(pending)": 3,
+     "AGREED_TO_TALK": 5,
+     "BOUNCED": 1,
+     "DECLINED": 2,
+     "DO_NOT_CONTACT": 1,
+     "REPLIED_OTHER": 1
+    },
+    "conversion": 0.385,
+    "declined": 2
+   }
+  },
+  "by_segment": {
+   "default": {
+    "attempts": 1,
+    "booked": 0,
+    "by_outcome": {
+     "(pending)": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   },
+   "small_group_primary_care": {
+    "attempts": 2,
+    "booked": 1,
+    "by_outcome": {
+     "AGREED_TO_TALK": 1,
+     "DECLINED": 1
+    },
+    "conversion": 0.5,
+    "declined": 1
+   },
+   "solo_primary_care": {
+    "attempts": 8,
+    "booked": 4,
+    "by_outcome": {
+     "(pending)": 1,
+     "AGREED_TO_TALK": 4,
+     "BOUNCED": 1,
+     "DECLINED": 1,
+     "DO_NOT_CONTACT": 1
+    },
+    "conversion": 0.5,
+    "declined": 1
+   },
+   "solo_specialist": {
+    "attempts": 2,
+    "booked": 0,
+    "by_outcome": {
+     "(pending)": 1,
+     "REPLIED_OTHER": 1
+    },
+    "conversion": 0.0,
+    "declined": 0
+   }
+  },
+  "declined": 2,
+  "duplicate_events_ignored": 10,
+  "failed": 0,
+  "follow_ups_due": 0,
+  "needs_review": 1,
+  "no_reply": 0,
+  "queued": 0,
+  "replied": 9,
+  "reply_rate": 0.692,
+  "sent": 13,
+  "stop": 1
+ },
+ "errors": 6,
  "funnel": [
   {
    "count": 21,
    "stage": "Sourced"
   },
   {
-   "count": 18,
+   "count": 14,
    "stage": "Verified"
   },
   {
-   "count": 17,
-   "stage": "Cleared to call"
+   "count": 13,
+   "stage": "Cleared to email"
   },
   {
-   "count": 17,
-   "stage": "Called"
+   "count": 13,
+   "stage": "Emailed"
   },
   {
-   "count": 14,
-   "stage": "Connected"
+   "count": 9,
+   "stage": "Replied"
   },
   {
    "count": 5,
-   "stage": "Booked"
+   "stage": "Agreed"
   }
  ],
- "generated_at": "2026-10-21T01:31:52Z",
+ "generated_at": "2026-10-20T19:00:00Z",
  "interviews": 5,
  "interviews_pending_approval": 5,
  "queue": [
   {
    "attempts": 0,
+   "awaiting_reply": false,
    "contact_id": "c_0de2e04276",
    "external_id": "t_16",
    "last_outcome": "",
    "name": "Nina Shah",
    "next_attempt_at": "",
    "practice": "Shah Primary Care",
+   "queued_email": false,
    "segment": "solo_primary_care",
    "status": "READY"
   },
   {
    "attempts": 1,
-   "contact_id": "c_866bc1a7db",
-   "external_id": "t_17",
-   "last_outcome": "FAILED_TECHNICAL",
-   "name": "Victor Adeyemi",
-   "next_attempt_at": "2026-10-20T20:00:00Z",
-   "practice": "Dorchester Medical",
-   "segment": "small_group_primary_care",
+   "awaiting_reply": false,
+   "contact_id": "c_f9eafcfce6",
+   "external_id": "t_04",
+   "last_outcome": "REPLIED_OTHER",
+   "name": "Siobhan Ni Bhriain",
+   "next_attempt_at": "",
+   "practice": "Charles River Endocrinology",
+   "queued_email": false,
+   "segment": "solo_specialist",
    "status": "IN_OUTREACH"
   },
   {
    "attempts": 1,
+   "awaiting_reply": true,
+   "contact_id": "c_070728f30d",
+   "external_id": "t_08",
+   "last_outcome": "",
+   "name": "Ken Watanabe",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "practice": "Watanabe Pediatrics",
+   "queued_email": false,
+   "segment": "solo_specialist",
+   "status": "IN_OUTREACH"
+  },
+  {
+   "attempts": 1,
+   "awaiting_reply": true,
    "contact_id": "c_da6677d004",
    "external_id": "t_03",
-   "last_outcome": "NO_ANSWER",
+   "last_outcome": "",
    "name": "Marcus Lee",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
    "practice": "Lee Medical",
+   "queued_email": false,
    "segment": "default",
    "status": "IN_OUTREACH"
   },
   {
    "attempts": 1,
-   "contact_id": "c_01c54d811d",
-   "external_id": "t_10",
-   "last_outcome": "GATEKEEPER_BLOCKED",
-   "name": "Omar Haddad",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Haddad Endocrine Associates",
-   "segment": "small_group_specialist",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_29816f6cb0",
-   "external_id": "t_07",
-   "last_outcome": "CALLBACK_REQUESTED",
-   "name": "Rosa Martinez",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Fenway Group Practice",
-   "segment": "small_group_primary_care",
-   "status": "IN_OUTREACH"
-  },
-  {
-   "attempts": 1,
-   "contact_id": "c_f9eafcfce6",
-   "external_id": "t_04",
-   "last_outcome": "VOICEMAIL",
-   "name": "Siobhan Ni Bhriain",
-   "next_attempt_at": "2026-10-21T18:00:00Z",
-   "practice": "Charles River Endocrinology",
-   "segment": "solo_specialist",
+   "awaiting_reply": true,
+   "contact_id": "c_b62f5021ad",
+   "external_id": "t_20",
+   "last_outcome": "",
+   "name": "Tom Nguyen",
+   "next_attempt_at": "2026-10-23T19:00:00Z",
+   "practice": "Nguyen Family Health",
+   "queued_email": false,
+   "segment": "solo_primary_care",
    "status": "IN_OUTREACH"
   }
  ],
- "run_id": "20261021T013152Z-007",
+ "run_id": "20261020T190000Z-001",
  "transcripts": {
-  "brain_inbox": 13,
-  "delivered": 13,
-  "delivery_rate": 0.929,
-  "failed": 1,
+  "brain_inbox": 12,
+  "delivered": 12,
+  "delivery_rate": 1.0,
+  "failed": 0,
   "held_pii_review": 1,
   "pending": 0,
-  "total": 15
+  "total": 13
  }
 }

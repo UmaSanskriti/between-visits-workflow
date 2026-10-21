@@ -12,26 +12,35 @@ from .models import DeliveryStatus
 from .store import Store
 
 
+def attempt_for(store: Store, attempt_id: str):
+    """A transcript belongs to a call attempt or an email attempt."""
+    return store.call_attempts.get(attempt_id) or store.email_attempts.get(attempt_id)
+
+
 def build_package(store: Store, transcript) -> dict:
-    attempt = store.call_attempts[transcript.call_attempt_id]
+    attempt = attempt_for(store, transcript.call_attempt_id)
+    if attempt is None:
+        raise KeyError(transcript.call_attempt_id)
     contact = store.contacts[transcript.contact_id]
+    is_email = transcript.call_attempt_id in store.email_attempts
     return {
         "idempotency_key": transcript.idempotency_key or attempt.id,
+        "channel": "email" if is_email else "call",
         "call_attempt_id": attempt.id,
         "call_id": attempt.id,
         "contact_id": contact.id,
         "script_version": attempt.script_version,
         "outcome": attempt.outcome,
         "failure_category": attempt.failure_category,
-        "started_at": attempt.started_at,
-        "ended_at": attempt.ended_at,
+        "started_at": attempt.sent_at if is_email else attempt.started_at,
+        "ended_at": attempt.replied_at if is_email else attempt.ended_at,
         "doctor_meta": {
             "segment": attempt.segment,
             "specialty": contact.specialty,
             "practice_size": contact.practice_size,
         },
         "utterances": [{**u, "text": redact(u["text"])} for u in transcript.utterances],
-        "recording_ref": attempt.recording_ref,
+        "recording_ref": "" if is_email else attempt.recording_ref,
         "pii_handling": "redacted",
         "dry_run": {"scenario": contact.test_scenario},
     }

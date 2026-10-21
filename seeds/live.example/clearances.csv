@@ -1,2 +1,3 @@
-phone,cleared_by,reason,cleared_at
+identifier,cleared_by,reason,cleared_at
 +15555550100,your name,team-owned number with explicit consent,2026-10-20T00:00:00Z
+you@example.com,your name,your own address for the email demo,2026-10-20T00:00:00Z

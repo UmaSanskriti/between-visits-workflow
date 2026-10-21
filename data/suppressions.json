@@ -4,8 +4,16 @@
   "id": "sup_1c2ede379f",
   "identifier": "c_48eaa6c438",
   "identifier_type": "contact",
-  "reason": "opt-out request during call (CMP-006)",
-  "source": "call:ca_e9f7fe12db"
+  "reason": "stop request by email",
+  "source": "email:em_e9f7fe12db"
+ },
+ "sup_7582114517": {
+  "created_at": "2026-10-20T19:00:00Z",
+  "id": "sup_7582114517",
+  "identifier": "hgoldberg@brooklinepc.example.test",
+  "identifier_type": "email",
+  "reason": "stop request by email",
+  "source": "email:em_e9f7fe12db"
  },
  "sup_b158b584e9": {
   "created_at": "2026-10-20T19:00:00Z",
@@ -14,13 +22,5 @@
   "identifier_type": "phone",
   "reason": "prior opt-out (seeded for test case t_05)",
   "source": "seeds/suppressions.csv"
- },
- "sup_eebb2568c7": {
-  "created_at": "2026-10-20T19:00:00Z",
-  "id": "sup_eebb2568c7",
-  "identifier": "+16175550109",
-  "identifier_type": "phone",
-  "reason": "opt-out request during call (CMP-006)",
-  "source": "call:ca_e9f7fe12db"
  }
 }

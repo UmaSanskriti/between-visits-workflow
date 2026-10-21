@@ -1,4 +1,4 @@
-phone,cleared_by,reason,cleared_at
+identifier,cleared_by,reason,cleared_at
 +16175550101,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
 +16175550102,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
 +16175550103,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
@@ -17,3 +17,16 @@ phone,cleared_by,reason,cleared_at
 +16175550119,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
 +16175550120,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
 +16175550121,founders,dry-run test number (fictional 555-01xx range),2026-10-20T00:00:00Z
+frontdesk@beaconhill-im.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+office@charlesriver-endo.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+scheduling@fenwaygroup.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+hgoldberg@brooklinepc.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+gkim@kimfamilymed.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+ezhang@southend-im.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+lbennett@bennettfp.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+info@harborview-im.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+tnguyen@nguyenfh.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+wchen@chenfp.example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+ppatel@example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+mlee@example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z
+kwatanabe@example.test,founders,dry-run test address (.test domain; published on the practice site per playbook 8b),2026-10-20T00:00:00Z

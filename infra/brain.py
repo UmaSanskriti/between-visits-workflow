@@ -92,6 +92,22 @@ SYSTEM_PROMPT_TEMPLATE = (
     "Voicemail: {voicemail}"
 )
 
+EMAIL_SUBJECT_TEMPLATE = "30 minutes with Dr. {last_name}? (HBS research, not sales)"
+EMAIL_SUBJECT_FALLBACK = "30 minutes with your practice? (HBS research, not sales)"
+# Playbook section 8b, cold email to an address published on the practice website. Plain text, under 150 words.
+EMAIL_BODY_TEMPLATE = (
+    "{greeting}\n\n"
+    "I'm Anirudh Bagla, a student at Harvard Business School. {hook_sentence}\n\n"
+    "My co-founder and I are exploring a way for independent practices like {practice_name} to give GLP-1 "
+    "patients complete care, side-effect management, nutrition and exercise, through a shared team of "
+    "nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we "
+    "want to know if it would work for independent practices.\n\n"
+    "We're not selling anything. Would you have 30 minutes on {slot_1} or {slot_2}, by phone or in person at "
+    "your practice?\n\n"
+    "Thank you,\n{sender_name}{signature_number}\n\n"
+    "{opt_out_line}"
+)
+
 BANNED_CLAIMS = [
     "any guarantee of revenue or outcomes (say 'we believe' and 'up to')",
     "medical advice about drugs, dosing, side effects, or outcomes",
@@ -110,6 +126,8 @@ class BrainRejected(Exception):
 
 class BrainClient(Protocol):
     def resolve_script(self, request: dict) -> dict: ...
+
+    def resolve_email(self, request: dict) -> dict: ...
 
     def deliver_transcript(self, package: dict) -> dict: ...
 
@@ -151,6 +169,21 @@ class MockBrain:
                 "approver": "Anirudh Bagla",
             },
             "max_attempts": 2,
+            "banned_claims": BANNED_CLAIMS,
+        }
+
+    def resolve_email(self, request: dict) -> dict:
+        """Playbook section 8b: the approved cold-email template, versioned like the call script."""
+        self.resolve_calls += 1
+        if self.down:
+            raise BrainUnavailable("mock Brain unreachable (BV_MOCK_BRAIN_DOWN=1)")
+        return {
+            "script_id": "clinic-outreach-email-v1",
+            "script_version": SCRIPT_VERSION,
+            "subject": EMAIL_SUBJECT_TEMPLATE,
+            "subject_fallback": EMAIL_SUBJECT_FALLBACK,
+            "body": EMAIL_BODY_TEMPLATE,
+            "rules": ["plain text", "under 150 words", "one ask", "no attachments", "opt-out line", "real sender name"],
             "banned_claims": BANNED_CLAIMS,
         }
 

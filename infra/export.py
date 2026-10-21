@@ -58,6 +58,14 @@ def export(store: Store, export_dir: Path | str, summary: dict, run: dict) -> li
         "call_attempts",
         sorted((a.to_dict() for a in store.call_attempts.values()), key=lambda a: a["started_at"], reverse=True),
     )
+    dump(
+        "email_attempts",
+        sorted(
+            (a.to_dict() for a in store.email_attempts.values()),
+            key=lambda a: a["sent_at"] or a["created_at"],
+            reverse=True,
+        ),
+    )
     dump("scripts", [s.to_dict() for s in store.scripts.values()])
     dump("transcripts", [t.to_dict() for t in store.transcripts.values()])
     dump("interviews", [i.to_dict() for i in store.interviews.values()])

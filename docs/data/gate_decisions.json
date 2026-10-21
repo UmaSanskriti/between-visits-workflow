@@ -1,7 +1,8 @@
 [
  {
   "allowed": true,
-  "channel_id": "ch_5e1fdacffc",
+  "channel": "email",
+  "channel_id": "ch_52806280cd",
   "contact_id": "c_251bab6d38",
   "deferred": false,
   "reasons": [],
@@ -11,7 +12,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_fb340917a5",
+  "channel": "email",
+  "channel_id": "ch_b401e0efc6",
   "contact_id": "c_b3b24d17b8",
   "deferred": false,
   "reasons": [],
@@ -21,7 +23,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_4da2cae231",
+  "channel": "email",
+  "channel_id": "ch_09b9987882",
   "contact_id": "c_da6677d004",
   "deferred": false,
   "reasons": [],
@@ -31,7 +34,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_38dfb97cd2",
+  "channel": "email",
+  "channel_id": "ch_df4d7c2a74",
   "contact_id": "c_f9eafcfce6",
   "deferred": false,
   "reasons": [],
@@ -41,12 +45,28 @@
  },
  {
   "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
+  "channel": "email",
+  "channel_id": "",
   "contact_id": "c_8a72860e91",
   "deferred": false,
   "reasons": [
    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
+   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+   "no_email_channel"
+  ],
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_5bfd0187e6",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
   ],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
@@ -54,17 +74,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_7acca703d9",
-  "contact_id": "c_5bfd0187e6",
-  "deferred": false,
-  "reasons": [],
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": true,
-  "channel_id": "ch_2b7bcb4ad3",
+  "channel": "email",
+  "channel_id": "ch_2ec822826d",
   "contact_id": "c_29816f6cb0",
   "deferred": false,
   "reasons": [],
@@ -73,21 +84,20 @@
   "waivers": []
  },
  {
-  "allowed": false,
-  "channel_id": "",
+  "allowed": true,
+  "channel": "email",
+  "channel_id": "ch_c85f152af5",
   "contact_id": "c_070728f30d",
   "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel"
-  ],
+  "reasons": [],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
   "waivers": []
  },
  {
   "allowed": true,
-  "channel_id": "ch_fd81d176ec",
+  "channel": "email",
+  "channel_id": "ch_c81ee09672",
   "contact_id": "c_48eaa6c438",
   "deferred": false,
   "reasons": [],
@@ -96,18 +106,23 @@
   "waivers": []
  },
  {
-  "allowed": true,
-  "channel_id": "ch_1a19dbc957",
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
   "contact_id": "c_01c54d811d",
   "deferred": false,
-  "reasons": [],
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
   "waivers": []
  },
  {
   "allowed": true,
-  "channel_id": "ch_6edba34a63",
+  "channel": "email",
+  "channel_id": "ch_95ee0f7128",
   "contact_id": "c_c09828fbcf",
   "deferred": false,
   "reasons": [],
@@ -117,11 +132,27 @@
  },
  {
   "allowed": false,
-  "channel_id": "ch_c8143f50ff",
+  "channel": "email",
+  "channel_id": "",
   "contact_id": "c_761872151b",
   "deferred": false,
   "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38"
+   "contact_not_verified:duplicate_of:c_251bab6d38",
+   "no_email_channel"
+  ],
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_517863c95b",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
   ],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
@@ -129,17 +160,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_90853491d8",
-  "contact_id": "c_517863c95b",
-  "deferred": false,
-  "reasons": [],
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": true,
-  "channel_id": "ch_d51cba31b9",
+  "channel": "email",
+  "channel_id": "ch_6f5e721f2c",
   "contact_id": "c_d7b9cfa027",
   "deferred": false,
   "reasons": [],
@@ -148,22 +170,41 @@
   "waivers": []
  },
  {
-  "allowed": true,
-  "channel_id": "ch_909481b505",
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
   "contact_id": "c_a776b6dc5b",
   "deferred": false,
-  "reasons": [],
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
+  ],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
   "waivers": []
  },
  {
   "allowed": false,
-  "channel_id": "ch_54322660b9",
+  "channel": "email",
+  "channel_id": "ch_14b62de826",
   "contact_id": "c_0de2e04276",
   "deferred": false,
   "reasons": [
-   "call_clearance_not_cleared"
+   "email_clearance_not_cleared"
+  ],
+  "run_id": "20261020T190000Z-001",
+  "timestamp": "2026-10-20T19:00:00Z",
+  "waivers": []
+ },
+ {
+  "allowed": false,
+  "channel": "email",
+  "channel_id": "",
+  "contact_id": "c_866bc1a7db",
+  "deferred": false,
+  "reasons": [
+   "contact_not_verified:no_email_channel",
+   "no_email_channel"
   ],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
@@ -171,17 +212,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": false,
-  "reasons": [],
-  "run_id": "20261020T190000Z-001",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": true,
-  "channel_id": "ch_0fdf5cb5aa",
+  "channel": "email",
+  "channel_id": "ch_27177384c8",
   "contact_id": "c_2c3a09fcb5",
   "deferred": false,
   "reasons": [],
@@ -191,7 +223,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_021549c001",
+  "channel": "email",
+  "channel_id": "ch_7d785a7774",
   "contact_id": "c_41cc51441d",
   "deferred": false,
   "reasons": [],
@@ -201,7 +234,8 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_61bc1438e5",
+  "channel": "email",
+  "channel_id": "ch_e207f6adf5",
   "contact_id": "c_b62f5021ad",
   "deferred": false,
   "reasons": [],
@@ -211,789 +245,13 @@
  },
  {
   "allowed": true,
-  "channel_id": "ch_e4e3c37052",
+  "channel": "email",
+  "channel_id": "ch_8a82185b3d",
   "contact_id": "c_fb34444215",
   "deferred": false,
   "reasons": [],
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:26 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel",
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared",
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:26 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438",
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38",
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "outside_calling_window:Tue 17:26 America/New_York"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:26 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:26 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T212639Z-002",
-  "timestamp": "2026-10-20T21:26:39Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:48 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel",
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared",
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:48 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438",
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38",
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "outside_calling_window:Tue 17:48 America/New_York"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:48 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:48 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T214842Z-003",
-  "timestamp": "2026-10-20T21:48:42Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:50 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel",
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared",
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:50 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438",
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38",
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "outside_calling_window:Tue 17:50 America/New_York"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:50 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 17:50 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T215030Z-004",
-  "timestamp": "2026-10-20T21:50:30Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "retry_not_due_until:2026-10-20T20:00:00Z"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261020T190000Z-005",
-  "timestamp": "2026-10-20T19:00:00Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:19 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel",
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared",
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:19 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438",
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38",
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "outside_calling_window:Tue 21:19 America/New_York"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:19 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:19 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T011945Z-006",
-  "timestamp": "2026-10-21T01:19:45Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_1a19dbc957",
-  "contact_id": "c_01c54d811d",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:31 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "",
-  "contact_id": "c_070728f30d",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:no_callable_channel",
-   "no_phone_channel",
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_54322660b9",
-  "contact_id": "c_0de2e04276",
-  "deferred": false,
-  "reasons": [
-   "call_clearance_not_cleared",
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_2b7bcb4ad3",
-  "contact_id": "c_29816f6cb0",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:31 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_fd81d176ec",
-  "contact_id": "c_48eaa6c438",
-  "deferred": false,
-  "reasons": [
-   "suppressed:contact:c_48eaa6c438",
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_c8143f50ff",
-  "contact_id": "c_761872151b",
-  "deferred": false,
-  "reasons": [
-   "contact_not_verified:duplicate_of:c_251bab6d38",
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_42ac4cfa29",
-  "contact_id": "c_866bc1a7db",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_5dad0aa7b5",
-  "contact_id": "c_8a72860e91",
-  "deferred": false,
-  "reasons": [
-   "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-   "outside_calling_window:Tue 21:31 America/New_York"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_4da2cae231",
-  "contact_id": "c_da6677d004",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:31 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
-  "waivers": []
- },
- {
-  "allowed": false,
-  "channel_id": "ch_38dfb97cd2",
-  "contact_id": "c_f9eafcfce6",
-  "deferred": true,
-  "reasons": [
-   "outside_calling_window:Tue 21:31 America/New_York",
-   "retry_not_due_until:2026-10-21T18:00:00Z"
-  ],
-  "run_id": "20261021T013152Z-007",
-  "timestamp": "2026-10-21T01:31:52Z",
   "waivers": []
  }
 ]
