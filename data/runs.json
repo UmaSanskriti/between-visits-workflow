@@ -318,5 +318,69 @@
   },
   "started_at": "2026-10-20T19:00:00Z",
   "trigger": "dashboard"
+ },
+ {
+  "brain_down": false,
+  "callback_number_set": true,
+  "finished_at": "2026-10-21T01:19:45Z",
+  "gate_escapes": 0,
+  "git_sha": "5fc2970",
+  "kill_switch": false,
+  "limits": {
+   "max_attempts": 2,
+   "max_calls_per_day": 50,
+   "max_calls_per_run": 25
+  },
+  "mode": "dry_run",
+  "now_used": "2026-10-21T01:19:45Z",
+  "paused": false,
+  "playbook": "clinic-outreach-brain.md",
+  "run_id": "20261021T011945Z-006",
+  "seed": "test_doctors.csv",
+  "simulated_time": false,
+  "stages": {
+   "calls": {
+    "allowed": 0,
+    "blocked": 5,
+    "brain_unavailable": 0,
+    "capped": 0,
+    "considered": 10,
+    "deferred": 5,
+    "placed": 0,
+    "script_errors": 0
+   },
+   "delivery": {
+    "attempted": 0,
+    "delivered": 0,
+    "duplicates": 0,
+    "failed": 0,
+    "held": 1
+   },
+   "ingest": {
+    "channels_created": 0,
+    "contacts_created": 0,
+    "contacts_updated": 0,
+    "rows": 21
+   },
+   "suppressions_seeded": 0,
+   "verify": {
+    "channels_failed": 0,
+    "channels_verified": 23,
+    "cleared": 0,
+    "duplicates": 1,
+    "failed": 1,
+    "suppressed": 0,
+    "verified": 6
+   },
+   "webhooks": {
+    "applied": 0,
+    "bad_signature": 0,
+    "duplicates_ignored": 0,
+    "events": 0,
+    "unknown_call": 0
+   }
+  },
+  "started_at": "2026-10-21T01:19:45Z",
+  "trigger": "push"
  }
 ]
