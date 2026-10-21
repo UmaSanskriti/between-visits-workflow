@@ -59,6 +59,16 @@
   "segment": "solo_primary_care",
   "utterance_count": 1
  },
+ "em_3f31cb8771:reply": {
+  "call_attempt_id": "em_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "failure_category": "Reply needs review",
+  "outcome": "REPLIED_OTHER",
+  "received_at": "2026-10-21T01:38:28Z",
+  "script_version": "v1",
+  "segment": "solo_specialist",
+  "utterance_count": 2
+ },
  "em_6b6ea10721:reply": {
   "call_attempt_id": "em_6b6ea10721",
   "contact_id": "c_f9eafcfce6",

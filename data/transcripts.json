@@ -296,6 +296,32 @@
    }
   ]
  },
+ "tr_f79a0b783a": {
+  "call_attempt_id": "em_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "created_at": "2026-10-21T01:38:28Z",
+  "delivered_at": "2026-10-21T01:38:28Z",
+  "delivery_attempts": 0,
+  "delivery_status": "delivered",
+  "id": "tr_f79a0b783a",
+  "idempotency_key": "em_3f31cb8771:reply",
+  "language": "en",
+  "last_delivery_error": "",
+  "pii_flagged": false,
+  "pii_reason": "",
+  "utterances": [
+   {
+    "speaker": "agent",
+    "start_ms": 0,
+    "text": "Hi Dr. Bhriain,\n\nI'm Anirudh Bagla, a student at Harvard Business School. \n\nMy co-founder and I are exploring a way for independent practices like Charles River Endocrinology to give GLP-1 patients complete care, side-effect management, nutrition and exercise, through a shared team of nutritionists and coaches, with the insurance billing handled. Large health systems already do this; we want to know if it would work for independent practices.\n\nWe're not selling anything. Would you have 30 minutes on Thu 10/22 2:00pm or Mon 10/26 10:00am, by phone or in person at your practice?\n\nThank you,\nAnirudh Bagla \u00b7 +16175550199\n\nReply \"stop\" and we won't contact you again.\n"
+   },
+   {
+    "speaker": "doctor",
+    "start_ms": 0,
+    "text": "Can you send more details about what you're building and who is behind it?"
+   }
+  ]
+ },
  "tr_fe051d28df": {
   "call_attempt_id": "em_0454abe525",
   "contact_id": "c_c09828fbcf",

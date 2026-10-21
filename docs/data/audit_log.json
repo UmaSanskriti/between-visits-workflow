@@ -4850,5 +4850,424 @@
   "entity_id": "20261020T190000Z-001",
   "run_id": "20261020T190000Z-001",
   "timestamp": "2026-10-20T19:00:00Z"
+ },
+ {
+  "action": "start",
+  "actor": "system",
+  "after": {
+   "now_used": "2026-10-21T01:38:28Z",
+   "trigger": "push"
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T013828Z-002",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "verify",
+  "actor": "system",
+  "after": {
+   "verification_reason": "",
+   "verified": true
+  },
+  "before": {
+   "verification_reason": "bounced",
+   "verified": false
+  },
+  "entity": "channels",
+  "entity_id": "ch_95ee0f7128",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_01c54d811d",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-23T19:00:00Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_070728f30d",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "email_clearance_not_cleared"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_0de2e04276",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "suppressed:contact:c_48eaa6c438"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_48eaa6c438",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_517863c95b",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_5bfd0187e6",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:duplicate_of:c_251bab6d38",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_761872151b",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_866bc1a7db",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "contact_not_verified:suppressed:phone:+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_8a72860e91",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_blocked",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "contact_not_verified:no_email_channel",
+    "no_email_channel"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_a776b6dc5b",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-23T19:00:00Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_b62f5021ad",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "gate_deferred",
+  "actor": "system",
+  "after": {
+   "channel": "email",
+   "reasons": [
+    "retry_not_due_until:2026-10-23T19:00:00Z"
+   ]
+  },
+  "before": {},
+  "entity": "contact",
+  "entity_id": "c_da6677d004",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "em_3f31cb8771",
+   "outcome": "",
+   "status": "queued"
+  },
+  "before": {},
+  "contact_id": "c_f9eafcfce6",
+  "entity": "email_attempts",
+  "entity_id": "em_3f31cb8771",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "create",
+  "actor": "system",
+  "after": {
+   "id": "tr_f79a0b783a"
+  },
+  "before": {},
+  "call_attempt_id": "em_3f31cb8771",
+  "contact_id": "c_f9eafcfce6",
+  "entity": "transcripts",
+  "entity_id": "tr_f79a0b783a",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "sent",
+  "actor": "system",
+  "after": {
+   "provider": "mock",
+   "provider_message_id": "<\u2022\u2022\u2022@between-visits.test>",
+   "sent_at": "2026-10-21T01:38:28Z",
+   "status": "sent",
+   "transcript_id": "tr_f79a0b783a"
+  },
+  "before": {
+   "provider": "mock",
+   "provider_message_id": "",
+   "sent_at": "",
+   "status": "queued",
+   "transcript_id": ""
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "email_attempts",
+  "entity_id": "em_3f31cb8771",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "next_attempt_at": "2026-10-24T01:38:28Z",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_3f31cb8771",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "email_sent",
+  "actor": "system",
+  "after": {
+   "attempts": 2,
+   "last_outcome": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "attempts": 1,
+   "last_outcome": "REPLIED_OTHER",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_3f31cb8771",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "reply_added",
+  "actor": "system",
+  "after": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_3f31cb8771:reply",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "before": {
+   "delivery_attempts": 0,
+   "delivery_status": "pending",
+   "idempotency_key": "em_3f31cb8771:sent",
+   "pii_flagged": false,
+   "pii_reason": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_f79a0b783a",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "replied",
+  "actor": "system",
+  "after": {
+   "failure_category": "Reply needs review",
+   "handoff": {
+    "availability": "",
+    "contact_email": "o\u2022\u2022\u2022@charlesriver-endo.example.test",
+    "contact_method": "email",
+    "contact_number": "",
+    "notes": "Can you send more details about what you're building and who is behind it?",
+    "person_spoken_to": "doctor"
+   },
+   "outcome": "REPLIED_OTHER",
+   "replied_at": "2026-10-21T01:38:28Z",
+   "reply_text": "Can you send more details about what you're building and who is behind it?",
+   "transcript_id": "tr_f79a0b783a"
+  },
+  "before": {
+   "failure_category": "",
+   "handoff": {},
+   "outcome": "",
+   "replied_at": "",
+   "reply_text": "",
+   "transcript_id": "tr_f79a0b783a"
+  },
+  "contact_id": "c_f9eafcfce6",
+  "entity": "email_attempts",
+  "entity_id": "em_3f31cb8771",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "outcome_replied_other",
+  "actor": "system",
+  "after": {
+   "last_outcome": "REPLIED_OTHER",
+   "next_attempt_at": "",
+   "status": "IN_OUTREACH"
+  },
+  "before": {
+   "last_outcome": "",
+   "next_attempt_at": "2026-10-24T01:38:28Z",
+   "status": "IN_OUTREACH"
+  },
+  "email_attempt_id": "em_3f31cb8771",
+  "entity": "contacts",
+  "entity_id": "c_f9eafcfce6",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "event_duplicate_ignored",
+  "actor": "system",
+  "after": {
+   "event_id": "<\u2022\u2022\u2022@between-visits.test>:reply"
+  },
+  "before": {},
+  "entity": "email_attempt",
+  "entity_id": "em_3f31cb8771",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "delivered",
+  "actor": "system",
+  "after": {
+   "delivered_at": "2026-10-21T01:38:28Z",
+   "delivery_status": "delivered",
+   "last_delivery_error": ""
+  },
+  "before": {
+   "delivered_at": "",
+   "delivery_status": "pending",
+   "last_delivery_error": ""
+  },
+  "entity": "transcripts",
+  "entity_id": "tr_f79a0b783a",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
+ },
+ {
+  "action": "finish",
+  "actor": "system",
+  "after": {
+   "gate_escapes": 0
+  },
+  "before": {},
+  "entity": "run",
+  "entity_id": "20261021T013828Z-002",
+  "run_id": "20261021T013828Z-002",
+  "timestamp": "2026-10-21T01:38:28Z"
  }
 ]

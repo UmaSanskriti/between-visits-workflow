@@ -1,14 +1,6 @@
 [
  {
   "created_at": "2026-10-20T19:00:00Z",
-  "id": "sup_b158b584e9",
-  "identifier": "+1\u2022\u2022\u2022\u2022\u2022\u20220105",
-  "identifier_type": "phone",
-  "reason": "prior opt-out (seeded for test case t_05)",
-  "source": "seeds/suppressions.csv"
- },
- {
-  "created_at": "2026-10-20T19:00:00Z",
   "id": "sup_1c2ede379f",
   "identifier": "c_48eaa6c438",
   "identifier_type": "contact",
@@ -22,5 +14,13 @@
   "identifier_type": "email",
   "reason": "stop request by email",
   "source": "email:em_e9f7fe12db"
+ },
+ {
+  "created_at": "2026-10-20T19:00:00Z",
+  "id": "sup_b158b584e9",
+  "identifier": "+1\u2022\u2022\u2022\u2022\u2022\u20220105",
+  "identifier_type": "phone",
+  "reason": "prior opt-out (seeded for test case t_05)",
+  "source": "seeds/suppressions.csv"
  }
 ]
