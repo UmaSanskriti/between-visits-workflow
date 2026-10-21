@@ -289,6 +289,7 @@ def test_real_agent_run_queues_the_first_eligible_practice(tmp_path):
     service.dry_export_dir = tmp_path / "export"
     service.env_overrides = {
         "BV_LIVE_ALLOWLIST": "ppatel@example.test",
+        "EMAIL_DEMO_RECIPIENT": "ppatel@example.test",  # independent of whatever the local .env redirects to
         "EMAIL_TRANSPORT": "outbox",
         "SMTP_PASSWORD": "",
     }
