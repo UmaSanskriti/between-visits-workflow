@@ -318,7 +318,7 @@ def test_email_dry_run_outcomes(email_env: Env):
     env = email_env
     run = env.store.logs["runs"][-1]
     assert run["channel"] == "email" and set(run["stages"]) >= {"email", "replies"}
-    assert "placed" not in run["stages"]["email"] and run["stages"]["email"]["sent"] > 0
+    assert run["stages"]["email"]["sent"] > 0 and run["stages"]["email"]["placed"] == run["stages"]["email"]["sent"]
     assert run["gate_escapes"] == 0 and env.mailer.sent
 
     def attempt(ext):
